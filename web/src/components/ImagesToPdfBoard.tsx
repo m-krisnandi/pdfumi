@@ -195,6 +195,7 @@ export function ImagesToPdfBoard({
                 className="group relative rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-white dark:bg-zinc-800 p-2 shadow-xs transition hover:shadow-md"
               >
                 <div className="aspect-[3/4] rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.previewUrl}
                     alt={item.file.name}

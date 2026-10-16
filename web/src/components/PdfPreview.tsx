@@ -41,6 +41,7 @@ export function PdfPreview({
     }
 
     let cancelled = false;
+    const hostEl = hostRef.current;
     const tasks: RenderTask[] = [];
     let pdfDoc: PDFDocumentProxy | null = null;
     setStatus("loading");
@@ -123,7 +124,7 @@ export function PdfPreview({
         }
       }
       void pdfDoc?.cleanup();
-      if (hostRef.current) hostRef.current.replaceChildren();
+      if (hostEl) hostEl.replaceChildren();
     };
   }, [file, title, maxPages]);
 

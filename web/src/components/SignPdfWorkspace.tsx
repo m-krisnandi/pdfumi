@@ -73,9 +73,12 @@ export function SignPdfWorkspace({
     width: number;
   } | null>(null);
   const placementRef = useRef(placement);
-  placementRef.current = placement;
   const onPlacementChangeRef = useRef(onPlacementChange);
-  onPlacementChangeRef.current = onPlacementChange;
+
+  useEffect(() => {
+    placementRef.current = placement;
+    onPlacementChangeRef.current = onPlacementChange;
+  }, [placement, onPlacementChange]);
 
   useEffect(() => {
     let cancelled = false;

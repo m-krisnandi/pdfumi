@@ -233,6 +233,7 @@ export function ResizeImageBoard() {
           {/* Preview Image */}
           {previewUrl && (
             <div className="flex justify-center p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-950/50">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={previewUrl}
                 alt="Preview"

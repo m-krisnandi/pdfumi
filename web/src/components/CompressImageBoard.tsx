@@ -295,6 +295,7 @@ export function CompressImageBoard({
               </div>
               {compressedUrl && (
                 <div className="flex justify-center pt-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={compressedUrl}
                     alt="Hasil kompres"

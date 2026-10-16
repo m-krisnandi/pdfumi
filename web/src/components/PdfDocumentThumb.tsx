@@ -25,7 +25,9 @@ export function PdfDocumentThumb({
   const onPageCountRef = useRef(onPageCount);
   const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading");
 
-  onPageCountRef.current = onPageCount;
+  useEffect(() => {
+    onPageCountRef.current = onPageCount;
+  }, [onPageCount]);
 
   useEffect(() => {
     let cancelled = false;

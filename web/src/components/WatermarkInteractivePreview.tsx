@@ -128,6 +128,9 @@ export function WatermarkInteractivePreview({
               <div
                 role="slider"
                 aria-label="Watermark position"
+                aria-valuenow={Math.round(pose.x * 100)}
+                aria-valuemin={0}
+                aria-valuemax={100}
                 tabIndex={0}
                 onPointerDown={onPointerDown}
                 onPointerMove={onPointerMove}

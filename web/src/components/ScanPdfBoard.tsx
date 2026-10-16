@@ -11,7 +11,6 @@ import {
   RefreshCw,
   Trash2,
   Download,
-  Sparkles,
   Layers,
   ArrowUp,
   ArrowDown,
@@ -25,9 +24,8 @@ type ScannedPage = {
 
 export function ScanPdfBoard() {
   const t = useTranslations("scanPdf");
-  const tCommon = useTranslations("common");
 
-  const [cameraActive, setCameraActive] = useState(false);
+  const [, setCameraActive] = useState(false);
   const [facingMode, setFacingMode] = useState<"environment" | "user">("environment");
   const [filterMode, setFilterMode] = useState<"normal" | "enhanced" | "bw">("enhanced");
   const [scannedPages, setScannedPages] = useState<ScannedPage[]>([]);
@@ -37,42 +35,52 @@ export function ScanPdfBoard() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
-  // Initialize camera
-  async function startCamera(mode = facingMode) {
-    stopCamera();
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: { ideal: mode },
-          width: { ideal: 1920 },
-          height: { ideal: 1080 },
-        },
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-      setCameraActive(true);
-      setError(null);
-    } catch (err) {
-      setError("Tidak dapat mengakses kamera. Pastikan izin kamera aktif pada peramban Anda.");
-      setCameraActive(false);
-    }
-  }
-
-  function stopCamera() {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-    }
-    setCameraActive(false);
-  }
-
   useEffect(() => {
-    startCamera();
+    let active = true;
+
+    async function initCamera() {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+      setCameraActive(false);
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: { ideal: facingMode },
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
+          },
+        });
+        if (!active) {
+          stream.getTracks().forEach((track) => track.stop());
+          return;
+        }
+        streamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          await videoRef.current.play();
+        }
+        setCameraActive(true);
+        setError(null);
+      } catch {
+        if (active) {
+          setError("Tidak dapat mengakses kamera. Pastikan izin kamera aktif pada peramban Anda.");
+          setCameraActive(false);
+        }
+      }
+    }
+
+    void initCamera();
+
     return () => {
-      stopCamera();
+      active = false;
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+      setCameraActive(false);
     };
   }, [facingMode]);
 
@@ -294,6 +302,7 @@ export function ScanPdfBoard() {
                   className="group relative rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 p-1.5 shadow-xs"
                 >
                   <div className="aspect-[3/4] rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-900 relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={page.dataUrl}
                       alt={`Halaman ${idx + 1}`}

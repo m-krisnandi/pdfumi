@@ -119,7 +119,6 @@ export function AccountBoard() {
     void refresh().finally(() => {
       setInitializing(false);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function refresh() {
