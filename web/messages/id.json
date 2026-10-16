@@ -319,7 +319,7 @@
     "freeItems": [
       "5 dokumen/hari per alat",
       "Batas ukuran berkas s.d. 20 MB",
-      "Kompresi target < 200 KB (1 berkas/proses)",
+      "Kompresi PDF kualitas optimal (1 berkas/proses)",
       "Sertifikat s.d. 20 penerima/batch"
     ],
     "proName": "Pro Bulanan",

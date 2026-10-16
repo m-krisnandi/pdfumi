@@ -493,7 +493,7 @@ export function PricingBoard() {
                 </tr>
                 <tr>
                   <td className="py-3 px-4 sm:px-6 font-medium text-zinc-900 dark:text-white">
-                    {locale === "id" ? "Kompresi Target (< 200 KB)" : "Target Compression (< 200 KB)"}
+                    {locale === "id" ? "Kompresi PDF Kualitas Optimal" : "Optimal Quality PDF Compression"}
                   </td>
                   <td className="py-3 px-3 sm:px-4">
                     {locale === "id" ? "1 berkas per proses" : "1 file per process"}

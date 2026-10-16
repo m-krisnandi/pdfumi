@@ -317,7 +317,7 @@
     "freeItems": [
       "5 documents/day per tool",
       "Up to 20 MB file size limit",
-      "Target compression < 200 KB (1 file/task)",
+      "Optimal quality PDF compression (1 file/task)",
       "Certificates up to 20/batch"
     ],
     "proName": "Pro",

@@ -53,9 +53,9 @@ export function HomeHeroWorkspace() {
         href: "/tools/compress-pdf",
         title: isId ? "Kompres PDF" : "Compress PDF",
         desc: isId
-          ? "Kecilkan ukuran file PDF ke target < 200 KB, 500 KB, atau 1 MB tanpa buram."
-          : "Reduce PDF file size to exact target < 200 KB, 500 KB, or 1 MB.",
-        badge: isId ? "Target < 200 KB" : "Exact Target KB",
+          ? "Kecilkan ukuran file PDF dengan kompresi optimal tanpa merusak kualitas teks."
+          : "Reduce PDF file size with optimal quality-first compression.",
+        badge: isId ? "Kualitas Terbaik" : "Optimal Quality",
         tone: "bg-[#e85d4c] text-white",
         icon: Minimize2,
         keywords: ["compress", "kompres", "kecilkan", "size", "200kb", "cpns", "bumn", "sscasn"],
@@ -236,10 +236,10 @@ export function HomeHeroWorkspace() {
         : "Yes, 100%. Most PDF and image processing (merging, editing, signatures, and compression) runs client-side directly in your browser. We never retain or sell your confidential documents.",
     },
     {
-      q: isId ? "Bagaimana cara kompres PDF di bawah 200 KB untuk CPNS/BUMN?" : "How does exact target compression work?",
+      q: isId ? "Bagaimana cara kompres PDF di Pdfumi?" : "How does PDF compression work in Pdfumi?",
       a: isId
-        ? "Cukup pilih menu Kompres PDF, lalu klik preset 'Di Bawah 200 KB'. Algoritma cerdas kami secara otomatis menyesuaikan resolusi grafis dan kedalaman warna sehingga berkas lolos validasi SSCASN tanpa buram."
-        : "Select the Compress PDF or Compress Image tool and click the '< 200 KB' preset or enter your custom KB number. Our adaptive downsampler dynamically balances resolution to guarantee fitting your size limit.",
+        ? "Cukup pilih menu Kompres PDF dan unggah dokumen Anda. Algoritma cerdas kami secara otomatis memadatkan struktur dokumen dan gambar beresolusi tinggi sehingga berkas lebih ringan dengan kualitas teks tetap tajam dan jernih."
+        : "Select the Compress PDF tool and upload your document. Our smart algorithm automatically balances image resolution and optimizes document structures to shrink file sizes while keeping crisp, readable text.",
     },
     {
       q: isId ? "Apakah Pdfumi gratis digunakan?" : "Is Pdfumi free to use?",
@@ -275,8 +275,8 @@ export function HomeHeroWorkspace() {
 
         <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed">
           {isId
-            ? "Kompres ke ukuran target, gabung, tanda tangani, dan buat dokumen resmi (invoice, kwitansi, surat) langsung di peramban Anda."
-            : "Compress to exact KB sizes, merge, edit, e-sign, and generate official documents (invoices, receipts, contracts) in seconds."}
+            ? "Kompres PDF berkualitas optimal, gabung, tanda tangani, dan buat dokumen resmi (invoice, kwitansi, surat) langsung di peramban Anda."
+            : "Compress PDFs with optimal quality, merge, edit, e-sign, and generate official documents (invoices, receipts, contracts) in seconds."}
         </p>
 
         {/* Real-time Tool Search Bar */}
@@ -289,7 +289,7 @@ export function HomeHeroWorkspace() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={isId ? "Cari 40+ alat PDF (misal: kompres 200kb, gabung, ttd, word, scan)..." : "Search 40+ PDF tools (e.g. compress 200kb, merge, sign, word, scan)..."}
+              placeholder={isId ? "Cari 40+ alat PDF (misal: kompres pdf, gabung, ttd, word, scan)..." : "Search 40+ PDF tools (e.g. compress pdf, merge, sign, word, scan)..."}
               className="w-full pl-12 pr-4 py-4 rounded-2xl glass-panel border border-zinc-200/80 dark:border-white/10 shadow-lg text-sm sm:text-base text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all bg-white/70 dark:bg-zinc-900/70"
             />
             {query && (
@@ -450,7 +450,7 @@ export function HomeHeroWorkspace() {
               </li>
               <li className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>{isId ? "Kompresi target < 200 KB & generator dokumen" : "Target compression & document templates"}</span>
+                <span>{isId ? "Kompresi kualitas optimal & generator dokumen" : "Optimal quality compression & document templates"}</span>
               </li>
               <li className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-teal-600 shrink-0" />
