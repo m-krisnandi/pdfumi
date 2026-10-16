@@ -4,7 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import { locales } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { Fraunces, Manrope, Noto_Sans_JP, Noto_Sans_Myanmar } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -26,19 +26,7 @@ const body = Manrope({
   display: "swap",
 });
 
-const jp = Noto_Sans_JP({
-  subsets: ["latin"],
-  variable: "--font-jp",
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
 
-const my = Noto_Sans_Myanmar({
-  subsets: ["myanmar"],
-  variable: "--font-my",
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -73,7 +61,7 @@ export default async function LocaleLayout({
         <ThemeScript />
       </head>
       <body
-        className={`${display.variable} ${body.variable} ${jp.variable} ${my.variable} antialiased`}
+        className={`${display.variable} ${body.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <div className={`min-h-screen ${bodyFontClass(locale)} flex flex-col justify-between`}>
