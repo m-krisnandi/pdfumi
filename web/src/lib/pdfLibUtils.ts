@@ -1,4 +1,4 @@
-import { PDFDocument, StandardFonts, rgb, degrees } from "pdf-lib";
+import { PDFDocument, PDFName, PDFStream, PDFDict, StandardFonts, rgb, degrees } from "pdf-lib";
 
 /** Standard paper sizes in points (72 points per inch) */
 export const PAGE_SIZES: Record<string, [number, number]> = {
@@ -361,68 +361,132 @@ export async function compressPdfQualityFirst(
   file: File,
   onProgress?: (status: string) => void
 ): Promise<Blob> {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url
-  ).toString();
-
   const fileBytes = await file.arrayBuffer();
-  const loadingTask = pdfjs.getDocument({ data: fileBytes });
-  const pdf = await loadingTask.promise;
-  const numPages = pdf.numPages;
+  const origSize = file.size;
 
-  const outDoc = await PDFDocument.create();
-  // 1.5 scale (~120-130 DPI) ensures letters have ample pixel density to remain perfectly sharp and readable
-  const scale = 1.5;
-  const quality = 0.76;
+  onProgress?.("Menganalisis struktur dokumen...");
 
-  for (let i = 1; i <= numPages; i++) {
-    onProgress?.(`Mengompres halaman ${i}/${numPages}...`);
-    const page = await pdf.getPage(i);
-    const origViewport = page.getViewport({ scale: 1.0 });
-    const viewport = page.getViewport({ scale });
-    const canvas = document.createElement("canvas");
-    canvas.width = Math.max(50, Math.floor(viewport.width));
-    canvas.height = Math.max(50, Math.floor(viewport.height));
-    const ctx = canvas.getContext("2d");
-    if (!ctx) continue;
-
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // @ts-expect-error pdfjs typing
-    await page.render({ canvasContext: ctx, viewport }).promise;
-
-    // Clean paper background noise to pure white for ultra-efficient compression
-    try {
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const d = imgData.data;
-      for (let p = 0; p < d.length; p += 4) {
-        if (d[p] > 225 && d[p + 1] > 225 && d[p + 2] > 225) {
-          d[p] = 255;
-          d[p + 1] = 255;
-          d[p + 2] = 255;
-        }
+  // 1. Analyze indirect objects for embedded raster images & prepare structural optimization
+  let srcDoc: PDFDocument | null = null;
+  let imageCount = 0;
+  try {
+    srcDoc = await PDFDocument.load(fileBytes, { ignoreEncryption: true });
+    for (const [, obj] of srcDoc.context.enumerateIndirectObjects()) {
+      if (obj instanceof PDFStream && obj.dict.get(PDFName.of("Subtype")) === PDFName.of("Image")) {
+        imageCount++;
+      } else if (obj instanceof PDFDict && obj.get(PDFName.of("Subtype")) === PDFName.of("Image")) {
+        imageCount++;
       }
-      ctx.putImageData(imgData, 0, 0);
-    } catch {
-      // Continue if canvas tainted
     }
-
-    const jpgDataUrl = canvas.toDataURL("image/jpeg", quality);
-    const jpgBytes = await (await fetch(jpgDataUrl)).arrayBuffer();
-    const embeddedImg = await outDoc.embedJpg(jpgBytes);
-
-    const pdfPage = outDoc.addPage([origViewport.width, origViewport.height]);
-    pdfPage.drawImage(embeddedImg, {
-      x: 0,
-      y: 0,
-      width: origViewport.width,
-      height: origViewport.height,
-    });
+  } catch {
+    // If pdf-lib cannot parse, fallback to rendering
   }
 
-  const outputBytes = await outDoc.save();
-  return new Blob([outputBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+  // 2. Structural optimization: clone pages into fresh document & enable object stream compression.
+  // This purges orphan revisions, unused metadata, and shrinks streams without touching vector text.
+  let streamOptBytes: Uint8Array | null = null;
+  if (srcDoc) {
+    try {
+      const cleanDoc = await PDFDocument.create();
+      const pages = await cleanDoc.copyPages(srcDoc, srcDoc.getPageIndices());
+      for (const p of pages) cleanDoc.addPage(p);
+      cleanDoc.setProducer("PDFumi");
+      cleanDoc.setCreator("PDFumi");
+      streamOptBytes = await cleanDoc.save({ useObjectStreams: true });
+    } catch {
+      // Continue if structural clone fails
+    }
+  }
+
+  // If the document has NO raster images (pure vector text, such as Word/Google Docs exports):
+  // Converting pages into JPEG images would degrade razor-sharp vector text and inflate file size.
+  // Structural optimization keeps 100% vector sharpness and reduces size naturally.
+  if (imageCount === 0 && streamOptBytes) {
+    const bestBytes = streamOptBytes.length < origSize ? streamOptBytes : new Uint8Array(fileBytes);
+    return new Blob([bestBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+  }
+
+  // 3. For documents with embedded images or scanned pages, apply high-quality visual compression
+  try {
+    const pdfjs = await import("pdfjs-dist");
+    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+      "pdfjs-dist/build/pdf.worker.min.mjs",
+      import.meta.url
+    ).toString();
+
+    const loadingTask = pdfjs.getDocument({ data: fileBytes.slice(0) });
+    const pdf = await loadingTask.promise;
+    const numPages = pdf.numPages;
+
+    const outDoc = await PDFDocument.create();
+    const scale = 1.5;
+    const quality = 0.76;
+
+    for (let i = 1; i <= numPages; i++) {
+      onProgress?.(`Mengompres halaman ${i}/${numPages}...`);
+      const page = await pdf.getPage(i);
+      const origViewport = page.getViewport({ scale: 1.0 });
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(50, Math.floor(viewport.width));
+      canvas.height = Math.max(50, Math.floor(viewport.height));
+      const ctx = canvas.getContext("2d");
+      if (!ctx) continue;
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // @ts-expect-error pdfjs typing
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      // Clean paper background noise to pure white for ultra-efficient compression
+      try {
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const d = imgData.data;
+        for (let p = 0; p < d.length; p += 4) {
+          if (d[p] > 225 && d[p + 1] > 225 && d[p + 2] > 225) {
+            d[p] = 255;
+            d[p + 1] = 255;
+            d[p + 2] = 255;
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+      } catch {
+        // Continue if canvas tainted
+      }
+
+      const jpgDataUrl = canvas.toDataURL("image/jpeg", quality);
+      const jpgBytes = await (await fetch(jpgDataUrl)).arrayBuffer();
+      const embeddedImg = await outDoc.embedJpg(jpgBytes);
+
+      const pdfPage = outDoc.addPage([origViewport.width, origViewport.height]);
+      pdfPage.drawImage(embeddedImg, {
+        x: 0,
+        y: 0,
+        width: origViewport.width,
+        height: origViewport.height,
+      });
+    }
+
+    const renderedBytes = await outDoc.save();
+
+    // Absolute Guarantee: The output must NEVER be larger than the original input!
+    let bestBytes = renderedBytes;
+    if (renderedBytes.length >= origSize) {
+      if (streamOptBytes && streamOptBytes.length < origSize) {
+        bestBytes = streamOptBytes;
+      } else {
+        bestBytes = new Uint8Array(fileBytes);
+      }
+    } else if (streamOptBytes && streamOptBytes.length < renderedBytes.length) {
+      bestBytes = streamOptBytes;
+    }
+
+    return new Blob([bestBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+  } catch (err) {
+    if (streamOptBytes && streamOptBytes.length < origSize) {
+      return new Blob([streamOptBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+    }
+    throw err;
+  }
 }

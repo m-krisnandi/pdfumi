@@ -131,8 +131,16 @@ export function CompressPdfBoard() {
             <div className="flex items-center gap-2 p-3.5 rounded-xl bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20 text-xs">
               <Sparkles className="w-4 h-4 shrink-0" />
               <span>
-                Berhasil dikompres menjadi <strong>{formatFileSize(resultSize)}</strong> (
-                {Math.round((1 - resultSize / file.size) * 100)}% lebih hemat) dengan kualitas tetap tajam!
+                {resultSize < file.size ? (
+                  <>
+                    Berhasil dikompres menjadi <strong>{formatFileSize(resultSize)}</strong> (
+                    {Math.max(1, Math.round((1 - resultSize / file.size) * 100))}% lebih hemat) dengan kualitas tetap tajam!
+                  </>
+                ) : (
+                  <>
+                    Dokumen ini sudah dalam ukuran paling optimal (<strong>{formatFileSize(resultSize)}</strong>).
+                  </>
+                )}
               </span>
             </div>
           )}
