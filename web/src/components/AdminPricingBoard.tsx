@@ -25,6 +25,7 @@ import {
   Copy,
   Infinity as InfinityIcon,
   Trash2,
+  AlertTriangle,
 } from "lucide-react";
 
 interface PricingPlan {
@@ -122,7 +123,17 @@ export function AdminPricingBoard() {
 
   // Modals
   const [editingPlan, setEditingPlan] = useState<PricingPlan | null>(null);
-  const [editPlanForm, setEditPlanForm] = useState({
+  const [editPlanForm, setEditPlanForm] = useState<{
+    name: string;
+    priceIdr: number | "";
+    priceUsd: number | "";
+    durationDays: number | "";
+    monthlyDocumentLimit: number | "";
+    certificateMaxRecipients: number | "";
+    maxApiKeys: number | "";
+    badge: string;
+    active: boolean;
+  }>({
     name: "",
     priceIdr: 0,
     priceUsd: 0,
@@ -135,14 +146,23 @@ export function AdminPricingBoard() {
   });
 
   const [grantingAccount, setGrantingAccount] = useState<UserAccount | null>(null);
-  const [grantForm, setGrantForm] = useState({
+  const [grantForm, setGrantForm] = useState<{
+    plan: string;
+    days: number | "";
+    lifetime: boolean;
+  }>({
     plan: "PRO",
     days: 30,
     lifetime: false,
   });
 
   const [showProvisionModal, setShowProvisionModal] = useState(false);
-  const [provisionForm, setProvisionForm] = useState({
+  const [provisionForm, setProvisionForm] = useState<{
+    email: string;
+    plan: string;
+    days: number | "";
+    lifetime: boolean;
+  }>({
     email: "",
     plan: "PRO",
     days: 30,
@@ -156,7 +176,13 @@ export function AdminPricingBoard() {
   } | null>(null);
 
   const [showCreatePromoModal, setShowCreatePromoModal] = useState(false);
-  const [promoForm, setPromoForm] = useState({
+  const [promoForm, setPromoForm] = useState<{
+    code: string;
+    discountPercent: number | "";
+    plan: string;
+    maxUses: number | "";
+    expiresAt: string;
+  }>({
     code: "",
     discountPercent: 100,
     plan: "ALL",
@@ -323,12 +349,12 @@ export function AdminPricingBoard() {
         },
         body: JSON.stringify({
           name: editPlanForm.name,
-          priceIdr: editPlanForm.priceIdr,
-          priceUsd: editPlanForm.priceUsd,
-          durationDays: editPlanForm.durationDays,
-          monthlyDocumentLimit: editPlanForm.monthlyDocumentLimit,
-          certificateMaxRecipients: editPlanForm.certificateMaxRecipients,
-          maxApiKeys: editPlanForm.maxApiKeys,
+          priceIdr: Number(editPlanForm.priceIdr) || 0,
+          priceUsd: Number(editPlanForm.priceUsd) || 0,
+          durationDays: Number(editPlanForm.durationDays) || 30,
+          monthlyDocumentLimit: Number(editPlanForm.monthlyDocumentLimit) || 100,
+          certificateMaxRecipients: Number(editPlanForm.certificateMaxRecipients) || 20,
+          maxApiKeys: Number(editPlanForm.maxApiKeys) || 1,
           badge: editPlanForm.badge.trim() || null,
           active: editPlanForm.active,
         }),
@@ -370,7 +396,7 @@ export function AdminPricingBoard() {
         },
         body: JSON.stringify({
           plan: grantForm.plan,
-          days: grantForm.days,
+          days: Number(grantForm.days) || 30,
           lifetime: grantForm.lifetime,
         }),
       });
@@ -403,7 +429,7 @@ export function AdminPricingBoard() {
         body: JSON.stringify({
           email: provisionForm.email.trim(),
           plan: provisionForm.plan,
-          days: provisionForm.days,
+          days: Number(provisionForm.days) || 30,
           lifetime: provisionForm.lifetime,
         }),
       });
@@ -429,7 +455,15 @@ export function AdminPricingBoard() {
 
   async function handleCreatePromo(e: React.FormEvent) {
     e.preventDefault();
-    if (!promoForm.code.trim()) return;
+    const discount = Number(promoForm.discountPercent);
+    if (!promoForm.code.trim()) {
+      setError("Kode promo tidak boleh kosong.");
+      return;
+    }
+    if (isNaN(discount) || discount < 1 || discount > 100) {
+      setError("Diskon harus berupa angka antara 1% hingga 100%.");
+      return;
+    }
     setActionLoading(true);
     setError(null);
     setSuccessNotice(null);
@@ -442,9 +476,9 @@ export function AdminPricingBoard() {
         },
         body: JSON.stringify({
           code: promoForm.code.trim().toUpperCase(),
-          discountPercent: promoForm.discountPercent,
+          discountPercent: discount,
           plan: promoForm.plan,
-          maxUses: promoForm.maxUses,
+          maxUses: Number(promoForm.maxUses) || 0,
           expiresAt: promoForm.expiresAt ? new Date(promoForm.expiresAt).toISOString() : null,
         }),
       });
@@ -1332,9 +1366,14 @@ export function AdminPricingBoard() {
                     Harga IDR (Rupiah QRIS)
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.priceIdr}
-                    onChange={(e) => setEditPlanForm({ ...editPlanForm, priceIdr: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, priceIdr: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 29000"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1345,9 +1384,14 @@ export function AdminPricingBoard() {
                     Harga USD (Internasional)
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.priceUsd}
-                    onChange={(e) => setEditPlanForm({ ...editPlanForm, priceUsd: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, priceUsd: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 3"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1360,9 +1404,14 @@ export function AdminPricingBoard() {
                     Masa Aktif (Hari)
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.durationDays}
-                    onChange={(e) => setEditPlanForm({ ...editPlanForm, durationDays: parseInt(e.target.value) || 1 })}
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, durationDays: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 30"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1373,11 +1422,14 @@ export function AdminPricingBoard() {
                     Limit Dokumen / Bulan
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.monthlyDocumentLimit}
-                    onChange={(e) =>
-                      setEditPlanForm({ ...editPlanForm, monthlyDocumentLimit: parseInt(e.target.value) || 100 })
-                    }
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, monthlyDocumentLimit: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 500"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1390,11 +1442,14 @@ export function AdminPricingBoard() {
                     Max Penerima Sertifikat
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.certificateMaxRecipients}
-                    onChange={(e) =>
-                      setEditPlanForm({ ...editPlanForm, certificateMaxRecipients: parseInt(e.target.value) || 20 })
-                    }
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, certificateMaxRecipients: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 100"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1405,9 +1460,14 @@ export function AdminPricingBoard() {
                     Max API Key
                   </label>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={editPlanForm.maxApiKeys}
-                    onChange={(e) => setEditPlanForm({ ...editPlanForm, maxApiKeys: parseInt(e.target.value) || 1 })}
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setEditPlanForm({ ...editPlanForm, maxApiKeys: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 2"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1522,9 +1582,14 @@ export function AdminPricingBoard() {
                         ))}
                       </div>
                       <input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
                         value={grantForm.days}
-                        onChange={(e) => setGrantForm({ ...grantForm, days: parseInt(e.target.value) || 0 })}
+                        onChange={(e) => {
+                          const clean = e.target.value.replace(/\D/g, "");
+                          setGrantForm({ ...grantForm, days: clean === "" ? "" : parseInt(clean, 10) });
+                        }}
+                        placeholder="Contoh: 30"
                         className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                         required
                       />
@@ -1641,9 +1706,14 @@ export function AdminPricingBoard() {
                     ))}
                   </div>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
                     value={provisionForm.days}
-                    onChange={(e) => setProvisionForm({ ...provisionForm, days: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => {
+                      const clean = e.target.value.replace(/\D/g, "");
+                      setProvisionForm({ ...provisionForm, days: clean === "" ? "" : parseInt(clean, 10) });
+                    }}
+                    placeholder="Contoh: 30"
                     className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
                     required
                   />
@@ -1692,6 +1762,18 @@ export function AdminPricingBoard() {
               </button>
             </div>
 
+            {(() => {
+              const disc = typeof promoForm.discountPercent === "number" ? promoForm.discountPercent : 0;
+              const passEst = Math.round(19000 * (100 - disc) / 100);
+              const proEst = Math.round(29000 * (100 - disc) / 100);
+              const bizEst = Math.round(199000 * (100 - disc) / 100);
+              const hasBelowMinBank = disc < 100 && disc > 0 && (
+                (promoForm.plan === "ALL" && (passEst < 10000 || proEst < 10000)) ||
+                (promoForm.plan === "PASS" && passEst < 10000) ||
+                (promoForm.plan === "PRO" && proEst < 10000)
+              );
+
+              return (
             <form onSubmit={handleCreatePromo} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
@@ -1701,56 +1783,179 @@ export function AdminPricingBoard() {
                   type="text"
                   value={promoForm.code}
                   onChange={(e) => setPromoForm({ ...promoForm, code: e.target.value.toUpperCase() })}
-                  placeholder="Misal: LAUNCH100, HEMAT50"
+                  placeholder="Misal: LAUNCH100, HEMAT50, VIPPRO"
                   className="glass-input w-full px-3.5 py-2.5 rounded-xl font-mono text-sm uppercase"
                   required
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300">
                     Diskon (%)
                   </label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="100"
-                    value={promoForm.discountPercent}
-                    onChange={(e) => setPromoForm({ ...promoForm, discountPercent: parseInt(e.target.value) || 0 })}
-                    className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
-                    required
-                  />
-                  <span className="text-[10px] text-zinc-400 dark:text-zinc-500">100 = Akses Gratis</span>
+                  <span className="text-[11px] font-medium text-teal-600 dark:text-teal-400">
+                    {disc === 100 ? "100% (Akses Gratis)" : disc > 0 ? `${disc}% Diskon` : "0%"}
+                  </span>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
-                    Paket Berlaku
-                  </label>
-                  <select
-                    value={promoForm.plan}
-                    onChange={(e) => setPromoForm({ ...promoForm, plan: e.target.value })}
-                    className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
-                  >
-                    <option value="ALL">Semua Paket</option>
-                    <option value="PRO">PRO Saja</option>
-                    <option value="BUSINESS">BUSINESS Saja</option>
-                    <option value="PASS">PASS Saja</option>
-                  </select>
+                {/* Shortcut Diskon */}
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    { label: "10%", val: 10 },
+                    { label: "20%", val: 20 },
+                    { label: "30%", val: 30 },
+                    { label: "50%", val: 50 },
+                    { label: "60% (Max VA)", val: 60 },
+                    { label: "100% (Gratis)", val: 100 },
+                  ].map((s) => (
+                    <button
+                      key={s.label}
+                      type="button"
+                      onClick={() => setPromoForm({ ...promoForm, discountPercent: s.val })}
+                      className={`px-2.5 py-1 text-xs rounded-lg font-bold transition-all ${
+                        promoForm.discountPercent === s.val
+                          ? "bg-teal-600 text-white dark:bg-teal-500 dark:text-zinc-950 shadow-xs"
+                          : "glass-pill text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={promoForm.discountPercent}
+                      onChange={(e) => {
+                        const clean = e.target.value.replace(/\D/g, "");
+                        setPromoForm({
+                          ...promoForm,
+                          discountPercent: clean === "" ? "" : Math.min(100, parseInt(clean, 10)),
+                        });
+                      }}
+                      placeholder="1 - 100"
+                      className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
+                      required
+                    />
+                    <span className="text-[10px] text-zinc-400 dark:text-zinc-500">Ketik 100 untuk kupon gratis</span>
+                  </div>
+
+                  <div>
+                    <select
+                      value={promoForm.plan}
+                      onChange={(e) => setPromoForm({ ...promoForm, plan: e.target.value })}
+                      className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
+                    >
+                      <option value="ALL">Semua Paket</option>
+                      <option value="PRO">PRO Saja</option>
+                      <option value="BUSINESS">BUSINESS Saja</option>
+                      <option value="PASS">PASS Saja</option>
+                    </select>
+                  </div>
                 </div>
               </div>
+
+              {/* Live Preview & Validasi Batas Minimum Gateway */}
+              {disc === 100 ? (
+                <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-900 dark:text-emerald-200 text-xs space-y-1">
+                  <div className="flex items-center gap-2 font-bold text-emerald-700 dark:text-emerald-400">
+                    <Check className="w-4 h-4" />
+                    <span>Mode 100% Gratis (Bypass Midtrans)</span>
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-emerald-800/80 dark:text-emerald-300/80">
+                    Pelanggan langsung mendapatkan paket tanpa diarahkan ke payment gateway. Bebas biaya transaksi Midtrans (Rp 0).
+                  </p>
+                </div>
+              ) : disc > 0 ? (
+                <div className="space-y-2">
+                  <div className="p-3 rounded-2xl bg-zinc-500/5 dark:bg-white/[0.04] border border-zinc-200/60 dark:border-white/10 text-xs space-y-1.5">
+                    <span className="font-bold text-zinc-700 dark:text-zinc-300 block text-[11px] uppercase tracking-wider">
+                      Estimasi Harga Setelah Diskon:
+                    </span>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="p-2 rounded-xl bg-white/40 dark:bg-black/20">
+                        <span className="text-[10px] text-zinc-500 block">PASS (7h)</span>
+                        <strong className={`text-xs ${passEst < 10000 ? "text-amber-600 dark:text-amber-400" : "text-zinc-900 dark:text-white"}`}>
+                          Rp {passEst.toLocaleString("id-ID")}
+                        </strong>
+                      </div>
+                      <div className="p-2 rounded-xl bg-white/40 dark:bg-black/20">
+                        <span className="text-[10px] text-zinc-500 block">PRO (30h)</span>
+                        <strong className={`text-xs ${proEst < 10000 ? "text-amber-600 dark:text-amber-400" : "text-zinc-900 dark:text-white"}`}>
+                          Rp {proEst.toLocaleString("id-ID")}
+                        </strong>
+                      </div>
+                      <div className="p-2 rounded-xl bg-white/40 dark:bg-black/20">
+                        <span className="text-[10px] text-zinc-500 block">BIZ (1th)</span>
+                        <strong className="text-xs text-zinc-900 dark:text-white">
+                          Rp {bizEst.toLocaleString("id-ID")}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  {hasBelowMinBank ? (
+                    <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs space-y-1.5">
+                      <div className="flex items-center gap-1.5 font-bold text-amber-800 dark:text-amber-300">
+                        <AlertTriangle className="w-4 h-4 shrink-0" />
+                        <span>Peringatan: Nominal &lt; Rp 10.000</span>
+                      </div>
+                      <p className="text-[11px] leading-relaxed text-amber-900/80 dark:text-amber-200/80">
+                        Harga akhir ada yang di bawah Rp 10.000 (contoh PRO menjadi <strong>Rp {proEst.toLocaleString("id-ID")}</strong>). Sistem perbankan Midtrans otomatis <strong>menonaktifkan Virtual Account Bank & Kartu Kredit</strong> untuk nominal &lt; Rp 10.000. Pelanggan hanya bisa bayar lewat QRIS.
+                      </p>
+                      <p className="text-[10px] font-semibold text-amber-800 dark:text-amber-400">
+                        Saran: Pasang diskon maksimal 60% agar seluruh Virtual Account tetap aktif.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-[11px] flex items-center gap-2">
+                      <Check className="w-3.5 h-3.5 shrink-0" />
+                      <span>Aman: Seluruh metode pembayaran (Virtual Account, Kartu Kredit, QRIS, GoPay) dapat digunakan.</span>
+                    </div>
+                  )}
+                </div>
+              ) : null}
 
               <div>
                 <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
                   Batas Penggunaan (Kali)
                 </label>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {[
+                    { label: "10x", val: 10 },
+                    { label: "50x", val: 50 },
+                    { label: "100x", val: 100 },
+                    { label: "500x", val: 500 },
+                    { label: "Unlimited (0)", val: 0 },
+                  ].map((s) => (
+                    <button
+                      key={s.label}
+                      type="button"
+                      onClick={() => setPromoForm({ ...promoForm, maxUses: s.val })}
+                      className={`px-2.5 py-1 text-xs rounded-lg font-bold transition-all ${
+                        promoForm.maxUses === s.val
+                          ? "bg-teal-600 text-white dark:bg-teal-500 dark:text-zinc-950 shadow-xs"
+                          : "glass-pill text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
                 <input
-                  type="number"
-                  min="0"
+                  type="text"
+                  inputMode="numeric"
                   value={promoForm.maxUses}
-                  onChange={(e) => setPromoForm({ ...promoForm, maxUses: parseInt(e.target.value) || 0 })}
+                  onChange={(e) => {
+                    const clean = e.target.value.replace(/\D/g, "");
+                    setPromoForm({ ...promoForm, maxUses: clean === "" ? "" : parseInt(clean, 10) });
+                  }}
                   className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
+                  placeholder="0 untuk tanpa batas (unlimited)"
                   required
                 />
                 <span className="text-[10px] text-zinc-400 dark:text-zinc-500">Isi 0 untuk tanpa batas (unlimited kuota)</span>
@@ -1785,6 +1990,8 @@ export function AdminPricingBoard() {
                 </button>
               </div>
             </form>
+              );
+            })()}
           </div>
         </div>
       )}
