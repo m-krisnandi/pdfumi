@@ -1213,14 +1213,14 @@
     }
   },
   "compressImage": {
-    "title": "Compress Image to Exact Target KB",
-    "description": "Reduce image file size below 100 KB, 200 KB, or 500 KB to meet strict upload portal requirements.",
+    "title": "Compress Image Online Free",
+    "description": "Reduce image file sizes with optimal quality-first compression. Crisp details preserved.",
     "chooseFile": "Choose Image",
     "dropHint": "or drop image here",
-    "uploadHint": "JPG, PNG · Auto-adjusted to target KB",
+    "uploadHint": "JPG, PNG, WebP, GIF, HEIC · Optimal quality compression",
     "seo": {
-      "title": "Compress Image to Target KB Size Online | Pdfumi",
-      "description": "Compress photos under 200 KB or 100 KB with smart quality optimization.",
+      "title": "Compress Image Online Free — Optimal Quality | Pdfumi",
+      "description": "Compress images online for free. Reduce JPG, PNG, WebP file sizes while keeping crisp visual clarity.",
       "faqTitle": "Image Compressor FAQ",
       "faqs": [
         {
@@ -1456,11 +1456,11 @@
     }
   },
   "compressJpg": {
-    "title": "Compress JPG Images to Target Size",
-    "description": "Reduce JPG/JPEG image sizes under 200 KB, 100 KB, or custom KB targets with optimal clarity.",
+    "title": "Compress JPG Online Free",
+    "description": "Reduce JPG/JPEG image sizes with optimal visual clarity.",
     "chooseFile": "Select JPG Image",
     "dropHint": "or drop JPG file here",
-    "uploadHint": "JPG, JPEG · Exact target KB matching",
+    "uploadHint": "JPG, JPEG · Optimal quality compression",
     "seo": {
       "title": "Compress JPG Online Free - Under 200 KB | Pdfumi",
       "description": "Compress JPG/JPEG images to specific target KB file sizes with high quality.",

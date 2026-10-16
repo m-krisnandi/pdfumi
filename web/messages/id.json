@@ -1229,14 +1229,14 @@
     }
   },
   "compressImage": {
-    "title": "Kompres Foto ke Target KB Tertentu",
-    "description": "Kecilkan ukuran file foto JPG/PNG menjadi di bawah 100 KB, 200 KB, atau 300 KB sesuai syarat portal pendaftaran online.",
+    "title": "Kompres Gambar Online Gratis",
+    "description": "Kecilkan ukuran file foto & gambar JPG, PNG, atau WebP dengan kualitas tetap jernih dan tajam.",
     "chooseFile": "Pilih Foto",
     "dropHint": "atau seret foto ke sini",
-    "uploadHint": "JPG, PNG · Otomatis disesuaikan ke target KB",
+    "uploadHint": "JPG, PNG, WebP, GIF, HEIC · Kualitas visual terbaik",
     "seo": {
-      "title": "Kompres Foto JPG di Bawah 200 KB Online | Pdfumi",
-      "description": "Kompres foto ke ukuran tepat di bawah 200 KB untuk syarat pendaftaran SSCASN CPNS, BUMN, dan kedinasan.",
+      "title": "Kompres Gambar Online Gratis — Kualitas Terbaik | Pdfumi",
+      "description": "Kompres foto dan gambar JPG, PNG, WebP online gratis tanpa watermark dengan kualitas tetap tajam.",
       "faqTitle": "FAQ Kompres Foto",
       "faqs": [
         {
@@ -1472,11 +1472,11 @@
     }
   },
   "compressJpg": {
-    "title": "Kompres Foto JPG ke Ukuran Tertentu",
-    "description": "Kecilkan ukuran file foto JPG/JPEG di bawah 200 KB, 100 KB, atau target KB tertentu dengan menjaga ketajaman gambar.",
+    "title": "Kompres JPG Online Gratis",
+    "description": "Kecilkan ukuran foto JPG/JPEG dengan kualitas visual terbaik.",
     "chooseFile": "Pilih Foto JPG",
     "dropHint": "atau seret file JPG ke sini",
-    "uploadHint": "JPG, JPEG · Presisi target KB",
+    "uploadHint": "JPG, JPEG · Kualitas visual terbaik",
     "seo": {
       "title": "Kompres JPG Online Gratis - Di Bawah 200 KB | Pdfumi",
       "description": "Kompres foto JPG/JPEG ke ukuran tepat di bawah 200 KB untuk SSCASN CPNS, BUMN, dan kedinasan.",

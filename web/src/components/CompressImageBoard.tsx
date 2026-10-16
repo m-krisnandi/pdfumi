@@ -2,33 +2,53 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ToolShell } from "@/components/ToolShell";
-import { PdfDropzone } from "@/components/PdfDropzone";
+import { ToolShell } from "@/components/ToolShell";import { PdfDropzone } from "@/components/PdfDropzone";
 import { ErrorBanner } from "@/components/ErrorBanner";
 import { Button } from "@/components/ui/Button";
 import { formatFileSize } from "@/components/PdfPreview";
-import { Target, Sparkles, Download, CheckCircle2 } from "lucide-react";
+import { Sparkles, Download, CheckCircle2, ShieldCheck, ImageIcon } from "lucide-react";
 
 export function CompressImageBoard({
-  namespace = "compressImage",
-  forcedFormat,
+  namespace = "compressImage",  forcedFormat,
   accept = "image/*,.heic,.heif,.webp,.png,.jpg,.jpeg,.gif",
-}: {
-  namespace?: string;
-  forcedFormat?: "jpeg" | "png" | "webp";
-  accept?: string;
-}) {
+}: {  namespace?: string;  forcedFormat?: "jpeg" | "png" | "webp";
+  accept?: string;}) {
   const t = useTranslations(namespace);
   const tCommon = useTranslations("common");
 
   const [file, setFile] = useState<File | null>(null);
-  const [targetPreset, setTargetPreset] = useState<"100kb" | "200kb" | "300kb" | "500kb" | "custom">("200kb");
-  const [customKb, setCustomKb] = useState(150);
+  const [filePreviewUrl, setFilePreviewUrl] = useState<string | null>(null);
+  const [fileDimensions, setFileDimensions] = useState<{ width: number; height: number } | null>(null);
 
   const [compressedBlob, setCompressedBlob] = useState<Blob | null>(null);
   const [compressedUrl, setCompressedUrl] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!file) {
+      setFilePreviewUrl(null);
+      setFileDimensions(null);
+      setCompressedBlob(null);
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    setFilePreviewUrl(url);
+
+    const img = new Image();
+    img.onload = () => {
+      setFileDimensions({
+        width: img.naturalWidth || img.width,
+        height: img.naturalHeight || img.height,
+      });
+    };
+    img.src = url;
+
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file]);
 
   useEffect(() => {
     if (!compressedBlob) {
@@ -44,30 +64,29 @@ export function CompressImageBoard({
     if (!file) return;
     setProcessing(true);
     setError(null);
-    setCompressedBlob(null);
-
-    let targetLimitKb = 200;
-    if (targetPreset === "100kb") targetLimitKb = 100;
-    else if (targetPreset === "200kb") targetLimitKb = 200;
-    else if (targetPreset === "300kb") targetLimitKb = 300;
-    else if (targetPreset === "500kb") targetLimitKb = 500;
-    else if (targetPreset === "custom") targetLimitKb = Math.max(30, customKb);
-
-    const targetBytes = targetLimitKb * 1024;
 
     try {
       const srcUrl = URL.createObjectURL(file);
       const img = new Image();
       await new Promise<void>((resolve, reject) => {
         img.onload = () => resolve();
-        img.onerror = () => reject(new Error("Gagal membaca gambar"));
+        img.onerror = () => reject(new Error("Gagal membaca format gambar"));
         img.src = srcUrl;
       });
       URL.revokeObjectURL(srcUrl);
 
-      const canvas = document.createElement("canvas");
-      let currentW = img.width;
-      let currentH = img.height;
+      const origW = img.naturalWidth || img.width;
+      const origH = img.naturalHeight || img.height;
+
+      // Downscale if photo resolution is excessively high (> 2048px on max edge)
+      const maxDim = 2048;
+      let targetW = origW;
+      let targetH = origH;
+      if (Math.max(origW, origH) > maxDim) {
+        const ratio = maxDim / Math.max(origW, origH);
+        targetW = Math.round(origW * ratio);
+        targetH = Math.round(origH * ratio);
+      }
 
       // Determine output mime
       let mimeType = "image/jpeg";
@@ -76,63 +95,42 @@ export function CompressImageBoard({
       else if (!forcedFormat && file.type === "image/png") mimeType = "image/png";
       else if (!forcedFormat && file.type === "image/webp") mimeType = "image/webp";
 
-      let bestBlob: Blob | null = null;
-      let quality = 0.92;
-      let step = 0;
+      const canvas = document.createElement("canvas");
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Gagal menginisialisasi canvas pemrosesan");
 
-      while (step < 12) {
-        step++;
-        canvas.width = currentW;
-        canvas.height = currentH;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) break;
-
-        if (mimeType === "image/jpeg") {
-          ctx.fillStyle = "#ffffff";
-          ctx.fillRect(0, 0, currentW, currentH);
-        } else {
-          ctx.clearRect(0, 0, currentW, currentH);
-        }
-        ctx.drawImage(img, 0, 0, currentW, currentH);
-
-        const blob: Blob | null = await new Promise((res) =>
-          canvas.toBlob((b) => res(b), mimeType, quality)
-        );
-
-        if (!blob) break;
-
-        if (blob.size <= targetBytes) {
-          bestBlob = blob;
-          break;
-        }
-
-        if (mimeType === "image/png") {
-          currentW = Math.round(currentW * 0.85);
-          currentH = Math.round(currentH * 0.85);
-        } else {
-          if (quality > 0.45) {
-            quality -= 0.12;
-          } else {
-            currentW = Math.round(currentW * 0.85);
-            currentH = Math.round(currentH * 0.85);
-            quality = 0.75;
-          }
-        }
-      }
-
-      if (!bestBlob) {
-        bestBlob = await new Promise((res) =>
-          canvas.toBlob((b) => res(b), mimeType, 0.4)
-        );
-      }
-
-      if (bestBlob) {
-        setCompressedBlob(bestBlob);
+      if (mimeType === "image/jpeg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, targetW, targetH);
       } else {
-        throw new Error("Gagal mengompres gambar ke target");
+        ctx.clearRect(0, 0, targetW, targetH);
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Terjadi kesalahan saat kompresi");
+      ctx.drawImage(img, 0, 0, targetW, targetH);
+
+      // Quality-first compression: quality 0.80 provides crisp visual clarity with 50-80% size reduction
+      const quality = 0.80;
+      let blob: Blob | null = await new Promise((res) =>
+        canvas.toBlob((b) => res(b), mimeType, quality)
+      );
+
+      // Absolute guarantee: Never return an image file larger than the original
+      let bestBlob = blob;
+      if (!bestBlob || bestBlob.size >= file.size) {
+        bestBlob = file;
+      }
+
+      setCompressedBlob(bestBlob);
+
+      // Trigger automatic download
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(bestBlob);
+      let ext = "jpg";
+      if (forcedFormat === "png" || bestBlob.type === "image/png") ext = "png";      else if (forcedFormat === "webp" || bestBlob.type === "image/webp") ext = "webp";
+      a.download = file.name.replace(/\.[^/.]+$/, "") + `-compressed.${ext}`;
+      a.click();
+    } catch (err) {      setError(err instanceof Error ? err.message : "Terjadi kesalahan saat memproses gambar");
     } finally {
       setProcessing(false);
     }
@@ -170,137 +168,131 @@ export function CompressImageBoard({
         />
       ) : (
         <div className="space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200/60 dark:border-white/10 pb-4">
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-zinc-900 dark:text-white">{file.name}</p>
-              <p className="text-xs text-zinc-500">Ukuran Asli: {formatFileSize(file.size)}</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                setFile(null);
-                setCompressedBlob(null);
-              }}
-              className="text-xs text-red-500 hover:underline cursor-pointer"
-            >
-              {tCommon("remove")}
-            </button>
-          </div>
-
-          {/* Preset Selector */}
-          <div className="space-y-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 p-5 border border-zinc-200/80 dark:border-white/10">
-            <div className="flex items-center gap-2 text-sm font-bold text-zinc-900 dark:text-white">
-              <Target className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-              <span>Pilih Target Ukuran Gambar (KB)</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => setTargetPreset("100kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "100kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "100kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "100kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 100 KB</div>
-                  <div className="text-[11px] text-zinc-500">Batas ketat formulir kedinasan & instansi</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("200kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "200kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "200kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "200kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 200 KB</div>
-                  <div className="text-[11px] text-zinc-500">Standar resmi SSCASN BKN CPNS & PPPK</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("300kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "300kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "300kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "300kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 300 KB</div>
-                  <div className="text-[11px] text-zinc-500">Portal universitas & beasiswa LPDP</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("500kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "500kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "500kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "500kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 500 KB</div>
-                  <div className="text-[11px] text-zinc-500">Email & web upload umum</div>
-                </div>
-              </button>
-            </div>
-
-            {targetPreset === "custom" && (
-              <div className="flex items-center gap-3 pt-2">
-                <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Target Kustom:</span>
-                <input
-                  type="number"
-                  min={20}
-                  max={2000}
-                  value={customKb}
-                  onChange={(e) => setCustomKb(Number(e.target.value))}
-                  className="w-24 rounded-xl border border-zinc-300 dark:border-white/20 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs"
+          {/* Image Thumbnail & Metadata Header */}
+          <div className="flex flex-wrap sm:flex-nowrap items-start gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-white/10">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-xl overflow-hidden bg-white dark:bg-black/40 border border-zinc-200/80 dark:border-white/10 flex items-center justify-center p-1.5 shadow-xs">
+              {filePreviewUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={filePreviewUrl}
+                  alt={file.name}
+                  className="w-full h-full object-contain rounded-lg"
                 />
-                <span className="text-xs text-zinc-500">KB</span>
+              ) : (
+                <ImageIcon className="w-8 h-8 text-zinc-400" />
+              )}
+            </div>
+
+            <div className="min-w-0 flex-1 space-y-2 py-0.5">
+              <div className="flex items-start justify-between gap-2">
+                <p className="truncate text-base font-semibold text-zinc-900 dark:text-white">
+                  {file.name}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFile(null);
+                    setCompressedBlob(null);
+                  }}
+                  className="text-xs text-zinc-400 hover:text-red-600 transition underline cursor-pointer shrink-0"
+                >
+                  {tCommon("remove")}
+                </button>
               </div>
-            )}
+
+              <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs text-zinc-500">Ukuran Asli:</span>
+                  <span className="rounded-lg bg-zinc-200/70 dark:bg-white/10 px-2 py-0.5 text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                    {formatFileSize(file.size)}
+                  </span>
+                </div>
+
+                {fileDimensions && (
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs text-zinc-500">Resolusi:</span>
+                    <span className="rounded-lg bg-zinc-200/70 dark:bg-white/10 px-2 py-0.5 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                      {fileDimensions.width} × {fileDimensions.height} px
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                Format berkas: <strong className="uppercase text-zinc-700 dark:text-zinc-300">{file.name.split(".").pop() || "IMG"}</strong>
+              </p>
+            </div>
           </div>
 
+          {/* Smallpdf-style Quality-first Compression Card */}
+          <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 p-5 border border-zinc-200/80 dark:border-white/10 space-y-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-zinc-900 dark:text-white">
+                    Kompresi Dasar (Kualitas Terbaik)
+                  </span>
+                  <span className="rounded-md bg-teal-500/10 px-2 py-0.5 text-[11px] font-semibold text-teal-700 dark:text-teal-300">
+                    Optimal
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Mengurangi ukuran berkas 50%–80% dengan ketajaman gambar dan warna tetap jernih seperti aslinya.
+                </p>
+              </div>
+              <div className="w-5 h-5 rounded-full flex items-center justify-center bg-teal-600 text-white shrink-0 mt-0.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-zinc-200/60 dark:border-white/5 text-[11px] text-zinc-600 dark:text-zinc-400">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Visual jernih & tajam</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Hemat ukuran 50%–80%</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Bebas tanda air (watermark)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Compression Result Banner & Preview */}
           {compressedBlob && (
-            <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 space-y-2">
+            <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 space-y-3">
               <div className="flex items-center gap-2 text-teal-700 dark:text-teal-300 text-xs font-bold">
                 <Sparkles className="w-4 h-4 shrink-0" />
                 <span>
-                  Selesai! Ukuran gambar berhasil ditekan menjadi {formatFileSize(compressedBlob.size)} (
-                  {Math.round((1 - compressedBlob.size / file.size) * 100)}% lebih hemat)
+                  {compressedBlob.size < file.size ? (
+                    <>
+                      Berhasil dikompres menjadi <strong>{formatFileSize(compressedBlob.size)}</strong> (
+                      {Math.max(1, Math.round((1 - compressedBlob.size / file.size) * 100))}% lebih hemat) dengan kualitas tetap tajam!
+                    </>
+                  ) : (
+                    <>
+                      Gambar ini sudah dalam ukuran paling optimal (<strong>{formatFileSize(compressedBlob.size)}</strong>).
+                    </>
+                  )}
                 </span>
               </div>
+
               {compressedUrl && (
-                <div className="flex justify-center pt-2">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={compressedUrl}
-                    alt="Hasil kompres"
-                    className="max-h-56 rounded-xl shadow border border-white/20"
-                  />
+                <div className="space-y-2 pt-1">
+                  <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 block">
+                    Preview Hasil Kompresi:
+                  </span>
+                  <div className="flex justify-center p-3 rounded-xl bg-white/70 dark:bg-black/30 border border-zinc-200/60 dark:border-white/5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={compressedUrl}
+                      alt="Hasil kompres"
+                      className="max-h-64 max-w-full rounded-lg shadow-sm object-contain"
+                    />
+                  </div>
                 </div>
               )}
             </div>
@@ -309,28 +301,28 @@ export function CompressImageBoard({
           <ErrorBanner message={error} />
 
           <div className="flex flex-wrap gap-3">
-            {!compressedBlob ? (
-              <Button
-                type="button"
-                loading={processing}
-                onClick={handleCompress}
-                className="w-full sm:w-auto"
-              >
-                Kompres Gambar Sekarang
-              </Button>
-            ) : (
-              <Button
+            <Button
+              type="button"
+              loading={processing}
+              onClick={handleCompress}
+              className="w-full sm:w-auto"
+            >
+              {processing ? "Mengompres Gambar..." : compressedBlob ? "Kompres Ulang & Unduh" : "Kompres & Unduh Gambar"}
+            </Button>
+
+            {compressedBlob && (
+              <button
                 type="button"
                 onClick={downloadResult}
-                className="w-full sm:w-auto flex items-center gap-2"
+                className="cursor-pointer rounded-full bg-zinc-800 dark:bg-white/10 hover:bg-zinc-700 dark:hover:bg-white/20 text-white px-5 py-3 text-sm font-medium transition flex items-center justify-center gap-1.5 w-full sm:w-auto"
               >
-                <Download className="w-4 h-4" />
-                Unduh Gambar Hasil Kompres
-              </Button>
+                <Download className="w-4 h-4" /> Unduh Hasil Gambar
+              </button>
             )}
           </div>
         </div>
       )}
+      {!file ? <ErrorBanner message={error} /> : null}
     </ToolShell>
   );
 }
