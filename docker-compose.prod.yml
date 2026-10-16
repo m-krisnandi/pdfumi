@@ -78,7 +78,7 @@ services:
       api:
         condition: service_healthy
     environment:
-      ACME_EMAIL: ${ACME_EMAIL:-admin@pdfumi.com}
+      ACME_EMAIL: ${ACME_EMAIL:-mkrisnandi08@gmail.com}
     deploy:
       resources:
         limits:
