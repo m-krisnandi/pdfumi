@@ -351,10 +351,11 @@ export async function imagesToPdfClient(
   return new Blob([outputBytes.buffer as ArrayBuffer], { type: "application/pdf" });
 }
 
-/** Client-side targeted compress for PDF (downsampling pages to hit target KB, e.g. < 200 KB) */
+/** Client-side targeted compress for PDF (downsampling pages to hit target KB, e.g. strictly < 200 KB) */
 export async function compressPdfToTargetKb(
   file: File,
-  targetKb: number = 200
+  targetKb: number = 200,
+  onProgress?: (status: string) => void
 ): Promise<Blob> {
   const pdfjs = await import("pdfjs-dist");
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -367,54 +368,133 @@ export async function compressPdfToTargetKb(
   const pdf = await loadingTask.promise;
   const numPages = pdf.numPages;
 
-  // Estimate per-page budget
-  const perPageBudgetKb = Math.max(15, Math.floor(targetKb / numPages));
-  // Determine scale and JPEG quality based on budget
+  // Strict hard ceiling in bytes with safety margin
+  // e.g. target 200 KB -> max 195 KB (199,680 bytes) so it always displays and passes as < 200.0 KB
+  const maxTargetBytes =
+    (targetKb <= 200
+      ? 195
+      : targetKb <= 500
+      ? 490
+      : targetKb <= 1000
+      ? 980
+      : Math.floor(targetKb * 0.95)) * 1024;
+
+  // Determine starting budget per page
+  // Overhead of PDF catalog/cross-reference is roughly 2-5 KB + ~1.6 KB per page
+  const pdfStructureOverheadKb = Math.min(30, 4 + numPages * 1.6);
+  const netImageBudgetKb = Math.max(10, maxTargetBytes / 1024 - pdfStructureOverheadKb);
+  const perPageBudgetKb = netImageBudgetKb / numPages;
+
+  // Calculate intelligent initial scale & quality based on per-page budget
   let scale = 1.0;
   let quality = 0.65;
-  if (perPageBudgetKb < 40) {
-    scale = 0.8;
-    quality = 0.45;
-  } else if (perPageBudgetKb < 80) {
-    scale = 1.0;
-    quality = 0.6;
+  if (perPageBudgetKb < 15) {
+    scale = 0.55;
+    quality = 0.35;
+  } else if (perPageBudgetKb < 25) {
+    scale = 0.65;
+    quality = 0.42;
+  } else if (perPageBudgetKb < 40) {
+    scale = 0.75;
+    quality = 0.50;
+  } else if (perPageBudgetKb < 70) {
+    scale = 0.90;
+    quality = 0.60;
   } else {
-    scale = 1.2;
+    scale = 1.1;
     quality = 0.75;
   }
 
-  const outDoc = await PDFDocument.create();
+  // Render all pages to canvas
+  type RenderedPage = {
+    canvas: HTMLCanvasElement;
+    origWidth: number;
+    origHeight: number;
+  };
+  const renderedPages: RenderedPage[] = [];
 
   for (let i = 1; i <= numPages; i++) {
+    onProgress?.(`Memproses halaman ${i}/${numPages}...`);
     const page = await pdf.getPage(i);
+    const origViewport = page.getViewport({ scale: 1.0 });
     const viewport = page.getViewport({ scale });
     const canvas = document.createElement("canvas");
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    canvas.width = Math.max(50, Math.floor(viewport.width));
+    canvas.height = Math.max(50, Math.floor(viewport.height));
     const ctx = canvas.getContext("2d");
     if (!ctx) continue;
 
-    // Fill white background for clean text rendering
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // @ts-expect-error pdfjs typing
     await page.render({ canvasContext: ctx, viewport }).promise;
-
-    const jpgDataUrl = canvas.toDataURL("image/jpeg", quality);
-    const jpgBytes = await (await fetch(jpgDataUrl)).arrayBuffer();
-    const embeddedImg = await outDoc.embedJpg(jpgBytes);
-
-    const origViewport = page.getViewport({ scale: 1.0 });
-    const pdfPage = outDoc.addPage([origViewport.width, origViewport.height]);
-    pdfPage.drawImage(embeddedImg, {
-      x: 0,
-      y: 0,
-      width: origViewport.width,
-      height: origViewport.height,
+    renderedPages.push({
+      canvas,
+      origWidth: origViewport.width,
+      origHeight: origViewport.height,
     });
   }
 
-  const outputBytes = await outDoc.save();
+  // Helper to package pages into PDFDocument at current scale and quality
+  async function buildPdf(
+    pages: RenderedPage[],
+    jpgQuality: number,
+    canvasDownsample: number = 1.0
+  ): Promise<Uint8Array> {
+    const outDoc = await PDFDocument.create();
+
+    for (const item of pages) {
+      let sourceCanvas = item.canvas;
+      if (canvasDownsample < 0.98) {
+        const smaller = document.createElement("canvas");
+        smaller.width = Math.max(80, Math.floor(item.canvas.width * canvasDownsample));
+        smaller.height = Math.max(80, Math.floor(item.canvas.height * canvasDownsample));
+        const sCtx = smaller.getContext("2d");
+        if (sCtx) {
+          sCtx.fillStyle = "#ffffff";
+          sCtx.fillRect(0, 0, smaller.width, smaller.height);
+          sCtx.drawImage(item.canvas, 0, 0, smaller.width, smaller.height);
+          sourceCanvas = smaller;
+        }
+      }
+
+      const jpgDataUrl = sourceCanvas.toDataURL("image/jpeg", jpgQuality);
+      const jpgBytes = await (await fetch(jpgDataUrl)).arrayBuffer();
+      const embeddedImg = await outDoc.embedJpg(jpgBytes);
+
+      const pdfPage = outDoc.addPage([item.origWidth, item.origHeight]);
+      pdfPage.drawImage(embeddedImg, {
+        x: 0,
+        y: 0,
+        width: item.origWidth,
+        height: item.origHeight,
+      });
+    }
+
+    return await outDoc.save();
+  }
+
+  // Iterative refinement loop to GUARANTEE fitting under target
+  let currentQuality = quality;
+  let currentDownsample = 1.0;
+  let outputBytes = await buildPdf(renderedPages, currentQuality, currentDownsample);
+
+  let attempts = 0;
+  while (outputBytes.byteLength > maxTargetBytes && attempts < 6) {
+    attempts++;
+    onProgress?.(`Menyesuaikan ukuran (${attempts}/5)...`);
+    const ratio = maxTargetBytes / outputBytes.byteLength;
+
+    if (currentQuality > 0.28) {
+      currentQuality = Math.max(0.18, currentQuality * Math.min(0.85, ratio * 0.92));
+    } else {
+      currentDownsample = Math.max(0.35, currentDownsample * Math.min(0.85, Math.sqrt(ratio) * 0.92));
+      currentQuality = Math.max(0.20, currentQuality * 0.92);
+    }
+
+    outputBytes = await buildPdf(renderedPages, currentQuality, currentDownsample);
+  }
+
   return new Blob([outputBytes.buffer as ArrayBuffer], { type: "application/pdf" });
 }

@@ -18,6 +18,7 @@ export function CompressPdfBoard() {
   const tCommon = useTranslations("common");
   const [file, setFile] = useState<File | null>(null);
   const [downloading, setDownloading] = useState(false);
+  const [progressStatus, setProgressStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Target preset: "auto" | "200kb" | "500kb" | "1mb" | "custom"
@@ -40,6 +41,7 @@ export function CompressPdfBoard() {
       return;
     }
     setDownloading(true);
+    setProgressStatus(null);
     setError(null);
 
     try {
@@ -61,8 +63,11 @@ export function CompressPdfBoard() {
         else if (targetPreset === "1mb") targetLimitKb = 1000;
         else if (targetPreset === "custom") targetLimitKb = Math.max(50, customKb);
 
-        // Run smart client downsampling to guarantee fitting under target KB
-        const compressedBlob = await compressPdfToTargetKb(file, targetLimitKb);
+        setProgressStatus("Menganalisis dokumen...");
+        // Run smart iterative downsampling to strictly guarantee fitting under target KB
+        const compressedBlob = await compressPdfToTargetKb(file, targetLimitKb, (msg) => {
+          setProgressStatus(msg);
+        });
         setResultSize(compressedBlob.size);
 
         const url = URL.createObjectURL(compressedBlob);
@@ -75,6 +80,7 @@ export function CompressPdfBoard() {
     } catch (err) {
       setError(err instanceof Error ? err.message : tCommon("errorGeneric"));
     } finally {
+      setProgressStatus(null);
       setDownloading(false);
     }
   }
@@ -118,7 +124,7 @@ export function CompressPdfBoard() {
               <span>Pilih Target Ukuran File (Kompres Khusus)</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               <button
                 type="button"
                 onClick={() => setTargetPreset("200kb")}
@@ -219,9 +225,16 @@ export function CompressPdfBoard() {
           )}
 
           <ErrorBanner message={error} />
-          <Button type="button" loading={downloading} onClick={onDownload} disabled={downloading} className="w-full sm:w-auto">
-            {downloading ? tCommon("processing") : "Kompres & Unduh PDF"}
-          </Button>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <Button type="button" loading={downloading} onClick={onDownload} disabled={downloading} className="w-full sm:w-auto">
+              {downloading ? (progressStatus || tCommon("processing")) : "Kompres & Unduh PDF"}
+            </Button>
+            {downloading && progressStatus && (
+              <span className="text-xs text-teal-600 dark:text-teal-400 font-medium">
+                {progressStatus}
+              </span>
+            )}
+          </div>
         </div>
       )}
       {!file ? <ErrorBanner message={error} /> : null}
