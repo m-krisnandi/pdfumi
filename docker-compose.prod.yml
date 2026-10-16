@@ -77,6 +77,8 @@ services:
     depends_on:
       api:
         condition: service_healthy
+    environment:
+      ACME_EMAIL: ${ACME_EMAIL:-admin@pdfumi.com}
     deploy:
       resources:
         limits:
