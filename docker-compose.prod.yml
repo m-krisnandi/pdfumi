@@ -32,6 +32,7 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: 8080
       JAVA_TOOL_OPTIONS: "-Xms384m -Xmx1400m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
       DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-pdfumi}
       DATABASE_USER: ${POSTGRES_USER:-pdfumi}
@@ -60,9 +61,10 @@ services:
       - "8080:8080"
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/v1/health"]
-      interval: 15s
+      interval: 10s
       timeout: 5s
-      retries: 5
+      start_period: 40s
+      retries: 8
     logging:
       driver: "json-file"
       options:
