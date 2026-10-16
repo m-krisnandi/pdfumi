@@ -2,6 +2,73 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata, siteOrigin, absoluteUrl } from "@/i18n/seo";
 import { HomeHeroWorkspace } from "@/components/HomeHeroWorkspace";
 
+function getSitelinkName(locale: string, toolKey: string): string {
+  if (locale === "ja") {
+    switch (toolKey) {
+      case "compress":
+        return "PDF圧縮 (容量削減・軽量化)";
+      case "pdfToWord":
+        return "PDF Word変換 (DOCX)";
+      case "merge":
+        return "PDF結合 (複数PDFを1つに)";
+      case "jpgToPdf":
+        return "JPGをPDFに変換";
+      case "receipt":
+        return "領収書作成ツール";
+      case "certificate":
+        return "修了証・賞状一括作成";
+    }
+  }
+  if (locale === "my") {
+    switch (toolKey) {
+      case "compress":
+        return "PDF ချုံ့ရန်";
+      case "pdfToWord":
+        return "PDF မှ Word သို့";
+      case "merge":
+        return "PDF ပေါင်းစည်းရန်";
+      case "jpgToPdf":
+        return "JPG မှ PDF သို့";
+      case "receipt":
+        return "ပြေစာဖန်တီးရန်";
+      case "certificate":
+        return "လက်မှတ်ဖန်တီးရန်";
+    }
+  }
+  if (locale === "id") {
+    switch (toolKey) {
+      case "compress":
+        return "Kompres PDF Online";
+      case "pdfToWord":
+        return "PDF ke Word (Bisa Diedit)";
+      case "merge":
+        return "Gabungkan PDF";
+      case "jpgToPdf":
+        return "JPG ke PDF";
+      case "receipt":
+        return "Buat Kwitansi Online";
+      case "certificate":
+        return "Buat Sertifikat Massal";
+    }
+  }
+  switch (toolKey) {
+    case "compress":
+      return "Compress PDF Online";
+    case "pdfToWord":
+      return "PDF to Word Converter";
+    case "merge":
+      return "Merge PDF Files";
+    case "jpgToPdf":
+      return "JPG to PDF Converter";
+    case "receipt":
+      return "Receipt Generator";
+    case "certificate":
+      return "Certificate Generator";
+    default:
+      return toolKey;
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -74,37 +141,37 @@ export default async function HomePage({
           {
             "@type": "SiteNavigationElement",
             "position": 1,
-            "name": locale === "id" ? "Kompres PDF" : "Compress PDF",
+            "name": getSitelinkName(locale, "compress"),
             "url": absoluteUrl(locale, "/tools/compress-pdf"),
           },
           {
             "@type": "SiteNavigationElement",
             "position": 2,
-            "name": locale === "id" ? "PDF ke Word" : "PDF to Word",
+            "name": getSitelinkName(locale, "pdfToWord"),
             "url": absoluteUrl(locale, "/tools/pdf-to-word"),
           },
           {
             "@type": "SiteNavigationElement",
             "position": 3,
-            "name": locale === "id" ? "Gabungkan PDF" : "Merge PDF",
+            "name": getSitelinkName(locale, "merge"),
             "url": absoluteUrl(locale, "/tools/merge-pdf"),
           },
           {
             "@type": "SiteNavigationElement",
             "position": 4,
-            "name": locale === "id" ? "JPG ke PDF" : "JPG to PDF",
+            "name": getSitelinkName(locale, "jpgToPdf"),
             "url": absoluteUrl(locale, "/tools/jpg-to-pdf"),
           },
           {
             "@type": "SiteNavigationElement",
             "position": 5,
-            "name": locale === "id" ? "Buat Kwitansi Online" : "Receipt Generator",
+            "name": getSitelinkName(locale, "receipt"),
             "url": absoluteUrl(locale, "/tools/kwitansi"),
           },
           {
             "@type": "SiteNavigationElement",
             "position": 6,
-            "name": locale === "id" ? "Buat Sertifikat Massal" : "Bulk Certificate Generator",
+            "name": getSitelinkName(locale, "certificate"),
             "url": absoluteUrl(locale, "/tools/sertifikat"),
           },
         ],
