@@ -14,7 +14,8 @@
     "tools": "Alat",
     "terms": "Ketentuan",
     "privacy": "Privasi",
-    "refund": "Pengembalian Dana"
+    "refund": "Pengembalian Dana",
+    "contact": "Kontak"
   },
   "footer": "Pdfumi — dokumen jadi PDF, tanpa ribet.",
   "common": {
@@ -1084,16 +1085,16 @@
     },
     "title": "Syarat & Ketentuan Layanan",
     "lastUpdated": "Terakhir diperbarui: Oktober 2026",
-    "s1Title": "1. Penerimaan Ketentuan",
-    "s1Body": "Dengan mengakses dan menggunakan Pdfumi, Anda menyetujui seluruh ketentuan ini. Jika tidak setuju, mohon untuk tidak menggunakan layanan kami.",
-    "s2Title": "2. Penggunaan yang Sah & Bertanggung Jawab",
-    "s2Body": "Pdfumi menyediakan utilitas pemrosesan dokumen (pembuatan kwitansi, sertifikat massal, konversi, dan manipulasi PDF). Pengguna bertanggung jawab penuh atas data dan isi dokumen yang dihasilkan. Dilarang keras menggunakan Pdfumi untuk pemalsuan dokumen resmi negara, penipuan, atau perbuatan melanggar hukum lainnya.",
-    "s3Title": "3. Kuota & Batasan Adil",
-    "s3Body": "Pengguna gratis memiliki batas kuota harian. Pengguna berbayar memiliki kuota bulanan bersama. Kuota bersifat hard-cap (jika habis, operasi berhenti sampai siklus berikutnya). Kami tidak pernah mengenakan biaya siluman atau kelebihan tagihan tanpa persetujuan.",
-    "s4Title": "4. Batasan Tanggung Jawab",
-    "s4Body": "Layanan disediakan apa adanya ('as is'). Pdfumi tidak menyimpan dokumen secara permanen dan tidak bertanggung jawab atas kerugian tidak langsung atau kehilangan data.",
-    "s5Title": "5. Hubungi Kami",
-    "s5Body": "Untuk pertanyaan ketentuan hukum atau bisnis, hubungi support@pdfumi.com."
+    "s1Title": "1. Penerimaan Ketentuan & Layanan Produk Digital",
+    "s1Body": "Dengan mengakses dan menggunakan Pdfumi (https://pdfumi.com), Anda menyetujui seluruh ketentuan ini. Pdfumi menyediakan perangkat lunak berbasis cloud (Software as a Service - SaaS) dan utilitas pemrosesan dokumen digital (manipulasi PDF, pembuatan kwitansi, sertifikat massal, dan konversi berkas).",
+    "s2Title": "2. Biaya, Mata Uang, & Pembayaran",
+    "s2Body": "Seluruh transaksi pembayaran paket berbayar di Pdfumi diproses dalam mata uang Rupiah (IDR) secara resmi melalui mitra payment gateway berlisensi (Midtrans). Harga yang tertera pada halaman Harga merupakan tarif resmi yang berlaku pada saat transaksi. Pengguna mendapatkan akses sesuai paket yang dipilih (PASS, PRO, atau BUSINESS).",
+    "s3Title": "3. Penggunaan yang Sah & Batasan Tanggung Jawab",
+    "s3Body": "Pengguna bertanggung jawab penuh atas dokumen yang diproses. Dilarang keras menggunakan layanan ini untuk pemalsuan dokumen resmi, penipuan, pelanggaran hak kekayaan intelektual, atau aktivitas ilegal lainnya. Layanan disediakan dengan standar keamanan terbaik dan dokumen diproses secara aman tanpa penyimpanan permanen tanpa izin pengguna.",
+    "s4Title": "4. Kebijakan Pembatalan & Pengembalian Dana (Refund)",
+    "s4Body": "Kebijakan pengembalian dana mengikuti ketentuan pada halaman Kebijakan Pengembalian Dana (/refund). Pengguna berhak mengajukan refund penuh dalam kurun waktu 7 hari setelah transaksi apabila mengalami kendala layanan yang tidak terselesaikan.",
+    "s5Title": "5. Informasi Kontak & Dukungan Bisnis",
+    "s5Body": "Jika Anda memiliki pertanyaan terkait syarat ketentuan, transaksi pembayaran, atau bantuan operasional bisnis, silakan hubungi tim kami melalui email support@pdfumi.com atau admin@pdfumi.com."
   },
   "privacy": {
     "seo": {

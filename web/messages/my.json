@@ -14,7 +14,8 @@
     "tools": "ကိရိယာများ",
     "terms": "စည်းမျဉ်းများ",
     "privacy": "သီးသန့်လုံခြုံရေး",
-    "refund": "ငွေပြန်အမ်းမှု မူဝါဒ"
+    "refund": "ငွေပြန်အမ်းမှု မူဝါဒ",
+    "contact": "Hubungi Kami"
   },
   "footer": "Pdfumi — စာရွက်စာတမ်းများကို PDF အဖြစ်၊ အခက်အခဲမရှိ။",
   "common": {
@@ -1084,16 +1085,16 @@
     },
     "title": "ဝန်ဆောင်မှု စည်းမျဉ်းများ",
     "lastUpdated": "နောက်ဆုံးပြင်ဆင်ချက်: အောက်တိုဘာ ၂၀၂၆",
-    "s1Title": "၁။ စည်းမျဉ်းများကို သဘောတူခြင်း",
-    "s1Body": "Pdfumi ကို အသုံးပြုခြင်းဖြင့် ဤစည်းမျဉ်းများကို သဘောတူပါသည်။",
-    "s2Title": "၂။ တရားဝင် အသုံးပြုမှု",
-    "s2Body": "တရားမဝင် အတုပြုလုပ်မှုများကို တင်းကြပ်စွာ တားမြစ်ထားပါသည်။",
-    "s3Title": "၃။ ဝန်ဆောင်မှု ပမာဏ",
-    "s3Body": "သတ်မှတ်ချက် ပြည့်ပါက ရပ်တန့်မည်ဖြစ်ပြီး လျှို့ဝှက်ကောက်ခံမှု မရှိပါ။",
-    "s4Title": "၄။ တာဝန်ကန့်သတ်ချက်",
-    "s4Body": "ဖိုင်များကို အမြဲတမ်း သိမ်းဆည်းမထားပါ။",
-    "s5Title": "၅။ ဆက်သွယ်ရန်",
-    "s5Body": "support@pdfumi.com သို့ ဆက်သွယ်ပါ။"
+    "s1Title": "1. Penerimaan Syarat & Perkhidmatan Digital",
+    "s1Body": "Dengan mengakses dan menggunakan Pdfumi (https://pdfumi.com), anda bersetuju dengan terma ini.",
+    "s2Title": "2. Yuran, Mata Wang, & Pemprosesan Pembayaran",
+    "s2Body": "Semua transaksi pembayaran diproses secara rasmi melalui rakan gateway pembayaran Midtrans.",
+    "s3Title": "3. Penggunaan Sah & Tanggungjawab",
+    "s3Body": "Pengguna bertanggungjawab sepenuhnya ke atas dokumen yang diproses.",
+    "s4Title": "4. Polisi Pembatalan & Pemulangan Wang (Refund)",
+    "s4Body": "Pemulangan wang tertakluk kepada Polisi Pemulangan (/refund) dengan jaminan 7 hari.",
+    "s5Title": "5. Maklumat Hubungan & Sokongan",
+    "s5Body": "Untuk pertanyaan mengenai syarat atau bantuan, sila hubungi support@pdfumi.com."
   },
   "privacy": {
     "seo": {

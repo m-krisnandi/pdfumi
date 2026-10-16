@@ -14,7 +14,8 @@
     "tools": "Tools",
     "terms": "Terms",
     "privacy": "Privacy",
-    "refund": "Refund"
+    "refund": "Refund",
+    "contact": "Contact"
   },
   "footer": "Pdfumi — documents to PDF, without the hassle.",
   "common": {
@@ -1084,16 +1085,16 @@
     },
     "title": "Terms of Service",
     "lastUpdated": "Last updated: October 2026",
-    "s1Title": "1. Acceptance of Terms",
-    "s1Body": "By using Pdfumi, you agree to these Terms. If you do not agree, please do not use the services.",
-    "s2Title": "2. Permitted & Lawful Use",
-    "s2Body": "Pdfumi provides document utilities (receipt generation, certificates, conversions, and PDF editing). You are solely responsible for the content you generate. You expressly agree not to use Pdfumi to forge official government documents, impersonate authorities, create fraudulent financial instruments, or conduct scams.",
-    "s3Title": "3. Fair Use & Quotas",
-    "s3Body": "Free tiers are subject to daily rate limits. Paid plans have monthly pooled document quotas. Quotas are hard-capped — when exhausted, operations pause until renewal or upgrade. We never charge surprise overage fees.",
-    "s4Title": "4. Disclaimer & Limitation of Liability",
-    "s4Body": "Services are provided on an 'as is' basis. Pdfumi does not store your files permanently and is not liable for data loss or business interruptions.",
-    "s5Title": "5. Contact & Inquiries",
-    "s5Body": "For billing inquiries, reach out to support@pdfumi.com."
+    "s1Title": "1. Acceptance of Terms & Digital Service",
+    "s1Body": "By accessing and using Pdfumi (https://pdfumi.com), you agree to these Terms. Pdfumi provides cloud software (Software as a Service - SaaS) and digital document processing utilities.",
+    "s2Title": "2. Fees, Currency, & Payment Processing",
+    "s2Body": "All subscription and package transactions on Pdfumi are processed officially in Indonesian Rupiah (IDR) via authorized payment gateway partner Midtrans. Pricing on the Pricing page represents current rates. Users receive instant access based on their selected plan.",
+    "s3Title": "3. Lawful Use & Limitation of Liability",
+    "s3Body": "Users are solely responsible for documents processed. You agree not to misuse Pdfumi for forged official records or illegal purposes. Documents are securely processed in accordance with our Privacy Policy.",
+    "s4Title": "4. Cancellation & Refund Policy",
+    "s4Body": "Refunds and cancellations are governed by our Refund Policy (/refund). Users are eligible for a 7-day money-back guarantee if unresolved technical service issues arise.",
+    "s5Title": "5. Business Contact & Customer Support",
+    "s5Body": "For inquiries regarding legal terms, payments, or customer support, please contact us at support@pdfumi.com or admin@pdfumi.com."
   },
   "privacy": {
     "seo": {
