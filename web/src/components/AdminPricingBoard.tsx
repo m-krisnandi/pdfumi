@@ -718,7 +718,7 @@ export function AdminPricingBoard() {
           <div className="glass-card rounded-3xl p-5 hover:scale-[1.01] transition-all relative overflow-hidden">
             <div className="flex items-center justify-between mb-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                Pendapatan QRIS
+                Total Pendapatan (Midtrans)
               </span>
               <div className="p-2 rounded-xl glass-pill text-emerald-600 dark:text-emerald-400">
                 <TrendingUp className="w-4 h-4" />
@@ -874,7 +874,7 @@ export function AdminPricingBoard() {
                 Manajemen Paket Harga Dinamis
               </h2>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Seluruh harga dan batas kuota disimpan langsung di database tanpa hardcode.
+                Harga resmi dalam IDR melalui Midtrans terpadu. Seluruh harga dan batas kuota tersimpan langsung di database.
               </p>
             </div>
           </div>
@@ -885,8 +885,7 @@ export function AdminPricingBoard() {
                 <tr>
                   <th className="py-4 px-5">ID Paket</th>
                   <th className="py-4 px-5">Nama</th>
-                  <th className="py-4 px-5">Harga IDR (QRIS)</th>
-                  <th className="py-4 px-5">Harga USD</th>
+                  <th className="py-4 px-5">Harga Resmi (IDR)</th>
                   <th className="py-4 px-5">Durasi</th>
                   <th className="py-4 px-5">Limit Dokumen</th>
                   <th className="py-4 px-5">Badge</th>
@@ -905,9 +904,6 @@ export function AdminPricingBoard() {
                     </td>
                     <td className="py-4 px-5 font-bold text-emerald-700 dark:text-emerald-300">
                       Rp {p.priceIdr.toLocaleString("id-ID")}
-                    </td>
-                    <td className="py-4 px-5 font-bold text-sky-700 dark:text-sky-300">
-                      ${p.priceUsd}
                     </td>
                     <td className="py-4 px-5 text-zinc-600 dark:text-zinc-400 font-medium">
                       {p.durationDays >= 3650 ? "Seumur Hidup" : `${p.durationDays} hari`}
@@ -961,7 +957,7 @@ export function AdminPricingBoard() {
                 Riwayat Transaksi Pembayaran
               </h2>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Pantau pembayaran QRIS, e-wallet, dan kartu kredit Midtrans secara langsung. Anda dapat memverifikasi order manual.
+                Pantau seluruh pembayaran Midtrans (QRIS, E-Wallet, Virtual Account, & Kartu Kredit). Anda dapat memverifikasi order manual.
               </p>
             </div>
 
@@ -1360,11 +1356,12 @@ export function AdminPricingBoard() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
-                    Harga IDR (Rupiah QRIS)
-                  </label>
+              <div>
+                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
+                  Harga Resmi Paket (IDR)
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3.5 top-2.5 text-xs font-bold text-zinc-400">Rp</span>
                   <input
                     type="text"
                     inputMode="numeric"
@@ -1374,28 +1371,13 @@ export function AdminPricingBoard() {
                       setEditPlanForm({ ...editPlanForm, priceIdr: clean === "" ? "" : parseInt(clean, 10) });
                     }}
                     placeholder="Contoh: 29000"
-                    className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
+                    className="glass-input w-full pl-10 pr-3.5 py-2.5 rounded-xl text-sm font-semibold"
                     required
                   />
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
-                    Harga USD (Internasional)
-                  </label>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    value={editPlanForm.priceUsd}
-                    onChange={(e) => {
-                      const clean = e.target.value.replace(/\D/g, "");
-                      setEditPlanForm({ ...editPlanForm, priceUsd: clean === "" ? "" : parseInt(clean, 10) });
-                    }}
-                    placeholder="Contoh: 3"
-                    className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
-                    required
-                  />
-                </div>
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1">
+                  Mencakup seluruh saluran Midtrans (QRIS, E-Wallet, Virtual Account, serta Kartu Kredit yang dikonversi otomatis ke IDR).
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
