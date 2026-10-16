@@ -16,7 +16,6 @@ import {
   ShieldCheck,
   Sparkles,
   ArrowRight,
-  Globe,
   Loader2,
   Info,
 } from "lucide-react";
@@ -52,8 +51,7 @@ export function PricingBoard() {
   const locale = useLocale();
   const router = useRouter();
 
-  // Currency display state: Global First defaults to USD
-  const [currency, setCurrency] = useState<"USD" | "IDR">("USD");
+
 
   // Selected plan for checkout modal
   const [selectedPlan, setSelectedPlan] = useState<PaidPlanId | null>(null);
@@ -143,44 +141,33 @@ export function PricingBoard() {
     };
   }, [qrisOrder, qrisPaid, router]);
 
-  function formatPrice(planId: string, defaultUsd: string, defaultIdr: string, cur: "USD" | "IDR") {
+  function formatPrice(planId: string, defaultIdr: string) {
     const db = dbPlans[planId];
-    if (cur === "USD") {
-      if (!db) return defaultUsd;
-      if (planId === "PASS") return `$${db.priceUsd}`;
-      if (planId === "PRO") return `$${db.priceUsd}/mo`;
-      if (planId === "BUSINESS") return `$${db.priceUsd}/yr`;
-      return `$${db.priceUsd}`;
-    }
-    if (!db) return defaultIdr;
-    if (planId === "PASS") return `Rp ${db.priceIdr.toLocaleString("id-ID")}`;
-    if (planId === "PRO") return `Rp ${db.priceIdr.toLocaleString("id-ID")}/bln`;
-    if (planId === "BUSINESS") return `Rp ${db.priceIdr.toLocaleString("id-ID")}/thn`;
-    return `Rp ${db.priceIdr.toLocaleString("id-ID")}`;
+    const num = db ? db.priceIdr : (planId === "PASS" ? 19000 : planId === "PRO" ? 29000 : 199000);
+    const formatted = `Rp ${num.toLocaleString(locale === "en" ? "en-US" : "id-ID")}`;
+    if (planId === "PASS") return formatted;
+    if (planId === "PRO") return `${formatted}/${locale === "id" ? "bln" : locale === "ja" ? "月" : locale === "my" ? "လ" : "mo"}`;
+    if (planId === "BUSINESS") return `${formatted}/${locale === "id" ? "thn" : locale === "ja" ? "年" : locale === "my" ? "နှစ်" : "yr"}`;
+    return formatted;
   }
 
-  function getOriginalPrice(planId: string, cur: "USD" | "IDR") {
-    if (cur === "USD") {
-      if (planId === "PASS") return "$5";
-      if (planId === "PRO") return "$9/mo";
-      if (planId === "BUSINESS") return "$36/yr";
-      return null;
-    }
-    if (planId === "PASS") return "Rp 35.000";
-    if (planId === "PRO") return "Rp 49.000/bln";
-    if (planId === "BUSINESS") return "Rp 348.000/thn";
+  function getOriginalPrice(planId: string) {
+    const numFmt = locale === "en" ? "," : ".";
+    if (planId === "PASS") return `Rp 35${numFmt}000`;
+    if (planId === "PRO") return `Rp 49${numFmt}000/${locale === "id" ? "bln" : locale === "ja" ? "月" : locale === "my" ? "လ" : "mo"}`;
+    if (planId === "BUSINESS") return `Rp 348${numFmt}000/${locale === "id" ? "thn" : locale === "ja" ? "年" : locale === "my" ? "နှစ်" : "yr"}`;
     return null;
   }
 
   function getDiscount(planId: string) {
-    if (planId === "PASS") return locale === "id" ? "Hemat 45%" : "Save 60%";
-    if (planId === "PRO") return locale === "id" ? "Hemat 40%" : "Save 45%";
-    if (planId === "BUSINESS") return locale === "id" ? "Hemat 60%" : "Save 60%";
+    const prefix = locale === "id" ? "Hemat" : "Save";
+    if (planId === "PASS") return `${prefix} 45%`;
+    if (planId === "PRO") return `${prefix} 40%`;
+    if (planId === "BUSINESS") return `${prefix} 43%`;
     return null;
   }
 
   function getBadge(planId: string, defaultBadge: string | null) {
-    // If locale is English or other non-id language, preserve translated badge
     if (locale !== "id" && defaultBadge) {
       return defaultBadge;
     }
@@ -193,7 +180,7 @@ export function PricingBoard() {
     {
       id: "free" as const,
       name: t("freeName"),
-      price: currency === "USD" ? t("freePrice") : "Rp 0",
+      price: "Rp 0",
       originalPrice: null,
       discount: null,
       subprice: null,
@@ -205,8 +192,8 @@ export function PricingBoard() {
     {
       id: "PASS" as const,
       name: t("passName"),
-      price: formatPrice("PASS", t("passPrice"), t("passPriceIdr"), currency),
-      originalPrice: getOriginalPrice("PASS", currency),
+      price: formatPrice("PASS", t("passPriceIdr")),
+      originalPrice: getOriginalPrice("PASS"),
       discount: getDiscount("PASS"),
       subprice: t("passDuration"),
       badge: getBadge("PASS", t("passBadge")),
@@ -217,8 +204,8 @@ export function PricingBoard() {
     {
       id: "PRO" as const,
       name: t("proName"),
-      price: formatPrice("PRO", t("proPrice"), t("proPriceIdr"), currency),
-      originalPrice: getOriginalPrice("PRO", currency),
+      price: formatPrice("PRO", t("proPriceIdr")),
+      originalPrice: getOriginalPrice("PRO"),
       discount: getDiscount("PRO"),
       subprice: locale === "id" ? "Bulanan fleksibel (batal kapan saja)" : "Flexible monthly (cancel anytime)",
       badge: getBadge("PRO", null),
@@ -229,12 +216,10 @@ export function PricingBoard() {
     {
       id: "BUSINESS" as const,
       name: t("businessName"),
-      price: formatPrice("BUSINESS", t("businessPrice"), t("businessPriceIdr"), currency),
-      originalPrice: getOriginalPrice("BUSINESS", currency),
+      price: formatPrice("BUSINESS", t("businessPriceIdr")),
+      originalPrice: getOriginalPrice("BUSINESS"),
       discount: getDiscount("BUSINESS"),
-      subprice: currency === "USD"
-        ? (locale === "id" ? "Ditagih tahunan ($1.25/bln)" : "Billed annually ($1.25/mo)")
-        : (locale === "id" ? "Ditagih tahunan (Rp12.400/bln)" : "Billed annually (~Rp12,400/mo)"),
+      subprice: locale === "id" ? "Ditagih tahunan (~Rp 16.500/bln)" : "Billed annually (~Rp 16,500/mo)",
       badge: getBadge("BUSINESS", t("businessBadge")),
       highlight: false,
       items: t.raw("businessItems") as string[],
@@ -341,33 +326,15 @@ export function PricingBoard() {
           {t("subtitle")}
         </p>
 
-        {/* Global-First Currency Switcher */}
+        {/* Payment Methods Trust Badge */}
         <div className="pt-2 flex justify-center">
-          <div className="glass-segmented p-1 rounded-2xl inline-flex items-center gap-1 shadow-sm text-xs font-semibold">
-            <button
-              type="button"
-              onClick={() => setCurrency("USD")}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer ${
-                currency === "USD"
-                  ? "bg-white dark:bg-white/15 text-zinc-950 dark:text-white shadow-sm font-bold border border-black/5 dark:border-white/10"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-              }`}
-            >
-              <Globe className="w-3.5 h-3.5" />
-              <span>USD ($) &bull; Global</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setCurrency("IDR")}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer ${
-                currency === "IDR"
-                  ? "bg-white dark:bg-white/15 text-zinc-950 dark:text-white shadow-sm font-bold border border-black/5 dark:border-white/10"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-              }`}
-            >
-              <QrCode className="w-3.5 h-3.5" />
-              <span>IDR (Rp) &bull; Indonesia</span>
-            </button>
+          <div className="glass-pill px-4 py-2 rounded-full inline-flex items-center gap-2 text-xs font-medium text-zinc-700 dark:text-zinc-300 shadow-xs border border-zinc-200/70 dark:border-white/10">
+            <CreditCard className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
+            <span>
+              {locale === "id"
+                ? "Mendukung Kartu Kredit/Debit Internasional (Visa, Mastercard, JCB), QRIS, & Virtual Account"
+                : "Supports Worldwide Cards (Visa, Mastercard, JCB with auto-conversion), QRIS & Bank Virtual Accounts"}
+            </span>
           </div>
         </div>
       </div>
@@ -752,11 +719,7 @@ export function PricingBoard() {
                       {activePlanObj?.price}
                     </span>
                     <span className="block text-[10px] text-zinc-500 dark:text-zinc-400">
-                      {currency === "USD"
-                        ? (locale === "id"
-                            ? `Setara ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")} via Midtrans`
-                            : `Billed as ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")} IDR via Midtrans`)
-                        : (locale === "id" ? "Tagihan IDR Rupiah via Midtrans" : "Billed in IDR via Midtrans")}
+                      {locale === "id" ? "Tagihan IDR Rupiah via Midtrans" : "Billed in IDR via Midtrans"}
                     </span>
                   </div>
                 </div>
@@ -840,13 +803,9 @@ export function PricingBoard() {
                     <>
                       <CreditCard className="w-4 h-4" />
                       <span>
-                        {currency === "USD"
-                          ? (locale === "id"
-                              ? `Lanjutkan Pembayaran (${activePlanObj?.price} • ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`
-                              : `Proceed to Payment (${activePlanObj?.price} • ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`)
-                          : (locale === "id"
-                              ? `Lanjutkan Pembayaran (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`
-                              : `Proceed to Payment (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`)}
+                        {locale === "id"
+                          ? `Lanjutkan Pembayaran (${activePlanObj?.price})`
+                          : `Proceed to Payment (${activePlanObj?.price})`}
                       </span>
                       <ArrowRight className="w-4 h-4" />
                     </>
