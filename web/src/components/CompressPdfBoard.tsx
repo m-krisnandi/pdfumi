@@ -8,8 +8,8 @@ import { ErrorBanner } from "@/components/ErrorBanner";
 import { PdfDropzone } from "@/components/PdfDropzone";
 import { PdfDocumentThumb } from "@/components/PdfDocumentThumb";
 import { formatFileSize } from "@/components/PdfPreview";
-import { compressPdfToTargetKb } from "@/lib/pdfLibUtils";
-import { CheckCircle2, Sparkles, Target } from "lucide-react";
+import { compressPdfQualityFirst } from "@/lib/pdfLibUtils";
+import { CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
 
 export function CompressPdfBoard() {
   const t = useTranslations("compressPdf");
@@ -18,10 +18,6 @@ export function CompressPdfBoard() {
   const [downloading, setDownloading] = useState(false);
   const [progressStatus, setProgressStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  // Target preset: "auto" | "200kb" | "500kb" | "1mb" | "custom"
-  const [targetPreset, setTargetPreset] = useState<"auto" | "200kb" | "500kb" | "1mb" | "custom">("200kb");
-  const [customKb, setCustomKb] = useState(180);
   const [resultSize, setResultSize] = useState<number | null>(null);
 
   function takeFiles(list: FileList | null) {
@@ -39,19 +35,11 @@ export function CompressPdfBoard() {
       return;
     }
     setDownloading(true);
-    setProgressStatus(null);
+    setProgressStatus("Menyiapkan dokumen...");
     setError(null);
 
     try {
-      let targetLimitKb = 200;
-      if (targetPreset === "200kb") targetLimitKb = 200;
-      else if (targetPreset === "500kb") targetLimitKb = 500;
-      else if (targetPreset === "1mb") targetLimitKb = 1000;
-      else if (targetPreset === "auto") targetLimitKb = Math.max(350, Math.round((file.size / 1024) * 0.48));
-      else if (targetPreset === "custom") targetLimitKb = Math.max(50, customKb);
-
-      setProgressStatus("Menganalisis dokumen...");
-      const compressedBlob = await compressPdfToTargetKb(file, targetLimitKb, (msg) => {
+      const compressedBlob = await compressPdfQualityFirst(file, (msg) => {
         setProgressStatus(msg);
       });
       setResultSize(compressedBlob.size);
@@ -59,8 +47,7 @@ export function CompressPdfBoard() {
       const url = URL.createObjectURL(compressedBlob);
       const a = document.createElement("a");
       a.href = url;
-      const downloadSuffix = targetPreset === "auto" ? "-compressed-optimal.pdf" : `-compressed-${targetLimitKb}kb.pdf`;
-      a.download = file.name.replace(/\.pdf$/i, downloadSuffix);
+      a.download = file.name.replace(/\.pdf$/i, "-compressed.pdf");
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
@@ -103,109 +90,49 @@ export function CompressPdfBoard() {
             </div>
           </div>
 
-          {/* Target Compression Selector */}
-          <div className="space-y-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 p-5 border border-zinc-200/80 dark:border-white/10">
-            <div className="flex items-center gap-2 text-sm font-bold text-zinc-900 dark:text-white">
-              <Target className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-              <span>Pilih Target Ukuran File (Kompres Khusus)</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <button
-                type="button"
-                onClick={() => setTargetPreset("200kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "200kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "200kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "200kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
+          {/* Smallpdf-style Quality-first Compression Card */}
+          <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 p-5 border border-zinc-200/80 dark:border-white/10 space-y-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-zinc-900 dark:text-white">
+                    Kompresi Dasar (Kualitas Terbaik)
+                  </span>
+                  <span className="rounded-md bg-teal-500/10 px-2 py-0.5 text-[11px] font-semibold text-teal-700 dark:text-teal-300">
+                    Optimal
+                  </span>
                 </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 200 KB</div>
-                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400">Paling pas untuk CPNS, SSCASN, BUMN & Bank</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("500kb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "500kb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "500kb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "500kb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 500 KB</div>
-                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400">Standar lamaran kerja & lampiran email</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("1mb")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "1mb"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "1mb" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "1mb" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Di Bawah 1 MB</div>
-                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400">Keseimbangan rasio kualitas & ukuran</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTargetPreset("auto")}
-                className={`flex items-start gap-3 p-3 rounded-xl border text-left transition cursor-pointer ${
-                  targetPreset === "auto"
-                    ? "border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-950 dark:text-teal-200 shadow-xs"
-                    : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300"
-                }`}
-              >
-                <div className={`mt-0.5 w-4 h-4 rounded-full flex items-center justify-center border ${targetPreset === "auto" ? "border-teal-600 bg-teal-600 text-white" : "border-zinc-400"}`}>
-                  {targetPreset === "auto" && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Otomatis (Optimal)</div>
-                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400">Kompresi cerdas menjaga ketajaman teks</div>
-                </div>
-              </button>
-            </div>
-
-            {targetPreset === "custom" && (
-              <div className="flex items-center gap-3 pt-2">
-                <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Target KB:</span>
-                <input
-                  type="number"
-                  min={50}
-                  max={5000}
-                  value={customKb}
-                  onChange={(e) => setCustomKb(Number(e.target.value))}
-                  className="w-24 rounded-xl border border-zinc-300 dark:border-white/20 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs text-zinc-900 dark:text-white"
-                />
-                <span className="text-xs text-zinc-500">KB</span>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Mengurangi ukuran berkas 50%–70% dengan kualitas teks & gambar tetap jernih dan tajam seperti dokumen asli.
+                </p>
               </div>
-            )}
+              <div className="w-5 h-5 rounded-full flex items-center justify-center bg-teal-600 text-white shrink-0 mt-0.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-zinc-200/60 dark:border-white/5 text-[11px] text-zinc-600 dark:text-zinc-400">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Teks tajam 100% terbaca</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Hemat ukuran 50%–70%</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span>Bebas tanda air (watermark)</span>
+              </div>
+            </div>
           </div>
 
           {resultSize && (
-            <div className="flex items-center gap-2 p-3 rounded-xl bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20 text-xs">
+            <div className="flex items-center gap-2 p-3.5 rounded-xl bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20 text-xs">
               <Sparkles className="w-4 h-4 shrink-0" />
               <span>
                 Berhasil dikompres menjadi <strong>{formatFileSize(resultSize)}</strong> (
-                {Math.round((1 - resultSize / file.size) * 100)}% lebih hemat)!
+                {Math.round((1 - resultSize / file.size) * 100)}% lebih hemat) dengan kualitas tetap tajam!
               </span>
             </div>
           )}
@@ -216,7 +143,7 @@ export function CompressPdfBoard() {
               {downloading ? (progressStatus || tCommon("processing")) : "Kompres & Unduh PDF"}
             </Button>
             {downloading && progressStatus && (
-              <span className="text-xs text-teal-600 dark:text-teal-400 font-medium">
+              <span className="text-xs text-teal-600 dark:text-teal-400 font-medium animate-pulse">
                 {progressStatus}
               </span>
             )}
