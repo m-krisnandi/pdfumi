@@ -79,10 +79,6 @@ services:
         condition: service_healthy
     environment:
       ACME_EMAIL: ${ACME_EMAIL:-admin@pdfumi.com}
-    deploy:
-      resources:
-        limits:
-          memory: 200M
     ports:
       - "80:80"
       - "443:443"
