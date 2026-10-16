@@ -49,20 +49,7 @@ Pasang Docker Engine + Compose plugin.
 
 ## Konfigurasi Pembayaran
 
-### 1. Pembayaran Lokal Indonesia (QRIS via Tripay)
-1. Buat akun di [tripay.co.id](https://tripay.co.id) (Daftar akun Perorangan cukup verifikasi KTP, tanpa syarat PT/CV yang rumit).
-2. Di menu Merchant, ambil:
-   - `TRIPAY_API_KEY`
-   - `TRIPAY_PRIVATE_KEY`
-   - `TRIPAY_MERCHANT_CODE`
-3. Set Webhook / Callback URL di dashboard Tripay ke:
-   `https://api.pdfumi.com/api/v1/billing/qris/webhook`
-4. Set whitelist IP Tripay (atau biarkan default).
-5. Pada `.env`, isi variabel `TRIPAY_*`.
-
-> **Catatan Sandbox:** Jika keys Tripay belum diisi di lokal/dev, Pdfumi otomatis masuk ke mode Simulator dengan QR code visual dan tombol 'Simulasi Bayar' instan.
-
-### 2. Pembayaran All-in-One Midtrans (QRIS, Kartu Global, VA, GoPay)
+### 1. Pembayaran All-in-One Midtrans (QRIS, Kartu Global, VA, GoPay)
 1. Buka dashboard [Midtrans](https://dashboard.midtrans.com) (Production).
 2. Salin konfigurasi ke `.env`:
    - `MIDTRANS_MERCHANT_ID=G602958288`

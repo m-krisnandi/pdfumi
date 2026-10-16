@@ -47,7 +47,6 @@ class CertificateServiceTest {
 				new PdfumiProperties.Security("actuator", "secret", true),
 				null,
 				null,
-				null,
 				null
 		);
 		org.mockito.Mockito.lenient().when(batchRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));

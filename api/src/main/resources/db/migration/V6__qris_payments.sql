@@ -1,4 +1,4 @@
--- QRIS Payment Orders (Tripay / Local Indonesia)
+-- QRIS Payment Orders (Midtrans / Local Indonesia)
 CREATE TABLE payment_order (
     id                UUID PRIMARY KEY,
     account_id        UUID         NOT NULL,

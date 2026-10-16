@@ -1,6 +1,5 @@
 package com.pdfumi.api.billing.application;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdfumi.api.billing.domain.Plan;
 import com.pdfumi.api.billing.infrastructure.AccountEntity;
@@ -20,23 +19,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.HexFormat;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,7 +42,6 @@ public class QrisPaymentService {
 	private final TransactionalMailer mailer;
 	private final PromoCodeRepository promoCodeRepository;
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	private final HttpClient httpClient;
 
 	public QrisPaymentService(
 			PaymentOrderRepository orderRepository,
@@ -72,9 +59,6 @@ public class QrisPaymentService {
 		this.qrCodeEncoder = qrCodeEncoder;
 		this.mailer = mailer;
 		this.promoCodeRepository = promoCodeRepository;
-		this.httpClient = HttpClient.newBuilder()
-				.connectTimeout(Duration.ofSeconds(10))
-				.build();
 	}
 
 	@Transactional
@@ -195,36 +179,21 @@ public class QrisPaymentService {
 			}
 		}
 
-		String qrString;
+		// Sandbox / Simulator QRIS
+		String qrString = "00020101021226540014ID.LINKAJA.WWW01189360091100222079035204581253033605802ID5910PDFUMI-"
+				+ plan.name() + "6007JAKARTA62070703A016304"
+				+ orderRef;
 		String qrUrl = null;
 		String checkoutUrl = null;
 
-		boolean liveTripay = properties.tripayEnabled();
-		if (liveTripay) {
-			try {
-				Map<String, String> tripayResult = callTripayCreate(orderRef, amount, plan, account, locale, expiresAt);
-				qrString = tripayResult.get("qr_string");
-				qrUrl = tripayResult.get("qr_url");
-				checkoutUrl = tripayResult.get("checkout_url");
-			} catch (Exception ex) {
-				log.error("Tripay transaction create error", ex);
-				throw new BadRequestException("Gagal menghubungi gateway pembayaran Tripay: " + ex.getMessage());
-			}
-		} else {
-			// Sandbox / Simulator QRIS
-			qrString = "00020101021226540014ID.LINKAJA.WWW01189360091100222079035204581253033605802ID5910PDFUMI-"
-					+ plan.name() + "6007JAKARTA62070703A016304"
-					+ orderRef;
-		}
-
 		// Generate QR Image data URL for immediate rendering in browser
-		String qrDataUrl = renderQrDataUrl(qrString != null && !qrString.isBlank() ? qrString : orderRef);
+		String qrDataUrl = renderQrDataUrl(qrString);
 
 		PaymentOrderEntity entity = new PaymentOrderEntity(
 				UUID.randomUUID(),
 				account.getId(),
 				orderRef,
-				liveTripay ? "TRIPAY" : "SIMULATOR",
+				"SIMULATOR",
 				plan,
 				plan == Plan.BUSINESS ? 12 : 1,
 				amount,
@@ -248,7 +217,7 @@ public class QrisPaymentService {
 		resp.put("qrUrl", qrUrl);
 		resp.put("checkoutUrl", checkoutUrl);
 		resp.put("expiresAt", expiresAt.toString());
-		resp.put("sandboxMode", !liveTripay);
+		resp.put("sandboxMode", true);
 		resp.put("email", account.getEmail());
 		if (newApiKey != null) {
 			resp.put("apiKey", newApiKey);
@@ -274,41 +243,8 @@ public class QrisPaymentService {
 
 	@Transactional
 	public Map<String, Object> simulatePayment(String orderReference) {
-		if (properties.tripayEnabled() && "production".equalsIgnoreCase(properties.tripayMode())) {
-			throw new BadRequestException("Simulasi pembayaran hanya aktif di mode Sandbox/Development.");
-		}
 		markOrderPaid(orderReference);
 		return Map.of("status", "PAID", "message", "Simulasi pembayaran QRIS berhasil diverifikasi.");
-	}
-
-	@Transactional
-	public void handleTripayWebhook(String payload, String signatureHeader) {
-		if (!properties.tripayEnabled()) {
-			throw new BadRequestException("Tripay is not enabled");
-		}
-		String calculatedSignature = hmacSha256(payload, properties.tripayPrivateKey());
-		if (!calculatedSignature.equalsIgnoreCase(signatureHeader)) {
-			log.warn("Tripay webhook signature mismatch. Received: {}, Expected: {}", signatureHeader, calculatedSignature);
-			throw new BadRequestException("Invalid Tripay webhook signature");
-		}
-
-		try {
-			JsonNode root = objectMapper.readTree(payload);
-			String merchantRef = root.path("merchant_ref").asText();
-			String status = root.path("status").asText();
-
-			if ("PAID".equalsIgnoreCase(status)) {
-				markOrderPaid(merchantRef);
-			} else if ("EXPIRED".equalsIgnoreCase(status) || "FAILED".equalsIgnoreCase(status)) {
-				orderRepository.findByOrderReference(merchantRef).ifPresent(order -> {
-					order.setStatus(status.toUpperCase());
-					orderRepository.save(order);
-				});
-			}
-		} catch (Exception ex) {
-			log.error("Failed to parse Tripay webhook payload", ex);
-			throw new BadRequestException("Invalid payload");
-		}
 	}
 
 	@Transactional
@@ -361,68 +297,6 @@ public class QrisPaymentService {
 		}
 	}
 
-	private Map<String, String> callTripayCreate(
-			String merchantRef,
-			int amount,
-			Plan plan,
-			AccountEntity account,
-			String locale,
-			Instant expiresAt
-	) throws Exception {
-		String baseUrl = "production".equalsIgnoreCase(properties.tripayMode())
-				? "https://tripay.co.id/api"
-				: "https://tripay.co.id/api-sandbox";
-
-		long expiryEpoch = expiresAt.getEpochSecond();
-		String signaturePayload = properties.tripayMerchantCode() + merchantRef + amount;
-		String signature = hmacSha256(signaturePayload, properties.tripayPrivateKey());
-
-		Map<String, Object> reqBody = new HashMap<>();
-		reqBody.put("method", "QRIS");
-		reqBody.put("merchant_ref", merchantRef);
-		reqBody.put("amount", amount);
-		reqBody.put("customer_name", account.getEmail().split("@")[0]);
-		reqBody.put("customer_email", account.getEmail());
-		reqBody.put("order_items", new Object[]{
-				Map.of(
-						"sku", plan.name(),
-						"name", "Pdfumi Subscription " + plan.name(),
-						"price", amount,
-						"quantity", 1
-				)
-		});
-		reqBody.put("callback_url", properties.publicApiBaseUrl() + "/api/v1/billing/qris/webhook");
-		reqBody.put("return_url", properties.publicWebBaseUrl() + "/" + (locale != null ? locale : "id") + "/account?checkout=qris-success");
-		reqBody.put("expired_time", expiryEpoch);
-		reqBody.put("signature", signature);
-
-		String json = objectMapper.writeValueAsString(reqBody);
-
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(baseUrl + "/transaction/create"))
-				.header("Authorization", "Bearer " + properties.tripayApiKey())
-				.header("Content-Type", "application/json")
-				.POST(HttpRequest.BodyPublishers.ofString(json))
-				.build();
-
-		HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-		if (response.statusCode() >= 400) {
-			throw new BadRequestException("Tripay API error (" + response.statusCode() + "): " + response.body());
-		}
-
-		JsonNode root = objectMapper.readTree(response.body());
-		if (!root.path("success").asBoolean(false)) {
-			throw new BadRequestException("Tripay gagal: " + root.path("message").asText("Unknown error"));
-		}
-
-		JsonNode data = root.path("data");
-		Map<String, String> result = new HashMap<>();
-		result.put("qr_string", data.path("qr_string").asText());
-		result.put("qr_url", data.path("qr_url").asText());
-		result.put("checkoutUrl", data.path("checkout_url").asText());
-		return result;
-	}
-
 	private String renderQrDataUrl(String text) {
 		try {
 			BufferedImage image = qrCodeEncoder.encode(text, 300);
@@ -432,18 +306,6 @@ public class QrisPaymentService {
 		} catch (Exception ex) {
 			log.warn("Failed to generate QR data URL: {}", ex.getMessage());
 			return "";
-		}
-	}
-
-	private String hmacSha256(String data, String key) {
-		try {
-			Mac mac = Mac.getInstance("HmacSHA256");
-			SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-			mac.init(secretKeySpec);
-			byte[] hash = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
-			return HexFormat.of().formatHex(hash);
-		} catch (NoSuchAlgorithmException | InvalidKeyException ex) {
-			throw new IllegalStateException("Failed to calculate HMAC-SHA256", ex);
 		}
 	}
 }

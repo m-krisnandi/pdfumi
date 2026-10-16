@@ -11,7 +11,6 @@ public record PdfumiProperties(
 		Integer tempTtlHours,
 		Free free,
 		Security security,
-		Tripay tripay,
 		Midtrans midtrans,
 		Mail mail,
 		Office office
@@ -23,17 +22,6 @@ public record PdfumiProperties(
 			String actuatorUser,
 			String actuatorPassword,
 			Boolean swaggerEnabled
-	) {
-	}
-
-	public record Tripay(
-			String apiKey,
-			String privateKey,
-			String merchantCode,
-			String mode,
-			Integer pricePassIdr,
-			Integer priceProIdr,
-			Integer priceBusinessIdr
 	) {
 	}
 
@@ -119,36 +107,6 @@ public record PdfumiProperties(
 				: security.actuatorPassword();
 	}
 
-	public boolean tripayEnabled() {
-		return tripay != null
-				&& tripay.apiKey() != null && !tripay.apiKey().isBlank()
-				&& tripay.privateKey() != null && !tripay.privateKey().isBlank()
-				&& tripay.merchantCode() != null && !tripay.merchantCode().isBlank();
-	}
-
-	public String tripayApiKey() {
-		return tripay == null ? "" : nullToEmpty(tripay.apiKey());
-	}
-
-	public String tripayPrivateKey() {
-		return tripay == null ? "" : nullToEmpty(tripay.privateKey());
-	}
-
-	public String tripayMerchantCode() {
-		return tripay == null ? "" : nullToEmpty(tripay.merchantCode());
-	}
-
-	public String tripayMode() {
-		return (tripay != null && "production".equalsIgnoreCase(tripay.mode())) ? "production" : "sandbox";
-	}
-
-	public String tripayBaseUrl() {
-		return "production".equalsIgnoreCase(tripayMode())
-				? "https://tripay.co.id/api"
-				: "https://tripay.co.id/api-sandbox";
-	}
-
-
 	public boolean midtransEnabled() {
 		return midtrans != null
 				&& midtrans.serverKey() != null && !midtrans.serverKey().isBlank();
@@ -177,24 +135,15 @@ public record PdfumiProperties(
 	}
 
 	public int pricePassIdr() {
-		if (tripay == null || tripay.pricePassIdr() == null || tripay.pricePassIdr() < 1000) {
-			return 19000;
-		}
-		return tripay.pricePassIdr();
+		return 19000;
 	}
 
 	public int priceProIdr() {
-		if (tripay == null || tripay.priceProIdr() == null || tripay.priceProIdr() < 1000) {
-			return 29000;
-		}
-		return tripay.priceProIdr();
+		return 29000;
 	}
 
 	public int priceBusinessIdr() {
-		if (tripay == null || tripay.priceBusinessIdr() == null || tripay.priceBusinessIdr() < 1000) {
-			return 149000;
-		}
-		return tripay.priceBusinessIdr();
+		return 149000;
 	}
 
 	public String mailFrom() {
@@ -218,8 +167,6 @@ public record PdfumiProperties(
 				? 120
 				: office.timeoutSeconds();
 	}
-
-
 
 	private static String nullToEmpty(String s) {
 		return s == null ? "" : s.trim();

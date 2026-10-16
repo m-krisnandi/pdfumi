@@ -129,7 +129,6 @@ public class BillingController {
 				"midtransEnabled", properties.midtransEnabled(),
 				"midtransClientKey", properties.midtransClientKey(),
 				"midtransMode", properties.midtransMode(),
-				"tripayEnabled", properties.tripayEnabled(),
 				"pricePassIdr", properties.pricePassIdr(),
 				"priceProIdr", properties.priceProIdr(),
 				"priceBusinessIdr", properties.priceBusinessIdr()
@@ -159,13 +158,10 @@ public class BillingController {
 
 
 	@PostMapping("/billing/qris/create")
-	@Operation(summary = "Create QRIS payment order (Midtrans or Tripay)")
+	@Operation(summary = "Create QRIS payment order (Midtrans)")
 	public Map<String, Object> createQris(HttpServletRequest request, @RequestBody QrisCreateRequest body) {
 		ClientContext client = accountService.resolve(request);
-		if (properties.midtransEnabled() && !properties.tripayEnabled()) {
-			return midtransPaymentService.createSnapTransaction(client, body.plan(), body.email(), body.locale(), body.promoCode());
-		}
-		return qrisPaymentService.createOrder(client, body.plan(), body.email(), body.locale(), body.promoCode());
+		return midtransPaymentService.createSnapTransaction(client, body.plan(), body.email(), body.locale(), body.promoCode());
 	}
 
 	@GetMapping("/billing/qris/status/{orderReference}")
@@ -178,16 +174,6 @@ public class BillingController {
 	@Operation(summary = "Simulate QRIS payment in development / sandbox mode")
 	public Map<String, Object> simulateQrisPay(@PathVariable String orderReference) {
 		return qrisPaymentService.simulatePayment(orderReference);
-	}
-
-	@PostMapping(path = "/billing/qris/webhook", consumes = MediaType.APPLICATION_JSON_VALUE)
-	@Operation(summary = "Tripay QRIS payment callback webhook")
-	public Map<String, Object> tripayWebhook(
-			@RequestBody String payload,
-			@RequestHeader(value = "X-Callback-Signature", required = false) String signature
-	) {
-		qrisPaymentService.handleTripayWebhook(payload, signature == null ? "" : signature);
-		return Map.of("success", true);
 	}
 
 	// --- Promo Code Public Endpoints ---

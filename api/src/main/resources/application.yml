@@ -72,14 +72,6 @@ pdfumi:
     client-key: ${MIDTRANS_CLIENT_KEY:Mid-client-NodxyD2VH9YGJmZu}
     server-key: ${MIDTRANS_SERVER_KEY:}
     mode: ${MIDTRANS_MODE:production}
-  tripay:
-    api-key: ${TRIPAY_API_KEY:}
-    private-key: ${TRIPAY_PRIVATE_KEY:}
-    merchant-code: ${TRIPAY_MERCHANT_CODE:}
-    mode: ${TRIPAY_MODE:sandbox}
-    price-pass-idr: ${TRIPAY_PRICE_PASS_IDR:19000}
-    price-pro-idr: ${TRIPAY_PRICE_PRO_IDR:29000}
-    price-business-idr: ${TRIPAY_PRICE_BUSINESS_IDR:149000}
   mail:
     from: ${PDFUMI_MAIL_FROM:}
     expose-dev-link: ${PDFUMI_MAIL_EXPOSE_DEV_LINK:true}

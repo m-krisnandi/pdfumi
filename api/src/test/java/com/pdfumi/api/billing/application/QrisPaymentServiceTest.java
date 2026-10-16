@@ -59,7 +59,6 @@ class QrisPaymentServiceTest {
 				24,
 				new PdfumiProperties.Free(5, 20),
 				new PdfumiProperties.Security("actuator", "secret", true),
-				new PdfumiProperties.Tripay("", "", "", "sandbox", 19000, 29000, 149000),
 				null,
 				null,
 				null
@@ -108,7 +107,7 @@ class QrisPaymentServiceTest {
 				orderId,
 				account.getId(),
 				"QRS-TEST-123",
-				"TRIPAY",
+				"MIDTRANS",
 				Plan.PRO,
 				1,
 				29000,
