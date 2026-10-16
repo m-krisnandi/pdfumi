@@ -741,7 +741,7 @@ export function PricingBoard() {
                     {activePlanObj?.originalPrice && (
                       <div className="flex items-center justify-end gap-1.5 text-[11px]">
                         <span className="line-through text-zinc-400 dark:text-zinc-500 font-medium">
-                          {getOriginalPrice(selectedPlan, "IDR")}
+                          {activePlanObj.originalPrice}
                         </span>
                         <span className="font-extrabold text-rose-600 dark:text-rose-400 text-[10px] uppercase">
                           {activePlanObj.discount}
@@ -749,10 +749,14 @@ export function PricingBoard() {
                       </div>
                     )}
                     <span className="text-xl font-black text-teal-700 dark:text-teal-300">
-                      {formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")}
+                      {activePlanObj?.price}
                     </span>
                     <span className="block text-[10px] text-zinc-500 dark:text-zinc-400">
-                      {locale === "id" ? "Tagihan IDR Rupiah via Midtrans" : "Billed in IDR via Midtrans"}
+                      {currency === "USD"
+                        ? (locale === "id"
+                            ? `Setara ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")} via Midtrans`
+                            : `Billed as ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")} IDR via Midtrans`)
+                        : (locale === "id" ? "Tagihan IDR Rupiah via Midtrans" : "Billed in IDR via Midtrans")}
                     </span>
                   </div>
                 </div>
@@ -836,9 +840,13 @@ export function PricingBoard() {
                     <>
                       <CreditCard className="w-4 h-4" />
                       <span>
-                        {locale === "id"
-                          ? `Lanjutkan Pembayaran (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`
-                          : `Proceed to Payment (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`}
+                        {currency === "USD"
+                          ? (locale === "id"
+                              ? `Lanjutkan Pembayaran (${activePlanObj?.price} • ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`
+                              : `Proceed to Payment (${activePlanObj?.price} • ${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`)
+                          : (locale === "id"
+                              ? `Lanjutkan Pembayaran (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`
+                              : `Proceed to Payment (${formatPrice(selectedPlan, "", t(selectedPlan === "PASS" ? "passPriceIdr" : selectedPlan === "PRO" ? "proPriceIdr" : "businessPriceIdr"), "IDR")})`)}
                       </span>
                       <ArrowRight className="w-4 h-4" />
                     </>
