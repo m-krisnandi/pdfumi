@@ -116,21 +116,21 @@
     "title": "Merge PDF online free",
     "description": "Combine 2–10 PDFs into one file. Reorder pages, preview live, then download. Free daily quota applies.",
     "seo": {
-      "title": "Merge PDF Online Free — Combine PDFs | Pdfumi",
-      "description": "Merge multiple PDF files into one online. Drag to reorder, live preview, instant download. Free daily quota. No install.",
-      "faqTitle": "Merge PDF FAQ",
+      "title": "Merge PDF Online for Free — Combine PDF Files | Pdfumi",
+      "description": "Combine multiple PDF files into a single organized document online. Drag to reorder, clean download with zero watermarks.",
+      "faqTitle": "Frequently Asked Questions about Merging PDFs",
       "faqs": [
         {
-          "q": "How many PDFs can I merge?",
-          "a": "Up to 10 files per merge, max 5MB each on the free tier."
+          "q": "How do I merge multiple PDF files in custom order?",
+          "a": "Select or drag your PDF documents into the workspace, arrange their order using the live thumbnail previews, and click merge to download one united file."
         },
         {
-          "q": "Can I change the order before downloading?",
-          "a": "Yes. Drag documents to reorder. The live preview updates to match."
+          "q": "How many PDF files can I combine at once?",
+          "a": "The free plan supports combining up to 10 files simultaneously with up to 5MB per document."
         },
         {
-          "q": "Do I need an account?",
-          "a": "No for basic use within the free daily quota. Sign in to keep paid plan entitlements across devices."
+          "q": "Does Pdfumi add any watermarks to the merged PDF?",
+          "a": "No. The merged file is 100% clean with zero added watermarks, ready for professional and official use."
         }
       ]
     },
@@ -581,21 +581,21 @@
     "title": "PDF to Word online free",
     "description": "Convert a PDF to an editable .docx with LibreOffice. Free daily quota applies.",
     "seo": {
-      "title": "PDF to Word Online Free | Pdfumi",
-      "description": "Convert PDF to Word DOCX online. Editable download. Free daily quota. No install.",
-      "faqTitle": "PDF to Word FAQ",
+      "title": "Convert PDF to Word Online for Free (Editable DOCX) | Pdfumi",
+      "description": "Convert PDF to editable Word DOCX documents online for free. Accurate formatting, tables, and typography with no watermarks.",
+      "faqTitle": "Frequently Asked Questions about PDF to Word",
       "faqs": [
         {
-          "q": "Is the Word file editable?",
-          "a": "Yes — you get a .docx. Complex layouts may need cleanup after conversion."
+          "q": "Will document layout and tables remain intact after conversion?",
+          "a": "Yes. Our conversion engine preserves paragraph alignment, font styling, tables, and images so you can edit the DOCX file immediately."
         },
         {
-          "q": "What engine is used?",
-          "a": "LibreOffice headless on the server for faithful Office conversion."
+          "q": "Can I edit the downloaded Word document in Microsoft Word or Google Docs?",
+          "a": "Absolutely. The output is a standard Microsoft Word .docx file fully compatible with Word, Google Docs, and LibreOffice."
         },
         {
-          "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "q": "Are my converted documents kept secure and private?",
+          "a": "All files are securely transmitted via SSL and automatically deleted permanently from our servers within 1 hour."
         }
       ]
     },
@@ -684,21 +684,25 @@
     "title": "Compress PDF online free",
     "description": "Shrink PDF file size by recompressing embedded images. Free daily quota applies.",
     "seo": {
-      "title": "Compress PDF Online Free | Pdfumi",
-      "description": "Reduce PDF size online. Recompress images and download instantly. Free daily quota.",
-      "faqTitle": "Compress PDF FAQ",
+      "title": "Compress PDF Online for Free — Reduce PDF Size Instantly | Pdfumi",
+      "description": "Compress PDF files online for free. Reduce file size without losing quality, no watermark, fast and secure SSL processing in your browser.",
+      "faqTitle": "Frequently Asked Questions about PDF Compression",
       "faqs": [
         {
-          "q": "How much smaller will it get?",
-          "a": "Depends on the PDF. Image-heavy files shrink most; text-only files may change little."
+          "q": "How much can I reduce my PDF file size?",
+          "a": "Compression ratio depends on content. Image-heavy PDFs or scans can be reduced by up to 70-90%, while pure text files shrink efficiently without degradation."
         },
         {
-          "q": "Is quality affected?",
-          "a": "Images are recompressed. Text stays vector-sharp when present."
+          "q": "Will my text and images lose quality or become blurry?",
+          "a": "No. Vector text remains crisp and readable. Pdfumi intelligently optimizes raster images and internal structures to keep clarity intact."
         },
         {
-          "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "q": "Is it safe to compress confidential documents on Pdfumi?",
+          "a": "Yes, completely safe. All uploads are encrypted with SSL/HTTPS, processed automatically, and permanently deleted within 1 hour."
+        },
+        {
+          "q": "What is the maximum file size on the free plan?",
+          "a": "Free users can upload files up to 5MB with daily quotas. For higher capacity and unlimited usage, flexible plans are available on the Pricing page."
         }
       ]
     },

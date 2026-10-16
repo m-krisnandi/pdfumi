@@ -58,21 +58,25 @@
     "title": "Buat kwitansi online gratis",
     "description": "Buat PDF kwitansi siap cetak dengan terbilang, logo, dan tanda tangan. Pratinjau langsung. Gratis: 5/hari.",
     "seo": {
-      "title": "Buat Kwitansi Online Gratis (PDF + Terbilang) | Pdfumi",
-      "description": "Generator kwitansi PDF online — terbilang otomatis, logo, tanda tangan, pratinjau langsung. Tanpa install. Kuota harian gratis.",
-      "faqTitle": "FAQ kwitansi",
+      "title": "Buat Kwitansi Online Gratis — Format PDF & Terbilang Otomatis | Pdfumi",
+      "description": "Generator kwitansi pembayaran PDF online resmi gratis. Dilengkapi terbilang otomatis rupiah, logo perusahaan, dan tanda tangan siap cetak.",
+      "faqTitle": "Pertanyaan Seputar Generator Kwitansi PDF",
       "faqs": [
         {
-          "q": "Apakah generator kwitansi gratis?",
-          "a": "Ya. Akun gratis mendapat kuota dokumen harian (5/hari). Upgrade di Harga jika butuh lebih."
+          "q": "Apakah pembuatan kwitansi pembayaran di Pdfumi gratis?",
+          "a": "Ya. Anda dapat membuat dan mengunduh kwitansi resmi siap cetak secara gratis menggunakan kuota harian tanpa perlu instalasi aplikasi."
         },
         {
-          "q": "Apakah terbilang diisi otomatis?",
-          "a": "Ya. Masukkan angka, Pdfumi mengisi baris terbilang di PDF."
+          "q": "Bagaimana cara kerja penulisan terbilang rupiah otomatis?",
+          "a": "Cukup masukkan nominal angka pembayaran (misalnya: 1500000), sistem Pdfumi secara otomatis mengubahnya menjadi teks terbilang resmi Bahasa Indonesia (Satu Juta Lima Ratus Ribu Rupiah)."
         },
         {
-          "q": "Bisa tambah logo dan tanda tangan?",
-          "a": "Bisa. Unggah logo dan gambar/unggah tanda tangan. Draft tersimpan di browser."
+          "q": "Bisakah menambahkan logo perusahaan dan tanda tangan digital?",
+          "a": "Bisa. Anda dapat mengunggah logo usaha Anda dan menyematkan gambar tanda tangan langsung. Template kwitansi otomatis menyesuaikan tata letak agar terlihat profesional."
+        },
+        {
+          "q": "Apakah data kwitansi saya tersimpan aman?",
+          "a": "Kwitansi diproses langsung dan draft sementara hanya tersimpan di peramban (browser) perangkat Anda, sehingga data transaksi Anda tetap terjaga kerahasiaannya."
         }
       ]
     },
@@ -116,21 +120,25 @@
     "title": "Gabung PDF online gratis",
     "description": "Gabungkan 2–10 PDF jadi satu file. Atur urutan, pratinjau langsung, lalu unduh. Kuota harian gratis berlaku.",
     "seo": {
-      "title": "Gabung PDF Online Gratis — Satukan File PDF | Pdfumi",
-      "description": "Gabung beberapa file PDF jadi satu online. Seret untuk urutan, pratinjau langsung, unduh instan. Kuota harian gratis.",
-      "faqTitle": "FAQ gabung PDF",
+      "title": "Gabung PDF Online Gratis — Satukan Banyak File PDF | Pdfumi",
+      "description": "Satukan beberapa berkas PDF menjadi satu dokumen secara urut, cepat, dan rapi. 100% aman, tanpa watermark, gratis di browser.",
+      "faqTitle": "Pertanyaan Seputar Gabung PDF",
       "faqs": [
         {
-          "q": "Berapa banyak PDF yang bisa digabung?",
-          "a": "Hingga 10 file per gabungan, maks 5MB per file di paket gratis."
+          "q": "Bagaimana cara menggabungkan beberapa file PDF menjadi satu urutan yang rapi?",
+          "a": "Pilih atau seret semua file PDF yang ingin digabungkan, atur urutan dokumen sesuai keinginan melalui pratinjau, lalu klik tombol gabung untuk mengunduh satu file PDF utuh."
         },
         {
-          "q": "Bisa ubah urutan sebelum unduh?",
-          "a": "Bisa. Seret dokumen untuk mengurutkan. Pratinjau langsung menyesuaikan."
+          "q": "Berapa banyak file PDF yang bisa disatukan sekaligus?",
+          "a": "Paket gratis mendukung penggabungan hingga 10 file sekaligus dengan batas ukuran 5MB per file."
         },
         {
-          "q": "Perlu akun?",
-          "a": "Tidak untuk pemakaian dasar dalam kuota harian gratis. Masuk untuk entitlement paket berbayar."
+          "q": "Apakah ada watermark atau batas masa berlaku file hasil gabungan?",
+          "a": "Tidak ada watermark sama sekali. File hasil gabungan 100% bersih dan dapat langsung Anda gunakan untuk keperluan pendaftaran, tugas kuliah, atau kantor."
+        },
+        {
+          "q": "Apakah susunan halaman di setiap PDF akan berantakan?",
+          "a": "Tidak. Urutan halaman di setiap file PDF akan dipertahankan secara presisi sesuai urutan file yang Anda tentukan."
         }
       ]
     },
@@ -581,21 +589,25 @@
     "title": "PDF ke Word online gratis",
     "description": "Ubah PDF jadi .docx yang bisa diedit dengan LibreOffice. Kuota harian gratis berlaku.",
     "seo": {
-      "title": "PDF ke Word Online Gratis | Pdfumi",
-      "description": "Konversi PDF ke Word DOCX online. Unduh bisa diedit. Kuota harian gratis.",
-      "faqTitle": "FAQ PDF ke Word",
+      "title": "Konversi PDF ke Word Online Gratis (Bisa Diedit) | Pdfumi",
+      "description": "Ubah file PDF menjadi Word DOCX online gratis yang dapat diedit langsung. Format, tabel, dan paragraf tetap rapi tanpa watermark.",
+      "faqTitle": "Pertanyaan Seputar Konversi PDF ke Word",
       "faqs": [
         {
-          "q": "Hasilnya bisa diedit?",
-          "a": "Ya — format .docx. Layout rumit mungkin perlu dirapikan setelah konversi."
+          "q": "Apakah format susunan dan tabel PDF akan tetap rapi saat diubah ke Word?",
+          "a": "Ya. Konverter Pdfumi mempertahankan struktur paragraf, tata letak, dan tabel dokumen asli sehingga langsung siap diedit di Microsoft Word (.docx)."
         },
         {
-          "q": "Engine apa?",
-          "a": "LibreOffice headless di server untuk konversi Office yang andal."
+          "q": "Apakah hasil konversi Word bisa langsung diedit?",
+          "a": "Tentu. Dokumen yang diunduh berformat .docx standar yang dapat dibuka dan diedit menggunakan Microsoft Word, Google Docs, maupun WPS Office."
         },
         {
-          "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "q": "Apakah teks dari dokumen hasil scan bisa diubah menjadi Word?",
+          "a": "Jika PDF Anda berupa teks digital, konversi berlangsung sempurna. Untuk dokumen pindaian gambar murni, tata letak akan disesuaikan agar siap dilengkapi."
+        },
+        {
+          "q": "Apakah aman mengonversi surat atau dokumen penting di sini?",
+          "a": "Sangat aman. Dokumen Anda dienkripsi penuh dan secara otomatis dihapus permanen dari server kami dalam 1 jam demi menjaga kerahasiaan data."
         }
       ]
     },
@@ -684,21 +696,29 @@
     "title": "Kompres PDF online gratis",
     "description": "Kecilkan ukuran PDF dengan mengompres gambar di dalamnya. Kuota harian gratis berlaku.",
     "seo": {
-      "title": "Kompres PDF Online Gratis | Pdfumi",
-      "description": "Perkecil ukuran PDF online. Kompres ulang gambar dan unduh instan. Kuota harian gratis.",
-      "faqTitle": "FAQ kompres PDF",
+      "title": "Kompres PDF Online Gratis — Perkecil Ukuran PDF Cepat | Pdfumi",
+      "description": "Kompres file PDF online gratis dan cepat. Perkecil ukuran dokumen PDF untuk syarat CPNS, SSCASN, atau kerja hingga 200KB-300KB tanpa buram dan tanpa watermark.",
+      "faqTitle": "Pertanyaan Seputar Kompres PDF",
       "faqs": [
         {
-          "q": "Seberapa kecil hasilnya?",
-          "a": "Tergantung PDF. File penuh gambar menyusut paling banyak."
+          "q": "Bagaimana cara kompres PDF agar ukuran menjadi 200KB atau 300KB untuk CPNS/SSCASN?",
+          "a": "Unggah file PDF Anda ke Pdfumi dan pilih mode kompresi. Sistem akan mengoptimalkan resolusi gambar dan struktur dokumen internal agar memenuhi syarat unggah CPNS atau instansi kerja tanpa merusak kejelasan teks."
         },
         {
-          "q": "Kualitas berubah?",
-          "a": "Gambar dikompres ulang. Teks tetap tajam jika vektor."
+          "q": "Seberapa besar ukuran file PDF bisa dikecilkan?",
+          "a": "Besaran kompresi bergantung pada konten dokumen. Dokumen yang berisi banyak foto atau scan dapat menyusut hingga 70-90% dari ukuran semula, sedangkan dokumen teks murni menyusut secara optimal."
         },
         {
-          "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "q": "Apakah kualitas teks dan tulisan di dalam PDF akan buram atau pecah?",
+          "a": "Tidak. Pdfumi mempertahankan teks berbasis vektor tetap tajam dan mudah dibaca. Hanya elemen gambar dan bitmap yang dioptimasi ulang secara cerdas."
+        },
+        {
+          "q": "Apakah dokumen rahasia saya aman dikompres di Pdfumi?",
+          "a": "Sangat aman. Seluruh proses pengiriman file dilindungi enkripsi SSL/HTTPS. Dokumen diproses secara otomatis oleh sistem tanpa campur tangan manusia dan langsung dihapus permanen dalam 1 jam."
+        },
+        {
+          "q": "Berapa batas ukuran file di paket gratis?",
+          "a": "Pengguna gratis dapat mengunggah file hingga 5MB per dokumen dengan kuota harian. Jika membutuhkan kapasitas file lebih besar tanpa batas, Anda dapat memilih paket berlangganan hemat di menu Harga."
         }
       ]
     },
