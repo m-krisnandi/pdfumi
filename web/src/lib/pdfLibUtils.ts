@@ -351,7 +351,7 @@ export async function imagesToPdfClient(
   return new Blob([outputBytes.buffer as ArrayBuffer], { type: "application/pdf" });
 }
 
-/** Client-side targeted compress for PDF (downsampling pages to hit target KB, e.g. strictly < 200 KB) */
+/** Client-side targeted compress for PDF with crisp text contrast & strict target ceiling */
 export async function compressPdfToTargetKb(
   file: File,
   targetKb: number = 200,
@@ -368,44 +368,40 @@ export async function compressPdfToTargetKb(
   const pdf = await loadingTask.promise;
   const numPages = pdf.numPages;
 
-  // Strict hard ceiling in bytes with safety margin
-  // e.g. target 200 KB -> max 195 KB (199,680 bytes) so it always displays and passes as < 200.0 KB
+  // Strict hard ceiling in bytes with calibrated margin so output is close to target but strictly below
+  // e.g. target 200 KB -> max 196 KB so it hits ~185-195 KB without over-compressing down to 150 KB
   const maxTargetBytes =
     (targetKb <= 200
-      ? 195
+      ? 196
       : targetKb <= 500
-      ? 490
+      ? 492
       : targetKb <= 1000
-      ? 980
-      : Math.floor(targetKb * 0.95)) * 1024;
+      ? 985
+      : Math.floor(targetKb * 0.97)) * 1024;
 
-  // Determine starting budget per page
-  // Overhead of PDF catalog/cross-reference is roughly 2-5 KB + ~1.6 KB per page
-  const pdfStructureOverheadKb = Math.min(30, 4 + numPages * 1.6);
+  const pdfStructureOverheadKb = Math.min(25, 3 + numPages * 1.4);
   const netImageBudgetKb = Math.max(10, maxTargetBytes / 1024 - pdfStructureOverheadKb);
   const perPageBudgetKb = netImageBudgetKb / numPages;
 
-  // Calculate intelligent initial scale & quality based on per-page budget
-  let scale = 1.0;
-  let quality = 0.65;
-  if (perPageBudgetKb < 15) {
-    scale = 0.55;
-    quality = 0.35;
-  } else if (perPageBudgetKb < 25) {
-    scale = 0.65;
-    quality = 0.42;
+  // Intelligently choose initial scale to maximize text readability
+  let scale = 1.30;
+  let quality = 0.72;
+
+  if (perPageBudgetKb < 22) {
+    // Tight budget (e.g. 10 pages in 200 KB) -> scale 1.0 (minimum readable), quality 0.52
+    scale = 1.0;
+    quality = 0.52;
   } else if (perPageBudgetKb < 40) {
-    scale = 0.75;
-    quality = 0.50;
-  } else if (perPageBudgetKb < 70) {
-    scale = 0.90;
+    scale = 1.15;
     quality = 0.60;
+  } else if (perPageBudgetKb < 75) {
+    scale = 1.25;
+    quality = 0.68;
   } else {
-    scale = 1.1;
-    quality = 0.75;
+    scale = 1.35;
+    quality = 0.78;
   }
 
-  // Render all pages to canvas
   type RenderedPage = {
     canvas: HTMLCanvasElement;
     origWidth: number;
@@ -429,6 +425,29 @@ export async function compressPdfToTargetKb(
 
     // @ts-expect-error pdfjs typing
     await page.render({ canvasContext: ctx, viewport }).promise;
+
+    // Enhance contrast: clean near-white paper noise to pure #fff (drastically reduces JPEG DCT overhead)
+    // and darken text strokes for razor-sharp readability even under compression
+    try {
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const d = imgData.data;
+      for (let p = 0; p < d.length; p += 4) {
+        const r = d[p], g = d[p + 1], b = d[p + 2];
+        if (r > 225 && g > 225 && b > 225) {
+          d[p] = 255;
+          d[p + 1] = 255;
+          d[p + 2] = 255;
+        } else if (r < 120 && g < 120 && b < 120) {
+          d[p] = Math.max(0, r - 30);
+          d[p + 1] = Math.max(0, g - 30);
+          d[p + 2] = Math.max(0, b - 30);
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
+    } catch {
+      // Continue if canvas tainted
+    }
+
     renderedPages.push({
       canvas,
       origWidth: origViewport.width,
@@ -436,7 +455,6 @@ export async function compressPdfToTargetKb(
     });
   }
 
-  // Helper to package pages into PDFDocument at current scale and quality
   async function buildPdf(
     pages: RenderedPage[],
     jpgQuality: number,
@@ -475,7 +493,7 @@ export async function compressPdfToTargetKb(
     return await outDoc.save();
   }
 
-  // Iterative refinement loop to GUARANTEE fitting under target
+  // Refinement loop calibrated to land precisely near target without harsh overshoots
   let currentQuality = quality;
   let currentDownsample = 1.0;
   let outputBytes = await buildPdf(renderedPages, currentQuality, currentDownsample);
@@ -486,11 +504,13 @@ export async function compressPdfToTargetKb(
     onProgress?.(`Menyesuaikan ukuran (${attempts}/5)...`);
     const ratio = maxTargetBytes / outputBytes.byteLength;
 
-    if (currentQuality > 0.28) {
-      currentQuality = Math.max(0.18, currentQuality * Math.min(0.85, ratio * 0.92));
+    if (currentQuality > 0.32) {
+      // Gentle step proportional to ratio
+      currentQuality = Math.max(0.24, currentQuality * Math.min(0.96, ratio * 0.985));
     } else {
-      currentDownsample = Math.max(0.35, currentDownsample * Math.min(0.85, Math.sqrt(ratio) * 0.92));
-      currentQuality = Math.max(0.20, currentQuality * 0.92);
+      // Only reduce canvas dimensions if quality is already low
+      currentDownsample = Math.max(0.70, currentDownsample * Math.min(0.95, Math.sqrt(ratio) * 0.98));
+      currentQuality = Math.max(0.26, currentQuality * 0.96);
     }
 
     outputBytes = await buildPdf(renderedPages, currentQuality, currentDownsample);

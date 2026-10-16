@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { API_BASE, authHeaders, downloadBlob } from "@/lib/api";
-import { keepOriginalName } from "@/lib/downloadName";
 import { Button } from "@/components/ui/Button";
 import { ToolShell } from "@/components/ToolShell";
 import { ErrorBanner } from "@/components/ErrorBanner";
@@ -45,38 +43,26 @@ export function CompressPdfBoard() {
     setError(null);
 
     try {
-      if (targetPreset === "auto") {
-        // Standard server compression
-        const form = new FormData();
-        form.append("file", file);
-        const res = await fetch(`${API_BASE}/api/v1/pdf/compress`, {
-          method: "POST",
-          headers: authHeaders(),
-          body: form,
-        });
-        await downloadBlob(res, keepOriginalName(file, "document-compressed.pdf", "pdf"));
-      } else {
-        // Target-driven compression
-        let targetLimitKb = 200;
-        if (targetPreset === "200kb") targetLimitKb = 200;
-        else if (targetPreset === "500kb") targetLimitKb = 500;
-        else if (targetPreset === "1mb") targetLimitKb = 1000;
-        else if (targetPreset === "custom") targetLimitKb = Math.max(50, customKb);
+      let targetLimitKb = 200;
+      if (targetPreset === "200kb") targetLimitKb = 200;
+      else if (targetPreset === "500kb") targetLimitKb = 500;
+      else if (targetPreset === "1mb") targetLimitKb = 1000;
+      else if (targetPreset === "auto") targetLimitKb = Math.max(350, Math.round((file.size / 1024) * 0.48));
+      else if (targetPreset === "custom") targetLimitKb = Math.max(50, customKb);
 
-        setProgressStatus("Menganalisis dokumen...");
-        // Run smart iterative downsampling to strictly guarantee fitting under target KB
-        const compressedBlob = await compressPdfToTargetKb(file, targetLimitKb, (msg) => {
-          setProgressStatus(msg);
-        });
-        setResultSize(compressedBlob.size);
+      setProgressStatus("Menganalisis dokumen...");
+      const compressedBlob = await compressPdfToTargetKb(file, targetLimitKb, (msg) => {
+        setProgressStatus(msg);
+      });
+      setResultSize(compressedBlob.size);
 
-        const url = URL.createObjectURL(compressedBlob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = file.name.replace(/\.pdf$/i, `-compressed-${targetLimitKb}kb.pdf`);
-        a.click();
-        URL.revokeObjectURL(url);
-      }
+      const url = URL.createObjectURL(compressedBlob);
+      const a = document.createElement("a");
+      a.href = url;
+      const downloadSuffix = targetPreset === "auto" ? "-compressed-optimal.pdf" : `-compressed-${targetLimitKb}kb.pdf`;
+      a.download = file.name.replace(/\.pdf$/i, downloadSuffix);
+      a.click();
+      URL.revokeObjectURL(url);
     } catch (err) {
       setError(err instanceof Error ? err.message : tCommon("errorGeneric"));
     } finally {
