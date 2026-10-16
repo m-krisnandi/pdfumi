@@ -1,0 +1,106 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pdfumi}
+      POSTGRES_USER: ${POSTGRES_USER:-pdfumi}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    volumes:
+      - pdfumi_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pdfumi} -d ${POSTGRES_DB:-pdfumi}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  api:
+    build:
+      context: ./api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      JAVA_TOOL_OPTIONS: "-Xms384m -Xmx1400m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-pdfumi}
+      DATABASE_USER: ${POSTGRES_USER:-pdfumi}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      PDFUMI_PUBLIC_WEB_BASE: ${PDFUMI_PUBLIC_WEB_BASE:-https://pdfumi.com}
+      PDFUMI_CORS_ORIGINS: ${PDFUMI_CORS_ORIGINS:-https://pdfumi.com,https://www.pdfumi.com,https://*.vercel.app}
+      PDFUMI_SWAGGER_ENABLED: ${PDFUMI_SWAGGER_ENABLED:-false}
+      PDFUMI_ACTUATOR_USER: ${PDFUMI_ACTUATOR_USER:-actuator}
+      PDFUMI_ACTUATOR_PASSWORD: ${PDFUMI_ACTUATOR_PASSWORD:?set PDFUMI_ACTUATOR_PASSWORD}
+      # Transactional Mail (SMTP)
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST:-}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME:-}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD:-}
+      PDFUMI_MAIL_FROM: ${PDFUMI_MAIL_FROM:-noreply@pdfumi.com}
+      # Midtrans Payment Gateway (QRIS, Cards, VA, E-Wallets)
+      MIDTRANS_MERCHANT_ID: ${MIDTRANS_MERCHANT_ID:-G602958288}
+      MIDTRANS_CLIENT_KEY: ${MIDTRANS_CLIENT_KEY:-Mid-client-NodxyD2VH9YGJmZu}
+      MIDTRANS_SERVER_KEY: ${MIDTRANS_SERVER_KEY:-}
+      MIDTRANS_MODE: ${MIDTRANS_MODE:-production}
+      # Tripay (Indonesian QRIS)
+      TRIPAY_API_KEY: ${TRIPAY_API_KEY:-}
+      TRIPAY_PRIVATE_KEY: ${TRIPAY_PRIVATE_KEY:-}
+      TRIPAY_MERCHANT_CODE: ${TRIPAY_MERCHANT_CODE:-}
+      TRIPAY_MODE: ${TRIPAY_MODE:-production}
+      TRIPAY_PRICE_PASS_IDR: ${TRIPAY_PRICE_PASS_IDR:-19000}
+      TRIPAY_PRICE_PRO_IDR: ${TRIPAY_PRICE_PRO_IDR:-29000}
+      TRIPAY_PRICE_BUSINESS_IDR: ${TRIPAY_PRICE_BUSINESS_IDR:-149000}
+    deploy:
+      resources:
+        limits:
+          memory: 1800M
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  pdfumi_pg:
+  caddy_data:
+  caddy_config:

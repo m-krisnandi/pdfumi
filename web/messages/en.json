@@ -1,0 +1,1574 @@
+{
+  "meta": {
+    "title": "Pdfumi — Fill the form. Get a PDF.",
+    "description": "Online receipt, merge, compress, convert, and organize PDF tools. Self-serve, fast, print-ready."
+  },
+  "nav": {
+    "receipt": "Receipt",
+    "merge": "Merge",
+    "watermark": "Watermark",
+    "certificates": "Certificates",
+    "pricing": "Pricing",
+    "account": "Account",
+    "signIn": "Sign in",
+    "tools": "Tools",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "refund": "Refund"
+  },
+  "footer": "Pdfumi — documents to PDF, without the hassle.",
+  "common": {
+    "soon": "Soon",
+    "downloadPdf": "Download PDF",
+    "downloadResult": "Download result",
+    "processing": "Processing...",
+    "errorGeneric": "Something went wrong",
+    "language": "Language",
+    "remove": "Remove",
+    "today": "Today",
+    "clear": "Clear",
+    "preview": "Preview",
+    "close": "Close",
+    "rotate": "Rotate"
+  },
+  "home": {
+    "eyebrow": "Pdfumi",
+    "headline1": "Fill the form.",
+    "headline2": "Get a PDF.",
+    "subtitle": "Self-serve document tools for receipts, merge, convert, compress, and certificates. No install. Instant download.",
+    "ctaReceipt": "Create receipt",
+    "ctaPricing": "See pricing",
+    "tools": {
+      "receiptTitle": "Receipt generator",
+      "receiptDesc": "Auto amount-in-words, print-ready PDF.",
+      "mergeTitle": "Merge PDF",
+      "mergeDesc": "Combine multiple files into one document.",
+      "watermarkTitle": "Watermark PDF",
+      "watermarkDesc": "Add diagonal text watermark to every page.",
+      "certificateTitle": "Bulk certificates",
+      "certificateDesc": "CSV names → PDF with unique QR verification.",
+      "pdfConverterTitle": "PDF Converter",
+      "pdfConverterDesc": "PDF ↔ Word, images, and more — one place.",
+      "compressTitle": "Compress PDF",
+      "compressDesc": "Shrink file size before you share."
+    }
+  },
+  "receipt": {
+    "title": "Free online receipt generator",
+    "description": "Create a print-ready receipt PDF with amount in words, logo, and signature. Live preview. Free: 5/day.",
+    "seo": {
+      "title": "Free Online Receipt Generator (PDF) | Pdfumi",
+      "description": "Make a professional receipt PDF online — amount in words, logo, signature, and live preview. No install. Free daily quota.",
+      "faqTitle": "Receipt FAQ",
+      "faqs": [
+        {
+          "q": "Is the receipt generator free?",
+          "a": "Yes. Free accounts get a daily document quota (5/day). Upgrade on Pricing if you need more."
+        },
+        {
+          "q": "Does it write the amount in words automatically?",
+          "a": "Yes. Enter the number and Pdfumi fills the amount-in-words line on the PDF."
+        },
+        {
+          "q": "Can I add a logo and signature?",
+          "a": "Yes. Upload a logo and draw or upload a signature. Drafts stay in your browser."
+        }
+      ]
+    },
+    "fields": {
+      "number": "Receipt no.",
+      "numberPlaceholder": "001/RC/{mm}/{yyyy}",
+      "receivedFrom": "Received from",
+      "receivedFromPlaceholder": "e.g. PT Maju Jaya / John Smith",
+      "amount": "Amount",
+      "amountPlaceholder": "e.g. 1500000",
+      "forPayment": "For payment of",
+      "forPaymentPlaceholder": "e.g. Consulting fee September",
+      "city": "City",
+      "cityPlaceholder": "e.g. Jakarta",
+      "date": "Date",
+      "payee": "Payee name",
+      "payeePlaceholder": "e.g. Jane Doe (signature name)",
+      "organization": "Organization",
+      "organizationPlaceholder": "e.g. Pdfumi Academy"
+    },
+    "logoLabel": "Organization logo",
+    "uploadLogo": "Upload logo",
+    "logoSelected": "Logo: {name}",
+    "logoHint": "PNG/JPG/WebP · saved in this browser for reuse.",
+    "needLogoImage": "Please upload a PNG, JPG, or WebP logo.",
+    "logoTooLarge": "Logo is too large (max ~600KB).",
+    "signatureLabel": "Payee signature (optional)",
+    "uploadSignature": "Upload signature image (optional)",
+    "signatureHint": "Upload or draw · appears above the payee name.",
+    "needSignatureImage": "Please upload a PNG, JPG, or WebP signature.",
+    "signatureTooLarge": "Signature image is too large (max ~600KB).",
+    "livePreviewTitle": "Live preview",
+    "livePreviewHint": "Updates as you edit. Download uses the same layout.",
+    "previewEmpty": "Fill received from, amount, and payment purpose to preview.",
+    "previewFailed": "Could not build preview.",
+    "needRequired": "Please fill received from, amount, and payment purpose.",
+    "clearDraft": "Clear form",
+    "draftHint": "Draft is auto-saved in this browser · survives refresh."
+  },
+  "merge": {
+    "title": "Merge PDF online free",
+    "description": "Combine 2–10 PDFs into one file. Reorder pages, preview live, then download. Free daily quota applies.",
+    "seo": {
+      "title": "Merge PDF Online Free — Combine PDFs | Pdfumi",
+      "description": "Merge multiple PDF files into one online. Drag to reorder, live preview, instant download. Free daily quota. No install.",
+      "faqTitle": "Merge PDF FAQ",
+      "faqs": [
+        {
+          "q": "How many PDFs can I merge?",
+          "a": "Up to 10 files per merge, max 5MB each on the free tier."
+        },
+        {
+          "q": "Can I change the order before downloading?",
+          "a": "Yes. Drag documents to reorder. The live preview updates to match."
+        },
+        {
+          "q": "Do I need an account?",
+          "a": "No for basic use within the free daily quota. Sign in to keep paid plan entitlements across devices."
+        }
+      ]
+    },
+    "chooseFiles": "Choose PDF files",
+    "dropHint": "or drag and drop PDFs here",
+    "uploadHint": "PDF only · up to 10 files · max 5MB each",
+    "addMore": "Add PDF",
+    "reorderHint": "Drag a document to change merge order",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages",
+    "mergedPreview": "Merged preview",
+    "mergedHint": "Live preview of the combined PDF in the current order.",
+    "needTwo": "Please upload at least 2 PDF files to merge.",
+    "previewFailed": "Could not build preview. Check that the PDFs are valid."
+  },
+  "watermark": {
+    "title": "Add watermark to PDF online",
+    "description": "Place text on every page — drag to position, use presets, then download. Free daily quota applies.",
+    "seo": {
+      "title": "Add Watermark to PDF Online Free | Pdfumi",
+      "description": "Stamp a text watermark on your PDF. Drag to place it, flip angle with presets, download instantly. Free daily quota.",
+      "faqTitle": "Watermark FAQ",
+      "faqs": [
+        {
+          "q": "Can I position the watermark anywhere?",
+          "a": "Yes. Drag it on the live preview or use presets (diagonal, center, edges)."
+        },
+        {
+          "q": "Is the watermark applied to every page?",
+          "a": "Yes. The same text and position are stamped on all pages of the PDF."
+        },
+        {
+          "q": "What file size is supported?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "textLabel": "Watermark text",
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "selected": "Selected file",
+    "livePreview": "Live preview",
+    "liveHint": "Drag the watermark to place it. Use presets to flip sides.",
+    "dragHint": "Drag the watermark on the page",
+    "positionLabel": "Position",
+    "presetDiagonal": "Diagonal",
+    "presetCenter": "Center",
+    "presetTop": "Top",
+    "presetBottom": "Bottom",
+    "presetLeft": "Left",
+    "presetRight": "Right",
+    "presetFlip": "Flip angle",
+    "needFile": "Please choose a PDF file first."
+  },
+  "certificate": {
+    "title": "Bulk certificate generator with QR",
+    "description": "Create many certificates from a name list. Unique QR verification, templates, signatures. Free: up to 20 per batch.",
+    "seo": {
+      "title": "Bulk Certificate Generator with QR Verification | Pdfumi",
+      "description": "Generate certificates in bulk from CSV or a manual list. Each PDF gets a unique QR code for online verification. Free batch limit applies.",
+      "faqTitle": "Certificate FAQ",
+      "faqs": [
+        {
+          "q": "How do recipients verify a certificate?",
+          "a": "Each certificate includes a unique QR code. Scanning it opens Pdfumi Verify with the recipient and event details."
+        },
+        {
+          "q": "Can I import names from a spreadsheet?",
+          "a": "Yes. Upload a CSV with name and optional title columns, or type recipients manually."
+        },
+        {
+          "q": "How many certificates can I create for free?",
+          "a": "Free tier allows up to 20 recipients per batch, within your daily document quota. Upgrade for larger batches."
+        }
+      ]
+    },
+    "fields": {
+      "eventTitle": "Event / course title",
+      "eventTitlePlaceholder": "e.g. SOLID Architecture Workshop",
+      "organization": "Organization",
+      "organizationPlaceholder": "e.g. Pdfumi Academy",
+      "eventDate": "Event date",
+      "name": "Recipient name",
+      "namePlaceholder": "Full name",
+      "title": "Title / role",
+      "titlePlaceholder": "e.g. Participant (optional)",
+      "signerNamePlaceholder": "Signer full name",
+      "signerTitlePlaceholder": "e.g. Director (optional)"
+    },
+    "templateLabel": "Certificate template",
+    "templates": {
+      "classic": "Classic",
+      "classicDesc": "Formal diploma · double gold frame · serif name.",
+      "modern": "Modern",
+      "modernDesc": "Corporate · teal rail · left-aligned layout.",
+      "elegant": "Elegant",
+      "elegantDesc": "Cream wash · ornamental rules · Times display."
+    },
+    "logoLabel": "Organization logo",
+    "uploadLogo": "Upload logo",
+    "logoSelected": "Logo: {name}",
+    "logoHint": "PNG/JPG/WebP · saved in this browser for reuse.",
+    "needLogoImage": "Logo must be an image (PNG/JPG/WebP).",
+    "logoTooLarge": "Logo must be under 600KB.",
+    "signatureLibrary": "Saved signatures",
+    "saveSignatureToLibrary": "Save to library",
+    "needSignatureToSave": "Add a signature image or drawing first.",
+    "wordingLabel": "Certificate wording",
+    "wordingShow": "Edit",
+    "wordingHide": "Hide",
+    "signersLabel": "Signatures",
+    "signerCount": {
+      "0": "No signature",
+      "1": "1 signer",
+      "2": "2 signers",
+      "3": "3 signers"
+    },
+    "signerN": "Signer {n}",
+    "sigModeUpload": "Upload image",
+    "sigModeDraw": "Draw on screen",
+    "uploadSignature": "Upload signature image (optional)",
+    "signatureSelected": "Signature: {name}",
+    "drawHint": "Draw with mouse or finger",
+    "clearSignature": "Clear",
+    "needSignatureImage": "Signature must be an image (PNG/JPG/WebP).",
+    "signatureTooLarge": "Signature image must be under 600KB.",
+    "noSignersHint": "Certificate will be issued without signature lines.",
+    "csvLabel": "Recipient list",
+    "chooseCsv": "Choose CSV file",
+    "dropHint": "or drag and drop a CSV here",
+    "uploadHint": "CSV only · name,title columns · max 20 free",
+    "csvFormat": "Format: name,title (title optional).",
+    "downloadSample": "Download sample CSV",
+    "addManually": "Or add recipients manually",
+    "addRow": "+ Add recipient",
+    "manualList": "Manual list",
+    "recipientsLoaded": "Recipients loaded",
+    "recipientCount": "{count} / {max} recipients",
+    "replaceCsv": "Import CSV",
+    "livePreviewTitle": "Live preview",
+    "livePreviewHint": "First recipient · updates as you edit. Download issues all pages with real QR codes.",
+    "previewEmpty": "Add an event title and at least one recipient to preview.",
+    "previewFailed": "Could not build preview.",
+    "downloadAll": "Download certificates PDF",
+    "clearDraft": "Clear form",
+    "draftHint": "Draft is auto-saved in this browser · survives refresh.",
+    "quotaHint": "Free tier: max {max} recipients per batch · daily document quota applies.",
+    "needCsv": "Please upload a CSV file.",
+    "emptyCsv": "No valid names found in the CSV.",
+    "needRecipients": "Add event title and at least one recipient name.",
+    "tooMany": "Free tier allows up to {max} recipients. Reduce the list or upgrade."
+  },
+  "verify": {
+    "eyebrow": "Pdfumi Verify",
+    "title": "Certificate verification",
+    "subtitle": "Scan the QR or open this link to confirm authenticity.",
+    "loading": "Checking certificate…",
+    "valid": "Valid certificate",
+    "invalid": "Certificate not found",
+    "notFound": "This code is not in our records.",
+    "recipient": "Recipient",
+    "event": "Event",
+    "organization": "Organization",
+    "eventDate": "Date",
+    "code": "Verify code",
+    "ctaIssue": "Issue bulk certificates →"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Transparent. When quota ends, service stops — no silent overage charges.",
+    "seo": {
+      "title": "Pdfumi Pricing — Free, Pro & Business",
+      "description": "Simple PDF tool pricing. Free daily quota, Event Pass, Pro and Business plans. No silent overage charges."
+    },
+    "globalHint": "Supports instant QRIS, GoPay, ShopeePay, Virtual Accounts, and global Credit/Debit cards via Midtrans.",
+    "emailForCheckout": "Work email for checkout",
+    "checkoutMissing": "Checkout URL missing. Please try again.",
+    "ctaFree": "Create free account →",
+    "ctaPro": "Upgrade to Pro",
+    "ctaBusiness": "Get Pro Annual →",
+    "freeName": "Free",
+    "freePrice": "$0",
+    "freeItems": [
+      "5 documents/day per tool",
+      "Up to 20 MB file size limit",
+      "Target compression < 200 KB (1 file/task)",
+      "Certificates up to 20/batch"
+    ],
+    "proName": "Pro",
+    "proPrice": "$5/mo",
+    "proItems": [
+      "500 documents/month",
+      "Up to 100 MB file size limit",
+      "Priority queue & fast server engine",
+      "Certificates up to 200/batch",
+      "High-volume PDF to Word/Excel conversion"
+    ],
+    "businessName": "Pro Annual",
+    "businessPrice": "$15/yr",
+    "businessItems": [
+      "6,000 documents/year (500/mo parity)",
+      "Up to 100 MB file size limit",
+      "Fastest zero-queue priority engine",
+      "Certificates up to 500/batch",
+      "Maximum savings for regular workflows"
+    ],
+    "tabQris": "QRIS (Indonesia)",
+    "tabCard": "Credit Card & Digital Payments",
+    "qrisBadge": "Instant Activation • All Banks & E-Wallets",
+    "proPriceIdr": "Rp 29,000/mo",
+    "businessPriceIdr": "Rp 149,000/year",
+    "scanPrompt": "Scan with any Indonesian Mobile Banking or E-Wallet (BCA, Mandiri, GoPay, OVO, ShopeePay, Dana, etc.)",
+    "waitingPayment": "Waiting for payment...",
+    "paymentSuccess": "Payment received! Upgrading your account...",
+    "simulatePay": "Simulate Payment (Sandbox)",
+    "orderRef": "Reference",
+    "expiresIn": "Valid for 24 hours",
+    "openCheckout": "Open Payment Page",
+    "closeModal": "Close",
+    "activeUntil": "Active until",
+    "passName": "Event Pass",
+    "passPrice": "$2",
+    "passPriceIdr": "Rp 19,000",
+    "passBadge": "Popular for Events & Deadlines",
+    "passDuration": "7 days (one-time)",
+    "passItems": [
+      "150 documents (pooled, 7 days valid)",
+      "Up to 100 MB file size limit",
+      "Batch multiple files processing",
+      "Certificates up to 100/batch"
+    ],
+    "ctaPass": "Get Event Pass",
+    "businessBadge": "Save 60% (Best Value)"
+  },
+  "account": {
+    "title": "User Account Portal",
+    "subtitle": "Access document quota, manage subscriptions, and enjoy premium features passwordless.",
+    "seo": {
+      "title": "Account & Sign in | Pdfumi",
+      "description": "Sign in with a magic link, create a free Pdfumi account, or upgrade your plan."
+    },
+    "loginTitle": "Sign in",
+    "loginHint": "We email a one-time magic link. Quick, secure, and passwordless.",
+    "loginSend": "Send sign-in link",
+    "loginSent": "If an account exists for that email, a sign-in link was sent.",
+    "loginConfirmTitle": "Signing in",
+    "loginConfirmSubtitle": "Confirming your magic link and opening your session.",
+    "loginConfirming": "Signing you in…",
+    "loginInvalid": "This sign-in link is invalid or expired.",
+    "loginOk": "You are signed in. Session lasts 30 days in this browser.",
+    "logout": "Sign out",
+    "logoutOk": "Signed out.",
+    "registerTitle": "Create free account",
+    "email": "Email",
+    "createFree": "Create account",
+    "registerOk": "Account created. You are signed in.",
+    "recoverTitle": "Lost your API key?",
+    "recoverHint": "We email a one-time magic link. Opening it revokes old keys and issues a new one.",
+    "recoverSend": "Send recovery link",
+    "recoverSent": "If an account exists for that email, a recovery link was sent.",
+    "recoverDevLink": "Dev magic link:",
+    "recoverConfirmTitle": "Recover API key",
+    "recoverConfirmSubtitle": "Confirming your magic link and issuing a new key.",
+    "recoverConfirming": "Confirming recovery…",
+    "recoverInvalid": "This recovery link is invalid or expired.",
+    "recoverRevoked": "Previous keys revoked: {count}. Your new key is saved in this browser.",
+    "recoverBack": "Back to account",
+    "keyTitle": "API key in this browser",
+    "keyHint": "Optional for developers. Paid plan tools also work when you are signed in. Sent as X-Api-Key when set.",
+    "saveKey": "Save key",
+    "clearKey": "Clear key",
+    "keySaved": "API key saved in this browser.",
+    "keyCleared": "API key cleared.",
+    "keyOnce": "Copy this API key now — it is shown only once.",
+    "statusTitle": "Current plan",
+    "quotaLine": "Usage: {used}/{limit} ({period})",
+    "entitlementFooterOn": "No watermark",
+    "entitlementFooterOff": "No watermark",
+    "entitlementCerts": "Certificate batch size: up to {max}",
+    "upgradeTitle": "Upgrade",
+    "upgradeHint": "Checkout opens secure payment via Midtrans.",
+    "upgradePro": "Checkout Pro ($9)",
+    "upgradeBusiness": "Checkout Business ($24)",
+    "checkoutSuccess": "Payment received — your plan is active. Welcome to Pdfumi Pro!",
+    "checkoutCancel": "Checkout canceled.",
+    "checkoutMissing": "Checkout URL missing."
+  },
+  "toolsMenu": {
+    "label": "Tools",
+    "title": "All tools",
+    "subtitle": "Convert, compress, organize — pick a tool and go.",
+    "close": "Close",
+    "groups": {
+      "compress": "Compress",
+      "convert": "Convert",
+      "organize": "Organize",
+      "edit": "Edit PDF",
+      "create": "Create Documents",
+      "office": "Office & PDF",
+      "image": "Image Tools",
+      "scan": "Scanner",
+      "imageToPdf": "Image to PDF",
+      "protect": "Protect",
+      "fillAndSign": "Fill & Sign"
+    },
+    "items": {
+      "compressPdf": "Compress PDF",
+      "pdfConverter": "PDF Converter",
+      "jpgToPdf": "JPG to PDF",
+      "pdfToJpg": "PDF to JPG",
+      "pdfToPng": "PDF to PNG",
+      "mergePdf": "Merge PDF",
+      "splitPdf": "Split PDF",
+      "rotatePdf": "Rotate PDF",
+      "deletePages": "Delete PDF pages",
+      "extractPages": "Extract PDF pages",
+      "organizePdf": "Organize PDF",
+      "watermark": "Watermark PDF",
+      "receipt": "Receipt",
+      "certificates": "Certificates",
+      "pdfToWord": "PDF to Word",
+      "pdfToExcel": "PDF to Excel",
+      "pdfToPpt": "PDF to PPT",
+      "wordToPdf": "Word to PDF",
+      "excelToPdf": "Excel to PDF",
+      "pptToPdf": "PPT to PDF",
+      "protectPdf": "Protect PDF",
+      "unlockPdf": "Unlock PDF",
+      "signPdf": "Sign PDF",
+      "pageNumbersPdf": "Page numbers",
+      "cropPdf": "Crop PDF",
+      "ocrPdf": "OCR PDF",
+      "editPdf": "Edit PDF",
+      "redactPdf": "Redact PDF",
+      "pngToPdf": "PNG to PDF",
+      "webpToPdf": "WebP to PDF",
+      "heicToPdf": "HEIC to PDF",
+      "headerFooterPdf": "Header & Footer",
+      "flattenPdf": "Flatten PDF",
+      "grayscalePdf": "Grayscale PDF",
+      "removeMetadataPdf": "Remove Metadata",
+      "resizePdf": "Resize PDF Page",
+      "resizeImage": "Resize Image",
+      "pasFoto": "Passport Photo",
+      "compressImage": "Compress Image",
+      "removeSignatureBg": "Remove Signature BG",
+      "scanPdf": "Camera Scan to PDF",
+      "invoice": "Invoice",
+      "suratResmi": "Official Letter",
+      "kontrak": "Contract Agreement",
+      "compressJpg": "Compress JPG",
+      "compressPng": "Compress PNG",
+      "compressWebp": "Compress WebP",
+      "compressVideo": "Compress Video",
+      "compressAudio": "Compress Audio",
+      "fillPdf": "Fill PDF Form"
+    }
+  },
+  "jpgToPdf": {
+    "title": "JPG to PDF online free",
+    "description": "Turn photos and scans into one PDF. Drag to reorder pages, then download. Free daily quota applies.",
+    "seo": {
+      "title": "JPG to PDF Online Free — Images to PDF | Pdfumi",
+      "description": "Convert JPG, PNG, and WebP images to a single PDF. Reorder thumbnails, instant download. Free daily quota.",
+      "faqTitle": "JPG to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Which image formats are supported?",
+          "a": "JPG, PNG, WebP, GIF, and BMP — up to 20 images, 5MB each."
+        },
+        {
+          "q": "Can I change the page order?",
+          "a": "Yes. Drag thumbnails to reorder before downloading."
+        },
+        {
+          "q": "Do I need an account?",
+          "a": "Not for free daily quota. Sign in to keep paid plan entitlements."
+        }
+      ]
+    },
+    "chooseFiles": "Choose images",
+    "dropHint": "or drag and drop images here",
+    "uploadHint": "JPG/PNG/WebP · up to 20 files · max 5MB each",
+    "addMore": "Add image",
+    "reorderHint": "Drag an image to change PDF page order",
+    "needFiles": "Please upload at least one image."
+  },
+  "pdfToJpg": {
+    "title": "PDF to JPG online free",
+    "description": "Export every PDF page as a high-quality JPG. Download a ZIP of all pages. Free daily quota applies.",
+    "seo": {
+      "title": "PDF to JPG Online Free | Pdfumi",
+      "description": "Convert PDF pages to JPG images. Download a ZIP with one image per page. Free daily quota.",
+      "faqTitle": "PDF to JPG FAQ",
+      "faqs": [
+        {
+          "q": "What do I get?",
+          "a": "A ZIP file with one JPG per page at ~150 DPI."
+        },
+        {
+          "q": "Is there a page limit?",
+          "a": "Up to 50 pages per conversion on the free tier."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB · up to 50 pages",
+    "needFile": "Please choose a PDF file first.",
+    "resultHint": "Each page becomes a JPG inside a ZIP download.",
+    "downloadZip": "Download JPG ZIP"
+  },
+  "pdfToPng": {
+    "title": "PDF to PNG online free",
+    "description": "Export every PDF page as a crisp PNG. Download a ZIP of all pages. Free daily quota applies.",
+    "seo": {
+      "title": "PDF to PNG Online Free | Pdfumi",
+      "description": "Convert PDF pages to PNG images. Download a ZIP with one image per page. Free daily quota.",
+      "faqTitle": "PDF to PNG FAQ",
+      "faqs": [
+        {
+          "q": "PNG or JPG?",
+          "a": "PNG keeps sharper text and graphics; JPG is smaller for photos."
+        },
+        {
+          "q": "Page limit?",
+          "a": "Up to 50 pages per conversion."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB · up to 50 pages",
+    "needFile": "Please choose a PDF file first.",
+    "resultHint": "Each page becomes a PNG inside a ZIP download.",
+    "downloadZip": "Download PNG ZIP"
+  },
+  "pdfToWord": {
+    "title": "PDF to Word online free",
+    "description": "Convert a PDF to an editable .docx with LibreOffice. Free daily quota applies.",
+    "seo": {
+      "title": "PDF to Word Online Free | Pdfumi",
+      "description": "Convert PDF to Word DOCX online. Editable download. Free daily quota. No install.",
+      "faqTitle": "PDF to Word FAQ",
+      "faqs": [
+        {
+          "q": "Is the Word file editable?",
+          "a": "Yes — you get a .docx. Complex layouts may need cleanup after conversion."
+        },
+        {
+          "q": "What engine is used?",
+          "a": "LibreOffice headless on the server for faithful Office conversion."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "needFile": "Please choose a PDF file first.",
+    "resultHint": "Downloads as an editable .docx (LibreOffice conversion).",
+    "downloadResult": "Download Word"
+  },
+  "wordToPdf": {
+    "title": "Word to PDF online free",
+    "description": "Convert .doc or .docx to PDF with LibreOffice. Free daily quota applies.",
+    "seo": {
+      "title": "Word to PDF Online Free | Pdfumi",
+      "description": "Convert Word DOC/DOCX to PDF online. Instant download. Free daily quota.",
+      "faqTitle": "Word to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Which Word formats?",
+          "a": ".doc and .docx are supported."
+        },
+        {
+          "q": "Will fonts look the same?",
+          "a": "Common fonts are embedded when possible; rare fonts may substitute."
+        },
+        {
+          "q": "Max file size?",
+          "a": "Word file up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose Word file",
+    "dropHint": "or drag and drop a Word file here",
+    "uploadHint": ".doc / .docx · max 5MB",
+    "needFile": "Please choose a Word file first.",
+    "resultHint": "Downloads as a print-ready PDF.",
+    "downloadResult": "Download PDF"
+  },
+  "pdfConverter": {
+    "title": "Free PDF Converter",
+    "description": "Convert PDF to Word, Excel, or images — and Word, Excel, or images to PDF. Free daily quota applies.",
+    "seo": {
+      "title": "Free PDF Converter Online | Pdfumi",
+      "description": "Convert PDF ↔ Word/Excel, PDF to JPG/PNG, and images to PDF. Free, no install.",
+      "faqTitle": "PDF Converter FAQ",
+      "faqs": [
+        {
+          "q": "What can I convert?",
+          "a": "PDF → Word / Excel / JPG / PNG; Word or Excel → PDF; images → PDF."
+        },
+        {
+          "q": "Do I need an account?",
+          "a": "No. Free daily quota applies per tool."
+        },
+        {
+          "q": "PowerPoint?",
+          "a": "PowerPoint is coming soon. Word and Excel are available now."
+        }
+      ]
+    },
+    "chooseFiles": "Choose files",
+    "dropHint": "or drop PDF, Word, Excel, or images here",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · max 5MB each",
+    "needFile": "Please upload a file first.",
+    "needTarget": "Choose a valid output format for this file.",
+    "unsupported": "Unsupported file type. Use PDF, Word, Excel, or images.",
+    "convertTo": "Convert to",
+    "toPdf": "PDF",
+    "toWord": "Word",
+    "toJpg": "JPG",
+    "toPng": "PNG",
+    "convertDownload": "Convert & download",
+    "filesCount": "{count} files",
+    "bulletWord": "PDF ↔ Word / Excel with LibreOffice",
+    "bulletImages": "Images to PDF or PDF to JPG/PNG",
+    "bulletPdfOut": "Works in the browser — no install",
+    "alsoSee": "Dedicated tools:",
+    "linkPdfWord": "PDF to Word",
+    "linkWordPdf": "Word to PDF",
+    "linkJpgPdf": "JPG to PDF",
+    "toExcel": "Excel",
+    "linkPdfExcel": "PDF to Excel"
+  },
+  "compressPdf": {
+    "title": "Compress PDF online free",
+    "description": "Shrink PDF file size by recompressing embedded images. Free daily quota applies.",
+    "seo": {
+      "title": "Compress PDF Online Free | Pdfumi",
+      "description": "Reduce PDF size online. Recompress images and download instantly. Free daily quota.",
+      "faqTitle": "Compress PDF FAQ",
+      "faqs": [
+        {
+          "q": "How much smaller will it get?",
+          "a": "Depends on the PDF. Image-heavy files shrink most; text-only files may change little."
+        },
+        {
+          "q": "Is quality affected?",
+          "a": "Images are recompressed. Text stays vector-sharp when present."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "needFile": "Please choose a PDF file first."
+  },
+  "splitPdf": {
+    "title": "Split PDF online free",
+    "description": "Keep the pages you need and discard the rest — download one PDF. Click to uncheck pages you don’t want. Free daily quota applies.",
+    "seo": {
+      "title": "Split PDF Online Free | Pdfumi",
+      "description": "Split a PDF by choosing pages to keep. Discard the rest and download a single PDF. Free daily quota.",
+      "faqTitle": "Split PDF FAQ",
+      "faqs": [
+        {
+          "q": "Do I get a ZIP?",
+          "a": "No. You download one PDF that contains only the pages you kept."
+        },
+        {
+          "q": "How do I exclude a page?",
+          "a": "Click a thumbnail to uncheck it. Unchecked pages are left out of the result."
+        },
+        {
+          "q": "Page limit?",
+          "a": "Up to 100 pages."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB · up to 100 pages",
+    "needFile": "Please choose a PDF file first.",
+    "replace": "Replace",
+    "loadingPages": "Reading pages…",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages",
+    "resultHint": "{count, plural, =0 {No pages selected} one {Result: 1 page in one PDF} other {Result: # pages in one PDF}}",
+    "needPages": "Select at least one page to split.",
+    "selectHint": "Click to keep/discard · drag to reorder pages in the final PDF",
+    "selectAll": "Select all",
+    "clearSelection": "Clear"
+  },
+  "rotatePdf": {
+    "title": "Rotate PDF online free",
+    "description": "Rotate pages left or right, reorder or remove, then download. Free daily quota applies.",
+    "seo": {
+      "title": "Rotate PDF Online Free | Pdfumi",
+      "description": "Rotate PDF pages online per page. Preview, reorder, and download. Free daily quota.",
+      "faqTitle": "Rotate PDF FAQ",
+      "faqs": [
+        {
+          "q": "Can I rotate pages differently?",
+          "a": "Yes. Use rotate left/right on each thumbnail."
+        },
+        {
+          "q": "Can I preview?",
+          "a": "Thumbnails preview the rotation before you download."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "needFile": "Please choose a PDF file first.",
+    "replace": "Replace",
+    "loadingPages": "Reading pages…",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages",
+    "reorderHint": "Drag to reorder. Use rotate or delete on each page.",
+    "cardHint": "Hover a page for preview, rotate left/right, or delete.",
+    "angleOriginal": "Original"
+  },
+  "deletePages": {
+    "title": "Delete PDF pages online free",
+    "description": "Remove pages with the trash control, keep the rest in order. Free daily quota applies.",
+    "seo": {
+      "title": "Delete PDF Pages Online Free | Pdfumi",
+      "description": "Remove unwanted PDF pages. Delete thumbnails and download the cleaned file. Free daily quota.",
+      "faqTitle": "Delete PDF pages FAQ",
+      "faqs": [
+        {
+          "q": "Can I delete all pages?",
+          "a": "No — at least one page must remain."
+        },
+        {
+          "q": "How do I remove pages?",
+          "a": "Use the trash icon on each thumbnail, then download."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "needFile": "Please choose a PDF file first.",
+    "needPages": "Delete at least one page (keep at least one).",
+    "selectHint": "Use trash on a page to remove it",
+    "replace": "Replace",
+    "loadingPages": "Reading pages…",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages",
+    "selectAll": "Select all",
+    "clearSelection": "Clear",
+    "reorderHint": "Drag to reorder. Trash a page to remove it from the PDF.",
+    "cardHint": "Hover a page for preview, rotate, or delete."
+  },
+  "extractPages": {
+    "title": "Extract PDF pages online free",
+    "description": "Pick the pages you need and download them as a new PDF. Free daily quota applies.",
+    "seo": {
+      "title": "Extract PDF Pages Online Free | Pdfumi",
+      "description": "Extract selected PDF pages into a new file. Click thumbnails to choose. Free daily quota.",
+      "faqTitle": "Extract PDF pages FAQ",
+      "faqs": [
+        {
+          "q": "Order of extracted pages?",
+          "a": "Pages keep the order you see (left to right)."
+        },
+        {
+          "q": "How do I select?",
+          "a": "Click thumbnails to toggle, then download."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB",
+    "needFile": "Please choose a PDF file first.",
+    "needPages": "Select at least one page to extract.",
+    "selectHint": "Click pages to include · drag to set their order in the new PDF",
+    "replace": "Replace",
+    "loadingPages": "Reading pages…",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages",
+    "selectAll": "Select all",
+    "clearSelection": "Clear"
+  },
+  "organizePdf": {
+    "title": "Organize PDF online free",
+    "description": "Reorder pages by dragging thumbnails — like merge, but for one file. Free daily quota applies.",
+    "seo": {
+      "title": "Organize PDF Online Free — Reorder Pages | Pdfumi",
+      "description": "Reorder PDF pages with drag-and-drop thumbnails. Preview the sequence, then download. Free daily quota.",
+      "faqTitle": "Organize PDF FAQ",
+      "faqs": [
+        {
+          "q": "How do I reorder?",
+          "a": "Drag page thumbnails into the order you want, then download."
+        },
+        {
+          "q": "Can I remove pages here?",
+          "a": "Use Delete PDF pages for removals; this tool reorders all pages."
+        },
+        {
+          "q": "Max file size?",
+          "a": "PDF up to 5MB on the free tier."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF only · max 5MB · up to 100 pages",
+    "needFile": "Please choose a PDF file first.",
+    "reorderHint": "Drag pages to set the final order",
+    "replace": "Replace",
+    "loadingPages": "Reading pages…",
+    "pageOne": "1 page",
+    "pageMany": "{count} pages"
+  },
+  "protectPdf": {
+    "title": "Protect PDF online free",
+    "description": "Add a password so others need it to open the PDF.",
+    "seo": {
+      "title": "Protect PDF online free | Pdfumi",
+      "description": "Add a password so others need it to open the PDF.",
+      "faqTitle": "Protect FAQ",
+      "faqs": [
+        {
+          "q": "Is the PDF encrypted?",
+          "a": "Yes — AES-style password protection via PDFBox."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "passwordLabel": "Password",
+    "needPassword": "Enter a password."
+  },
+  "unlockPdf": {
+    "title": "Unlock PDF online free",
+    "description": "Remove password protection when you know the password.",
+    "seo": {
+      "title": "Unlock PDF online free | Pdfumi",
+      "description": "Remove password protection when you know the password.",
+      "faqTitle": "Unlock FAQ",
+      "faqs": [
+        {
+          "q": "Wrong password?",
+          "a": "You will get an error if the password does not match."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "passwordLabel": "Current password",
+    "needPassword": "Enter the PDF password."
+  },
+  "signPdf": {
+    "title": "Sign PDF online free",
+    "description": "Create a signature, place it anywhere on the page, then download.",
+    "seo": {
+      "title": "Sign PDF online free | Pdfumi",
+      "description": "Draw, type, or upload a signature and place it on your PDF with drag and resize.",
+      "faqTitle": "Sign FAQ",
+      "faqs": [
+        {
+          "q": "Can I move the signature after placing?",
+          "a": "Yes — drag to move, use corner handles to resize, or delete and place again."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "signatureLabel": "Signature image",
+    "needSignature": "Create a signature first.",
+    "presetBr": "Bottom right",
+    "presetBl": "Bottom left",
+    "presetCenter": "Center",
+    "methodDraw": "Draw",
+    "methodUpload": "Upload",
+    "drawHint": "Draw here",
+    "clearDraw": "Clear",
+    "needDraw": "Please draw your signature first.",
+    "uploadHintSig": "Drop or choose a PNG / JPG signature",
+    "positionHint": "Placement on page",
+    "createSignature": "Create signature",
+    "changeSignature": "New signature",
+    "clearSignature": "Remove signature",
+    "modalTitle": "Create signature",
+    "methodType": "Type",
+    "typePlaceholder": "Your name",
+    "cancel": "Cancel",
+    "create": "Create",
+    "placeBanner": "Click on the document to place your signature.",
+    "placeHint": "Move the pointer, then click to stamp.",
+    "dragHint": "Drag the signature to move · corners to resize",
+    "deleteSig": "Delete signature",
+    "needPlace": "Click on the page to place your signature first.",
+    "downloadSigned": "Download signed PDF"
+  },
+  "pageNumbersPdf": {
+    "title": "Add page numbers to PDF",
+    "description": "Stamp page numbers on every page.",
+    "seo": {
+      "title": "Add page numbers to PDF | Pdfumi",
+      "description": "Stamp page numbers on every page.",
+      "faqTitle": "Pages FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose position?",
+          "a": "Yes — bottom/top and left/center/right options."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "positionLabel": "Position",
+    "formatLabel": "Format",
+    "posBottomCenter": "Bottom center",
+    "posBottomLeft": "Bottom left",
+    "posBottomRight": "Bottom right",
+    "posTopCenter": "Top center",
+    "fmtN": "1, 2, 3…",
+    "fmtNOfTotal": "1 / N"
+  },
+  "cropPdf": {
+    "title": "Crop PDF margins online",
+    "description": "Trim equal margins from all sides of every page.",
+    "seo": {
+      "title": "Crop PDF margins online | Pdfumi",
+      "description": "Trim equal margins from all sides of every page.",
+      "faqTitle": "Crop FAQ",
+      "faqs": [
+        {
+          "q": "How much can I crop?",
+          "a": "Up to about 25% per side."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "marginLabel": "Margin"
+  },
+  "ocrPdf": {
+    "title": "OCR PDF online free",
+    "description": "Make scanned PDFs searchable with OCR (ocrmypdf).",
+    "seo": {
+      "title": "OCR PDF online free | Pdfumi",
+      "description": "Make scanned PDFs searchable with OCR (ocrmypdf).",
+      "faqTitle": "OCR FAQ",
+      "faqs": [
+        {
+          "q": "What do I need locally?",
+          "a": "Install ocrmypdf + tesseract, or use Docker where they are included."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "languageLabel": "OCR language",
+    "ocrHint": "Requires ocrmypdf on the API host."
+  },
+  "pdfToExcel": {
+    "title": "PDF to Excel online free",
+    "description": "Convert a PDF to .xlsx with LibreOffice.",
+    "seo": {
+      "title": "PDF to Excel online free | Pdfumi",
+      "description": "Convert a PDF to .xlsx with LibreOffice.",
+      "faqTitle": "Excel FAQ",
+      "faqs": [
+        {
+          "q": "Will tables be perfect?",
+          "a": "Simple tables convert best; complex layouts may need cleanup."
+        }
+      ]
+    },
+    "chooseFile": "Choose PDF file",
+    "dropHint": "or drag and drop a PDF here",
+    "uploadHint": "PDF · max 5MB",
+    "needFile": "Please choose a PDF first.",
+    "resultHint": "Downloads as .xlsx.",
+    "downloadResult": "Download Excel"
+  },
+  "excelToPdf": {
+    "title": "Excel to PDF online free",
+    "description": "Convert .xls/.xlsx to PDF with LibreOffice.",
+    "seo": {
+      "title": "Excel to PDF online free | Pdfumi",
+      "description": "Convert .xls/.xlsx to PDF with LibreOffice.",
+      "faqTitle": "ExcelPdf FAQ",
+      "faqs": [
+        {
+          "q": "Which formats?",
+          "a": ".xls and .xlsx are supported."
+        }
+      ]
+    },
+    "chooseFile": "Choose Excel file",
+    "dropHint": "or drop an Excel file here",
+    "uploadHint": ".xls / .xlsx · max 5MB",
+    "needFile": "Please choose an Excel file first.",
+    "resultHint": "Downloads as PDF.",
+    "downloadResult": "Download PDF"
+  },
+  "terms": {
+    "seo": {
+      "title": "Terms of Service — Pdfumi",
+      "description": "Read the Terms of Service for Pdfumi. Clear, fair, and transparent usage terms."
+    },
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 2026",
+    "s1Title": "1. Acceptance of Terms",
+    "s1Body": "By using Pdfumi, you agree to these Terms. If you do not agree, please do not use the services.",
+    "s2Title": "2. Permitted & Lawful Use",
+    "s2Body": "Pdfumi provides document utilities (receipt generation, certificates, conversions, and PDF editing). You are solely responsible for the content you generate. You expressly agree not to use Pdfumi to forge official government documents, impersonate authorities, create fraudulent financial instruments, or conduct scams.",
+    "s3Title": "3. Fair Use & Quotas",
+    "s3Body": "Free tiers are subject to daily rate limits. Paid plans have monthly pooled document quotas. Quotas are hard-capped — when exhausted, operations pause until renewal or upgrade. We never charge surprise overage fees.",
+    "s4Title": "4. Disclaimer & Limitation of Liability",
+    "s4Body": "Services are provided on an 'as is' basis. Pdfumi does not store your files permanently and is not liable for data loss or business interruptions.",
+    "s5Title": "5. Contact & Inquiries",
+    "s5Body": "For billing inquiries, reach out to support@pdfumi.com."
+  },
+  "privacy": {
+    "seo": {
+      "title": "Privacy Policy — Pdfumi",
+      "description": "Learn how Pdfumi protects your documents and data. Zero persistent file retention."
+    },
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 2026",
+    "s1Title": "1. Zero Document Retention",
+    "s1Body": "Your privacy is paramount. Uploaded and generated PDF files are processed in-memory or in isolated temporary directories. Files are purged automatically upon download or within 24 hours. We never read, inspect, or sell your documents.",
+    "s2Title": "2. Data We Collect",
+    "s2Body": "We collect only your email address when you register for an account or subscribe to a paid plan. We store usage counts to enforce fair quotas.",
+    "s3Title": "3. Payment Information",
+    "s3Body": "Payment transactions are processed by certified payment provider Midtrans (QRIS, International Credit/Debit cards Visa/Mastercard/JCB, E-Wallets, and Virtual Accounts). We never store or handle your credit card numbers or PINs.",
+    "s4Title": "4. Cookies & Local Storage",
+    "s4Body": "We use browser local storage solely to keep your authentication session and API key on your device. We do not use third-party tracking cookies.",
+    "s5Title": "5. Contact",
+    "s5Body": "For privacy requests or data deletion, contact privacy@pdfumi.com."
+  },
+  "refund": {
+    "seo": {
+      "title": "Refund Policy — Pdfumi",
+      "description": "Clear and fair 7-day refund policy for Pdfumi subscriptions."
+    },
+    "title": "Refund Policy",
+    "lastUpdated": "Last updated: October 2026",
+    "s1Title": "1. 7-Day Money-Back Guarantee",
+    "s1Body": "If you are not satisfied with your Pro or Business plan, you can request a full refund within 7 days of your purchase if you have consumed less than 10% of your plan quota.",
+    "s2Title": "2. Hard-Capped Protection",
+    "s2Body": "Pdfumi plans are strictly hard-capped. You will never be billed hidden overages or automatic surcharges when your monthly quota is reached.",
+    "s3Title": "3. Easy Cancellation",
+    "s3Body": "All plans on Pdfumi are strictly prepaid without silent auto-renewals. You have full control and will never be charged unexpectedly.",
+    "s4Title": "4. How to Request",
+    "s4Body": "To request a refund, email support@pdfumi.com with your account email and order reference."
+  },
+  "editPdf": {
+    "title": "Edit PDF Online",
+    "description": "Add text, highlights, rectangles, and annotations directly to your PDF in your browser.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · fast & private in-browser processing",
+    "downloadEdited": "Download Edited PDF",
+    "toolText": "Text",
+    "toolHighlight": "Highlight",
+    "toolShape": "Shape",
+    "seo": {
+      "title": "Free Online PDF Editor - Add Text & Annotations | Pdfumi",
+      "description": "Easily edit PDFs, highlight sentences, and add annotations online without registration.",
+      "faqTitle": "PDF Editor FAQ",
+      "faqs": [
+        {
+          "q": "Is my document secure?",
+          "a": "Yes, all edits are processed privately in your browser without uploading to third-party storage."
+        }
+      ]
+    }
+  },
+  "redactPdf": {
+    "title": "Permanently Redact PDF",
+    "description": "Blackout or whiteout confidential information such as SSN, bank accounts, and personal data permanently.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · max 10MB",
+    "needBoxes": "Please draw at least one redaction box first.",
+    "downloadRedacted": "Redact & Download PDF",
+    "seo": {
+      "title": "Redact PDF Online - Remove Confidential Info | Pdfumi",
+      "description": "Permanently blackout sensitive text and data from your PDF documents before sharing.",
+      "faqTitle": "PDF Redaction FAQ",
+      "faqs": [
+        {
+          "q": "Can redacted text be highlighted or copied?",
+          "a": "No, redactions are permanently burned into the document canvas."
+        }
+      ]
+    }
+  },
+  "resizeImage": {
+    "title": "Resize Image Online",
+    "description": "Change photo dimensions in pixels or percentages while preserving aspect ratio and visual clarity.",
+    "chooseFile": "Choose Image",
+    "dropHint": "or drop image here",
+    "uploadHint": "JPG, PNG, WebP",
+    "seo": {
+      "title": "Resize Image Online Free | Pdfumi",
+      "description": "Resize photos to custom width and height dimensions with ease.",
+      "faqTitle": "Image Resizer FAQ",
+      "faqs": [
+        {
+          "q": "Can I lock the aspect ratio?",
+          "a": "Yes, click the lock icon to preserve proportions."
+        }
+      ]
+    }
+  },
+  "pasFoto": {
+    "title": "Passport & ID Photo Maker",
+    "description": "Crop portrait photos to standard ID sizes (2x3, 3x4, 4x6, 2x2\" Passport) with red, blue, or white backgrounds.",
+    "chooseFile": "Select Portrait Photo",
+    "dropHint": "or drop portrait here",
+    "uploadHint": "JPG, PNG · Front facing portrait",
+    "seo": {
+      "title": "Passport & ID Photo Maker Online | Pdfumi",
+      "description": "Create standard passport photos and ID pictures with custom background colors.",
+      "faqTitle": "Passport Photo FAQ",
+      "faqs": [
+        {
+          "q": "What is the standard size for visa applications?",
+          "a": "Most international visa requirements use 2x2 inch (51x51 mm) or 35x45 mm."
+        }
+      ]
+    }
+  },
+  "compressImage": {
+    "title": "Compress Image to Exact Target KB",
+    "description": "Reduce image file size below 100 KB, 200 KB, or 500 KB to meet strict upload portal requirements.",
+    "chooseFile": "Choose Image",
+    "dropHint": "or drop image here",
+    "uploadHint": "JPG, PNG · Auto-adjusted to target KB",
+    "seo": {
+      "title": "Compress Image to Target KB Size Online | Pdfumi",
+      "description": "Compress photos under 200 KB or 100 KB with smart quality optimization.",
+      "faqTitle": "Image Compressor FAQ",
+      "faqs": [
+        {
+          "q": "Will the image lose detail?",
+          "a": "Our adaptive algorithm balances resolution and compression to keep text and faces crisp."
+        }
+      ]
+    }
+  },
+  "removeSignatureBg": {
+    "title": "Remove Signature Background",
+    "description": "Convert a paper signature photo into a transparent PNG signature with crisp dark ink ready for documents.",
+    "chooseFile": "Select Signature Photo",
+    "dropHint": "or drop signature photo here",
+    "uploadHint": "Photo of handwritten signature on paper",
+    "seo": {
+      "title": "Make Signature Transparent PNG Online | Pdfumi",
+      "description": "Extract signature ink from paper photos with transparent background.",
+      "faqTitle": "Transparent Signature FAQ",
+      "faqs": [
+        {
+          "q": "Can I copy directly to clipboard?",
+          "a": "Yes, click Copy Image to paste directly into your document editor."
+        }
+      ]
+    }
+  },
+  "pngToPdf": {
+    "title": "Convert PNG to PDF",
+    "description": "Convert PNG graphics and transparent images into clean, crisp PDF documents.",
+    "chooseFiles": "Select PNG Files",
+    "dropHint": "or drop PNG files here",
+    "uploadHint": "PNG · Multi-file supported",
+    "needFiles": "Please select at least one PNG file.",
+    "seo": {
+      "title": "Convert PNG to PDF Online Free | Pdfumi",
+      "description": "Combine multiple PNG images into a single professional PDF document.",
+      "faqTitle": "PNG to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Can I adjust page margins?",
+          "a": "Yes, choose from None, Small, or Standard margin options."
+        }
+      ]
+    }
+  },
+  "webpToPdf": {
+    "title": "Convert WebP to PDF",
+    "description": "Convert modern WebP images to universal PDF documents instantly.",
+    "chooseFiles": "Select WebP Files",
+    "dropHint": "or drop WebP files here",
+    "uploadHint": "WebP images",
+    "needFiles": "Please select at least one WebP file.",
+    "seo": {
+      "title": "Convert WebP to PDF Online | Pdfumi",
+      "description": "Fast in-browser converter from WebP images to PDF.",
+      "faqTitle": "WebP to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Is conversion lossless?",
+          "a": "Images are compiled at maximum visual clarity."
+        }
+      ]
+    }
+  },
+  "heicToPdf": {
+    "title": "Convert HEIC to PDF",
+    "description": "Convert Apple iPhone / iPad HEIC photos directly into PDF documents without prior conversion.",
+    "chooseFiles": "Select HEIC Photos",
+    "dropHint": "or drop HEIC photos here",
+    "uploadHint": "HEIC, HEIF, JPG, PNG",
+    "needFiles": "Please select at least one photo.",
+    "seo": {
+      "title": "Convert iPhone HEIC to PDF Online | Pdfumi",
+      "description": "Turn iOS HEIC photos into easily shareable PDF documents.",
+      "faqTitle": "HEIC to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Does it support high resolution iOS photos?",
+          "a": "Yes, modern iPhone photo resolutions are supported."
+        }
+      ]
+    }
+  },
+  "headerFooterPdf": {
+    "title": "Add Header & Footer to PDF",
+    "description": "Insert header titles and dynamic page numbers into every page of your PDF document.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · Dynamic page numbers",
+    "seo": {
+      "title": "Add Header and Footer to PDF Online | Pdfumi",
+      "description": "Easily add page numbers and titles to PDF document headers and footers.",
+      "faqTitle": "Header & Footer FAQ",
+      "faqs": [
+        {
+          "q": "How do I show total page count?",
+          "a": "Use the {total} token in the footer field."
+        }
+      ]
+    }
+  },
+  "flattenPdf": {
+    "title": "Flatten PDF Forms & Layers",
+    "description": "Lock interactive form fields, electronic signatures, and annotations into static document content.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF with form fields or signatures",
+    "seo": {
+      "title": "Flatten PDF Online Free | Pdfumi",
+      "description": "Prevent unauthorized edits by flattening form fields and comments into static vectors.",
+      "faqTitle": "Flatten PDF FAQ",
+      "faqs": [
+        {
+          "q": "Why flatten a PDF?",
+          "a": "It ensures identical rendering across all devices and prevents form data from being altered."
+        }
+      ]
+    }
+  },
+  "removeMetadataPdf": {
+    "title": "Remove PDF Metadata",
+    "description": "Wipe hidden author names, software producers, modification history, and timestamps for full privacy.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF privacy scrubber",
+    "seo": {
+      "title": "Remove PDF Metadata Online - Sanitize Documents | Pdfumi",
+      "description": "Clean confidential author data, creation timestamps, and software marks from PDF files.",
+      "faqTitle": "Metadata Scrub FAQ",
+      "faqs": [
+        {
+          "q": "What metadata is removed?",
+          "a": "Author, title, producer, creation date, modification date, and document keywords."
+        }
+      ]
+    }
+  },
+  "resizePdf": {
+    "title": "Resize PDF Page Sizes (A4, Letter, Legal)",
+    "description": "Change PDF page dimensions to international paper sizes with automatic proportional scaling.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · Standard paper sizes",
+    "seo": {
+      "title": "Resize PDF Pages to A4 or Letter Online | Pdfumi",
+      "description": "Adjust PDF page dimensions to standard A4, Letter, Legal, or A3 formats.",
+      "faqTitle": "PDF Page Resizing FAQ",
+      "faqs": [
+        {
+          "q": "Will content get cropped?",
+          "a": "No, contents are centered and proportionally fitted to the new paper size."
+        }
+      ]
+    }
+  },
+  "grayscalePdf": {
+    "title": "Convert PDF to Grayscale",
+    "description": "Convert color PDF pages to monochrome black and white to save printer ink and reduce file size.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "Color PDF",
+    "seo": {
+      "title": "Convert Color PDF to Black and White Online | Pdfumi",
+      "description": "Transform colorful PDF documents into crisp grayscale for efficient printing.",
+      "faqTitle": "Grayscale PDF FAQ",
+      "faqs": [
+        {
+          "q": "Does text stay clear?",
+          "a": "Yes, text contrast is enhanced for maximum readability."
+        }
+      ]
+    }
+  },
+  "scanPdf": {
+    "title": "Scan Documents from Camera to PDF",
+    "description": "Scan physical documents, receipts, or certificates directly from your mobile camera into clean PDFs.",
+    "seo": {
+      "title": "Scan Documents with Camera to PDF Online | Pdfumi",
+      "description": "Instant document camera scanner in your browser without installing third-party apps.",
+      "faqTitle": "Camera Scan FAQ",
+      "faqs": [
+        {
+          "q": "Can I scan multiple pages?",
+          "a": "Yes, capture consecutive pages and compile them into a single PDF document."
+        }
+      ]
+    }
+  },
+  "invoice": {
+    "title": "Professional Invoice Generator",
+    "description": "Create official invoices with itemized tables, taxes, discounts, payment info, and signatures ready for download.",
+    "seo": {
+      "title": "Free Invoice Generator PDF Online | Pdfumi",
+      "description": "Create sleek business invoices with automatic calculations and instant PDF export.",
+      "faqTitle": "Invoice Generator FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose my currency?",
+          "a": "Yes, select from USD, IDR, EUR, GBP, SGD, and more."
+        }
+      ]
+    }
+  },
+  "suratResmi": {
+    "title": "Official Letter Generator",
+    "description": "Draft official organizational letters with letterhead, reference numbers, structured body, and sign-off blocks.",
+    "seo": {
+      "title": "Official Letter Generator PDF | Pdfumi",
+      "description": "Compose professional business and administrative letters with formal formatting.",
+      "faqTitle": "Official Letter FAQ",
+      "faqs": [
+        {
+          "q": "Is the letter formatted for standard A4 printing?",
+          "a": "Yes, it uses standard formal letter margins and typography."
+        }
+      ]
+    }
+  },
+  "kontrak": {
+    "title": "Contract Agreement & MoU Generator",
+    "description": "Draft legal agreements, employment contracts, and MoUs with dynamic clauses and dual signature columns.",
+    "seo": {
+      "title": "Contract & Agreement Generator PDF | Pdfumi",
+      "description": "Generate structured contracts and agreements with customizable articles and signature blocks.",
+      "faqTitle": "Contract Generator FAQ",
+      "faqs": [
+        {
+          "q": "Can I add custom articles?",
+          "a": "Yes, you can add or remove as many clauses as your agreement requires."
+        }
+      ]
+    }
+  },
+  "compressJpg": {
+    "title": "Compress JPG Images to Target Size",
+    "description": "Reduce JPG/JPEG image sizes under 200 KB, 100 KB, or custom KB targets with optimal clarity.",
+    "chooseFile": "Select JPG Image",
+    "dropHint": "or drop JPG file here",
+    "uploadHint": "JPG, JPEG · Exact target KB matching",
+    "seo": {
+      "title": "Compress JPG Online Free - Under 200 KB | Pdfumi",
+      "description": "Compress JPG/JPEG images to specific target KB file sizes with high quality.",
+      "faqTitle": "JPG Compression FAQ",
+      "faqs": [
+        {
+          "q": "Can I hit a specific KB limit?",
+          "a": "Yes, our optimizer iterates until the file meets your target size."
+        }
+      ]
+    }
+  },
+  "compressPng": {
+    "title": "Compress PNG Images",
+    "description": "Reduce PNG file sizes while preserving transparency and sharp vector-like graphics.",
+    "chooseFile": "Select PNG Image",
+    "dropHint": "or drop PNG file here",
+    "uploadHint": "PNG · Transparency preserved",
+    "seo": {
+      "title": "Compress PNG Online Free - Shrink PNG Files | Pdfumi",
+      "description": "Compress PNG files quickly and securely right in your browser.",
+      "faqTitle": "PNG Compression FAQ",
+      "faqs": [
+        {
+          "q": "Will transparency be kept?",
+          "a": "Yes, alpha transparency channels are fully preserved."
+        }
+      ]
+    }
+  },
+  "compressWebp": {
+    "title": "Compress WebP Images",
+    "description": "Optimize modern WebP image file sizes for faster website speeds and application performance.",
+    "chooseFile": "Select WebP Image",
+    "dropHint": "or drop WebP file here",
+    "uploadHint": "WebP · Ultra compact",
+    "seo": {
+      "title": "Compress WebP Images Online | Pdfumi",
+      "description": "Optimize WebP images with maximum compression efficiency.",
+      "faqTitle": "WebP Compression FAQ",
+      "faqs": [
+        {
+          "q": "Why use WebP format?",
+          "a": "WebP achieves up to 30% smaller sizes compared to traditional JPG and PNG files."
+        }
+      ]
+    }
+  },
+  "compressVideo": {
+    "title": "Compress Video Online Free",
+    "description": "Reduce MP4, WebM, and MOV video file sizes right in your browser without uploading to external servers.",
+    "chooseFile": "Select Video File",
+    "dropHint": "or drop video here",
+    "uploadHint": "MP4, WebM, MOV, MKV · Client-side fast compression",
+    "seo": {
+      "title": "Compress Video Online Free - Reduce MP4 & WebM Size | Pdfumi",
+      "description": "Compress video files in your browser. Choose target resolutions and bitrates with instant previews.",
+      "faqTitle": "Video Compression FAQ",
+      "faqs": [
+        {
+          "q": "Are my videos uploaded to a cloud server?",
+          "a": "No, compression runs completely client-side in your web browser for 100% data privacy."
+        },
+        {
+          "q": "What video formats can I compress?",
+          "a": "You can compress MP4, WebM, MOV, MKV, and other browser-supported video formats."
+        }
+      ]
+    }
+  },
+  "compressAudio": {
+    "title": "Compress Audio Online Free",
+    "description": "Shrink MP3, WAV, M4A, and AAC audio file sizes with customizable bitrates, sample rates, and mono conversion.",
+    "chooseFile": "Select Audio File",
+    "dropHint": "or drop audio here",
+    "uploadHint": "MP3, WAV, M4A, AAC, OGG · Audio reduction in seconds",
+    "seo": {
+      "title": "Compress Audio Online Free - Reduce MP3 & Audio Size | Pdfumi",
+      "description": "Compress audio recordings, podcasts, and music files with custom bitrates and instant playback preview.",
+      "faqTitle": "Audio Compression FAQ",
+      "faqs": [
+        {
+          "q": "Does converting to mono reduce size?",
+          "a": "Yes, converting a two-channel stereo file to mono cuts raw audio data in half, ideal for speech and voice notes."
+        },
+        {
+          "q": "Which formats are supported?",
+          "a": "MP3, WAV, M4A, AAC, OGG, and FLAC audio files."
+        }
+      ]
+    }
+  },
+  "fillPdf": {
+    "title": "Fill PDF form online for free",
+    "description": "Type into form blanks, check boxes, add dates and signatures, then download your completed PDF.",
+    "seo": {
+      "title": "Fill PDF Form Online Free | No Watermark | Pdfumi",
+      "description": "Complete job applications, registration forms, and official documents right in your browser. Add text, checkmarks (✓), dates, and signatures easily.",
+      "faqTitle": "Fill PDF Form FAQ",
+      "faqs": [
+        {
+          "q": "Can I fill scanned or flat PDF forms that lack interactive fields?",
+          "a": "Yes. Simply click anywhere on the form page to place text fields, checkmarks (✓), or today's date."
+        },
+        {
+          "q": "Are my form data and documents uploaded to external servers?",
+          "a": "No. Form filling is processed 100% locally in your browser for total privacy and speed."
+        },
+        {
+          "q": "Does the output have a watermark?",
+          "a": "No. Your filled PDF is completely watermark-free on all plans, including Free."
+        }
+      ]
+    }
+  }
+}

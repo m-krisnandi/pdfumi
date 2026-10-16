@@ -1,0 +1,24 @@
+{
+	email {$ACME_EMAIL}
+}
+
+# API Backend Pdfumi (Spring Boot + PostgreSQL + LibreOffice)
+api.pdfumi.com {
+	encode zstd gzip
+
+	request_body {
+		max_size 100MB
+	}
+
+	reverse_proxy api:8080 {
+		transport http {
+			response_header_timeout 120s
+		}
+	}
+}
+
+# Subdomain API Kanarau (Numpang di VPS yang sama)
+# api-kanarau.pdfumi.com {
+# 	encode zstd gzip
+# 	reverse_proxy 172.17.0.1:8085
+# }

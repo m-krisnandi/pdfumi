@@ -1,0 +1,145 @@
+spring:
+  application:
+    name: pdfumi-api
+  profiles:
+    default: local
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  mail:
+    host: ${SPRING_MAIL_HOST:}
+    port: ${SPRING_MAIL_PORT:587}
+    username: ${SPRING_MAIL_USERNAME:}
+    password: ${SPRING_MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: ${SERVER_PORT:8088}
+  error:
+    include-message: never
+    include-binding-errors: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  metrics:
+    tags:
+      application: pdfumi-api
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+pdfumi:
+  cors-origins: http://localhost:3000
+  brand-footer: "Made with Pdfumi — pdfumi.com"
+  public-web-base: ${PDFUMI_PUBLIC_WEB_BASE:http://localhost:3000}
+  temp-ttl-hours: 24
+  free:
+    daily-limit: 5
+    certificate-max-recipients: 20
+  office:
+    soffice-path: ${PDFUMI_SOFFICE_PATH:soffice}
+    timeout-seconds: ${PDFUMI_OFFICE_TIMEOUT_SECONDS:120}
+  security:
+    actuator-user: ${PDFUMI_ACTUATOR_USER:actuator}
+    actuator-password: ${PDFUMI_ACTUATOR_PASSWORD:changeme}
+    swagger-enabled: true
+  midtrans:
+    merchant-id: ${MIDTRANS_MERCHANT_ID:G602958288}
+    client-key: ${MIDTRANS_CLIENT_KEY:Mid-client-NodxyD2VH9YGJmZu}
+    server-key: ${MIDTRANS_SERVER_KEY:}
+    mode: ${MIDTRANS_MODE:production}
+  tripay:
+    api-key: ${TRIPAY_API_KEY:}
+    private-key: ${TRIPAY_PRIVATE_KEY:}
+    merchant-code: ${TRIPAY_MERCHANT_CODE:}
+    mode: ${TRIPAY_MODE:sandbox}
+    price-pass-idr: ${TRIPAY_PRICE_PASS_IDR:19000}
+    price-pro-idr: ${TRIPAY_PRICE_PRO_IDR:29000}
+    price-business-idr: ${TRIPAY_PRICE_BUSINESS_IDR:149000}
+  mail:
+    from: ${PDFUMI_MAIL_FROM:}
+    expose-dev-link: ${PDFUMI_MAIL_EXPOSE_DEV_LINK:true}
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{requestId:-}]"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:pdfumi;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  flyway:
+    locations: classpath:db/migration
+
+pdfumi:
+  security:
+    swagger-enabled: true
+  mail:
+    expose-dev-link: true
+
+logging:
+  level:
+    com.pdfumi: INFO
+    org.springframework.security: WARN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  flyway:
+    locations: classpath:db/migration
+
+pdfumi:
+  cors-origins: ${PDFUMI_CORS_ORIGINS}
+  security:
+    swagger-enabled: ${PDFUMI_SWAGGER_ENABLED:false}
+  mail:
+    from: ${PDFUMI_MAIL_FROM:}
+    expose-dev-link: ${PDFUMI_MAIL_EXPOSE_DEV_LINK:false}
+
+springdoc:
+  api-docs:
+    enabled: ${PDFUMI_SWAGGER_ENABLED:false}
+  swagger-ui:
+    enabled: ${PDFUMI_SWAGGER_ENABLED:false}
+
+logging:
+  level:
+    root: WARN
+    com.pdfumi: INFO
+    org.springframework.security: WARN

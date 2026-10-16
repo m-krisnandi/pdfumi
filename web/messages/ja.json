@@ -1,0 +1,1566 @@
+{
+  "meta": {
+    "title": "Pdfumi — フォームを埋めてPDFへ。",
+    "description": "領収書、結合、圧縮、変換、整理などPDFツール。インストール不要、すぐダウンロード。"
+  },
+  "nav": {
+    "receipt": "領収書",
+    "merge": "結合",
+    "watermark": "透かし",
+    "certificates": "証明書",
+    "pricing": "料金",
+    "account": "アカウント",
+    "signIn": "サインイン",
+    "tools": "ツール",
+    "terms": "利用規約",
+    "privacy": "プライバシー",
+    "refund": "返金ポリシー"
+  },
+  "footer": "Pdfumi — 書類をPDFに、手間なく。",
+  "common": {
+    "soon": "近日公開",
+    "downloadPdf": "PDFをダウンロード",
+    "downloadResult": "結果をダウンロード",
+    "processing": "処理中...",
+    "errorGeneric": "エラーが発生しました",
+    "language": "言語",
+    "remove": "削除",
+    "today": "今日",
+    "clear": "クリア",
+    "preview": "プレビュー",
+    "close": "閉じる",
+    "rotate": "回転"
+  },
+  "home": {
+    "eyebrow": "Pdfumi",
+    "headline1": "フォームを埋めて、",
+    "headline2": "PDFを入手。",
+    "subtitle": "領収書、結合、透かし、証明書のためのセルフサービス文書ツール。インストール不要。すぐダウンロード。",
+    "ctaReceipt": "領収書を作成",
+    "ctaPricing": "料金を見る",
+    "tools": {
+      "receiptTitle": "領収書ジェネレーター",
+      "receiptDesc": "金額の漢数字・印刷用PDFに自動対応。",
+      "mergeTitle": "PDF結合",
+      "mergeDesc": "複数ファイルを1つの文書にまとめます。",
+      "watermarkTitle": "透かしPDF",
+      "watermarkDesc": "全ページに斜めの文字透かしを追加。",
+      "certificateTitle": "一括証明書",
+      "certificateDesc": "CSVの名前 → 固有QR検証付きPDF。",
+      "pdfConverterTitle": "PDFコンバーター",
+      "pdfConverterDesc": "PDF⇔Word・画像など — 一か所で変換。",
+      "compressTitle": "PDFを圧縮",
+      "compressDesc": "共有前にファイルサイズを削減。"
+    }
+  },
+  "receipt": {
+    "title": "無料オンライン領収書ジェネレーター",
+    "description": "金額の文字表記・ロゴ・署名付きの印刷用領収書PDFを作成。ライブプレビュー。無料：1日5件。",
+    "fields": {
+      "number": "領収書番号",
+      "numberPlaceholder": "001/RC/{mm}/{yyyy}",
+      "receivedFrom": "受領者",
+      "receivedFromPlaceholder": "例：株式会社サンプル / 山田太郎",
+      "amount": "金額",
+      "amountPlaceholder": "例：1500000",
+      "forPayment": "但し",
+      "forPaymentPlaceholder": "例：9月分コンサルティング料",
+      "city": "都市",
+      "cityPlaceholder": "例：東京",
+      "date": "日付",
+      "payee": "支払者名",
+      "payeePlaceholder": "例：佐藤花子（署名名）",
+      "organization": "組織名",
+      "organizationPlaceholder": "例：Pdfumi Academy"
+    },
+    "clearDraft": "フォームをクリア",
+    "draftHint": "下書きはこのブラウザに自動保存 · リロードしても残ります。",
+    "logoLabel": "組織ロゴ",
+    "uploadLogo": "ロゴをアップロード",
+    "logoSelected": "ロゴ: {name}",
+    "logoHint": "PNG/JPG/WebP · このブラウザに保存して再利用。",
+    "needLogoImage": "PNG、JPG、またはWebPのロゴをアップロードしてください。",
+    "logoTooLarge": "ロゴが大きすぎます（最大約600KB）。",
+    "signatureLabel": "受領者署名（任意）",
+    "uploadSignature": "署名画像をアップロード（任意）",
+    "signatureHint": "アップロードまたは手書き · 受領者名の上に表示。",
+    "needSignatureImage": "PNG、JPG、またはWebPの署名をアップロードしてください。",
+    "signatureTooLarge": "署名画像が大きすぎます（最大約600KB）。",
+    "livePreviewTitle": "ライブプレビュー",
+    "livePreviewHint": "編集に合わせて更新。ダウンロードも同じレイアウトです。",
+    "previewEmpty": "受領者・金額・但しを入力するとプレビューできます。",
+    "previewFailed": "プレビューを作成できませんでした。",
+    "needRequired": "受領者、金額、但しを入力してください。",
+    "seo": {
+      "title": "無料オンライン領収書ジェネレーター（PDF）| Pdfumi",
+      "description": "金額の文字表記付き領収書PDFをオンラインで作成。ロゴ・署名・ライブプレビュー対応。インストール不要。無料日次枠あり。",
+      "faqTitle": "領収書 FAQ",
+      "faqs": [
+        {
+          "q": "領収書ジェネレーターは無料ですか？",
+          "a": "はい。無料枠は1日あたりのドキュメント上限があります（5件/日）。必要なら料金ページでアップグレードできます。"
+        },
+        {
+          "q": "金額の文字表記は自動ですか？",
+          "a": "はい。金額を入力するとPDFの文字表記欄が自動で埋まります。"
+        },
+        {
+          "q": "ロゴや署名を追加できますか？",
+          "a": "できます。ロゴのアップロードと署名の描画／アップロードに対応。下書きはブラウザに保存されます。"
+        }
+      ]
+    }
+  },
+  "merge": {
+    "title": "PDFを無料でオンライン結合",
+    "description": "2〜10個のPDFを1つに結合。並べ替え・ライブプレビュー・ダウンロード。無料の日次枠が適用されます。",
+    "chooseFiles": "PDFファイルを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大10件 · 各5MBまで",
+    "addMore": "PDFを追加",
+    "reorderHint": "書類をドラッグして結合順を変更",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ",
+    "mergedPreview": "結合プレビュー",
+    "mergedHint": "現在の順序で結合したPDFのライブプレビューです。",
+    "needTwo": "結合にはPDFを2件以上アップロードしてください。",
+    "previewFailed": "プレビューを作成できませんでした。PDFが有効か確認してください。",
+    "seo": {
+      "title": "PDF結合オンライン無料 — 複数PDFを1つに | Pdfumi",
+      "description": "複数のPDFをオンラインで結合。ドラッグで並べ替え、ライブプレビュー、即ダウンロード。無料日次枠。インストール不要。",
+      "faqTitle": "PDF結合 FAQ",
+      "faqs": [
+        {
+          "q": "何個まで結合できますか？",
+          "a": "1回あたり最大10ファイル、各5MBまで（無料枠）。"
+        },
+        {
+          "q": "ダウンロード前に順番を変えられますか？",
+          "a": "はい。ドラッグで並べ替えでき、プレビューも連動します。"
+        },
+        {
+          "q": "アカウントは必要ですか？",
+          "a": "無料日次枠内の基本利用なら不要です。有料プランの特典を使う場合はサインインしてください。"
+        }
+      ]
+    }
+  },
+  "watermark": {
+    "title": "PDFに透かしをオンライン追加",
+    "description": "全ページにテキストを配置 — ドラッグで位置調整、プリセット利用、ダウンロード。無料日次枠あり。",
+    "textLabel": "透かしテキスト",
+    "chooseFile": "PDFファイルを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "selected": "選択中のファイル",
+    "livePreview": "ライブプレビュー",
+    "liveHint": "透かしをドラッグして配置。プリセットで左右上下に切り替え。",
+    "dragHint": "ページ上の透かしをドラッグ",
+    "positionLabel": "位置",
+    "presetDiagonal": "斜め",
+    "presetCenter": "中央",
+    "presetTop": "上",
+    "presetBottom": "下",
+    "presetLeft": "左",
+    "presetRight": "右",
+    "presetFlip": "角度を反転",
+    "needFile": "先にPDFファイルを選択してください。",
+    "seo": {
+      "title": "PDF透かし追加オンライン無料 | Pdfumi",
+      "description": "PDFにテキスト透かしを追加。ドラッグで配置、プリセットで角度変更、即ダウンロード。無料日次枠あり。",
+      "faqTitle": "透かし FAQ",
+      "faqs": [
+        {
+          "q": "透かしの位置は自由に変えられますか？",
+          "a": "はい。ライブプレビュー上でドラッグするか、プリセット（斜め・中央・端）を使えます。"
+        },
+        {
+          "q": "全ページに適用されますか？",
+          "a": "はい。同じテキストと位置がすべてのページに入ります。"
+        },
+        {
+          "q": "対応ファイルサイズは？",
+          "a": "無料枠ではPDF最大5MBです。"
+        }
+      ]
+    }
+  },
+  "certificate": {
+    "title": "QR付き一括証明書ジェネレーター",
+    "description": "名簿から多数の証明書を作成。固有QR検証、テンプレート、署名。無料：バッチあたり最大20名。",
+    "fields": {
+      "eventTitle": "イベント / コース名",
+      "eventTitlePlaceholder": "例：SOLIDアーキテクチャワークショップ",
+      "organization": "主催",
+      "organizationPlaceholder": "例：Pdfumi Academy",
+      "eventDate": "開催日",
+      "name": "受講者名",
+      "namePlaceholder": "氏名",
+      "title": "肩書き / 役割",
+      "titlePlaceholder": "例：参加者（任意）",
+      "signerNamePlaceholder": "署名者の氏名",
+      "signerTitlePlaceholder": "例：ディレクター（任意）"
+    },
+    "csvLabel": "受講者リスト",
+    "chooseCsv": "CSVを選択",
+    "dropHint": "またはここにCSVをドラッグ＆ドロップ",
+    "uploadHint": "CSVのみ · name,title列 · 無料は最大20名",
+    "csvFormat": "形式：name,title（titleは任意）。",
+    "downloadSample": "サンプルCSVをダウンロード",
+    "addManually": "または手動で追加",
+    "addRow": "+ 受講者を追加",
+    "manualList": "手動リスト",
+    "recipientsLoaded": "受講者を読み込みました",
+    "recipientCount": "{count} / {max} 名",
+    "replaceCsv": "CSVを取り込み",
+    "previewEmpty": "プレビューにはイベント名と1名以上の受講者が必要です。",
+    "downloadAll": "証明書PDFをダウンロード",
+    "quotaHint": "無料：1バッチ最大{max}名 · 日次クォータが適用されます。",
+    "needCsv": "CSVファイルをアップロードしてください。",
+    "emptyCsv": "CSVに有効な名前がありません。",
+    "needRecipients": "イベント名と1名以上の受講者名が必要です。",
+    "tooMany": "無料プランは最大{max}名です。リストを減らすかアップグレードしてください。",
+    "templateLabel": "証明書テンプレート",
+    "templates": {
+      "classic": "クラシック",
+      "classicDesc": "正式ディプロマ · 二重金枠 · セリフ名。",
+      "modern": "モダン",
+      "modernDesc": "コーポレート · ティール帯 · 左寄せ。",
+      "elegant": "エレガント",
+      "elegantDesc": "クリーム地 · 装飾線 · Times。"
+    },
+    "signersLabel": "署名",
+    "signerCount": {
+      "0": "署名なし",
+      "1": "署名者1名",
+      "2": "署名者2名",
+      "3": "署名者3名"
+    },
+    "signerN": "署名者 {n}",
+    "uploadSignature": "署名画像をアップロード（任意）",
+    "signatureSelected": "署名: {name}",
+    "needSignatureImage": "署名は画像（PNG/JPG/WebP）である必要があります。",
+    "signatureTooLarge": "署名画像は600KB未満にしてください。",
+    "noSignersHint": "署名欄なしで発行されます。",
+    "livePreviewTitle": "ライブプレビュー",
+    "livePreviewHint": "最初の受講者 · 編集に応じて更新。ダウンロードで全ページに本物のQRを発行。",
+    "previewFailed": "プレビューを作成できませんでした。",
+    "wordingLabel": "証明書の文言",
+    "wordingShow": "編集",
+    "wordingHide": "閉じる",
+    "sigModeUpload": "画像をアップロード",
+    "sigModeDraw": "画面に手書き",
+    "drawHint": "マウスまたは指で署名",
+    "clearSignature": "クリア",
+    "logoLabel": "組織ロゴ",
+    "uploadLogo": "ロゴをアップロード",
+    "logoSelected": "ロゴ: {name}",
+    "logoHint": "PNG/JPG/WebP · このブラウザに保存して再利用。",
+    "needLogoImage": "ロゴは画像（PNG/JPG/WebP）である必要があります。",
+    "logoTooLarge": "ロゴは600KB未満にしてください。",
+    "signatureLibrary": "保存した署名",
+    "saveSignatureToLibrary": "ライブラリに保存",
+    "needSignatureToSave": "先に署名画像または手書きを追加してください。",
+    "clearDraft": "フォームをクリア",
+    "draftHint": "下書きはこのブラウザに自動保存 · リロードしても残ります。",
+    "seo": {
+      "title": "一括証明書ジェネレーター + QR検証 | Pdfumi",
+      "description": "CSVまたは手動リストから証明書を一括発行。各PDFに固有のQRでオンライン検証。無料バッチ上限あり。",
+      "faqTitle": "証明書 FAQ",
+      "faqs": [
+        {
+          "q": "受取人はどう検証しますか？",
+          "a": "各証明書に固有QRがあります。スキャンするとPdfumi Verifyで受取人とイベント情報が表示されます。"
+        },
+        {
+          "q": "スプレッドシートから名前を入れられますか？",
+          "a": "はい。nameと任意のtitle列のCSVをアップロードするか、手動入力できます。"
+        },
+        {
+          "q": "無料で何枚まで作れますか？",
+          "a": "無料枠はバッチあたり最大20名（日次ドキュメント枠内）。大きなバッチはアップグレードしてください。"
+        }
+      ]
+    }
+  },
+  "verify": {
+    "eyebrow": "Pdfumi Verify",
+    "title": "証明書の検証",
+    "subtitle": "QRをスキャンするか、このリンクで真正性を確認できます。",
+    "loading": "証明書を確認中…",
+    "valid": "有効な証明書",
+    "invalid": "証明書が見つかりません",
+    "notFound": "このコードは記録にありません。",
+    "recipient": "受講者",
+    "event": "イベント",
+    "organization": "主催",
+    "eventDate": "日付",
+    "code": "検証コード",
+    "ctaIssue": "一括証明書を発行 →"
+  },
+  "pricing": {
+    "title": "料金",
+    "subtitle": "透明な料金。クォータが終わると停止 — 隠れた超過課金なし。",
+    "freeName": "Free",
+    "freePrice": "$0",
+    "freeItems": [
+      "5 ドキュメント/日 (ツールごと)",
+      "ファイルサイズ上限 20 MB",
+      "目標サイズ圧縮 < 200 KB (1回1ファイル)",
+      "証明書 20件まで一括作成"
+    ],
+    "proName": "Pro (月額)",
+    "proPrice": "$5/月",
+    "proItems": [
+      "500ドキュメント/月",
+      "ファイルサイズ上限 100 MB",
+      "優先キュー・高速サーバー処理",
+      "証明書 200件まで一括作成",
+      "PDF to Word/Excel 大容量変換"
+    ],
+    "businessName": "Pro 年間",
+    "businessPrice": "$15/年",
+    "businessItems": [
+      "6,000ドキュメント/年 (月換算500件)",
+      "ファイルサイズ上限 100 MB",
+      "最優先ゼロキュー処理エンジン",
+      "証明書 500件まで一括作成",
+      "定期利用に最適な最高割引"
+    ],
+    "globalHint": "Midtrans経由のQRIS、電子マネー、各種国際クレジットカード決済に対応。",
+    "emailForCheckout": "チェックアウト用メール",
+    "checkoutMissing": "Checkout URL missing. Please try again.",
+    "ctaFree": "無料アカウント作成 →",
+    "ctaPro": "Pro にアップグレード",
+    "ctaBusiness": "Pro 年間プランを選択 →",
+    "seo": {
+      "title": "Pdfumi 料金 — Free / Pro / Business",
+      "description": "シンプルなPDFツール料金。無料日次枠、Pro・Businessプラン。隠れた超過課金なし。"
+    },
+    "tabQris": "QRIS (インドネシア)",
+    "tabCard": "クレジットカード & デジタル決済",
+    "qrisBadge": "即時有効化 • 全銀行 & 電子マネー対応",
+    "proPriceIdr": "Rp 29.000/月",
+    "businessPriceIdr": "Rp 149.000/年",
+    "scanPrompt": "QRコードをスキャンしてお支払いください",
+    "waitingPayment": "お支払いを確認中...",
+    "paymentSuccess": "お支払い確認完了！アカウントをアップグレードしています...",
+    "simulatePay": "テスト決済 (Sandbox)",
+    "orderRef": "参照番号",
+    "expiresIn": "24時間有効",
+    "openCheckout": "決済ページを開く",
+    "closeModal": "閉じる",
+    "activeUntil": "有効期限",
+    "passName": "イベントパス",
+    "passPrice": "$2",
+    "passPriceIdr": "Rp 19.000",
+    "passBadge": "短期利用に最適",
+    "passDuration": "7日間 (買い切り)",
+    "passItems": [
+      "150ドキュメント (7日間有効)",
+      "ファイルサイズ上限 100 MB",
+      "複数ファイルの一括処理",
+      "証明書 100件まで一括作成"
+    ],
+    "ctaPass": "パスを購入",
+    "businessBadge": "60%割引 (最もお得)"
+  },
+  "account": {
+    "title": "ユーザーアカウント",
+    "subtitle": "ドキュメント枠の確認、プラン管理、プレミアム機能をパスワードレスで利用。",
+    "loginTitle": "サインイン",
+    "loginHint": "ワンタイムマジックリンクをメールでお送りします。パスワード不要です。",
+    "loginSend": "サインインリンクを送る",
+    "loginSent": "そのメールのアカウントがあれば、サインインリンクを送信しました。",
+    "loginConfirmTitle": "サインイン中",
+    "loginConfirmSubtitle": "マジックリンクを確認し、セッションを開始します。",
+    "loginConfirming": "サインインしています…",
+    "loginInvalid": "このサインインリンクは無効または期限切れです。",
+    "loginOk": "サインインしました。このブラウザでセッションは 30 日間有効です。",
+    "logout": "サインアウト",
+    "logoutOk": "サインアウトしました。",
+    "registerTitle": "無料アカウント作成",
+    "email": "Email",
+    "createFree": "アカウント作成",
+    "registerOk": "アカウントを作成しました。ログイン済みです。",
+    "recoverTitle": "APIキーを紛失しましたか？",
+    "recoverHint": "一度限りのマジックリンクをメールします。開くと古いキーは無効になり、新しいキーが発行されます。",
+    "recoverSend": "リカバリーリンクを送る",
+    "recoverSent": "そのメールのアカウントがあれば、リカバリーリンクを送信しました。",
+    "recoverDevLink": "Dev magic link:",
+    "recoverConfirmTitle": "APIキーを復元",
+    "recoverConfirmSubtitle": "マジックリンクを確認し、新しいキーを発行します。",
+    "recoverConfirming": "復元を確認中…",
+    "recoverInvalid": "このリカバリーリンクは無効または期限切れです。",
+    "recoverRevoked": "無効化した旧キー: {count}。新しいキーはこのブラウザに保存されました。",
+    "recoverBack": "アカウントに戻る",
+    "keyTitle": "このブラウザの APIキー",
+    "keyHint": "開発者向け（任意）。サインイン中なら有料プランのツールも使えます。設定時は X-Api-Key として送信。",
+    "saveKey": "キーを保存",
+    "clearKey": "キーを削除",
+    "keySaved": "API key saved in this browser.",
+    "keyCleared": "API key cleared.",
+    "keyOnce": "Copy this API key now — it is shown only once.",
+    "statusTitle": "現在のプラン",
+    "quotaLine": "Usage: {used}/{limit} ({period})",
+    "entitlementFooterOn": "Brand footer: on",
+    "entitlementFooterOff": "Brand footer: off",
+    "entitlementCerts": "Certificate batch size: up to {max}",
+    "upgradeTitle": "アップグレード",
+    "upgradeHint": "Checkout opens secure payment via Midtrans.",
+    "upgradePro": "Checkout Pro ($9)",
+    "upgradeBusiness": "Checkout Business ($24)",
+    "checkoutSuccess": "Payment received — your plan is active. Welcome to Pdfumi Pro!",
+    "checkoutCancel": "Checkout canceled.",
+    "checkoutMissing": "Checkout URL missing.",
+    "seo": {
+      "title": "アカウント & サインイン | Pdfumi",
+      "description": "マジックリンクでサインイン、無料アカウント作成、APIキー復旧、プランアップグレード。"
+    }
+  },
+  "toolsMenu": {
+    "label": "ツール",
+    "title": "すべてのツール",
+    "subtitle": "変換・圧縮・整理 — 選んですぐ使えます。",
+    "close": "閉じる",
+    "groups": {
+      "compress": "Compress",
+      "convert": "Convert",
+      "organize": "Organize",
+      "edit": "Edit PDF",
+      "create": "Create Documents",
+      "office": "Office & PDF",
+      "image": "Image Tools",
+      "scan": "Scanner",
+      "imageToPdf": "Image to PDF",
+      "protect": "Protect",
+      "fillAndSign": "Fill & Sign"
+    },
+    "items": {
+      "compressPdf": "PDFを圧縮",
+      "pdfConverter": "PDFコンバーター",
+      "jpgToPdf": "JPGをPDFに",
+      "pdfToJpg": "PDFをJPGに",
+      "pdfToPng": "PDFをPNGに",
+      "mergePdf": "PDFを結合",
+      "splitPdf": "PDFを分割",
+      "rotatePdf": "PDFを回転",
+      "deletePages": "ページを削除",
+      "extractPages": "ページを抽出",
+      "organizePdf": "PDFを整理",
+      "watermark": "透かし",
+      "receipt": "領収書",
+      "certificates": "証明書",
+      "pdfToWord": "PDFをWordに",
+      "pdfToExcel": "PDFをExcelに",
+      "pdfToPpt": "PDFをPPTに",
+      "wordToPdf": "WordをPDFに",
+      "excelToPdf": "ExcelをPDFに",
+      "pptToPdf": "PPTをPDFに",
+      "protectPdf": "PDFを保護",
+      "unlockPdf": "PDFのロック解除",
+      "signPdf": "PDFに署名",
+      "pageNumbersPdf": "ページ番号",
+      "cropPdf": "PDFを切り抜き",
+      "ocrPdf": "OCR PDF",
+      "editPdf": "Edit PDF",
+      "redactPdf": "Redact PDF",
+      "pngToPdf": "PNG to PDF",
+      "webpToPdf": "WebP to PDF",
+      "heicToPdf": "HEIC to PDF",
+      "headerFooterPdf": "Header & Footer",
+      "flattenPdf": "Flatten PDF",
+      "grayscalePdf": "Grayscale PDF",
+      "removeMetadataPdf": "Remove Metadata",
+      "resizePdf": "Resize PDF Page",
+      "resizeImage": "Resize Image",
+      "pasFoto": "Passport Photo",
+      "compressImage": "Compress Image",
+      "removeSignatureBg": "Remove Signature BG",
+      "scanPdf": "Camera Scan to PDF",
+      "invoice": "Invoice",
+      "suratResmi": "Official Letter",
+      "kontrak": "Contract Agreement",
+      "compressJpg": "Compress JPG",
+      "compressPng": "Compress PNG",
+      "compressWebp": "Compress WebP",
+      "compressVideo": "動画圧縮",
+      "compressAudio": "音声圧縮",
+      "fillPdf": "PDFフォーム入力"
+    }
+  },
+  "jpgToPdf": {
+    "title": "JPGをPDFに（無料）",
+    "description": "写真やスキャンを1つのPDFに。ドラッグで並べ替えてダウンロード。無料の日次枠あり。",
+    "seo": {
+      "title": "JPGをPDFに無料変換 | Pdfumi",
+      "description": "JPG/PNG/WebPを1つのPDFに。サムネイル並び替え、即ダウンロード。無料枠あり。",
+      "faqTitle": "JPG→PDF FAQ",
+      "faqs": [
+        {
+          "q": "対応形式は？",
+          "a": "JPG、PNG、WebP、GIF、BMP。最大20枚、各5MB。"
+        },
+        {
+          "q": "順番は変えられる？",
+          "a": "はい。ダウンロード前にサムネイルをドラッグできます。"
+        },
+        {
+          "q": "アカウントは必要？",
+          "a": "無料枠では不要。有料プランはサインインで利用枠を保持します。"
+        }
+      ]
+    },
+    "chooseFiles": "画像を選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "JPG/PNG/WebP · 最大20 · 各5MB",
+    "addMore": "画像を追加",
+    "reorderHint": "ドラッグしてPDFのページ順を変更",
+    "needFiles": "画像を1枚以上アップロードしてください。"
+  },
+  "pdfToJpg": {
+    "title": "PDFをJPGに（無料）",
+    "description": "各ページを高品質JPGに書き出し。ZIPで一括ダウンロード。無料の日次枠あり。",
+    "seo": {
+      "title": "PDFをJPGに無料変換 | Pdfumi",
+      "description": "PDFページをJPGに変換。ページごとのZIPをダウンロード。無料枠あり。",
+      "faqTitle": "PDF→JPG FAQ",
+      "faqs": [
+        {
+          "q": "何が届く？",
+          "a": "ページごとに1枚のJPGが入ったZIP（約150 DPI）。"
+        },
+        {
+          "q": "ページ上限は？",
+          "a": "1回あたり最大50ページ。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB · 最大50ページ",
+    "needFile": "先にPDFを選んでください。",
+    "resultHint": "各ページがJPGとしてZIPに入ります。",
+    "downloadZip": "JPG ZIPをダウンロード"
+  },
+  "pdfToPng": {
+    "title": "PDFをPNGに（無料）",
+    "description": "各ページを鮮明なPNGに。ZIPで一括ダウンロード。無料の日次枠あり。",
+    "seo": {
+      "title": "PDFをPNGに無料変換 | Pdfumi",
+      "description": "PDFページをPNGに変換。ページごとのZIPをダウンロード。無料枠あり。",
+      "faqTitle": "PDF→PNG FAQ",
+      "faqs": [
+        {
+          "q": "PNGとJPGの違いは？",
+          "a": "PNGは文字がシャープ、JPGは写真向けで小さめ。"
+        },
+        {
+          "q": "ページ上限は？",
+          "a": "1回あたり最大50ページ。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB · 最大50ページ",
+    "needFile": "先にPDFを選んでください。",
+    "resultHint": "各ページがPNGとしてZIPに入ります。",
+    "downloadZip": "PNG ZIPをダウンロード"
+  },
+  "pdfToWord": {
+    "title": "PDFをWordに（無料）",
+    "description": "LibreOfficeでPDFを編集可能な.docxに変換。無料枠あり。",
+    "seo": {
+      "title": "PDFをWordに 無料 | Pdfumi",
+      "description": "PDFをWord DOCXにオンライン変換。編集可能なファイルをダウンロード。無料枠あり。",
+      "faqTitle": "PDF→Word FAQ",
+      "faqs": [
+        {
+          "q": "編集できる？",
+          "a": "はい。.docxです。複雑なレイアウトは変換後に調整が必要な場合があります。"
+        },
+        {
+          "q": "エンジンは？",
+          "a": "サーバー上のLibreOfficeヘッドレスです。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "resultHint": "編集可能な.docxとしてダウンロード（LibreOffice）。",
+    "downloadResult": "Wordをダウンロード"
+  },
+  "wordToPdf": {
+    "title": "WordをPDFに（無料）",
+    "description": "LibreOfficeで.doc/.docxをPDFに変換。無料枠あり。",
+    "seo": {
+      "title": "WordをPDFに 無料 | Pdfumi",
+      "description": "Word DOC/DOCXをPDFにオンライン変換。すぐダウンロード。無料枠あり。",
+      "faqTitle": "Word→PDF FAQ",
+      "faqs": [
+        {
+          "q": "対応形式は？",
+          "a": ".docと.docxに対応。"
+        },
+        {
+          "q": "フォントは同じ？",
+          "a": "一般的なフォントは維持されやすいです。稀なフォントは代替されることがあります。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はWord最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "Wordファイルを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": ".doc / .docx · 最大5MB",
+    "needFile": "先にWordファイルを選んでください。",
+    "resultHint": "印刷用PDFとしてダウンロード。",
+    "downloadResult": "PDFをダウンロード"
+  },
+  "pdfConverter": {
+    "title": "無料PDFコンバーター",
+    "description": "PDFをWord・Excel・画像へ、またWord・Excel・画像をPDFへ変換。無料の日次枠があります。",
+    "seo": {
+      "title": "無料PDFコンバーター | Pdfumi",
+      "description": "PDF ↔ Word/Excel、PDF→JPG/PNG、画像→PDF。無料・インストール不要。",
+      "faqTitle": "コンバーター FAQ",
+      "faqs": [
+        {
+          "q": "何が変換できる？",
+          "a": "PDF → Word / Excel / JPG / PNG；WordまたはExcel → PDF；画像 → PDF。"
+        },
+        {
+          "q": "アカウントは必要？",
+          "a": "不要。ツールごとの無料日次枠があります。"
+        },
+        {
+          "q": "PowerPointは？",
+          "a": "PowerPointは近日対応。WordとExcelは利用できます。"
+        }
+      ]
+    },
+    "chooseFiles": "ファイルを選択",
+    "dropHint": "またはPDF・Word・Excel・画像をドロップ",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · 最大5MB",
+    "needFile": "先にファイルをアップロードしてください。",
+    "needTarget": "このファイルに合う出力形式を選んでください。",
+    "unsupported": "未対応の形式です。PDF、Word、Excel、または画像を使ってください。",
+    "convertTo": "変換先",
+    "toPdf": "PDF",
+    "toWord": "Word",
+    "toJpg": "JPG",
+    "toPng": "PNG",
+    "convertDownload": "変換してダウンロード",
+    "filesCount": "{count}ファイル",
+    "bulletWord": "LibreOfficeでPDF ↔ Word / Excel",
+    "bulletImages": "画像→PDF、PDF→JPG/PNG",
+    "bulletPdfOut": "ブラウザで完結 — インストール不要",
+    "alsoSee": "個別ツール:",
+    "linkPdfWord": "PDFをWordに",
+    "linkWordPdf": "WordをPDFに",
+    "linkJpgPdf": "JPGをPDFに",
+    "toExcel": "Excel",
+    "linkPdfExcel": "PDFをExcelに"
+  },
+  "compressPdf": {
+    "title": "PDFを圧縮（無料）",
+    "description": "埋め込み画像を再圧縮してサイズを削減。無料の日次枠あり。",
+    "seo": {
+      "title": "PDF圧縮 無料オンライン | Pdfumi",
+      "description": "PDFをオンラインで軽量化。画像を再圧縮して即ダウンロード。無料枠あり。",
+      "faqTitle": "圧縮 FAQ",
+      "faqs": [
+        {
+          "q": "どれくらい小さくなる？",
+          "a": "内容次第。画像が多いほど効果大。"
+        },
+        {
+          "q": "品質は落ちる？",
+          "a": "画像は再圧縮されます。ベクター文字はシャープなまま。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "needFile": "先にPDFを選んでください。"
+  },
+  "splitPdf": {
+    "title": "PDFを分割（無料）",
+    "description": "残すページだけを選び、不要ページを外して1つのPDFとしてダウンロード。無料枠あり。",
+    "seo": {
+      "title": "PDF分割 無料オンライン | Pdfumi",
+      "description": "残すページを選んで1つのPDFをダウンロード。不要ページは除外。無料枠あり。",
+      "faqTitle": "分割 FAQ",
+      "faqs": [
+        {
+          "q": "ZIPになりますか？",
+          "a": "いいえ。残したページだけの1つのPDFをダウンロードします。"
+        },
+        {
+          "q": "ページを除外するには？",
+          "a": "サムネイルをクリックしてチェックを外します。"
+        },
+        {
+          "q": "ページ上限は？",
+          "a": "最大100ページ。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB · 最大100ページ",
+    "needFile": "先にPDFを選んでください。",
+    "replace": "差し替え",
+    "loadingPages": "ページを読み込み中…",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ",
+    "resultHint": "{count, plural, =0 {ページ未選択} one {結果: 1ページのPDF} other {結果: #ページのPDF}}",
+    "needPages": "分割するページを1つ以上選んでください。",
+    "selectHint": "クリックで残す/外す · ドラッグで最終PDFの順序を変更",
+    "selectAll": "すべて選択",
+    "clearSelection": "クリア"
+  },
+  "rotatePdf": {
+    "title": "PDFを回転（無料）",
+    "description": "ページごとに左右回転・並べ替え・削除してダウンロード。無料枠あり。",
+    "seo": {
+      "title": "PDF回転 無料オンライン | Pdfumi",
+      "description": "PDFページを個別に回転。プレビュー・並べ替え・ダウンロード。無料枠あり。",
+      "faqTitle": "回転 FAQ",
+      "faqs": [
+        {
+          "q": "ページごとに違う角度にできる？",
+          "a": "はい。各サムネイルの左右回転を使います。"
+        },
+        {
+          "q": "プレビューできる？",
+          "a": "サムネイルで回転後を確認できます。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "replace": "差し替え",
+    "loadingPages": "ページを読み込み中…",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ",
+    "reorderHint": "ドラッグで並べ替え。各ページで回転または削除。",
+    "cardHint": "ページにホバーしてプレビュー・回転・削除。",
+    "angleOriginal": "元に戻す"
+  },
+  "deletePages": {
+    "title": "PDFページ削除（無料）",
+    "description": "ゴミ箱でページを削除し、残りをそのまま保存。無料枠あり。",
+    "seo": {
+      "title": "PDFページ削除 無料 | Pdfumi",
+      "description": "不要なPDFページを削除。サムネイルのゴミ箱で削除してダウンロード。",
+      "faqTitle": "削除 FAQ",
+      "faqs": [
+        {
+          "q": "全部消せる？",
+          "a": "いいえ。最低1ページ残す必要があります。"
+        },
+        {
+          "q": "消し方は？",
+          "a": "各サムネイルのゴミ箱を使い、ダウンロード。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "needPages": "少なくとも1ページを削除してください（1ページは残す）。",
+    "selectHint": "ゴミ箱でページを削除",
+    "replace": "差し替え",
+    "loadingPages": "ページを読み込み中…",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ",
+    "selectAll": "すべて選択",
+    "clearSelection": "クリア",
+    "reorderHint": "ドラッグで並べ替え。ゴミ箱でPDFから削除。",
+    "cardHint": "ページにホバーしてプレビュー・回転・削除。"
+  },
+  "extractPages": {
+    "title": "PDFページ抽出（無料）",
+    "description": "必要なページだけ選んで新しいPDFとしてダウンロード。無料枠あり。",
+    "seo": {
+      "title": "PDFページ抽出 無料 | Pdfumi",
+      "description": "選択したPDFページを新ファイルに。サムネイルで選択。無料枠あり。",
+      "faqTitle": "抽出 FAQ",
+      "faqs": [
+        {
+          "q": "順番は？",
+          "a": "表示順（左から右）を維持します。"
+        },
+        {
+          "q": "選び方は？",
+          "a": "サムネイルをクリックしてからダウンロード。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "needPages": "抽出するページを1つ以上選んでください。",
+    "selectHint": "クリックで含める · ドラッグで新PDFの順序を設定",
+    "replace": "差し替え",
+    "loadingPages": "ページを読み込み中…",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ",
+    "selectAll": "すべて選択",
+    "clearSelection": "クリア"
+  },
+  "organizePdf": {
+    "title": "PDFを整理（無料）",
+    "description": "サムネイルをドラッグしてページ順を変更。結合と同じ感覚で1ファイルを整理。無料枠あり。",
+    "seo": {
+      "title": "PDF整理・ページ並べ替え 無料 | Pdfumi",
+      "description": "ドラッグ＆ドロップでPDFページを並べ替え。確認してダウンロード。無料枠あり。",
+      "faqTitle": "整理 FAQ",
+      "faqs": [
+        {
+          "q": "並べ替え方は？",
+          "a": "サムネイルをドラッグして順序を決め、ダウンロード。"
+        },
+        {
+          "q": "ページ削除は？",
+          "a": "削除ツールを使ってください。このツールは並べ替え専用です。"
+        },
+        {
+          "q": "ファイルサイズは？",
+          "a": "無料枠はPDF最大5MB。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDFのみ · 最大5MB · 最大100ページ",
+    "needFile": "先にPDFを選んでください。",
+    "reorderHint": "ドラッグして最終のページ順を設定",
+    "replace": "差し替え",
+    "loadingPages": "ページを読み込み中…",
+    "pageOne": "1ページ",
+    "pageMany": "{count}ページ"
+  },
+  "protectPdf": {
+    "title": "PDFを保護（無料）",
+    "description": "パスワードを付けてPDFを保護します。",
+    "seo": {
+      "title": "PDFを保護（無料） | Pdfumi",
+      "description": "パスワードを付けてPDFを保護します。",
+      "faqTitle": "Protect FAQ",
+      "faqs": [
+        {
+          "q": "Is the PDF encrypted?",
+          "a": "Yes — AES-style password protection via PDFBox."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "passwordLabel": "パスワード",
+    "needPassword": "パスワードを入力してください。"
+  },
+  "unlockPdf": {
+    "title": "PDFのロック解除（無料）",
+    "description": "パスワードが分かる場合に保護を解除します。",
+    "seo": {
+      "title": "PDFのロック解除（無料） | Pdfumi",
+      "description": "パスワードが分かる場合に保護を解除します。",
+      "faqTitle": "Unlock FAQ",
+      "faqs": [
+        {
+          "q": "Wrong password?",
+          "a": "You will get an error if the password does not match."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "passwordLabel": "現在のパスワード",
+    "needPassword": "PDFのパスワードを入力してください。"
+  },
+  "signPdf": {
+    "title": "PDFに署名（無料）",
+    "description": "署名を作成し、ページ上の好きな位置に置いてダウンロード。",
+    "seo": {
+      "title": "PDFに署名（無料） | Pdfumi",
+      "description": "描画・入力・アップロードで署名を作り、ドラッグ＆リサイズでPDFに配置。",
+      "faqTitle": "Sign FAQ",
+      "faqs": [
+        {
+          "q": "配置後に動かせますか？",
+          "a": "はい。ドラッグで移動、角でサイズ変更、削除して再配置も可能です。"
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "signatureLabel": "署名画像",
+    "needSignature": "先に署名を作成してください。",
+    "presetBr": "右下",
+    "presetBl": "左下",
+    "presetCenter": "中央",
+    "methodDraw": "描く",
+    "methodUpload": "アップロード",
+    "drawHint": "ここに描く",
+    "clearDraw": "消去",
+    "needDraw": "先に署名を描いてください。",
+    "uploadHintSig": "PNG / JPGの署名を選択",
+    "positionHint": "ページ上の位置",
+    "createSignature": "署名を作成",
+    "changeSignature": "新しい署名",
+    "clearSignature": "署名を削除",
+    "modalTitle": "署名を作成",
+    "methodType": "入力",
+    "typePlaceholder": "お名前",
+    "cancel": "キャンセル",
+    "create": "作成",
+    "placeBanner": "ドキュメントをクリックして署名を配置。",
+    "placeHint": "ポインターを動かしてクリックで配置。",
+    "dragHint": "ドラッグで移動 · 角でサイズ変更",
+    "deleteSig": "署名を削除",
+    "needPlace": "先にページをクリックして署名を配置してください。",
+    "downloadSigned": "署名済みPDFをダウンロード"
+  },
+  "pageNumbersPdf": {
+    "title": "PDFにページ番号",
+    "description": "全ページにページ番号を印字します。",
+    "seo": {
+      "title": "PDFにページ番号 | Pdfumi",
+      "description": "全ページにページ番号を印字します。",
+      "faqTitle": "Pages FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose position?",
+          "a": "Yes — bottom/top and left/center/right options."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "positionLabel": "位置",
+    "formatLabel": "形式",
+    "posBottomCenter": "下中央",
+    "posBottomLeft": "下左",
+    "posBottomRight": "下右",
+    "posTopCenter": "上中央",
+    "fmtN": "1, 2, 3…",
+    "fmtNOfTotal": "1 / N"
+  },
+  "cropPdf": {
+    "title": "PDF余白を切り抜き",
+    "description": "全ページの余白を均等にトリミングします。",
+    "seo": {
+      "title": "PDF余白を切り抜き | Pdfumi",
+      "description": "全ページの余白を均等にトリミングします。",
+      "faqTitle": "Crop FAQ",
+      "faqs": [
+        {
+          "q": "How much can I crop?",
+          "a": "Up to about 25% per side."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "marginLabel": "余白"
+  },
+  "ocrPdf": {
+    "title": "OCR PDF（無料）",
+    "description": "スキャンPDFを検索可能にします（ocrmypdf）。",
+    "seo": {
+      "title": "OCR PDF（無料） | Pdfumi",
+      "description": "スキャンPDFを検索可能にします（ocrmypdf）。",
+      "faqTitle": "OCR FAQ",
+      "faqs": [
+        {
+          "q": "What do I need locally?",
+          "a": "Install ocrmypdf + tesseract, or use Docker where they are included."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "languageLabel": "OCR言語",
+    "ocrHint": "APIホストにocrmypdfが必要です。"
+  },
+  "pdfToExcel": {
+    "title": "PDFをExcelに（無料）",
+    "description": "LibreOfficeでPDFを.xlsxに変換。",
+    "seo": {
+      "title": "PDFをExcelに（無料） | Pdfumi",
+      "description": "LibreOfficeでPDFを.xlsxに変換。",
+      "faqTitle": "Excel FAQ",
+      "faqs": [
+        {
+          "q": "Will tables be perfect?",
+          "a": "Simple tables convert best; complex layouts may need cleanup."
+        }
+      ]
+    },
+    "chooseFile": "PDFを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": "PDF · 最大5MB",
+    "needFile": "先にPDFを選んでください。",
+    "resultHint": ".xlsxとしてダウンロード。",
+    "downloadResult": "Excelをダウンロード"
+  },
+  "excelToPdf": {
+    "title": "ExcelをPDFに（無料）",
+    "description": "LibreOfficeで.xls/.xlsxをPDFに変換。",
+    "seo": {
+      "title": "ExcelをPDFに（無料） | Pdfumi",
+      "description": "LibreOfficeで.xls/.xlsxをPDFに変換。",
+      "faqTitle": "ExcelPdf FAQ",
+      "faqs": [
+        {
+          "q": "Which formats?",
+          "a": ".xls and .xlsx are supported."
+        }
+      ]
+    },
+    "chooseFile": "Excelを選択",
+    "dropHint": "またはここにドラッグ＆ドロップ",
+    "uploadHint": ".xls / .xlsx · 最大5MB",
+    "needFile": "先にExcelを選んでください。",
+    "resultHint": "PDFとしてダウンロード。",
+    "downloadResult": "PDFをダウンロード"
+  },
+  "terms": {
+    "seo": {
+      "title": "利用規約 — Pdfumi",
+      "description": "Pdfumiの利用規約です。公正で透明な条件で安心してご利用いただけます。"
+    },
+    "title": "利用規約",
+    "lastUpdated": "最終更新日: 2026年10月",
+    "s1Title": "1. 規約への同意",
+    "s1Body": "Pdfumiを利用することにより、本規約に同意したものとみなされます。",
+    "s2Title": "2. 適法な利用",
+    "s2Body": "公的文書の偽造や不正利用は固く禁止されています。生成された文書の全責任は利用者に帰属します。",
+    "s3Title": "3. クォータと料金",
+    "s3Body": "クォータ終了時に追加請求が発生することはありません。",
+    "s4Title": "4. 免責事項",
+    "s4Body": "本サービスは現状有姿で提供され、ファイルの恒久的な保管は保証しません。",
+    "s5Title": "5. お問い合わせ",
+    "s5Body": "support@pdfumi.com までお問い合わせください。"
+  },
+  "privacy": {
+    "seo": {
+      "title": "プライバシーポリシー — Pdfumi",
+      "description": "Pdfumiのプライバシー保護方針。ドキュメントの恒久保存ゼロ。"
+    },
+    "title": "プライバシーポリシー",
+    "lastUpdated": "最終更新日: 2026年10月",
+    "s1Title": "1. ファイル非保持ポリシー",
+    "s1Body": "アップロードされた文書は処理後、自動的に完全に削除されます。",
+    "s2Title": "2. 収集情報",
+    "s2Body": "アカウント管理と決済に必要なメールアドレスのみを保存します。",
+    "s3Title": "3. 決済セキュリティ",
+    "s3Body": "決済処理は認定決済プロバイダー（Midtrans）により安全に処理されます（QRIS、国際クレジットカード Visa/Mastercard/JCB、各種電子マネー、バーチャル口座）。当社がクレジットカード番号やPINを保持することはありません。",
+    "s4Title": "4. ストレージ",
+    "s4Body": "トラッキング用クッキーは使用しません。",
+    "s5Title": "5. 連絡先",
+    "s5Body": "privacy@pdfumi.com までご連絡ください。"
+  },
+  "refund": {
+    "seo": {
+      "title": "返金ポリシー — Pdfumi",
+      "description": "安心の7日間返金保証。"
+    },
+    "title": "返金ポリシー",
+    "lastUpdated": "最終更新日: 2026年10月",
+    "s1Title": "1. 7日間返金保証",
+    "s1Body": "ご購入から7日以内、使用クォータ10%未満の場合、全額返金に対応いたします。",
+    "s2Title": "2. 追加料金なし",
+    "s2Body": "隠れた追加料金は一切ありません。",
+    "s3Title": "3. いつでも解約可能",
+    "s3Body": "Pdfumi の全プランは自動更新のない前払い制です。お客様の同意なしに予期せぬ請求が発生することはありません。",
+    "s4Title": "4. 申請方法",
+    "s4Body": "support@pdfumi.com までご連絡ください。"
+  },
+  "editPdf": {
+    "title": "Edit PDF Online",
+    "description": "Add text, highlights, rectangles, and annotations directly to your PDF in your browser.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · fast & private in-browser processing",
+    "downloadEdited": "Download Edited PDF",
+    "toolText": "Text",
+    "toolHighlight": "Highlight",
+    "toolShape": "Shape",
+    "seo": {
+      "title": "Free Online PDF Editor - Add Text & Annotations | Pdfumi",
+      "description": "Easily edit PDFs, highlight sentences, and add annotations online without registration.",
+      "faqTitle": "PDF Editor FAQ",
+      "faqs": [
+        {
+          "q": "Is my document secure?",
+          "a": "Yes, all edits are processed privately in your browser without uploading to third-party storage."
+        }
+      ]
+    }
+  },
+  "redactPdf": {
+    "title": "Permanently Redact PDF",
+    "description": "Blackout or whiteout confidential information such as SSN, bank accounts, and personal data permanently.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · max 10MB",
+    "needBoxes": "Please draw at least one redaction box first.",
+    "downloadRedacted": "Redact & Download PDF",
+    "seo": {
+      "title": "Redact PDF Online - Remove Confidential Info | Pdfumi",
+      "description": "Permanently blackout sensitive text and data from your PDF documents before sharing.",
+      "faqTitle": "PDF Redaction FAQ",
+      "faqs": [
+        {
+          "q": "Can redacted text be highlighted or copied?",
+          "a": "No, redactions are permanently burned into the document canvas."
+        }
+      ]
+    }
+  },
+  "resizeImage": {
+    "title": "Resize Image Online",
+    "description": "Change photo dimensions in pixels or percentages while preserving aspect ratio and visual clarity.",
+    "chooseFile": "Choose Image",
+    "dropHint": "or drop image here",
+    "uploadHint": "JPG, PNG, WebP",
+    "seo": {
+      "title": "Resize Image Online Free | Pdfumi",
+      "description": "Resize photos to custom width and height dimensions with ease.",
+      "faqTitle": "Image Resizer FAQ",
+      "faqs": [
+        {
+          "q": "Can I lock the aspect ratio?",
+          "a": "Yes, click the lock icon to preserve proportions."
+        }
+      ]
+    }
+  },
+  "pasFoto": {
+    "title": "Passport & ID Photo Maker",
+    "description": "Crop portrait photos to standard ID sizes (2x3, 3x4, 4x6, 2x2\" Passport) with red, blue, or white backgrounds.",
+    "chooseFile": "Select Portrait Photo",
+    "dropHint": "or drop portrait here",
+    "uploadHint": "JPG, PNG · Front facing portrait",
+    "seo": {
+      "title": "Passport & ID Photo Maker Online | Pdfumi",
+      "description": "Create standard passport photos and ID pictures with custom background colors.",
+      "faqTitle": "Passport Photo FAQ",
+      "faqs": [
+        {
+          "q": "What is the standard size for visa applications?",
+          "a": "Most international visa requirements use 2x2 inch (51x51 mm) or 35x45 mm."
+        }
+      ]
+    }
+  },
+  "compressImage": {
+    "title": "Compress Image to Exact Target KB",
+    "description": "Reduce image file size below 100 KB, 200 KB, or 500 KB to meet strict upload portal requirements.",
+    "chooseFile": "Choose Image",
+    "dropHint": "or drop image here",
+    "uploadHint": "JPG, PNG · Auto-adjusted to target KB",
+    "seo": {
+      "title": "Compress Image to Target KB Size Online | Pdfumi",
+      "description": "Compress photos under 200 KB or 100 KB with smart quality optimization.",
+      "faqTitle": "Image Compressor FAQ",
+      "faqs": [
+        {
+          "q": "Will the image lose detail?",
+          "a": "Our adaptive algorithm balances resolution and compression to keep text and faces crisp."
+        }
+      ]
+    }
+  },
+  "removeSignatureBg": {
+    "title": "Remove Signature Background",
+    "description": "Convert a paper signature photo into a transparent PNG signature with crisp dark ink ready for documents.",
+    "chooseFile": "Select Signature Photo",
+    "dropHint": "or drop signature photo here",
+    "uploadHint": "Photo of handwritten signature on paper",
+    "seo": {
+      "title": "Make Signature Transparent PNG Online | Pdfumi",
+      "description": "Extract signature ink from paper photos with transparent background.",
+      "faqTitle": "Transparent Signature FAQ",
+      "faqs": [
+        {
+          "q": "Can I copy directly to clipboard?",
+          "a": "Yes, click Copy Image to paste directly into your document editor."
+        }
+      ]
+    }
+  },
+  "pngToPdf": {
+    "title": "Convert PNG to PDF",
+    "description": "Convert PNG graphics and transparent images into clean, crisp PDF documents.",
+    "chooseFiles": "Select PNG Files",
+    "dropHint": "or drop PNG files here",
+    "uploadHint": "PNG · Multi-file supported",
+    "needFiles": "Please select at least one PNG file.",
+    "seo": {
+      "title": "Convert PNG to PDF Online Free | Pdfumi",
+      "description": "Combine multiple PNG images into a single professional PDF document.",
+      "faqTitle": "PNG to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Can I adjust page margins?",
+          "a": "Yes, choose from None, Small, or Standard margin options."
+        }
+      ]
+    }
+  },
+  "webpToPdf": {
+    "title": "Convert WebP to PDF",
+    "description": "Convert modern WebP images to universal PDF documents instantly.",
+    "chooseFiles": "Select WebP Files",
+    "dropHint": "or drop WebP files here",
+    "uploadHint": "WebP images",
+    "needFiles": "Please select at least one WebP file.",
+    "seo": {
+      "title": "Convert WebP to PDF Online | Pdfumi",
+      "description": "Fast in-browser converter from WebP images to PDF.",
+      "faqTitle": "WebP to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Is conversion lossless?",
+          "a": "Images are compiled at maximum visual clarity."
+        }
+      ]
+    }
+  },
+  "heicToPdf": {
+    "title": "Convert HEIC to PDF",
+    "description": "Convert Apple iPhone / iPad HEIC photos directly into PDF documents without prior conversion.",
+    "chooseFiles": "Select HEIC Photos",
+    "dropHint": "or drop HEIC photos here",
+    "uploadHint": "HEIC, HEIF, JPG, PNG",
+    "needFiles": "Please select at least one photo.",
+    "seo": {
+      "title": "Convert iPhone HEIC to PDF Online | Pdfumi",
+      "description": "Turn iOS HEIC photos into easily shareable PDF documents.",
+      "faqTitle": "HEIC to PDF FAQ",
+      "faqs": [
+        {
+          "q": "Does it support high resolution iOS photos?",
+          "a": "Yes, modern iPhone photo resolutions are supported."
+        }
+      ]
+    }
+  },
+  "headerFooterPdf": {
+    "title": "Add Header & Footer to PDF",
+    "description": "Insert header titles and dynamic page numbers into every page of your PDF document.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · Dynamic page numbers",
+    "seo": {
+      "title": "Add Header and Footer to PDF Online | Pdfumi",
+      "description": "Easily add page numbers and titles to PDF document headers and footers.",
+      "faqTitle": "Header & Footer FAQ",
+      "faqs": [
+        {
+          "q": "How do I show total page count?",
+          "a": "Use the {total} token in the footer field."
+        }
+      ]
+    }
+  },
+  "flattenPdf": {
+    "title": "Flatten PDF Forms & Layers",
+    "description": "Lock interactive form fields, electronic signatures, and annotations into static document content.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF with form fields or signatures",
+    "seo": {
+      "title": "Flatten PDF Online Free | Pdfumi",
+      "description": "Prevent unauthorized edits by flattening form fields and comments into static vectors.",
+      "faqTitle": "Flatten PDF FAQ",
+      "faqs": [
+        {
+          "q": "Why flatten a PDF?",
+          "a": "It ensures identical rendering across all devices and prevents form data from being altered."
+        }
+      ]
+    }
+  },
+  "removeMetadataPdf": {
+    "title": "Remove PDF Metadata",
+    "description": "Wipe hidden author names, software producers, modification history, and timestamps for full privacy.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF privacy scrubber",
+    "seo": {
+      "title": "Remove PDF Metadata Online - Sanitize Documents | Pdfumi",
+      "description": "Clean confidential author data, creation timestamps, and software marks from PDF files.",
+      "faqTitle": "Metadata Scrub FAQ",
+      "faqs": [
+        {
+          "q": "What metadata is removed?",
+          "a": "Author, title, producer, creation date, modification date, and document keywords."
+        }
+      ]
+    }
+  },
+  "resizePdf": {
+    "title": "Resize PDF Page Sizes (A4, Letter, Legal)",
+    "description": "Change PDF page dimensions to international paper sizes with automatic proportional scaling.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "PDF · Standard paper sizes",
+    "seo": {
+      "title": "Resize PDF Pages to A4 or Letter Online | Pdfumi",
+      "description": "Adjust PDF page dimensions to standard A4, Letter, Legal, or A3 formats.",
+      "faqTitle": "PDF Page Resizing FAQ",
+      "faqs": [
+        {
+          "q": "Will content get cropped?",
+          "a": "No, contents are centered and proportionally fitted to the new paper size."
+        }
+      ]
+    }
+  },
+  "grayscalePdf": {
+    "title": "Convert PDF to Grayscale",
+    "description": "Convert color PDF pages to monochrome black and white to save printer ink and reduce file size.",
+    "chooseFile": "Select PDF file",
+    "dropHint": "or drop PDF here",
+    "uploadHint": "Color PDF",
+    "seo": {
+      "title": "Convert Color PDF to Black and White Online | Pdfumi",
+      "description": "Transform colorful PDF documents into crisp grayscale for efficient printing.",
+      "faqTitle": "Grayscale PDF FAQ",
+      "faqs": [
+        {
+          "q": "Does text stay clear?",
+          "a": "Yes, text contrast is enhanced for maximum readability."
+        }
+      ]
+    }
+  },
+  "scanPdf": {
+    "title": "Scan Documents from Camera to PDF",
+    "description": "Scan physical documents, receipts, or certificates directly from your mobile camera into clean PDFs.",
+    "seo": {
+      "title": "Scan Documents with Camera to PDF Online | Pdfumi",
+      "description": "Instant document camera scanner in your browser without installing third-party apps.",
+      "faqTitle": "Camera Scan FAQ",
+      "faqs": [
+        {
+          "q": "Can I scan multiple pages?",
+          "a": "Yes, capture consecutive pages and compile them into a single PDF document."
+        }
+      ]
+    }
+  },
+  "invoice": {
+    "title": "Professional Invoice Generator",
+    "description": "Create official invoices with itemized tables, taxes, discounts, payment info, and signatures ready for download.",
+    "seo": {
+      "title": "Free Invoice Generator PDF Online | Pdfumi",
+      "description": "Create sleek business invoices with automatic calculations and instant PDF export.",
+      "faqTitle": "Invoice Generator FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose my currency?",
+          "a": "Yes, select from USD, IDR, EUR, GBP, SGD, and more."
+        }
+      ]
+    }
+  },
+  "suratResmi": {
+    "title": "Official Letter Generator",
+    "description": "Draft official organizational letters with letterhead, reference numbers, structured body, and sign-off blocks.",
+    "seo": {
+      "title": "Official Letter Generator PDF | Pdfumi",
+      "description": "Compose professional business and administrative letters with formal formatting.",
+      "faqTitle": "Official Letter FAQ",
+      "faqs": [
+        {
+          "q": "Is the letter formatted for standard A4 printing?",
+          "a": "Yes, it uses standard formal letter margins and typography."
+        }
+      ]
+    }
+  },
+  "kontrak": {
+    "title": "Contract Agreement & MoU Generator",
+    "description": "Draft legal agreements, employment contracts, and MoUs with dynamic clauses and dual signature columns.",
+    "seo": {
+      "title": "Contract & Agreement Generator PDF | Pdfumi",
+      "description": "Generate structured contracts and agreements with customizable articles and signature blocks.",
+      "faqTitle": "Contract Generator FAQ",
+      "faqs": [
+        {
+          "q": "Can I add custom articles?",
+          "a": "Yes, you can add or remove as many clauses as your agreement requires."
+        }
+      ]
+    }
+  },
+  "compressJpg": {
+    "title": "Compress JPG Images to Target Size",
+    "description": "Reduce JPG/JPEG image sizes under 200 KB, 100 KB, or custom KB targets with optimal clarity.",
+    "chooseFile": "Select JPG Image",
+    "dropHint": "or drop JPG file here",
+    "uploadHint": "JPG, JPEG · Exact target KB matching",
+    "seo": {
+      "title": "Compress JPG Online Free - Under 200 KB | Pdfumi",
+      "description": "Compress JPG/JPEG images to specific target KB file sizes with high quality.",
+      "faqTitle": "JPG Compression FAQ",
+      "faqs": [
+        {
+          "q": "Can I hit a specific KB limit?",
+          "a": "Yes, our optimizer iterates until the file meets your target size."
+        }
+      ]
+    }
+  },
+  "compressPng": {
+    "title": "Compress PNG Images",
+    "description": "Reduce PNG file sizes while preserving transparency and sharp vector-like graphics.",
+    "chooseFile": "Select PNG Image",
+    "dropHint": "or drop PNG file here",
+    "uploadHint": "PNG · Transparency preserved",
+    "seo": {
+      "title": "Compress PNG Online Free - Shrink PNG Files | Pdfumi",
+      "description": "Compress PNG files quickly and securely right in your browser.",
+      "faqTitle": "PNG Compression FAQ",
+      "faqs": [
+        {
+          "q": "Will transparency be kept?",
+          "a": "Yes, alpha transparency channels are fully preserved."
+        }
+      ]
+    }
+  },
+  "compressWebp": {
+    "title": "Compress WebP Images",
+    "description": "Optimize modern WebP image file sizes for faster website speeds and application performance.",
+    "chooseFile": "Select WebP Image",
+    "dropHint": "or drop WebP file here",
+    "uploadHint": "WebP · Ultra compact",
+    "seo": {
+      "title": "Compress WebP Images Online | Pdfumi",
+      "description": "Optimize WebP images with maximum compression efficiency.",
+      "faqTitle": "WebP Compression FAQ",
+      "faqs": [
+        {
+          "q": "Why use WebP format?",
+          "a": "WebP achieves up to 30% smaller sizes compared to traditional JPG and PNG files."
+        }
+      ]
+    }
+  },
+  "compressVideo": {
+    "title": "無料オンライン動画圧縮",
+    "description": "MP4、WebM、MOV動画のファイルサイズをブラウザ内で安全に縮小します。",
+    "chooseFile": "動画ファイルを選択",
+    "dropHint": "または動画をここにドロップ",
+    "uploadHint": "MP4, WebM, MOV · ブラウザ内高速処理",
+    "seo": {
+      "title": "無料オンライン動画圧縮 - MP4 & WebMサイズ縮小 | Pdfumi",
+      "description": "ブラウザ内で動画ファイルを簡単に圧縮。解像度やビットレートを自由に選択できます。",
+      "faqTitle": "動画圧縮 よくある質問",
+      "faqs": [
+        {
+          "q": "動画は外部サーバーに送信されますか？",
+          "a": "いいえ、処理はお使いのブラウザ内で完結するため、プライバシーは完全に保護されます。"
+        }
+      ]
+    }
+  },
+  "compressAudio": {
+    "title": "無料オンライン音声圧縮",
+    "description": "MP3、WAV、M4A、AAC音声のビットレートとサンプリング周波数を調整してサイズを縮小します。",
+    "chooseFile": "音声ファイルを選択",
+    "dropHint": "または音声をここにドロップ",
+    "uploadHint": "MP3, WAV, M4A, AAC · 高音質圧縮",
+    "seo": {
+      "title": "無料オンライン音声圧縮 - MP3サイズ縮小 | Pdfumi",
+      "description": "録音データやポッドキャスト、音楽ファイルのサイズを手軽に縮小できます。",
+      "faqTitle": "音声圧縮 よくある質問",
+      "faqs": [
+        {
+          "q": "モノラルに変換すると容量は軽くなりますか？",
+          "a": "はい、ステレオからモノラルに変換することで音声データ量を約半分に削減できます。"
+        }
+      ]
+    }
+  },
+  "fillPdf": {
+    "title": "無料のオンラインPDFフォーム入力",
+    "description": "フォームの空白への入力、チェックボックスの記入、日付や署名の追加を行い、完了したPDFをダウンロードします。",
+    "seo": {
+      "title": "オンラインPDFフォーム入力無料 | 透かしなし | Pdfumi",
+      "description": "ブラウザ上で直接申請書や申込書に入力できます。テキスト、チェックマーク、日付、署名を簡単に追加。",
+      "faqTitle": "PDFフォーム入力 FAQ",
+      "faqs": [
+        {
+          "q": "対話型フィールドのないスキャンしたPDFでも記入できますか？",
+          "a": "はい。ページの任意の場所をクリックするだけで、テキストやチェックマーク（✓）、日付を配置できます。"
+        },
+        {
+          "q": "データはサーバーにアップロードされますか？",
+          "a": "いいえ。処理はすべてブラウザ内でローカルに行われるため、プライバシーは完全に保護されます。"
+        },
+        {
+          "q": "ダウンロードしたPDFに透かしは入りますか？",
+          "a": "いいえ。無料プランを含むすべてのプランで透かしは入りません。"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,141 @@
+name: CI/CD Pipeline - Deploy to Tencent VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production_deploy
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test & Build Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Run Backend Tests
+        run: |
+          cd api
+          ./mvnw test --no-transfer-progress
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Build Web Frontend
+        run: |
+          cd web
+          npm ci
+          NEXT_PUBLIC_API_BASE=https://api.pdfumi.com npm run build
+
+  deploy:
+    name: Deploy to Tencent Cloud VPS
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT || 22 }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p $VPS_PORT -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Sync Backend Files via Rsync
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT || 22 }}
+        run: |
+          echo "Membuat direktori /opt/pdfumi di VPS jika belum ada..."
+          ssh -i ~/.ssh/id_deploy -p $VPS_PORT $VPS_USER@$VPS_HOST "mkdir -p /opt/pdfumi"
+
+          echo "Sinkronisasi file backend ke /opt/pdfumi..."
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_deploy -p $VPS_PORT -o StrictHostKeyChecking=accept-new" \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'web/' \
+            --exclude 'api/target/' \
+            --exclude '.env' \
+            ./ $VPS_USER@$VPS_HOST:/opt/pdfumi/
+
+      - name: Configure Production Environment (.env)
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT || 22 }}
+          PROD_ENV: ${{ secrets.PROD_ENV }}
+        run: |
+          if [ -n "$PROD_ENV" ]; then
+            echo "Memperbarui .env di VPS dari GitHub Secret PROD_ENV..."
+            echo "$PROD_ENV" > /tmp/prod.env
+            scp -i ~/.ssh/id_deploy -P $VPS_PORT /tmp/prod.env $VPS_USER@$VPS_HOST:/opt/pdfumi/.env
+            rm -f /tmp/prod.env
+          else
+            echo "Secret PROD_ENV tidak diset. Memastikan .env sudah ada di VPS..."
+            ssh -i ~/.ssh/id_deploy -p $VPS_PORT $VPS_USER@$VPS_HOST 'bash -s' << 'EOF'
+              if [ ! -f /opt/pdfumi/.env ]; then
+                echo "Membuat file .env awal dari deploy/.env.prod.example..."
+                cp /opt/pdfumi/deploy/.env.prod.example /opt/pdfumi/.env
+              fi
+          EOF
+          fi
+
+      - name: Execute Docker Compose Deploy & Health Check
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT || 22 }}
+        run: |
+          ssh -i ~/.ssh/id_deploy -p $VPS_PORT $VPS_USER@$VPS_HOST 'bash -s' << 'EOF'
+            set -e
+            cd /opt/pdfumi
+
+            echo "Menjalankan docker compose build dan restart backend..."
+            docker compose -f docker-compose.prod.yml --env-file .env up -d --build --remove-orphans
+
+            echo "Membersihkan image lama yang tidak terpakai..."
+            docker image prune -f
+
+            echo "Memeriksa status container..."
+            sleep 10
+            docker compose -f docker-compose.prod.yml ps
+
+            echo "Memeriksa endpoint health API..."
+            for i in {1..12}; do
+              if curl -fsS http://localhost:8080/api/v1/health >/dev/null 2>&1; then
+                echo "Deploy sukses! Seluruh service backend sehat dan berjalan lancar."
+                exit 0
+              fi
+              echo "Menunggu API siap ($i/12)..."
+              sleep 5
+            done
+
+            echo "Peringatan: API health check timeout, menampilkan log backend:"
+            docker compose -f docker-compose.prod.yml logs --tail=50 api
+            exit 1
+          EOF

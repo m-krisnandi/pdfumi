@@ -1,0 +1,1566 @@
+{
+  "meta": {
+    "title": "Pdfumi — ဖောင်ဖြည့်။ PDF ရယူ။",
+    "description": "ပြေစာ၊ ပေါင်းစည်း၊ ချုံ့၊ ပြောင်း၊ စီစဉ် PDF ကိရိယာများ။ အင်စတောမလို၊ ချက်ချင်းဒေါင်းလုဒ်။"
+  },
+  "nav": {
+    "receipt": "ပြေစာ",
+    "merge": "ပေါင်းစည်း",
+    "watermark": "ရေစာ",
+    "certificates": "လက်မှတ်များ",
+    "pricing": "စျေးနှုန်း",
+    "account": "အကောင့်",
+    "signIn": "ဝင်ရန်",
+    "tools": "ကိရိယာများ",
+    "terms": "စည်းမျဉ်းများ",
+    "privacy": "သီးသန့်လုံခြုံရေး",
+    "refund": "ငွေပြန်အမ်းမှု မူဝါဒ"
+  },
+  "footer": "Pdfumi — စာရွက်စာတမ်းများကို PDF အဖြစ်၊ အခက်အခဲမရှိ။",
+  "common": {
+    "soon": "မကြာမီ",
+    "downloadPdf": "PDF ဒေါင်းလုဒ်",
+    "downloadResult": "ရလဒ်ဒေါင်းလုဒ်",
+    "processing": "လုပ်ဆောင်နေသည်...",
+    "errorGeneric": "တစ်ခုခုမှားယွင်းသွားသည်",
+    "language": "ဘာသာစကား",
+    "remove": "ဖယ်ရှားရန်",
+    "today": "ယနေ့",
+    "clear": "ရှင်းရန်",
+    "preview": "အစမ်းကြည့်",
+    "close": "ပိတ်ရန်",
+    "rotate": "လှည့်"
+  },
+  "home": {
+    "eyebrow": "Pdfumi",
+    "headline1": "ဖောင်ဖြည့်ပါ။",
+    "headline2": "PDF ရယူပါ။",
+    "subtitle": "ပြေစာ၊ ပေါင်းစည်းမှု၊ ရေစာနှင့် လက်မှတ်များအတွက် ကိုယ်တိုင်အသုံးပြုနိုင်သော စာရွက်စာတမ်းကိရိယာများ။ တပ်ဆင်ရန်မလို။ ချက်ချင်းဒေါင်းလုဒ်။",
+    "ctaReceipt": "ပြေစာဖန်တီးရန်",
+    "ctaPricing": "စျေးနှုန်းကြည့်ရန်",
+    "tools": {
+      "receiptTitle": "ပြေစာထုတ်စက်",
+      "receiptDesc": "ပမာဏစာလုံးအလိုအလျောက်၊ ပုံနှိပ်ရန်အဆင်သင့် PDF။",
+      "mergeTitle": "PDF ပေါင်းစည်း",
+      "mergeDesc": "ဖိုင်အများအပြားကို စာရွက်စာတမ်းတစ်ခုအဖြစ် ပေါင်းစည်းပါ။",
+      "watermarkTitle": "PDF ရေစာ",
+      "watermarkDesc": "စာမျက်နှာတိုင်းတွင် ထောင့်ဖြတ် စာသားရေစာ ထည့်ပါ။",
+      "certificateTitle": "အစုလိုက် လက်မှတ်များ",
+      "certificateDesc": "CSV အမည်များ → ထူးခြားသော QR အတည်ပြု PDF။",
+      "pdfConverterTitle": "PDF Converter",
+      "pdfConverterDesc": "PDF ↔ Word၊ ပုံများ — တစ်နေရာတည်း။",
+      "compressTitle": "PDF ချုံ့ရန်",
+      "compressDesc": "မျှဝေမီ ဖိုင်သေးစေ။"
+    }
+  },
+  "receipt": {
+    "title": "အခမဲ့ အွန်လိုင်း ပြေစာ ဖန်တီးသူ",
+    "description": "စာလုံးဖြင့် ရေးသားထားသော ငွေပမာဏ၊ လိုဂိုနှင့် လက်မှတ်ပါ PDF ပြေစာ ဖန်တီးပါ။ Live preview။ အခမဲ့: တစ်နေ့ ၅ ခု။",
+    "fields": {
+      "number": "ပြေစာနံပါတ်",
+      "numberPlaceholder": "001/RC/{mm}/{yyyy}",
+      "receivedFrom": "လက်ခံရရှိသူ",
+      "receivedFromPlaceholder": "ဥပမာ: ABC Co., Ltd / မောင်မောင်",
+      "amount": "ပမာဏ",
+      "amountPlaceholder": "ဥပမာ: 1500000",
+      "forPayment": "ပေးချေမှုအတွက်",
+      "forPaymentPlaceholder": "ဥပမာ: စက်တင်ဘာ အတိုင်ပင်ခံကြေး",
+      "city": "မြို့",
+      "cityPlaceholder": "ဥပမာ: ရန်ကုန်",
+      "date": "ရက်စွဲ",
+      "payee": "ပေးချေသူအမည်",
+      "payeePlaceholder": "ဥပမာ: မမမ (လက်မှတ်အမည်)",
+      "organization": "အဖွဲ့အစည်း",
+      "organizationPlaceholder": "ဥပမာ: Pdfumi Academy"
+    },
+    "clearDraft": "ဖောင်ရှင်းရန်",
+    "draftHint": "Draft ကို browser တွင် အလိုအလျောက် သိမ်းသည် · refresh လုပ်လည်း မပျောက်။",
+    "logoLabel": "အဖွဲ့အစည်းလိုဂို",
+    "uploadLogo": "လိုဂိုတင်ရန်",
+    "logoSelected": "လိုဂို: {name}",
+    "logoHint": "PNG/JPG/WebP · ဤ browser တွင် သိမ်းပြီး ပြန်သုံးနိုင်သည်။",
+    "needLogoImage": "PNG, JPG သို့မဟုတ် WebP လိုဂို တင်ပါ။",
+    "logoTooLarge": "လိုဂို အရွယ်ကြီးလွန်းသည် (အများဆုံး ~600KB)။",
+    "signatureLabel": "လက်ခံသူ လက်မှတ် (ရွေးချယ်နိုင်)",
+    "uploadSignature": "လက်မှတ်ပုံ တင်ရန် (ရွေးချယ်နိုင်)",
+    "signatureHint": "တင် သို့မဟုတ် ဆွဲ · လက်ခံသူအမည်အပေါ်တွင် ပေါ်သည်။",
+    "needSignatureImage": "PNG, JPG သို့မဟုတ် WebP လက်မှတ် တင်ပါ။",
+    "signatureTooLarge": "လက်မှတ်ပုံ အရွယ်ကြီးလွန်းသည် (အများဆုံး ~600KB)။",
+    "livePreviewTitle": "တိုက်ရိုက်ကြည့်ရှု",
+    "livePreviewHint": "ပြင်သည့်အခါ အလိုအလျောက် ပြောင်းသည်။ ဒေါင်းလုဒ် layout တူညီသည်။",
+    "previewEmpty": "လက်ခံရရှိသူ၊ ပမာဏနှင့် ပေးချေမှုအတွက် ဖြည့်မှ preview ရမည်။",
+    "previewFailed": "Preview မတည်ဆောက်နိုင်ပါ။",
+    "needRequired": "လက်ခံရရှိသူ၊ ပမာဏနှင့် ပေးချေမှုအတွက် ဖြည့်ပါ။",
+    "seo": {
+      "title": "အခမဲ့ အွန်လိုင်း ပြေစာ Generator (PDF) | Pdfumi",
+      "description": "ပရော်ဖက်ရှင်နယ် ပြေစာ PDF ကို အွန်လိုင်းတွင် ဖန်တီးပါ — စာလုံးငွေပမာဏ၊ လိုဂို၊ လက်မှတ်၊ live preview။ ထည့်သွင်းစရာ မလို။",
+      "faqTitle": "ပြေစာ FAQ",
+      "faqs": [
+        {
+          "q": "ပြေစာ generator အခမဲ့လား?",
+          "a": "ဟုတ်ပါသည်။ အခမဲ့အကောင့်တွင် တစ်နေ့စာ မှတ်တမ်း ကန့်သတ် (၅/နေ့) ရှိသည်။ ပိုလိုပါက Pricing တွင် အဆင့်မြှင့်ပါ။"
+        },
+        {
+          "q": "ငွေပမာဏကို စာလုံးဖြင့် အလိုအလျောက် ရေးပါသလား?",
+          "a": "ဟုတ်ပါသည်။ ဂဏန်းထည့်လိုက်ပါက PDF တွင် စာလုံးငွေပမာဏ ဖြည့်ပေးသည်။"
+        },
+        {
+          "q": "လိုဂိုနှင့် လက်မှတ် ထည့်နိုင်ပါသလား?",
+          "a": "နိုင်ပါသည်။ လိုဂို တင်ပြီး လက်မှတ် ဆွဲ သို့မဟုတ် တင်နိုင်သည်။ Draft ကို ဘရောက်ဇာတွင် သိမ်းသည်။"
+        }
+      ]
+    }
+  },
+  "merge": {
+    "title": "PDF များကို အခမဲ့ အွန်လိုင်း ပေါင်းစည်းရန်",
+    "description": "PDF ၂–၁၀ ဖိုင်ကို တစ်ဖိုင်တည်း ပေါင်းပါ။ ပြန်စီ၊ live preview၊ ဒေါင်းလုဒ်။ အခမဲ့ နေ့စဉ် quota သက်ရောက်သည်။",
+    "chooseFiles": "PDF ဖိုင်များ ရွေးရန်",
+    "dropHint": "သို့မဟုတ် PDF များကို ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · အများဆုံး ၁၀ ဖိုင် · တစ်ခုလျှင် ၅MB",
+    "addMore": "PDF ထပ်ထည့်ရန်",
+    "reorderHint": "စာရွက်ကို ဆွဲရွှေ့၍ အစဉ်ပြောင်းပါ",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ",
+    "mergedPreview": "ပေါင်းစည်းပြီး အကြိုကြည့်ရှု",
+    "mergedHint": "လက်ရှိအစဉ်အတိုင်း ပေါင်းစည်းထားသော PDF အကြိုကြည့်ရှု။",
+    "needTwo": "ပေါင်းစည်းရန် PDF အနည်းဆုံး ၂ ဖိုင် တင်ပါ။",
+    "previewFailed": "အကြိုကြည့်ရှု မဖန်တီးနိုင်ပါ။ PDF မှန်ကန်မှု စစ်ဆေးပါ။",
+    "seo": {
+      "title": "PDF ပေါင်းစည်း အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF ဖိုင်များစွာကို အွန်လိုင်းတွင် ပေါင်းပါ။ ဆွဲ၍ ပြန်စီ၊ live preview၊ ချက်ချင်း ဒေါင်းလုဒ်။",
+      "faqTitle": "PDF ပေါင်း FAQ",
+      "faqs": [
+        {
+          "q": "ဘယ်နှစ်ဖိုင်အထိ ပေါင်းနိုင်သလဲ?",
+          "a": "တစ်ကြိမ်လျှင် ၁၀ ဖိုင်အထိ၊ တစ်ဖိုင် ၅MB အထိ (အခမဲ့)။"
+        },
+        {
+          "q": "ဒေါင်းလုဒ်မလုပ်မီ အစီအစဉ် ပြောင်းနိုင်သလား?",
+          "a": "နိုင်ပါသည်။ ဆွဲ၍ ပြန်စီပါ။ Preview ကလိုက်ပါမည်။"
+        },
+        {
+          "q": "အကောင့် လိုအပ်ပါသလား?",
+          "a": "အခမဲ့ နေ့စဉ် quota အတွင်း အခြေခံအသုံးပြုမှုတွင် မလိုပါ။"
+        }
+      ]
+    }
+  },
+  "watermark": {
+    "title": "PDF တွင် watermark အွန်လိုင်း ထည့်ရန်",
+    "description": "စာမျက်နှာတိုင်းတွင် စာသား ထားပါ — ဆွဲ၍ နေရာချ၊ preset သုံး၊ ဒေါင်းလုဒ်။ အခမဲ့ နေ့စဉ် quota သက်ရောက်သည်။",
+    "textLabel": "ရေစာ စာသား",
+    "chooseFile": "PDF ဖိုင် ရွေးရန်",
+    "dropHint": "သို့မဟုတ် PDF ကို ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · အများဆုံး ၅MB",
+    "selected": "ရွေးထားသော ဖိုင်",
+    "livePreview": "တိုက်ရိုက် အကြိုကြည့်ရှု",
+    "liveHint": "ရေစာကို ဆွဲရွှေ့၍ နေရာချပါ။ Preset ဖြင့် ဘေးဘက်ပြောင်းနိုင်သည်။",
+    "dragHint": "စာမျက်နှာပေါ်ရှိ ရေစာကို ဆွဲရွှေ့ပါ",
+    "positionLabel": "နေရာ",
+    "presetDiagonal": "ထောင့်ဖြတ်",
+    "presetCenter": "အလယ်",
+    "presetTop": "အပေါ်",
+    "presetBottom": "အောက်",
+    "presetLeft": "ဘယ်",
+    "presetRight": "ညာ",
+    "presetFlip": "ထောင့်ပြန်လှည့်",
+    "needFile": "အရင် PDF ဖိုင် ရွေးပါ။",
+    "seo": {
+      "title": "PDF Watermark အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF တွင် စာသား watermark တံဆိပ်ထုပါ။ ဆွဲ၍ နေရာချ၊ preset ဖြင့် ထောင့်ပြောင်း၊ ချက်ချင်း ဒေါင်းလုဒ်။",
+      "faqTitle": "Watermark FAQ",
+      "faqs": [
+        {
+          "q": "Watermark ကို နေရာမရွေး ထားနိုင်သလား?",
+          "a": "နိုင်ပါသည်။ Live preview တွင် ဆွဲပါ သို့မဟုတ် preset သုံးပါ။"
+        },
+        {
+          "q": "စာမျက်နှာတိုင်းတွင် သက်ရောက်ပါသလား?",
+          "a": "ဟုတ်ပါသည်။ စာသားနှင့် နေရာ တူညီစွာ စာမျက်နှာအားလုံးတွင် ထည့်သည်။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်အစား ဘယ်လောက်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    }
+  },
+  "certificate": {
+    "title": "QR ပါ အစုလိုက် လက်မှတ်စာ Generator",
+    "description": "နာမည်စာရင်းမှ လက်မှတ်စာများစွာ ဖန်တီးပါ။ ထူးခြားသော QR အတည်ပြု၊ template၊ လက်မှတ်။ အခမဲ့: တစ် batch ၂၀ အထိ။",
+    "fields": {
+      "eventTitle": "ပွဲ / သင်တန်းခေါင်းစဉ်",
+      "eventTitlePlaceholder": "ဥပမာ SOLID Architecture Workshop",
+      "organization": "အဖွဲ့အစည်း",
+      "organizationPlaceholder": "ဥပမာ Pdfumi Academy",
+      "eventDate": "ပွဲရက်စွဲ",
+      "name": "လက်ခံသူအမည်",
+      "namePlaceholder": "အမည်အပြည့်အစုံ",
+      "title": "ရာထူး / အခန်းကဏ္ဍ",
+      "titlePlaceholder": "ဥပမာ Participant (optional)",
+      "signerNamePlaceholder": "လက်မှတ်ထိုးသူ အမည်",
+      "signerTitlePlaceholder": "ဥပမာ Director (optional)"
+    },
+    "csvLabel": "လက်ခံသူစာရင်း",
+    "chooseCsv": "CSV ဖိုင်ရွေးရန်",
+    "dropHint": "သို့မဟုတ် CSV ကို ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "CSV သာ · name,title ကော်လံ · အခမဲ့ ၂၀ အထိ",
+    "csvFormat": "ပုံစံ: name,title (title မလိုအပ်ပါ)။",
+    "downloadSample": "နမူနာ CSV ဒေါင်းလုဒ်",
+    "addManually": "သို့မဟုတ် ကိုယ်တိုင် ထည့်ရန်",
+    "addRow": "+ လက်ခံသူ ထည့်ရန်",
+    "manualList": "ကိုယ်တိုင်စာရင်း",
+    "recipientsLoaded": "လက်ခံသူများ တင်ပြီး",
+    "recipientCount": "{count} / {max} ဦး",
+    "replaceCsv": "CSV တင်သွင်းရန်",
+    "previewEmpty": "အကြိုကြည့်ရန် ပွဲခေါင်းစဉ်နှင့် လက်ခံသူ အနည်းဆုံး တစ်ဦး လိုအပ်သည်။",
+    "downloadAll": "လက်မှတ် PDF ဒေါင်းလုဒ်",
+    "quotaHint": "အခမဲ့: တစ်ကြိမ်လျှင် {max} ဦး · နေ့စဉ် ကုန်ကျစရစ် ကန့်သတ်ချက် ရှိသည်။",
+    "needCsv": "CSV ဖိုင် တင်ပါ။",
+    "emptyCsv": "CSV တွင် တရားဝင်အမည် မရှိပါ။",
+    "needRecipients": "ပွဲခေါင်းစဉ်နှင့် လက်ခံသူအမည် အနည်းဆုံး တစ်ဦး လိုအပ်သည်။",
+    "tooMany": "အခမဲ့အစီအစဉ်တွင် {max} ဦးအထိသာ။ စာရင်းလျှော့ပါ သို့မဟုတ် အဆင့်မြှင့်ပါ။",
+    "templateLabel": "လက်မှတ် template",
+    "templates": {
+      "classic": "Classic",
+      "classicDesc": "တရားဝင် diploma · ရွှေဘောင်နှစ်ထပ်။",
+      "modern": "Modern",
+      "modernDesc": "Corporate · teal rail · ဘယ်ညှိ။",
+      "elegant": "Elegant",
+      "elegantDesc": "Cream နောက်ခံ · အလှဆင်လိုင်း · Times။"
+    },
+    "signersLabel": "လက်မှတ်များ",
+    "signerCount": {
+      "0": "လက်မှတ်မလို",
+      "1": "၁ ဦး",
+      "2": "၂ ဦး",
+      "3": "၃ ဦး"
+    },
+    "signerN": "လက်မှတ်ထိုးသူ {n}",
+    "uploadSignature": "လက်မှတ်ပုံ တင်ရန် (optional)",
+    "signatureSelected": "လက်မှတ်: {name}",
+    "needSignatureImage": "လက်မှတ်သည် ပုံ (PNG/JPG/WebP) ဖြစ်ရမည်။",
+    "signatureTooLarge": "လက်မှတ်ပုံ ၆၀၀KB အောက်ဖြစ်ရမည်။",
+    "noSignersHint": "လက်မှတ်လိုင်းမပါဘဲ ထုတ်မည်။",
+    "livePreviewTitle": "တိုက်ရိုက် အကြိုကြည့်",
+    "livePreviewHint": "ပထမ လက်ခံသူ · ပြင်လိုက်တိုင်း အပ်ဒိတ်။ ဒေါင်းလုဒ်တွင် QR အစစ်ပါမည်။",
+    "previewFailed": "အကြိုကြည့် မတည်ဆောက်နိုင်ပါ။",
+    "wordingLabel": "လက်မှတ်စာသား",
+    "wordingShow": "ပြင်ရန်",
+    "wordingHide": "ဖျောက်ရန်",
+    "sigModeUpload": "ပုံတင်ရန်",
+    "sigModeDraw": "ဖန်သားပြင်တွင် ရေးရန်",
+    "drawHint": "Mouse သို့မဟုတ် လက်ချောင်းဖြင့် ရေးပါ",
+    "clearSignature": "ရှင်းရန်",
+    "logoLabel": "အဖွဲ့အစည်းလိုဂို",
+    "uploadLogo": "လိုဂို တင်ရန်",
+    "logoSelected": "လိုဂို: {name}",
+    "logoHint": "PNG/JPG/WebP · ဤ browser တွင် သိမ်းပြီး ပြန်သုံးနိုင်သည်။",
+    "needLogoImage": "လိုဂိုသည် ပုံ (PNG/JPG/WebP) ဖြစ်ရမည်။",
+    "logoTooLarge": "လိုဂို ၆၀၀KB အောက်ဖြစ်ရမည်။",
+    "signatureLibrary": "သိမ်းထားသော လက်မှတ်များ",
+    "saveSignatureToLibrary": "Library သို့ သိမ်းရန်",
+    "needSignatureToSave": "အရင် လက်မှတ်ပုံ သို့မဟုတ် ရေးသားမှု ထည့်ပါ။",
+    "clearDraft": "ဖောင်ရှင်းရန်",
+    "draftHint": "Draft ကို browser တွင် အလိုအလျောက် သိမ်းသည် · refresh လုပ်လည်း မပျောက်။",
+    "seo": {
+      "title": "အစုလိုက် လက်မှတ်စာ Generator + QR | Pdfumi",
+      "description": "CSV သို့မဟုတ် ကိုယ်တိုင်စာရင်းမှ လက်မှတ်စာ အစုလိုက် ထုတ်ပါ။ PDF တစ်ခုချင်းတွင် QR ဖြင့် အွန်လိုင်း အတည်ပြုနိုင်သည်။",
+      "faqTitle": "လက်မှတ်စာ FAQ",
+      "faqs": [
+        {
+          "q": "လက်ခံသူ ဘယ်လို အတည်ပြုမလဲ?",
+          "a": "လက်မှတ်စာတိုင်းတွင် ထူးခြားသော QR ရှိသည်။ Scan လုပ်ပါက Pdfumi Verify ဖွင့်သည်။"
+        },
+        {
+          "q": "Spreadsheet မှ နာမည် တင်နိုင်သလား?",
+          "a": "နိုင်ပါသည်။ name နှင့် title (optional) CSV တင်ပါ သို့မဟုတ် ကိုယ်တိုင် ရိုက်ပါ။"
+        },
+        {
+          "q": "အခမဲ့ ဘယ်နှစ်ခုအထိ?",
+          "a": "အခမဲ့တွင် တစ် batch လက်ခံသူ ၂၀ အထိ။ ပိုလိုပါက အဆင့်မြှင့်ပါ။"
+        }
+      ]
+    }
+  },
+  "verify": {
+    "eyebrow": "Pdfumi Verify",
+    "title": "လက်မှတ် အတည်ပြုခြင်း",
+    "subtitle": "QR စကင်ဖတ်ပါ သို့မဟုတ် ဤလင့်ခ်ဖြင့် စစ်မှန်မှုကို အတည်ပြုပါ။",
+    "loading": "လက်မှတ် စစ်ဆေးနေသည်…",
+    "valid": "တရားဝင် လက်မှတ်",
+    "invalid": "လက်မှတ် မတွေ့ပါ",
+    "notFound": "ဤကုဒ်သည် မှတ်တမ်းတွင် မရှိပါ။",
+    "recipient": "လက်ခံသူ",
+    "event": "ပွဲ",
+    "organization": "အဖွဲ့အစည်း",
+    "eventDate": "ရက်စွဲ",
+    "code": "အတည်ပြုကုဒ်",
+    "ctaIssue": "အစုလိုက် လက်မှတ် ထုတ်ရန် →"
+  },
+  "pricing": {
+    "title": "စျေးနှုန်း",
+    "subtitle": "ပွင့်လင်းသည်။ Quota ကုန်ရင် ရပ်သည် — လျှို့ဝှက် အပိုမကောက်ပါ။",
+    "freeName": "အခမဲ့",
+    "freePrice": "$0",
+    "freeItems": [
+      "၅ စာရွက်စာတမ်း/နေ့ (ကိရိယာတစ်ခုစီ)",
+      "ဖိုင်အရွယ်အစား အများဆုံး 20 MB",
+      "ရည်မှန်းအရွယ်အစား ဖိသိပ်မှု < 200 KB",
+      "လက်မှတ် ၂၀ အထိ"
+    ],
+    "proName": "Pro",
+    "proPrice": "$5/လ",
+    "proItems": [
+      "စာရွက်စာတမ်း ၅၀၀/လ",
+      "ဖိုင်အရွယ်အစား ၁၀၀ MB အထိ",
+      "ဦးစားပေး အမြန်စီမံဆောင်ရွက်မှု",
+      "လက်မှတ် ၂၀၀ အထိ",
+      "PDF မှ Word/Excel အများအပြား ပြောင်းလဲမှု"
+    ],
+    "businessName": "Pro နှစ်စဉ်",
+    "businessPrice": "$15/နှစ်",
+    "businessItems": [
+      "စာရွက်စာတမ်း ၆,၀၀၀/နှစ် (တစ်လ ၅၀၀ နှုန်း)",
+      "ဖိုင်အရွယ်အစား ၁၀၀ MB အထိ",
+      "အမြန်ဆုံး ဦးစားပေး စီမံဆောင်ရွက်မှု",
+      "လက်မှတ် ၅၀၀ အထိ",
+      "အများဆုံး သက်သာသော နှစ်စဉ်ပလန်"
+    ],
+    "globalHint": "Supports instant QRIS, E-Wallets, and international Credit/Debit cards via Midtrans.",
+    "emailForCheckout": "Checkout အတွက် အီးမေးလ်",
+    "checkoutMissing": "Checkout URL missing. Please try again.",
+    "ctaFree": "အခမဲ့အကောင့် ဖန်တီးရန် →",
+    "ctaPro": "Pro သို့ အဆင့်မြှင့်",
+    "ctaBusiness": "Pro နှစ်စဉ်ပလန် ရယူရန် →",
+    "seo": {
+      "title": "Pdfumi ဈေးနှုန်း — Free, Pro & Business",
+      "description": "PDF ကိရိယာ ဈေးနှုန်း ရိုးရှင်းသည်။ အခမဲ့ နေ့စဉ် quota၊ Event Pass, Pro/Business။"
+    },
+    "tabQris": "QRIS (အင်ဒိုနီးရှား)",
+    "tabCard": "Credit Card & Digital Payments",
+    "qrisBadge": "ချက်ချင်းအသက်သွင်းခြင်း • ဘဏ်များအားလုံး",
+    "proPriceIdr": "Rp 29.000/လ",
+    "businessPriceIdr": "Rp 149.000/နှစ်",
+    "scanPrompt": "ငွေပေးချေရန် QR စကင်န်ဖတ်ပါ",
+    "waitingPayment": "ငွေပေးချေမှုကို စောင့်ဆိုင်းနေသည်...",
+    "paymentSuccess": "ငွေလက်ခံရရှိပါပြီ...",
+    "simulatePay": "စမ်းသပ်ပေးချေခြင်း (Sandbox)",
+    "orderRef": "အညွှန်းနံပါတ်",
+    "expiresIn": "၂၄ နာရီအတွင်း သက်တမ်းရှိသည်",
+    "openCheckout": "ငွေပေးချေမှု စာမျက်နှာဖွင့်ရန်",
+    "closeModal": "ပိတ်ရန်",
+    "activeUntil": "သက်တမ်းကုန်ဆုံးမည့်ရက်",
+    "passName": "Event Pass",
+    "passPrice": "$2",
+    "passPriceIdr": "Rp 19.000",
+    "passBadge": "လူကြိုက်များသော",
+    "passDuration": "၇ ရက် (တစ်ကြိမ်သာ)",
+    "passItems": [
+      "စာရွက်စာတမ်း ၁၅၀ (၇ ရက် အသုံးပြုနိုင်)",
+      "ဖိုင်အရွယ်အစား ၁၀၀ MB အထိ",
+      "ဖိုင်များစွာ တစ်ပြိုင်နက် စီမံဆောင်ရွက်မှု",
+      "လက်မှတ် ၁၀၀ အထိ"
+    ],
+    "ctaPass": "Event Pass ဝယ်ယူရန်",
+    "businessBadge": "၆၀% လျှော့စျေး (အကောင်းဆုံး)"
+  },
+  "account": {
+    "title": "အသုံးပြုသူ အကောင့်",
+    "subtitle": "စာရွက်စာတမ်း quota စစ်ဆေးပါ၊ ပလန် စီမံပါ၊ စကားဝှက်မလိုဘဲ အသုံးပြုပါ။",
+    "loginTitle": "ဝင်ရန်",
+    "loginHint": "တစ်ကြိမ်သုံး magic link ကို အီးမေးလ်ပို့ပါမည်။ စကားဝှက် မလိုပါ။",
+    "loginSend": "ဝင်ရန် လင့်ခ် ပို့ရန်",
+    "loginSent": "ထိုအီးမေးလ်အတွက် အကောင့်ရှိပါက ဝင်ရန် လင့်ခ် ပို့ပြီးပါပြီ။",
+    "loginConfirmTitle": "ဝင်နေသည်",
+    "loginConfirmSubtitle": "Magic link အတည်ပြုပြီး ဆက်ရှင် ဖွင့်နေသည်။",
+    "loginConfirming": "ဝင်နေသည်…",
+    "loginInvalid": "ဤဝင်ရန် လင့်ခ် မမှန်ကန်ပါ သို့မဟုတ် သက်တမ်းကုန်ပါပြီ။",
+    "loginOk": "ဝင်ပြီးပါပြီ။ ဤဘရောက်ဇာတွင် ဆက်ရှင် ၃၀ ရက် သက်တမ်းရှိသည်။",
+    "logout": "ထွက်ရန်",
+    "logoutOk": "ထွက်ပြီးပါပြီ။",
+    "registerTitle": "အခမဲ့အကောင့် ဖန်တီးရန်",
+    "email": "Email",
+    "createFree": "အကောင့်ဖန်တီးရန်",
+    "registerOk": "အကောင့် ဖန်တီးပြီးပါပြီ။ အကောင့်ဝင်ပြီးဖြစ်ပါသည်။",
+    "recoverTitle": "API key ပျောက်နေပါသလား?",
+    "recoverHint": "တစ်ကြိမ်သုံး magic link ကို အီးမေးလ်ပို့ပါမည်။ ဖွင့်လိုက်ပါက သော့ဟောင်းများ ပယ်ဖျက်ပြီး သော့အသစ် ထုတ်ပေးပါမည်။",
+    "recoverSend": "ပြန်လည်ရယူရန် လင့်ခ် ပို့ရန်",
+    "recoverSent": "ထိုအီးမေးလ်အတွက် အကောင့်ရှိပါက ပြန်လည်ရယူရန် လင့်ခ် ပို့ပြီးပါပြီ။",
+    "recoverDevLink": "Dev magic link:",
+    "recoverConfirmTitle": "API key ပြန်လည်ရယူရန်",
+    "recoverConfirmSubtitle": "Magic link အတည်ပြုပြီး သော့အသစ် ထုတ်ပေးနေသည်။",
+    "recoverConfirming": "အတည်ပြုနေသည်…",
+    "recoverInvalid": "ဤပြန်လည်ရယူရန် လင့်ခ် မမှန်ကန်ပါ သို့မဟုတ် သက်တမ်းကုန်ပါပြီ။",
+    "recoverRevoked": "သော့ဟောင်း ပယ်ဖျက်: {count}။ သော့အသစ်ကို ဤဘရောက်ဇာတွင် သိမ်းပြီးပါပြီ။",
+    "recoverBack": "အကောင့်သို့ ပြန်ရန်",
+    "keyTitle": "API key in this browser",
+    "keyHint": "Developer အတွက် ရွေးချယ်နိုင်သည်။ ဝင်ထားပါက paid tool များ သုံးနိုင်သည်။",
+    "saveKey": "Save key",
+    "clearKey": "Clear key",
+    "keySaved": "API key saved in this browser.",
+    "keyCleared": "API key cleared.",
+    "keyOnce": "Copy this API key now — it is shown only once.",
+    "statusTitle": "Current plan",
+    "quotaLine": "Usage: {used}/{limit} ({period})",
+    "entitlementFooterOn": "Brand footer: on",
+    "entitlementFooterOff": "Brand footer: off",
+    "entitlementCerts": "Certificate batch size: up to {max}",
+    "upgradeTitle": "Upgrade",
+    "upgradeHint": "Checkout opens secure payment via Midtrans.",
+    "upgradePro": "Checkout Pro ($9)",
+    "upgradeBusiness": "Checkout Business ($24)",
+    "checkoutSuccess": "Payment received — your plan is active. Welcome to Pdfumi Pro!",
+    "checkoutCancel": "Checkout canceled.",
+    "checkoutMissing": "Checkout URL missing.",
+    "seo": {
+      "title": "အကောင့် & ဝင်ရန် | Pdfumi",
+      "description": "Magic link ဖြင့် ဝင်ပါ၊ အခမဲ့အကောင့် ဖန်တီးပါ၊ API key ပြန်ယူပါ၊ သို့မဟုတ် ပလန် အဆင့်မြှင့်ပါ။"
+    }
+  },
+  "toolsMenu": {
+    "label": "ကိရိယာများ",
+    "title": "ကိရိယာအားလုံး",
+    "subtitle": "ပြောင်း၊ ချုံ့၊ စီစဉ် — ရွေးပြီး စတင်ပါ။",
+    "close": "ပိတ်ရန်",
+    "groups": {
+      "compress": "Kompres",
+      "convert": "Konversi",
+      "organize": "Atur PDF",
+      "edit": "Edit PDF",
+      "create": "Buat Dokumen",
+      "office": "Office & PDF",
+      "image": "Alat Gambar",
+      "scan": "Pindai",
+      "imageToPdf": "Gambar ke PDF",
+      "protect": "Keamanan",
+      "fillAndSign": "Tanda Tangan"
+    },
+    "items": {
+      "compressPdf": "PDF ချုံ့ရန်",
+      "pdfConverter": "PDF Converter",
+      "jpgToPdf": "JPG မှ PDF",
+      "pdfToJpg": "PDF မှ JPG",
+      "pdfToPng": "PDF မှ PNG",
+      "mergePdf": "PDF ပေါင်းရန်",
+      "splitPdf": "PDF ခွဲရန်",
+      "rotatePdf": "PDF လှည့်ရန်",
+      "deletePages": "စာမျက်နှာ ဖျက်ရန်",
+      "extractPages": "စာမျက်နှာ ထုတ်ရန်",
+      "organizePdf": "PDF စီစဉ်ရန်",
+      "watermark": "ရေစာ",
+      "receipt": "ပြေစာ",
+      "certificates": "လက်မှတ်များ",
+      "pdfToWord": "PDF မှ Word",
+      "pdfToExcel": "PDF မှ Excel",
+      "pdfToPpt": "PDF မှ PPT",
+      "wordToPdf": "Word မှ PDF",
+      "excelToPdf": "Excel မှ PDF",
+      "pptToPdf": "PPT မှ PDF",
+      "protectPdf": "PDF ကာကွယ်",
+      "unlockPdf": "PDF သော့ဖွင့်",
+      "signPdf": "PDF လက်မှတ်",
+      "pageNumbersPdf": "စာမျက်နှာနံပါတ်",
+      "cropPdf": "PDF ဖြတ်",
+      "ocrPdf": "OCR PDF",
+      "editPdf": "Edit PDF",
+      "redactPdf": "Sensor PDF (Redact)",
+      "pngToPdf": "PNG ke PDF",
+      "webpToPdf": "WebP ke PDF",
+      "heicToPdf": "HEIC ke PDF",
+      "headerFooterPdf": "Header & Footer",
+      "flattenPdf": "Ratakan PDF (Flatten)",
+      "grayscalePdf": "Hitam Putih (Grayscale)",
+      "removeMetadataPdf": "Hapus Metadata",
+      "resizePdf": "Ubah Ukuran Kertas",
+      "resizeImage": "Ubah Ukuran Foto",
+      "pasFoto": "Pas Foto (2x3, 3x4, 4x6)",
+      "compressImage": "Kompres Gambar",
+      "removeSignatureBg": "Hapus Background TTD",
+      "scanPdf": "Scan Kamera HP",
+      "invoice": "Invoice Tagihan",
+      "suratResmi": "Surat Resmi",
+      "kontrak": "Kontrak & Perjanjian",
+      "compressJpg": "Kompres JPG",
+      "compressPng": "Kompres PNG",
+      "compressWebp": "Kompres WebP",
+      "compressVideo": "ဗီဒီယို ဖိုင်အရွယ်အစားလျှော့ချခြင်း",
+      "compressAudio": "အသံဖိုင် အရွယ်အစားလျှော့ချခြင်း",
+      "fillPdf": "Isi Borang PDF"
+    }
+  },
+  "jpgToPdf": {
+    "title": "JPG မှ PDF အခမဲ့",
+    "description": "ဓာတ်ပုံ/စကင်ကို PDF တစ်ခုအဖြစ်။ ဆွဲ၍ အစဉ်ပြောင်းပြီး ဒေါင်းလုဒ်။ နေ့စဉ်အခမဲ့ခွင့်ပြုချက်ရှိ။",
+    "seo": {
+      "title": "JPG မှ PDF အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "JPG/PNG/WebP ကို PDF တစ်ခုသို့။ Thumbnail ပြန်စီ၊ ချက်ချင်းဒေါင်းလုဒ်။",
+      "faqTitle": "JPG→PDF မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ပုံအမျိုးအစား?",
+          "a": "JPG, PNG, WebP, GIF, BMP — အများဆုံး ၂၀ ဖိုင်၊ တစ်ခု ၅MB။"
+        },
+        {
+          "q": "အစဉ်ပြောင်းနိုင်သလား?",
+          "a": "နိုင်ပါသည်။ ဒေါင်းလုဒ်မလုပ်မီ thumbnail ဆွဲပါ။"
+        },
+        {
+          "q": "အကောင့်လိုသလား?",
+          "a": "အခမဲ့ခွင့်အတွက် မလို။ အခပေးအစီအစဉ်အတွက် ဝင်ပါ။"
+        }
+      ]
+    },
+    "chooseFiles": "ပုံများရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "JPG/PNG/WebP · အများဆုံး ၂၀ · တစ်ခု ၅MB",
+    "addMore": "ပုံထပ်ထည့်",
+    "reorderHint": "PDF စာမျက်နှာအစဉ်ပြောင်းရန် ပုံကိုဆွဲပါ",
+    "needFiles": "အနည်းဆုံး ပုံတစ်ပုံ တင်ပါ။"
+  },
+  "pdfToJpg": {
+    "title": "PDF မှ JPG အခမဲ့",
+    "description": "စာမျက်နှာတိုင်းကို JPG အဖြစ်ထုတ်။ ZIP ဒေါင်းလုဒ်။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF မှ JPG အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF စာမျက်နှာများကို JPG သို့။ စာမျက်နှာတစ်ခုစီ ZIP။ အခမဲ့ခွင့်ရှိ။",
+      "faqTitle": "PDF→JPG မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ရလဒ်?",
+          "a": "စာမျက်နှာတစ်ခုစီ JPG ပါသော ZIP (~150 DPI)။"
+        },
+        {
+          "q": "စာမျက်နှာကန့်သတ်?",
+          "a": "တစ်ကြိမ် ၅၀ အထိ။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB · ၅၀ စာမျက်နှာအထိ",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "resultHint": "စာမျက်နှာတိုင်း JPG အဖြစ် ZIP ထဲရှိမည်။",
+    "downloadZip": "JPG ZIP ဒေါင်းလုဒ်"
+  },
+  "pdfToPng": {
+    "title": "PDF မှ PNG အခမဲ့",
+    "description": "စာမျက်နှာတိုင်းကို PNG ကြည်လင်စွာ။ ZIP ဒေါင်းလုဒ်။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF မှ PNG အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF စာမျက်နှာများကို PNG သို့။ စာမျက်နှာတစ်ခုစီ ZIP။ အခမဲ့ခွင့်ရှိ။",
+      "faqTitle": "PDF→PNG မေးခွန်း",
+      "faqs": [
+        {
+          "q": "PNG သို့ JPG?",
+          "a": "PNG စာသားကြည်; JPG ဓာတ်ပုံအတွက် ပိုသေး။"
+        },
+        {
+          "q": "စာမျက်နှာကန့်သတ်?",
+          "a": "တစ်ကြိမ် ၅၀ အထိ။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB · ၅၀ စာမျက်နှာအထိ",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "resultHint": "စာမျက်နှာတိုင်း PNG အဖြစ် ZIP ထဲရှိမည်။",
+    "downloadZip": "PNG ZIP ဒေါင်းလုဒ်"
+  },
+  "pdfToWord": {
+    "title": "PDF မှ Word အခမဲ့",
+    "description": "LibreOffice ဖြင့် PDF ကို တည်းဖြတ်နိုင်သော .docx သို့ ပြောင်း။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF မှ Word အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF ကို Word DOCX သို့ အွန်လိုင်းပြောင်း။ တည်းဖြတ်နိုင်သောဖိုင် ဒေါင်းလုဒ်။",
+      "faqTitle": "PDF→Word မေးခွန်း",
+      "faqs": [
+        {
+          "q": "တည်းဖြတ်နိုင်သလား?",
+          "a": "ဟုတ် —.docx။ ရှုပ်ထွေးသော layout ကို ပြောင်းပြီးနောက် ပြင်ရနိုင်သည်။"
+        },
+        {
+          "q": "ဘယ် engine?",
+          "a": "Server ပေါ်ရှိ LibreOffice headless။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "resultHint": "တည်းဖြတ်နိုင်သော .docx အဖြစ် ဒေါင်းလုဒ် (LibreOffice)။",
+    "downloadResult": "Word ဒေါင်းလုဒ်"
+  },
+  "wordToPdf": {
+    "title": "Word မှ PDF အခမဲ့",
+    "description": "LibreOffice ဖြင့် .doc/.docx ကို PDF သို့ ပြောင်း။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "Word မှ PDF အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "Word DOC/DOCX ကို PDF သို့ အွန်လိုင်းပြောင်း။ ချက်ချင်းဒေါင်းလုဒ်။",
+      "faqTitle": "Word→PDF မေးခွန်း",
+      "faqs": [
+        {
+          "q": "Word ပုံစံ?",
+          "a": ".doc နှင့် .docx ပံ့ပိုးသည်။"
+        },
+        {
+          "q": "Font တူမတူ?",
+          "a": "အသုံးများသော font ထိန်းသိမ်းနိုင်။ ရှား font အစားထိုးနိုင်သည်။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် Word ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "Word ဖိုင်ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": ".doc / .docx · ၅MB",
+    "needFile": "အရင် Word ဖိုင်ရွေးပါ။",
+    "resultHint": "ပုံနှိပ်ရန်အဆင်သင့် PDF အဖြစ် ဒေါင်းလုဒ်။",
+    "downloadResult": "PDF ဒေါင်းလုဒ်"
+  },
+  "pdfConverter": {
+    "title": "PDF Converter အခမဲ့",
+    "description": "PDF ကို Word၊ Excel သို့မဟုတ် ပုံသို့ — နှင့် Word/Excel/ပုံ ကို PDF သို့ ပြောင်းပါ။",
+    "seo": {
+      "title": "PDF Converter အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF ↔ Word/Excel၊ PDF→JPG/PNG၊ ပုံ→PDF။ အခမဲ့။",
+      "faqTitle": "Converter မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ဘာပြောင်းနိုင်သလဲ?",
+          "a": "PDF → Word / Excel / JPG / PNG; Word သို့မဟုတ် Excel → PDF; ပုံ → PDF။"
+        },
+        {
+          "q": "အကောင့်လိုသလား?",
+          "a": "မလို။ Tool အလိုက် နေ့စဉ်အခမဲ့ခွင့်ရှိ။"
+        },
+        {
+          "q": "PowerPoint?",
+          "a": "PowerPoint မကြာမီ။ Word နှင့် Excel ရနိုင်ပြီ။"
+        }
+      ]
+    },
+    "chooseFiles": "ဖိုင်ရွေးရန်",
+    "dropHint": "သို့မဟုတ် PDF၊ Word၊ Excel သို့မဟုတ် ပုံများ ဆွဲချပါ",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · ၅MB",
+    "needFile": "အရင် ဖိုင်တင်ပါ။",
+    "needTarget": "ဖိုင်နှင့်ကိုက်ညီသော output ပုံစံရွေးပါ။",
+    "unsupported": "ဖိုင်အမျိုးအစား မပံ့ပိုးပါ။ PDF၊ Word၊ Excel သို့မဟုတ် ပုံသုံးပါ။",
+    "convertTo": "ပြောင်းရန်",
+    "toPdf": "PDF",
+    "toWord": "Word",
+    "toJpg": "JPG",
+    "toPng": "PNG",
+    "convertDownload": "ပြောင်းပြီး ဒေါင်းလုဒ်",
+    "filesCount": "{count} ဖိုင်",
+    "bulletWord": "LibreOffice ဖြင့် PDF ↔ Word / Excel",
+    "bulletImages": "ပုံ → PDF သို့မဟုတ် PDF → JPG/PNG",
+    "bulletPdfOut": "Browser တွင် — တပ်ဆင်ရန်မလို",
+    "alsoSee": "သီးခြား tools:",
+    "linkPdfWord": "PDF မှ Word",
+    "linkWordPdf": "Word မှ PDF",
+    "linkJpgPdf": "JPG မှ PDF",
+    "toExcel": "Excel",
+    "linkPdfExcel": "PDF မှ Excel"
+  },
+  "compressPdf": {
+    "title": "PDF ချုံ့ရန် အခမဲ့",
+    "description": "ထည့်သွင်းပုံများကို ပြန်ချုံ့၍ ဖိုင်သေးစေ။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF ချုံ့ရန် အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF အရွယ်အစားလျှော့။ ပုံပြန်ချုံ့ပြီး ချက်ချင်းဒေါင်းလုဒ်။",
+      "faqTitle": "ချုံ့ မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ဘယ်လောက်သေးမလဲ?",
+          "a": "ဖိုင်ပေါ်မူတည်။ ပုံများသောဖိုင် ပိုသေး။"
+        },
+        {
+          "q": "အရည်အသွေး?",
+          "a": "ပုံများ ပြန်ချုံ့သည်။ စာသား vector ဆို ကြည်နေဆဲ။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။"
+  },
+  "splitPdf": {
+    "title": "PDF ခွဲရန် အခမဲ့",
+    "description": "လိုသောစာမျက်နှာသာ ထား၊ မလိုသည်ဖယ် — PDF တစ်ခု ဒေါင်းလုဒ်။ အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF ခွဲရန် အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "ထားမည့်စာမျက်နှာရွေးပြီး PDF တစ်ခုဒေါင်းလုဒ်။ မလိုသည်ဖယ်။",
+      "faqTitle": "ခွဲ မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ZIP လား?",
+          "a": "မဟုတ်။ ရွေးထားသောစာမျက်နှာများပါသော PDF တစ်ခုသာ။"
+        },
+        {
+          "q": "စာမျက်နှာဖယ်နည်း?",
+          "a": "Thumbnail နှိပ်၍ uncheck။"
+        },
+        {
+          "q": "စာမျက်နှာကန့်သတ်?",
+          "a": "အများဆုံး ၁၀၀။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB · ၁၀၀ စာမျက်နှာအထိ",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "replace": "အစားထိုး",
+    "loadingPages": "စာမျက်နှာများ ဖတ်နေ…",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ",
+    "resultHint": "{count, plural, =0 {စာမျက်နှာ မရွေးရသေး} one {ရလဒ်: PDF ထဲ ၁ စာမျက်နှာ} other {ရလဒ်: PDF ထဲ # စာမျက်နှာ}}",
+    "needPages": "ခွဲမည့်စာမျက်နှာ အနည်းဆုံး တစ်ခု ရွေးပါ။",
+    "selectHint": "နှိပ်၍ ထား/ဖယ် · ဆွဲ၍ PDF နောက်ဆုံးအစဉ်ပြောင်း",
+    "selectAll": "အားလုံးရွေး",
+    "clearSelection": "ရှင်းရန်"
+  },
+  "rotatePdf": {
+    "title": "PDF လှည့်ရန် အခမဲ့",
+    "description": "စာမျက်နှာအလိုက် ဘယ်/ညာ လှည့်၊ အစဉ်ပြောင်း သို့မဟုတ် ဖျက်ပြီး ဒေါင်းလုဒ်။",
+    "seo": {
+      "title": "PDF လှည့်ရန် အွန်လိုင်း အခမဲ့ | Pdfumi",
+      "description": "PDF စာမျက်နှာ တစ်ခုချင်း လှည့်။ Preview၊ အစဉ်ပြောင်း၊ ဒေါင်းလုဒ်။",
+      "faqTitle": "လှည့် မေးခွန်း",
+      "faqs": [
+        {
+          "q": "စာမျက်နှာအလိုက် ထောင့်ကွဲနိုင်သလား?",
+          "a": "ဟုတ်။ Thumbnail တိုင်းတွင် ဘယ်/ညာ လှည့်သုံးပါ။"
+        },
+        {
+          "q": "ကြိုကြည့်နိုင်သလား?",
+          "a": "Thumbnail တွင် လှည့်ပြီးကြည့်နိုင်။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "replace": "အစားထိုး",
+    "loadingPages": "စာမျက်နှာများ ဖတ်နေ…",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ",
+    "reorderHint": "ဆွဲ၍ အစဉ်ပြောင်း။ စာမျက်နှာတိုင်းတွင် လှည့် သို့မဟုတ် ဖျက်။",
+    "cardHint": "စာမျက်နှာပေါ်တွင် preview / လှည့် / ဖျက်။",
+    "angleOriginal": "မူရင်း"
+  },
+  "deletePages": {
+    "title": "PDF စာမျက်နှာဖျက် အခမဲ့",
+    "description": "အမှိုက်ပုံးဖြင့် စာမျက်နှာဖျက်၊ ကျန်သည် အစဉ်အတိုင်း။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF စာမျက်နှာဖျက် အခမဲ့ | Pdfumi",
+      "description": "မလိုသော PDF စာမျက်နှာဖျက်။ Thumbnail အမှိုက်ပုံးဖြင့် ဖျက်ပြီး ဒေါင်းလုဒ်။",
+      "faqTitle": "ဖျက် မေးခွန်း",
+      "faqs": [
+        {
+          "q": "အားလုံးဖျက်နိုင်သလား?",
+          "a": "မရပါ — အနည်းဆုံး တစ်မျက်နှာ ကျန်ရမည်။"
+        },
+        {
+          "q": "ဘယ်လိုဖျက်?",
+          "a": "Thumbnail အမှိုက်ပုံးသုံးပြီး ဒေါင်းလုဒ်။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "needPages": "အနည်းဆုံး တစ်မျက်နှာ ဖျက်ပါ (တစ်မျက်နှာ ကျန်ရမည်)။",
+    "selectHint": "အမှိုက်ပုံးဖြင့် စာမျက်နှာဖျက်ပါ",
+    "replace": "အစားထိုး",
+    "loadingPages": "စာမျက်နှာများ ဖတ်နေ…",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ",
+    "selectAll": "အားလုံးရွေး",
+    "clearSelection": "ရှင်းရန်",
+    "reorderHint": "ဆွဲ၍ အစဉ်ပြောင်း။ အမှိုက်ပုံးဖြင့် PDF မှ ဖျက်။",
+    "cardHint": "စာမျက်နှာပေါ်တွင် preview / လှည့် / ဖျက်။"
+  },
+  "extractPages": {
+    "title": "PDF စာမျက်နှာထုတ် အခမဲ့",
+    "description": "လိုသောစာမျက်နှာရွေးပြီး PDF အသစ်ဒေါင်းလုဒ်။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "seo": {
+      "title": "PDF စာမျက်နှာထုတ် အခမဲ့ | Pdfumi",
+      "description": "ရွေးထားသော PDF စာမျက်နှာကို ဖိုင်အသစ်သို့။ Thumbnail နှိပ်ရွေး။",
+      "faqTitle": "ထုတ် မေးခွန်း",
+      "faqs": [
+        {
+          "q": "အစဉ်?",
+          "a": "မြင်ရသောအစဉ် (ဘယ်မှညာ) ထိန်းသိမ်းသည်။"
+        },
+        {
+          "q": "ဘယ်လိုရွေး?",
+          "a": "Thumbnail နှိပ်ပြီး ဒေါင်းလုဒ်။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "needPages": "ထုတ်မည့်စာမျက်နှာ အနည်းဆုံး တစ်ခု ရွေးပါ။",
+    "selectHint": "နှိပ်၍ ထည့် · ဆွဲ၍ PDF အသစ်အစဉ်သတ်မှတ်",
+    "replace": "အစားထိုး",
+    "loadingPages": "စာမျက်နှာများ ဖတ်နေ…",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ",
+    "selectAll": "အားလုံးရွေး",
+    "clearSelection": "ရှင်းရန်"
+  },
+  "organizePdf": {
+    "title": "PDF စီစဉ်ရန် အခမဲ့",
+    "description": "Thumbnail ဆွဲ၍ စာမျက်နှာအစဉ်ပြောင်း — ပေါင်းစည်းလို၊ ဖိုင်တစ်ခုအတွက်။",
+    "seo": {
+      "title": "PDF စီစဉ် · စာမျက်နှာပြန်စီ အခမဲ့ | Pdfumi",
+      "description": "Drag-and-drop ဖြင့် PDF စာမျက်နှာအစဉ်ပြောင်း။ ကြည့်ပြီး ဒေါင်းလုဒ်။",
+      "faqTitle": "စီစဉ် မေးခွန်း",
+      "faqs": [
+        {
+          "q": "ဘယ်လိုပြန်စီ?",
+          "a": "Thumbnail ဆွဲ၍ အစဉ်သတ်မှတ်ပြီး ဒေါင်းလုဒ်။"
+        },
+        {
+          "q": "စာမျက်နှာဖျက်?",
+          "a": "ဖျက်ကိရိယာသုံးပါ။ ဤကိရိယာ အစဉ်ပြောင်းသာ။"
+        },
+        {
+          "q": "ဖိုင်အရွယ်?",
+          "a": "အခမဲ့တွင် PDF ၅MB အထိ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
+    "uploadHint": "PDF သာ · ၅MB · ၁၀၀ စာမျက်နှာအထိ",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "reorderHint": "နောက်ဆုံးအစဉ်သတ်မှတ်ရန် စာမျက်နှာဆွဲပါ",
+    "replace": "အစားထိုး",
+    "loadingPages": "စာမျက်နှာများ ဖတ်နေ…",
+    "pageOne": "၁ စာမျက်နှာ",
+    "pageMany": "{count} စာမျက်နှာ"
+  },
+  "protectPdf": {
+    "title": "PDF ကာကွယ် အခမဲ့",
+    "description": "Password ထည့်၍ PDF ကို ကာကွယ်ပါ။",
+    "seo": {
+      "title": "PDF ကာကွယ် အခမဲ့ | Pdfumi",
+      "description": "Password ထည့်၍ PDF ကို ကာကွယ်ပါ။",
+      "faqTitle": "Protect FAQ",
+      "faqs": [
+        {
+          "q": "Is the PDF encrypted?",
+          "a": "Yes — AES-style password protection via PDFBox."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "passwordLabel": "Password",
+    "needPassword": "Password ထည့်ပါ။"
+  },
+  "unlockPdf": {
+    "title": "PDF သော့ဖွင့် အခမဲ့",
+    "description": "Password သိပါက ကာကွယ်မှု ဖယ်ရှားပါ။",
+    "seo": {
+      "title": "PDF သော့ဖွင့် အခမဲ့ | Pdfumi",
+      "description": "Password သိပါက ကာကွယ်မှု ဖယ်ရှားပါ။",
+      "faqTitle": "Unlock FAQ",
+      "faqs": [
+        {
+          "q": "Wrong password?",
+          "a": "You will get an error if the password does not match."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "passwordLabel": "လက်ရှိ password",
+    "needPassword": "PDF password ထည့်ပါ။"
+  },
+  "signPdf": {
+    "title": "PDF လက်မှတ် အခမဲ့",
+    "description": "လက်မှတ်ဖန်တီးပြီး စာမျက်နှာပေါ်တွင် ထားကာ ဒေါင်းလုဒ်လုပ်ပါ။",
+    "seo": {
+      "title": "PDF လက်မှတ် အခမဲ့ | Pdfumi",
+      "description": "ရေး၊ ရိုက်၊ သို့မဟုတ် ပုံတင်ပြီး PDF ပေါ်တွင် ဆွဲရွှေ့ / အရွယ်ပြောင်းပါ။",
+      "faqTitle": "Sign FAQ",
+      "faqs": [
+        {
+          "q": "ထားပြီးမှ ရွှေ့လို့ရသလား?",
+          "a": "ရပါတယ် — ဆွဲ၍ ရွှေ့ပါ၊ ထောင့်များဖြင့် အရွယ်ပြောင်းပါ၊ သို့မဟုတ် ဖျက်ပြီး ပြန်ထားပါ။"
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "signatureLabel": "လက်မှတ်ပုံ",
+    "needSignature": "အရင် လက်မှတ် ဖန်တီးပါ။",
+    "presetBr": "ညာအောက်",
+    "presetBl": "ဘယ်အောက်",
+    "presetCenter": "အလယ်",
+    "methodDraw": "ရေးမည်",
+    "methodUpload": "တင်မည်",
+    "drawHint": "ဤနေရာတွင် ရေးပါ",
+    "clearDraw": "ဖျက်",
+    "needDraw": "အရင် လက်မှတ်ရေးပါ။",
+    "uploadHintSig": "PNG / JPG လက်မှတ် ရွေးပါ",
+    "positionHint": "စာမျက်နှာပေါ် တည်နေရာ",
+    "createSignature": "လက်မှတ် ဖန်တီး",
+    "changeSignature": "လက်မှတ် အသစ်",
+    "clearSignature": "လက်မှတ် ဖျက်",
+    "modalTitle": "လက်မှတ် ဖန်တီး",
+    "methodType": "ရိုက်မည်",
+    "typePlaceholder": "သင့်အမည်",
+    "cancel": "ပယ်ဖျက်",
+    "create": "ဖန်တီး",
+    "placeBanner": "လက်မှတ်ထားရန် စာရွက်ကို နှိပ်ပါ။",
+    "placeHint": "pointer ရွှေ့ပြီး နှိပ်၍ ထားပါ။",
+    "dragHint": "ဆွဲ၍ ရွှေ့ · ထောင့်ဖြင့် အရွယ်ပြောင်း",
+    "deleteSig": "လက်မှတ် ဖျက်",
+    "needPlace": "အရင် စာမျက်နှာကို နှိပ်၍ လက်မှတ်ထားပါ။",
+    "downloadSigned": "လက်မှတ်ထိုး PDF ဒေါင်းလုဒ်"
+  },
+  "pageNumbersPdf": {
+    "title": "PDF စာမျက်နှာနံပါတ်",
+    "description": "စာမျက်နှာတိုင်းတွင် နံပါတ်ထည့်ပါ။",
+    "seo": {
+      "title": "PDF စာမျက်နှာနံပါတ် | Pdfumi",
+      "description": "စာမျက်နှာတိုင်းတွင် နံပါတ်ထည့်ပါ။",
+      "faqTitle": "Pages FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose position?",
+          "a": "Yes — bottom/top and left/center/right options."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "positionLabel": "တည်နေရာ",
+    "formatLabel": "ပုံစံ",
+    "posBottomCenter": "အောက်အလယ်",
+    "posBottomLeft": "အောက်ဘယ်",
+    "posBottomRight": "အောက်ညာ",
+    "posTopCenter": "အပေါ်အလယ်",
+    "fmtN": "1, 2, 3…",
+    "fmtNOfTotal": "1 / N"
+  },
+  "cropPdf": {
+    "title": "PDF ဖြတ် အခမဲ့",
+    "description": "စာမျက်နှာတိုင်း၏ အနားများကို တူညီစွာ ဖြတ်ပါ။",
+    "seo": {
+      "title": "PDF ဖြတ် အခမဲ့ | Pdfumi",
+      "description": "စာမျက်နှာတိုင်း၏ အနားများကို တူညီစွာ ဖြတ်ပါ။",
+      "faqTitle": "Crop FAQ",
+      "faqs": [
+        {
+          "q": "How much can I crop?",
+          "a": "Up to about 25% per side."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "marginLabel": "အနား"
+  },
+  "ocrPdf": {
+    "title": "OCR PDF အခမဲ့",
+    "description": "Scan PDF ကို စာရှာနိုင်အောင် OCR လုပ်ပါ။",
+    "seo": {
+      "title": "OCR PDF အခမဲ့ | Pdfumi",
+      "description": "Scan PDF ကို စာရှာနိုင်အောင် OCR လုပ်ပါ။",
+      "faqTitle": "OCR FAQ",
+      "faqs": [
+        {
+          "q": "What do I need locally?",
+          "a": "Install ocrmypdf + tesseract, or use Docker where they are included."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "languageLabel": "OCR ဘာသာ",
+    "ocrHint": "API တွင် ocrmypdf လိုအပ်သည်။"
+  },
+  "pdfToExcel": {
+    "title": "PDF မှ Excel အခမဲ့",
+    "description": "LibreOffice ဖြင့် PDF ကို .xlsx သို့။",
+    "seo": {
+      "title": "PDF မှ Excel အခမဲ့ | Pdfumi",
+      "description": "LibreOffice ဖြင့် PDF ကို .xlsx သို့။",
+      "faqTitle": "Excel FAQ",
+      "faqs": [
+        {
+          "q": "Will tables be perfect?",
+          "a": "Simple tables convert best; complex layouts may need cleanup."
+        }
+      ]
+    },
+    "chooseFile": "PDF ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": "PDF · ၅MB",
+    "needFile": "အရင် PDF ရွေးပါ။",
+    "resultHint": ".xlsx အဖြစ် ဒေါင်းလုဒ်။",
+    "downloadResult": "Excel ဒေါင်းလုဒ်"
+  },
+  "excelToPdf": {
+    "title": "Excel မှ PDF အခမဲ့",
+    "description": "LibreOffice ဖြင့် .xls/.xlsx ကို PDF သို့။",
+    "seo": {
+      "title": "Excel မှ PDF အခမဲ့ | Pdfumi",
+      "description": "LibreOffice ဖြင့် .xls/.xlsx ကို PDF သို့။",
+      "faqTitle": "ExcelPdf FAQ",
+      "faqs": [
+        {
+          "q": "Which formats?",
+          "a": ".xls and .xlsx are supported."
+        }
+      ]
+    },
+    "chooseFile": "Excel ရွေးရန်",
+    "dropHint": "သို့မဟုတ် ဆွဲချပါ",
+    "uploadHint": ".xls / .xlsx · ၅MB",
+    "needFile": "အရင် Excel ရွေးပါ။",
+    "resultHint": "PDF အဖြစ် ဒေါင်းလုဒ်။",
+    "downloadResult": "PDF ဒေါင်းလုဒ်"
+  },
+  "terms": {
+    "seo": {
+      "title": "ဝန်ဆောင်မှု စည်းမျဉ်းများ — Pdfumi",
+      "description": "Pdfumi အသုံးပြုမှု စည်းမျဉ်းများ။"
+    },
+    "title": "ဝန်ဆောင်မှု စည်းမျဉ်းများ",
+    "lastUpdated": "နောက်ဆုံးပြင်ဆင်ချက်: အောက်တိုဘာ ၂၀၂၆",
+    "s1Title": "၁။ စည်းမျဉ်းများကို သဘောတူခြင်း",
+    "s1Body": "Pdfumi ကို အသုံးပြုခြင်းဖြင့် ဤစည်းမျဉ်းများကို သဘောတူပါသည်။",
+    "s2Title": "၂။ တရားဝင် အသုံးပြုမှု",
+    "s2Body": "တရားမဝင် အတုပြုလုပ်မှုများကို တင်းကြပ်စွာ တားမြစ်ထားပါသည်။",
+    "s3Title": "၃။ ဝန်ဆောင်မှု ပမာဏ",
+    "s3Body": "သတ်မှတ်ချက် ပြည့်ပါက ရပ်တန့်မည်ဖြစ်ပြီး လျှို့ဝှက်ကောက်ခံမှု မရှိပါ။",
+    "s4Title": "၄။ တာဝန်ကန့်သတ်ချက်",
+    "s4Body": "ဖိုင်များကို အမြဲတမ်း သိမ်းဆည်းမထားပါ။",
+    "s5Title": "၅။ ဆက်သွယ်ရန်",
+    "s5Body": "support@pdfumi.com သို့ ဆက်သွယ်ပါ။"
+  },
+  "privacy": {
+    "seo": {
+      "title": "သီးသန့်လုံခြုံရေး မူဝါဒ — Pdfumi",
+      "description": "Pdfumi ၏ သီးသန့်လုံခြုံရေး ကာကွယ်မှု။"
+    },
+    "title": "သီးသန့်လုံခြုံရေး မူဝါဒ",
+    "lastUpdated": "နောက်ဆုံးပြင်ဆင်ချက်: အောက်တိုဘာ ၂၀၂၆",
+    "s1Title": "၁။ ဖိုင်များကို မသိမ်းဆည်းခြင်း",
+    "s1Body": "တင်ထားသောဖိုင်များကို ၂၄ နာရီအတွင်း အလိုအလျောက် ဖျက်ပစ်ပါသည်။",
+    "s2Title": "၂။ စုဆောင်းထားသော အချက်အလက်",
+    "s2Body": "အီးမေးလ်လိပ်စာကိုသာ အသုံးပြုပါသည်။",
+    "s3Title": "၃။ ငွေပေးချေမှု လုံခြုံရေး",
+    "s3Body": "Payment transactions are processed by certified payment provider Midtrans (QRIS, International Credit/Debit cards Visa/Mastercard/JCB, E-Wallets, and Virtual Accounts). We never store or handle your credit card numbers or PINs.",
+    "s4Title": "၄။ ကွတ်ကီးများ",
+    "s4Body": "ခြေရာခံ ကွတ်ကီးများကို အသုံးမပြုပါ။",
+    "s5Title": "၅။ ဆက်သွယ်ရန်",
+    "s5Body": "privacy@pdfumi.com သို့ ဆက်သွယ်ပါ။"
+  },
+  "refund": {
+    "seo": {
+      "title": "ငွေပြန်အမ်းမှု မူဝါဒ — Pdfumi",
+      "description": "Pdfumi ငွေပြန်အမ်းမှု မူဝါဒ။"
+    },
+    "title": "ငွေပြန်အမ်းမှု မူဝါဒ",
+    "lastUpdated": "နောက်ဆုံးပြင်ဆင်ချက်: အောက်တိုဘာ ၂၀၂၆",
+    "s1Title": "၁။ ၇ ရက်အတွင်း ငွေပြန်အမ်းခြင်း",
+    "s1Body": "ဝယ်ယူပြီး ၇ ရက်အတွင်း မကျေနပ်ပါက ပြန်လည်တောင်းဆိုနိုင်ပါသည်။",
+    "s2Title": "၂။ အပိုကြေးမရှိခြင်း",
+    "s2Body": "ဝှက်ထားသော ကုန်ကျစရိတ် မရှိပါ။",
+    "s3Title": "၃။ ဖျက်သိမ်းနိုင်ခြင်း",
+    "s3Body": "All plans on Pdfumi are strictly prepaid without silent auto-renewals. You have full control and will never be charged unexpectedly.",
+    "s4Title": "၄။ လျှောက်ထားရန်",
+    "s4Body": "support@pdfumi.com သို့ ဆက်သွယ်ပါ။"
+  },
+  "editPdf": {
+    "title": "Edit PDF Online",
+    "description": "Tambah teks, sorotan stabilo, bentuk kotak, dan anotasi ke dalam dokumen PDF langsung di browser.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · pemrosesan cepat & privat",
+    "downloadEdited": "Unduh Hasil Edit",
+    "toolText": "Teks",
+    "toolHighlight": "Sorotan",
+    "toolShape": "Bentuk",
+    "seo": {
+      "title": "Edit PDF Online Gratis - Tambah Teks & Anotasi | Pdfumi",
+      "description": "Tambahkan teks, sorot kalimat, dan beri anotasi pada dokumen PDF secara instan tanpa registrasi.",
+      "faqTitle": "Pertanyaan Seputar Edit PDF",
+      "faqs": [
+        {
+          "q": "Apakah dokumen saya aman?",
+          "a": "Ya, proses pengeditan dilakukan langsung di peramban Anda secara privat tanpa diunggah ke server pihak ketiga."
+        }
+      ]
+    }
+  },
+  "redactPdf": {
+    "title": "Sensor PDF (Redact) Permanen",
+    "description": "Hitamkan (blackout) atau tutupi informasi sensitif seperti NIK, nomor rekening, dan data pribadi secara permanen.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 10MB",
+    "needBoxes": "Tentukan setidaknya satu area yang ingin disensor terlebih dahulu.",
+    "downloadRedacted": "Sensor & Unduh Dokumen",
+    "seo": {
+      "title": "Sensor PDF Online - Hapus Informasi Rahasia | Pdfumi",
+      "description": "Hapus dan sensor permanen informasi pribadi, NIK, dan nomor rekening pada dokumen PDF sebelum dibagikan.",
+      "faqTitle": "FAQ Sensor Dokumen PDF",
+      "faqs": [
+        {
+          "q": "Apakah teks di bawah sensor bisa disalin?",
+          "a": "Tidak. Lapisan sensor dibakar secara permanen ke dokumen sehingga informasi di bawahnya tidak dapat dipulihkan."
+        }
+      ]
+    }
+  },
+  "resizeImage": {
+    "title": "Ubah Ukuran Foto (Resize)",
+    "description": "Ubah dimensi lebar dan tinggi foto (JPG, PNG, WebP) dalam piksel atau persentase dengan tetap menjaga ketajaman.",
+    "chooseFile": "Pilih Foto",
+    "dropHint": "atau seret gambar ke sini",
+    "uploadHint": "JPG, PNG, WebP",
+    "seo": {
+      "title": "Ubah Ukuran Foto Online Gratis | Pdfumi",
+      "description": "Ubah ukuran resolusi foto ke dimensi piksel tertentu dengan mudah dan cepat.",
+      "faqTitle": "FAQ Resize Gambar",
+      "faqs": [
+        {
+          "q": "Apakah rasio aspek foto tetap terjaga?",
+          "a": "Ya, Anda dapat mengaktifkan kunci rasio agar bentuk foto tidak gepeng."
+        }
+      ]
+    }
+  },
+  "pasFoto": {
+    "title": "Pembuat Pas Foto Resmi (2x3, 3x4, 4x6, Paspor)",
+    "description": "Ubah foto potret menjadi pas foto formal siap cetak atau daftar CPNS, BUMN, SKCK, dan Visa dengan pilihan latar merah, biru, atau putih.",
+    "chooseFile": "Pilih Foto Potret",
+    "dropHint": "atau seret foto ke sini",
+    "uploadHint": "JPG, PNG · Wajah menghadap depan",
+    "seo": {
+      "title": "Buat Pas Foto Online Gratis - Ganti Background Merah & Biru | Pdfumi",
+      "description": "Buat pas foto ukuran 2x3, 3x4, 4x6, dan paspor dengan latar belakang merah atau biru untuk SSCASN CPNS.",
+      "faqTitle": "FAQ Pas Foto Online",
+      "faqs": [
+        {
+          "q": "Warna latar belakang apa yang dipakai untuk CPNS?",
+          "a": "Umumnya merah untuk tahun kelahiran ganjil dan biru untuk tahun genap, atau sesuai petunjuk instansi."
+        }
+      ]
+    }
+  },
+  "compressImage": {
+    "title": "Kompres Foto ke Target KB Tertentu",
+    "description": "Kecilkan ukuran file foto JPG/PNG menjadi di bawah 100 KB, 200 KB, atau 300 KB sesuai syarat portal pendaftaran online.",
+    "chooseFile": "Pilih Foto",
+    "dropHint": "atau seret foto ke sini",
+    "uploadHint": "JPG, PNG · Otomatis disesuaikan ke target KB",
+    "seo": {
+      "title": "Kompres Foto JPG di Bawah 200 KB Online | Pdfumi",
+      "description": "Kompres foto ke ukuran tepat di bawah 200 KB untuk syarat pendaftaran SSCASN CPNS, BUMN, dan kedinasan.",
+      "faqTitle": "FAQ Kompres Foto",
+      "faqs": [
+        {
+          "q": "Apakah kualitas foto akan buram?",
+          "a": "Sistem mengoptimalkan algoritma kompresi cerdas untuk mempertahankan ketajaman wajah dan tulisan sebaik mungkin."
+        }
+      ]
+    }
+  },
+  "removeSignatureBg": {
+    "title": "Hapus Background Tanda Tangan",
+    "description": "Ubah foto tanda tangan di atas kertas menjadi tanda tangan digital PNG transparan tanpa bayangan dan siap ditempel ke dokumen.",
+    "chooseFile": "Pilih Foto Tanda Tangan",
+    "dropHint": "atau seret foto tanda tangan ke sini",
+    "uploadHint": "Foto kertas putih dengan tanda tangan pulpen",
+    "seo": {
+      "title": "Hapus Background Tanda Tangan Jadi PNG Transparan | Pdfumi",
+      "description": "Ubah foto tanda tangan kertas menjadi PNG transparan dengan tinta hitam atau biru resmi secara instan.",
+      "faqTitle": "FAQ Tanda Tangan Transparan",
+      "faqs": [
+        {
+          "q": "Bagaimana cara menghasilkan tanda tangan terbaik?",
+          "a": "Gunakan pulpen hitam/biru tebal di atas kertas putih polos dengan pencahayaan terang tanpa bayangan tangan."
+        }
+      ]
+    }
+  },
+  "pngToPdf": {
+    "title": "Konversi PNG ke PDF",
+    "description": "Ubah gambar format PNG menjadi dokumen PDF dengan tata letak rapi dan kualitas tinggi.",
+    "chooseFiles": "Pilih File PNG",
+    "dropHint": "atau seret file PNG ke sini",
+    "uploadHint": "PNG · Mendukung banyak file sekaligus",
+    "needFiles": "Silakan pilih setidaknya satu file PNG.",
+    "seo": {
+      "title": "Konversi PNG ke PDF Online Gratis | Pdfumi",
+      "description": "Gabungkan satu atau banyak gambar PNG menjadi file PDF berkualitas tinggi.",
+      "faqTitle": "FAQ PNG ke PDF",
+      "faqs": [
+        {
+          "q": "Bisakah mengatur urutan halaman gambar?",
+          "a": "Ya, Anda bisa menata urutan gambar sebelum dikonversi ke PDF."
+        }
+      ]
+    }
+  },
+  "webpToPdf": {
+    "title": "Konversi WebP ke PDF",
+    "description": "Ubah gambar format WebP menjadi dokumen PDF standar dengan cepat.",
+    "chooseFiles": "Pilih File WebP",
+    "dropHint": "atau seret file WebP ke sini",
+    "uploadHint": "WebP · Mendukung banyak file",
+    "needFiles": "Silakan pilih setidaknya satu file WebP.",
+    "seo": {
+      "title": "Konversi WebP ke PDF Online Gratis | Pdfumi",
+      "description": "Ubah gambar WebP dari peramban menjadi dokumen PDF yang mudah dicetak.",
+      "faqTitle": "FAQ WebP ke PDF",
+      "faqs": [
+        {
+          "q": "Apakah gambar WebP terkompresi dengan baik?",
+          "a": "Ya, konversi mempertahankan detail gambar dengan ukuran file efisien."
+        }
+      ]
+    }
+  },
+  "heicToPdf": {
+    "title": "Konversi HEIC ke PDF",
+    "description": "Ubah foto iPhone / Apple HEIC langsung menjadi dokumen PDF tanpa perlu konversi awal.",
+    "chooseFiles": "Pilih File HEIC / Foto iPhone",
+    "dropHint": "atau seret foto HEIC ke sini",
+    "uploadHint": "HEIC, HEIF, JPG, PNG",
+    "needFiles": "Silakan pilih setidaknya satu file foto.",
+    "seo": {
+      "title": "Konversi HEIC iPhone ke PDF Online | Pdfumi",
+      "description": "Ubah foto format HEIC dari perangkat Apple iPhone / iPad menjadi dokumen PDF kompatibel.",
+      "faqTitle": "FAQ HEIC ke PDF",
+      "faqs": [
+        {
+          "q": "Apakah mendukung foto dari kamera iPhone terbaru?",
+          "a": "Ya, format standar HEIC kamera iOS didukung secara langsung."
+        }
+      ]
+    }
+  },
+  "headerFooterPdf": {
+    "title": "Tambah Header & Footer PDF",
+    "description": "Tambahkan teks judul di bagian atas dan nomor halaman dinamis di bagian bawah setiap halaman dokumen PDF.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Penomoran otomatis",
+    "seo": {
+      "title": "Tambah Header dan Footer PDF Online | Pdfumi",
+      "description": "Beri nomor halaman dan judul dokumen pada bagian atas dan bawah PDF secara praktis.",
+      "faqTitle": "FAQ Header Footer",
+      "faqs": [
+        {
+          "q": "Bisakah menampilkan total halaman?",
+          "a": "Bisa, gunakan token {total} untuk menampilkan jumlah seluruh halaman."
+        }
+      ]
+    }
+  },
+  "flattenPdf": {
+    "title": "Ratakan PDF (Flatten Forms & Layers)",
+    "description": "Kunci semua formulir interaktif, isian teks, dan anotasi menjadi satu lapisan permanen agar tidak bisa diedit lagi.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF interaktif atau bertanda tangan",
+    "seo": {
+      "title": "Ratakan PDF (Flatten) Online Gratis | Pdfumi",
+      "description": "Kunci formulir dan tanda tangan PDF agar tidak dapat diubah oleh pihak ketiga sebelum dikirim.",
+      "faqTitle": "FAQ Flatten PDF",
+      "faqs": [
+        {
+          "q": "Mengapa dokumen PDF perlu diratakan?",
+          "a": "Untuk memastikan tampilan formulir konsisten di semua aplikasi pembuka PDF dan mencegah pengeditan tidak sah."
+        }
+      ]
+    }
+  },
+  "removeMetadataPdf": {
+    "title": "Hapus Metadata PDF",
+    "description": "Bersihkan informasi tersembunyi seperti nama penulis, software pembuat, riwayat revisi, dan timestamp.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Pembersihan privasi",
+    "seo": {
+      "title": "Hapus Metadata PDF Online - Bersihkan Data Pribadi | Pdfumi",
+      "description": "Lindungi privasi Anda dengan menghapus metadata dan riwayat pembuatan dokumen PDF.",
+      "faqTitle": "FAQ Hapus Metadata",
+      "faqs": [
+        {
+          "q": "Metadata apa saja yang dihapus?",
+          "a": "Judul, nama pembuat, software produser, tanggal pembuatan, serta kata kunci tersembunyi."
+        }
+      ]
+    }
+  },
+  "resizePdf": {
+    "title": "Ubah Ukuran Kertas PDF (A4, Letter, Legal)",
+    "description": "Sesuaikan dimensi halaman PDF ke format kertas standar internasional dengan skala proporsional otomatis.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Berbagai ukuran halaman",
+    "seo": {
+      "title": "Ubah Ukuran Kertas PDF ke A4 / Letter Online | Pdfumi",
+      "description": "Ubah ukuran halaman PDF menjadi A4, Letter, Legal, atau A3 dengan mudah tanpa memotong teks.",
+      "faqTitle": "FAQ Resize Halaman PDF",
+      "faqs": [
+        {
+          "q": "Apakah isi halaman akan terpotong?",
+          "a": "Tidak, konten dokumen akan diskalakan secara proporsional di tengah halaman baru."
+        }
+      ]
+    }
+  },
+  "grayscalePdf": {
+    "title": "Ubah PDF ke Hitam Putih (Grayscale)",
+    "description": "Konversi seluruh warna dokumen PDF menjadi gradasi abu-abu dan hitam putih untuk hemat tinta cetak dan ukuran file.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Berwarna",
+    "seo": {
+      "title": "Konversi PDF ke Hitam Putih (Grayscale) Online | Pdfumi",
+      "description": "Ubah dokumen PDF berwarna menjadi monokrom hitam putih untuk efisiensi cetak dan pengiriman.",
+      "faqTitle": "FAQ Grayscale PDF",
+      "faqs": [
+        {
+          "q": "Apakah teks tetap tajam?",
+          "a": "Ya, kontras teks dijaga tetap tajam agar mudah dibaca."
+        }
+      ]
+    }
+  },
+  "scanPdf": {
+    "title": "Scan Dokumen dari Kamera HP ke PDF",
+    "description": "Pindai dokumen fisik, surat, ijazah, atau struk langsung menggunakan kamera ponsel Anda menjadi file PDF bersih.",
+    "seo": {
+      "title": "Scan Dokumen Kamera HP Jadi PDF Online | Pdfumi",
+      "description": "Pindai dokumen langsung lewat peramban ponsel tanpa perlu install aplikasi scanner tambahan.",
+      "faqTitle": "FAQ Scan Dokumen Kamera",
+      "faqs": [
+        {
+          "q": "Apakah bisa scan banyak halaman sekaligus?",
+          "a": "Ya, Anda bisa mengambil beberapa foto berturut-turut lalu menggabungkannya ke dalam satu file PDF."
+        }
+      ]
+    }
+  },
+  "invoice": {
+    "title": "Pembuat Invoice & Tagihan Profesional",
+    "description": "Buat tagihan invoice resmi dengan tabel barang/jasa, pajak, diskon, instruksi rekening, dan tanda tangan digital siap unduh.",
+    "seo": {
+      "title": "Buat Invoice Tagihan Online Gratis PDF | Pdfumi",
+      "description": "Generator invoice profesional untuk bisnis, freelancer, dan perusahaan dengan kalkulasi otomatis.",
+      "faqTitle": "FAQ Invoice PDF",
+      "faqs": [
+        {
+          "q": "Apakah bisa menggunakan mata uang Rupiah dan Dolar?",
+          "a": "Ya, tersedia pilihan mata uang Rupiah (Rp), USD ($), Euro (€), dan lainnya."
+        }
+      ]
+    }
+  },
+  "suratResmi": {
+    "title": "Pembuat Surat Resmi & Dinas",
+    "description": "Susun surat resmi lengkap dengan kop instansi, nomor surat, perihal, isi terstruktur, dan kolom penandatangan.",
+    "seo": {
+      "title": "Format Surat Resmi Online Siap Cetak PDF | Pdfumi",
+      "description": "Buat surat dinas dan surat resmi organisasi dengan tata letak standar administrasi perkantoran.",
+      "faqTitle": "FAQ Surat Resmi",
+      "faqs": [
+        {
+          "q": "Apakah format kop surat sesuai standar Indonesia?",
+          "a": "Ya, dilengkapi garis ganda tebal-tipis khas persuratan instansi di Indonesia."
+        }
+      ]
+    }
+  },
+  "kontrak": {
+    "title": "Pembuat Surat Perjanjian & Kontrak Kerja (SPK)",
+    "description": "Susun dokumen perjanjian kerjasama, kontrak kerja, MoU, atau SPK dengan pasal-pasal dinamis dan kolom tanda tangan dua pihak.",
+    "seo": {
+      "title": "Buat Surat Perjanjian Kerja Sama (SPK) Online PDF | Pdfumi",
+      "description": "Generator kontrak kerja dan perjanjian bisnis resmi dengan pasal-pasal yang dapat disesuaikan.",
+      "faqTitle": "FAQ Kontrak & Perjanjian",
+      "faqs": [
+        {
+          "q": "Bisakah menambah atau mengurangi pasal?",
+          "a": "Bisa, Anda bebas menambah, mengubah, atau menghapus pasal sesuai kebutuhan kesepakatan."
+        }
+      ]
+    }
+  },
+  "compressJpg": {
+    "title": "Kompres Foto JPG ke Ukuran Tertentu",
+    "description": "Kecilkan ukuran file foto JPG/JPEG di bawah 200 KB, 100 KB, atau target KB tertentu dengan menjaga ketajaman gambar.",
+    "chooseFile": "Pilih Foto JPG",
+    "dropHint": "atau seret file JPG ke sini",
+    "uploadHint": "JPG, JPEG · Presisi target KB",
+    "seo": {
+      "title": "Kompres JPG Online Gratis - Di Bawah 200 KB | Pdfumi",
+      "description": "Kompres foto JPG/JPEG ke ukuran tepat di bawah 200 KB untuk SSCASN CPNS, BUMN, dan kedinasan.",
+      "faqTitle": "FAQ Kompres JPG",
+      "faqs": [
+        {
+          "q": "Apakah ukuran JPG bisa tepat di bawah 200 KB?",
+          "a": "Ya, algoritma adaptif kami menyesuaikan kompresi secara bertahap hingga ukuran file sesuai target."
+        }
+      ]
+    }
+  },
+  "compressPng": {
+    "title": "Kompres Gambar PNG Transparan",
+    "description": "Kecilkan ukuran file PNG tanpa merusak transparansi dan ketajaman teks/grafik.",
+    "chooseFile": "Pilih File PNG",
+    "dropHint": "atau seret file PNG ke sini",
+    "uploadHint": "PNG · Mempertahankan transparansi",
+    "seo": {
+      "title": "Kompres PNG Online Gratis - Perkecil Ukuran PNG | Pdfumi",
+      "description": "Kompres gambar PNG transparan secara cepat dan privat langsung di peramban.",
+      "faqTitle": "FAQ Kompres PNG",
+      "faqs": [
+        {
+          "q": "Apakah latar belakang transparan tetap aman?",
+          "a": "Ya, channel alfa transparansi tetap dipertahankan."
+        }
+      ]
+    }
+  },
+  "compressWebp": {
+    "title": "Kompres Gambar WebP",
+    "description": "Optimalkan ukuran file format modern WebP untuk kecepatan loading situs web dan aplikasi.",
+    "chooseFile": "Pilih Gambar WebP",
+    "dropHint": "atau seret file WebP ke sini",
+    "uploadHint": "WebP · Ukuran ultra-ringan",
+    "seo": {
+      "title": "Kompres WebP Online Cepat & Ringan | Pdfumi",
+      "description": "Kecilkan gambar format WebP dengan efisiensi tinggi langsung di browser.",
+      "faqTitle": "FAQ Kompres WebP",
+      "faqs": [
+        {
+          "q": "Mengapa menggunakan format WebP?",
+          "a": "WebP memberikan ukuran file lebih kecil hingga 30% dibanding JPEG dan PNG biasa."
+        }
+      ]
+    }
+  },
+  "compressVideo": {
+    "title": "ဗီဒီယို ဖိုင်အရွယ်အစား အခမဲ့လျှော့ချခြင်း",
+    "description": "MP4, WebM နှင့် MOV ဗီဒီယိုဖိုင်များကို browser ပေါ်တွင် တိုက်ရိုက် လျှော့ချပါ။",
+    "chooseFile": "ဗီဒီယိုဖိုင် ရွေးချယ်ပါ",
+    "dropHint": "သို့မဟုတ် ဗီဒီယိုကို ဤနေရာသို့ ဆွဲထည့်ပါ",
+    "uploadHint": "MP4, WebM, MOV · လျင်မြန်စွာ လျှော့ချခြင်း",
+    "seo": {
+      "title": "ဗီဒီယို ဖိုင်အရွယ်အစား အခမဲ့လျှော့ချခြင်း | Pdfumi",
+      "description": "သင့်ဗီဒီယိုဖိုင်များကို စက္ကန့်ပိုင်းအတွင်း လျှော့ချပါ။",
+      "faqTitle": "ဗီဒီယို အမေးအဖြေများ",
+      "faqs": [
+        {
+          "q": "ဗီဒီယိုများသည် လုံခြုံမှုရှိပါသလား။",
+          "a": "ဟုတ်ကဲ့၊ browser ထဲတွင်သာ လုပ်ဆောင်သောကြောင့် လုံခြုံစိတ်ချရပါသည်။"
+        }
+      ]
+    }
+  },
+  "compressAudio": {
+    "title": "အသံဖိုင် အရွယ်အစား အခမဲ့လျှော့ချခြင်း",
+    "description": "MP3, WAV, M4A, AAC အသံဖိုင်များ၏ အရွယ်အစားကို လျှော့ချပါ။",
+    "chooseFile": "အသံဖိုင် ရွေးချယ်ပါ",
+    "dropHint": "သို့မဟုတ် အသံဖိုင်ကို ဤနေရာသို့ ဆွဲထည့်ပါ",
+    "uploadHint": "MP3, WAV, M4A, AAC",
+    "seo": {
+      "title": "အသံဖိုင် အရွယ်အစား အခမဲ့လျှော့ချခြင်း | Pdfumi",
+      "description": "အသံဖိုင်အရွယ်အစားကို လွယ်ကူစွာ လျှော့ချပါ။",
+      "faqTitle": "အသံဖိုင် အမေးအဖြေများ",
+      "faqs": [
+        {
+          "q": "ဖိုင်အရွယ်အစား လျော့နည်းသွားပါသလား။",
+          "a": "ဟုတ်ကဲ့၊ လျော့နည်းသွားပါသည်။"
+        }
+      ]
+    }
+  },
+  "fillPdf": {
+    "title": "Isi borang PDF dalam talian percuma",
+    "description": "Taip terus pada borang, tandakan kotak pilihan, masukkan tarikh dan tandatangan, kemudian muat turun hasilnya.",
+    "seo": {
+      "title": "Isi Borang PDF Dalam Talian Percuma | Tanpa Tera Air | Pdfumi",
+      "description": "Lengkapkan borang permohonan kerja, pendaftaran dan dokumen rasmi terus dalam pelayar anda tanpa perisian tambahan.",
+      "faqTitle": "Soalan Lazim Isi Borang PDF",
+      "faqs": [
+        {
+          "q": "Bolehkah saya mengisi borang PDF imbasan biasa?",
+          "a": "Boleh. Anda hanya perlu klik di mana-mana bahagian dokumen untuk menaip teks, meletakkan tanda rait (✓), atau tarikh."
+        },
+        {
+          "q": "Adakah dokumen saya dimuat naik ke pelayan?",
+          "a": "Tidak. Pengisian borang diproses 100% secara setempat dalam pelayar anda demi keselamatan data."
+        },
+        {
+          "q": "Adakah hasil fail mempunyai tera air?",
+          "a": "Tiada. Semua fail bersih tanpa tera air untuk semua pelan."
+        }
+      ]
+    }
+  }
+}

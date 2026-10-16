@@ -1,0 +1,1574 @@
+{
+  "meta": {
+    "title": "Pdfumi — Isi form. Dapatkan PDF.",
+    "description": "Kwitansi, gabung, kompres, konversi, dan atur PDF online. Self-serve, cepat, siap cetak."
+  },
+  "nav": {
+    "receipt": "Kwitansi",
+    "merge": "Gabung",
+    "watermark": "Watermark",
+    "certificates": "Sertifikat",
+    "pricing": "Harga",
+    "account": "Akun",
+    "signIn": "Masuk",
+    "tools": "Alat",
+    "terms": "Ketentuan",
+    "privacy": "Privasi",
+    "refund": "Pengembalian Dana"
+  },
+  "footer": "Pdfumi — dokumen jadi PDF, tanpa ribet.",
+  "common": {
+    "soon": "Segera",
+    "downloadPdf": "Unduh PDF",
+    "downloadResult": "Unduh hasil",
+    "processing": "Memproses...",
+    "errorGeneric": "Terjadi kesalahan",
+    "language": "Bahasa",
+    "remove": "Hapus",
+    "today": "Hari ini",
+    "clear": "Hapus",
+    "preview": "Pratinjau",
+    "close": "Tutup",
+    "rotate": "Putar"
+  },
+  "home": {
+    "eyebrow": "Pdfumi",
+    "headline1": "Isi form.",
+    "headline2": "Dapatkan PDF.",
+    "subtitle": "Alat dokumen self-serve untuk kwitansi, gabung, konversi, kompres, dan sertifikat. Tanpa instal. Unduh instan.",
+    "ctaReceipt": "Buat kwitansi",
+    "ctaPricing": "Lihat harga",
+    "tools": {
+      "receiptTitle": "Generator kwitansi",
+      "receiptDesc": "Terbilang otomatis, PDF siap cetak.",
+      "mergeTitle": "Gabung PDF",
+      "mergeDesc": "Gabungkan beberapa file jadi satu dokumen.",
+      "watermarkTitle": "Watermark PDF",
+      "watermarkDesc": "Tambah teks watermark diagonal di setiap halaman.",
+      "certificateTitle": "Sertifikat massal",
+      "certificateDesc": "Nama dari CSV → PDF dengan QR verifikasi unik.",
+      "pdfConverterTitle": "PDF Converter",
+      "pdfConverterDesc": "PDF ↔ Word, gambar, dan lainnya — satu tempat.",
+      "compressTitle": "Kompres PDF",
+      "compressDesc": "Perkecil ukuran sebelum dibagikan."
+    }
+  },
+  "receipt": {
+    "title": "Buat kwitansi online gratis",
+    "description": "Buat PDF kwitansi siap cetak dengan terbilang, logo, dan tanda tangan. Pratinjau langsung. Gratis: 5/hari.",
+    "seo": {
+      "title": "Buat Kwitansi Online Gratis (PDF + Terbilang) | Pdfumi",
+      "description": "Generator kwitansi PDF online — terbilang otomatis, logo, tanda tangan, pratinjau langsung. Tanpa install. Kuota harian gratis.",
+      "faqTitle": "FAQ kwitansi",
+      "faqs": [
+        {
+          "q": "Apakah generator kwitansi gratis?",
+          "a": "Ya. Akun gratis mendapat kuota dokumen harian (5/hari). Upgrade di Harga jika butuh lebih."
+        },
+        {
+          "q": "Apakah terbilang diisi otomatis?",
+          "a": "Ya. Masukkan angka, Pdfumi mengisi baris terbilang di PDF."
+        },
+        {
+          "q": "Bisa tambah logo dan tanda tangan?",
+          "a": "Bisa. Unggah logo dan gambar/unggah tanda tangan. Draft tersimpan di browser."
+        }
+      ]
+    },
+    "fields": {
+      "number": "No. kwitansi",
+      "numberPlaceholder": "001/KW/{mm}/{yyyy}",
+      "receivedFrom": "Telah terima dari",
+      "receivedFromPlaceholder": "contoh: PT Maju Jaya / Budi Santoso",
+      "amount": "Sejumlah",
+      "amountPlaceholder": "contoh: 1500000",
+      "forPayment": "Untuk pembayaran",
+      "forPaymentPlaceholder": "contoh: Biaya jasa September",
+      "city": "Kota",
+      "cityPlaceholder": "contoh: Jakarta",
+      "date": "Tanggal",
+      "payee": "Nama penerima",
+      "payeePlaceholder": "contoh: Siti Aminah (nama di tanda tangan)",
+      "organization": "Organisasi",
+      "organizationPlaceholder": "contoh: Pdfumi Academy"
+    },
+    "logoLabel": "Logo organisasi",
+    "uploadLogo": "Unggah logo",
+    "logoSelected": "Logo: {name}",
+    "logoHint": "PNG/JPG/WebP · disimpan di browser ini untuk dipakai ulang.",
+    "needLogoImage": "Unggah logo PNG, JPG, atau WebP.",
+    "logoTooLarge": "Logo terlalu besar (maks ~600KB).",
+    "signatureLabel": "Tanda tangan penerima (opsional)",
+    "uploadSignature": "Unggah gambar tanda tangan (opsional)",
+    "signatureHint": "Unggah atau gambar · muncul di atas nama penerima.",
+    "needSignatureImage": "Unggah tanda tangan PNG, JPG, atau WebP.",
+    "signatureTooLarge": "Gambar tanda tangan terlalu besar (maks ~600KB).",
+    "livePreviewTitle": "Pratinjau langsung",
+    "livePreviewHint": "Update saat Anda mengedit. Unduhan memakai layout yang sama.",
+    "previewEmpty": "Isi terima dari, jumlah, dan untuk pembayaran untuk pratinjau.",
+    "previewFailed": "Gagal membuat pratinjau.",
+    "needRequired": "Isi terima dari, jumlah, dan untuk pembayaran.",
+    "clearDraft": "Kosongkan form",
+    "draftHint": "Draft tersimpan otomatis di browser ini · aman di-refresh."
+  },
+  "merge": {
+    "title": "Gabung PDF online gratis",
+    "description": "Gabungkan 2–10 PDF jadi satu file. Atur urutan, pratinjau langsung, lalu unduh. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Gabung PDF Online Gratis — Satukan File PDF | Pdfumi",
+      "description": "Gabung beberapa file PDF jadi satu online. Seret untuk urutan, pratinjau langsung, unduh instan. Kuota harian gratis.",
+      "faqTitle": "FAQ gabung PDF",
+      "faqs": [
+        {
+          "q": "Berapa banyak PDF yang bisa digabung?",
+          "a": "Hingga 10 file per gabungan, maks 5MB per file di paket gratis."
+        },
+        {
+          "q": "Bisa ubah urutan sebelum unduh?",
+          "a": "Bisa. Seret dokumen untuk mengurutkan. Pratinjau langsung menyesuaikan."
+        },
+        {
+          "q": "Perlu akun?",
+          "a": "Tidak untuk pemakaian dasar dalam kuota harian gratis. Masuk untuk entitlement paket berbayar."
+        }
+      ]
+    },
+    "chooseFiles": "Pilih file PDF",
+    "dropHint": "atau seret & lepas PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 10 file · 5MB per file",
+    "addMore": "Tambah PDF",
+    "reorderHint": "Seret dokumen untuk ubah urutan gabungan",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman",
+    "mergedPreview": "Pratinjau hasil gabungan",
+    "mergedHint": "Pratinjau langsung PDF gabungan sesuai urutan saat ini.",
+    "needTwo": "Unggah minimal 2 file PDF untuk digabung.",
+    "previewFailed": "Gagal membuat pratinjau. Pastikan file PDF valid."
+  },
+  "watermark": {
+    "title": "Tambah watermark ke PDF online",
+    "description": "Tempel teks di setiap halaman — seret posisi, pakai preset, lalu unduh. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Tambah Watermark PDF Online Gratis | Pdfumi",
+      "description": "Cap teks watermark di PDF Anda. Seret posisi, balik sudut dengan preset, unduh instan. Kuota harian gratis.",
+      "faqTitle": "FAQ watermark",
+      "faqs": [
+        {
+          "q": "Bisa atur posisi watermark di mana saja?",
+          "a": "Bisa. Seret di pratinjau langsung atau pakai preset (diagonal, tengah, tepi)."
+        },
+        {
+          "q": "Apakah watermark diterapkan ke semua halaman?",
+          "a": "Ya. Teks dan posisi yang sama dicap di semua halaman PDF."
+        },
+        {
+          "q": "Ukuran file yang didukung?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "textLabel": "Teks watermark",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret & lepas PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "selected": "File terpilih",
+    "livePreview": "Pratinjau langsung",
+    "liveHint": "Seret watermark untuk menempatkannya. Pakai preset untuk pindah sisi.",
+    "dragHint": "Seret watermark di atas halaman",
+    "positionLabel": "Posisi",
+    "presetDiagonal": "Diagonal",
+    "presetCenter": "Tengah",
+    "presetTop": "Atas",
+    "presetBottom": "Bawah",
+    "presetLeft": "Kiri",
+    "presetRight": "Kanan",
+    "presetFlip": "Balik sudut",
+    "needFile": "Pilih file PDF terlebih dahulu."
+  },
+  "certificate": {
+    "title": "Generator sertifikat massal dengan QR",
+    "description": "Buat banyak sertifikat dari daftar nama. QR verifikasi unik, template, tanda tangan. Gratis: hingga 20 per batch.",
+    "seo": {
+      "title": "Generator Sertifikat Massal + Verifikasi QR | Pdfumi",
+      "description": "Buat sertifikat massal dari CSV atau daftar manual. Tiap PDF punya QR unik untuk verifikasi online. Batas batch gratis berlaku.",
+      "faqTitle": "FAQ sertifikat",
+      "faqs": [
+        {
+          "q": "Bagaimana penerima memverifikasi sertifikat?",
+          "a": "Setiap sertifikat punya QR unik. Scan membuka Pdfumi Verify dengan detail penerima dan acara."
+        },
+        {
+          "q": "Bisa impor nama dari spreadsheet?",
+          "a": "Bisa. Unggah CSV dengan kolom name dan title opsional, atau ketik manual."
+        },
+        {
+          "q": "Berapa banyak sertifikat gratis?",
+          "a": "Paket gratis hingga 20 penerima per batch, dalam kuota dokumen harian. Upgrade untuk batch lebih besar."
+        }
+      ]
+    },
+    "fields": {
+      "eventTitle": "Judul acara / kursus",
+      "eventTitlePlaceholder": "mis. Workshop Arsitektur SOLID",
+      "organization": "Organisasi",
+      "organizationPlaceholder": "mis. Pdfumi Academy",
+      "eventDate": "Tanggal acara",
+      "name": "Nama penerima",
+      "namePlaceholder": "Nama lengkap",
+      "title": "Jabatan / peran",
+      "titlePlaceholder": "mis. Peserta (opsional)",
+      "signerNamePlaceholder": "Nama penanda tangan",
+      "signerTitlePlaceholder": "mis. Direktur (opsional)"
+    },
+    "templateLabel": "Template sertifikat",
+    "templates": {
+      "classic": "Klasik",
+      "classicDesc": "Diploma formal · bingkai emas ganda · nama serif.",
+      "modern": "Modern",
+      "modernDesc": "Korporat · rail toska · layout rata kiri.",
+      "elegant": "Elegan",
+      "elegantDesc": "Latar cream · ornamen · tipografi Times."
+    },
+    "logoLabel": "Logo organisasi",
+    "uploadLogo": "Unggah logo",
+    "logoSelected": "Logo: {name}",
+    "logoHint": "PNG/JPG/WebP · disimpan di browser ini untuk dipakai ulang.",
+    "needLogoImage": "Logo harus berupa gambar (PNG/JPG/WebP).",
+    "logoTooLarge": "Logo maks. 600KB.",
+    "signatureLibrary": "Tanda tangan tersimpan",
+    "saveSignatureToLibrary": "Simpan ke library",
+    "needSignatureToSave": "Unggah atau gambar tanda tangan dulu.",
+    "wordingLabel": "Teks sertifikat",
+    "wordingShow": "Edit",
+    "wordingHide": "Sembunyikan",
+    "signersLabel": "Tanda tangan",
+    "signerCount": {
+      "0": "Tanpa tanda tangan",
+      "1": "1 penanda tangan",
+      "2": "2 penanda tangan",
+      "3": "3 penanda tangan"
+    },
+    "signerN": "Penanda tangan {n}",
+    "sigModeUpload": "Unggah gambar",
+    "sigModeDraw": "Gambar di layar",
+    "uploadSignature": "Unggah gambar tanda tangan (opsional)",
+    "signatureSelected": "Tanda tangan: {name}",
+    "drawHint": "Gambar dengan mouse atau jari",
+    "clearSignature": "Hapus",
+    "needSignatureImage": "Tanda tangan harus berupa gambar (PNG/JPG/WebP).",
+    "signatureTooLarge": "Gambar tanda tangan maks. 600KB.",
+    "noSignersHint": "Sertifikat diterbitkan tanpa garis tanda tangan.",
+    "csvLabel": "Daftar penerima",
+    "chooseCsv": "Pilih file CSV",
+    "dropHint": "atau seret dan lepas CSV di sini",
+    "uploadHint": "Hanya CSV · kolom name,title · maks. 20 gratis",
+    "csvFormat": "Format: name,title (title opsional).",
+    "downloadSample": "Unduh contoh CSV",
+    "addManually": "Atau tambah penerima manual",
+    "addRow": "+ Tambah penerima",
+    "manualList": "Daftar manual",
+    "recipientsLoaded": "Penerima dimuat",
+    "recipientCount": "{count} / {max} penerima",
+    "replaceCsv": "Impor CSV",
+    "livePreviewTitle": "Pratinjau langsung",
+    "livePreviewHint": "Penerima pertama · update saat Anda edit. Unduh menerbitkan semua halaman dengan QR asli.",
+    "previewEmpty": "Isi judul acara dan minimal satu penerima untuk pratinjau.",
+    "previewFailed": "Gagal membuat pratinjau.",
+    "downloadAll": "Unduh PDF sertifikat",
+    "clearDraft": "Kosongkan form",
+    "draftHint": "Draft tersimpan otomatis di browser ini · aman di-refresh.",
+    "quotaHint": "Gratis: maks. {max} penerima per batch · kuota dokumen harian berlaku.",
+    "needCsv": "Unggah file CSV.",
+    "emptyCsv": "Tidak ada nama valid di CSV.",
+    "needRecipients": "Isi judul acara dan minimal satu nama penerima.",
+    "tooMany": "Paket gratis maks. {max} penerima. Kurangi daftar atau upgrade."
+  },
+  "verify": {
+    "eyebrow": "Pdfumi Verify",
+    "title": "Verifikasi sertifikat",
+    "subtitle": "Pindai QR atau buka tautan ini untuk memastikan keaslian.",
+    "loading": "Memeriksa sertifikat…",
+    "valid": "Sertifikat valid",
+    "invalid": "Sertifikat tidak ditemukan",
+    "notFound": "Kode ini tidak ada di catatan kami.",
+    "recipient": "Penerima",
+    "event": "Acara",
+    "organization": "Organisasi",
+    "eventDate": "Tanggal",
+    "code": "Kode verifikasi",
+    "ctaIssue": "Buat sertifikat massal →"
+  },
+  "pricing": {
+    "title": "Harga",
+    "subtitle": "Transparan. Kuota habis = berhenti, tanpa biaya diam-diam.",
+    "seo": {
+      "title": "Harga Pdfumi — Gratis, Pro & Business",
+      "description": "Harga alat PDF yang sederhana. Kuota harian gratis, paket Event Pass, Pro dan Bisnis. Tanpa biaya diam-diam."
+    },
+    "freeName": "Gratis",
+    "freePrice": "$0",
+    "freeItems": [
+      "5 dokumen/hari per alat",
+      "Batas ukuran berkas s.d. 20 MB",
+      "Kompresi target < 200 KB (1 berkas/proses)",
+      "Sertifikat s.d. 20 penerima/batch"
+    ],
+    "proName": "Pro Bulanan",
+    "proPrice": "$5/bln",
+    "proItems": [
+      "500 dokumen/bulan",
+      "Batas ukuran berkas s.d. 100 MB",
+      "Antrean prioritas & mesin server cepat",
+      "Sertifikat s.d. 200 penerima/batch",
+      "Konversi PDF ke Word/Excel kuota besar"
+    ],
+    "businessName": "Pro Tahunan",
+    "businessPrice": "$15/thn",
+    "businessItems": [
+      "6.000 dokumen/tahun (penuh 500/bln)",
+      "Batas ukuran berkas s.d. 100 MB",
+      "Mesin prioritas antrean instan tercepat",
+      "Sertifikat s.d. 500 penerima/batch",
+      "Penghematan maksimal untuk kebutuhan rutin"
+    ],
+    "globalHint": "Mendukung pembayaran instan via QRIS, GoPay, ShopeePay, Virtual Account, serta Kartu Kredit/Debit global via Midtrans.",
+    "emailForCheckout": "Email kerja untuk checkout",
+    "checkoutMissing": "URL checkout tidak ditemukan. Silakan coba kembali.",
+    "ctaFree": "Buat akun gratis →",
+    "ctaPro": "Upgrade ke Pro",
+    "ctaBusiness": "Pilih Pro Tahunan →",
+    "tabQris": "QRIS (Indonesia)",
+    "tabCard": "Kartu Kredit & Pembayaran Digital",
+    "qrisBadge": "Aktivasi Instan • Semua Bank & E-Wallet",
+    "proPriceIdr": "Rp 29.000/bln",
+    "businessPriceIdr": "Rp 149.000/tahun",
+    "scanPrompt": "Scan dengan BCA, Mandiri, BRI, BNI, GoPay, OVO, ShopeePay, Dana, dll.",
+    "waitingPayment": "Menunggu pembayaran QRIS...",
+    "paymentSuccess": "Pembayaran diterima! Mengaktifkan paket Anda...",
+    "simulatePay": "Simulasi Bayar (Sandbox)",
+    "orderRef": "No. Referensi",
+    "expiresIn": "Berlaku 24 jam",
+    "openCheckout": "Buka Halaman Pembayaran",
+    "closeModal": "Tutup",
+    "activeUntil": "Aktif hingga",
+    "passName": "Event Pass",
+    "passPrice": "$2",
+    "passPriceIdr": "Rp 19.000",
+    "passBadge": "Paling Pas untuk Acara & Deadline",
+    "passDuration": "7 hari (sekali bayar)",
+    "passItems": [
+      "150 dokumen bersama (aktif 7 hari)",
+      "Batas ukuran berkas s.d. 100 MB",
+      "Pemrosesan batch banyak berkas sekaligus",
+      "Sertifikat s.d. 100 penerima/batch"
+    ],
+    "ctaPass": "Beli Event Pass",
+    "businessBadge": "Hemat 60% (Paling Hemat)"
+  },
+  "account": {
+    "title": "Portal Akun Pengguna",
+    "subtitle": "Akses kuota dokumen, kelola langganan, dan nikmati fitur premium tanpa password.",
+    "seo": {
+      "title": "Akun & Masuk | Pdfumi",
+      "description": "Masuk dengan magic link, buat akun Pdfumi gratis, atau upgrade paket."
+    },
+    "loginTitle": "Masuk",
+    "loginHint": "Kami kirim tautan sekali pakai ke email. Cepat, aman, tanpa password.",
+    "loginSend": "Kirim link masuk",
+    "loginSent": "Jika akun ada untuk email itu, link masuk telah dikirim.",
+    "loginConfirmTitle": "Sedang masuk",
+    "loginConfirmSubtitle": "Mengonfirmasi magic link dan membuka sesi Anda.",
+    "loginConfirming": "Sedang memasukkan Anda…",
+    "loginInvalid": "Link masuk tidak valid atau sudah kedaluwarsa.",
+    "loginOk": "Anda sudah masuk. Sesi berlaku 30 hari di browser ini.",
+    "logout": "Keluar",
+    "logoutOk": "Sudah keluar.",
+    "registerTitle": "Buat akun gratis",
+    "email": "Email",
+    "createFree": "Buat akun",
+    "registerOk": "Akun berhasil dibuat. Anda sudah masuk.",
+    "recoverTitle": "Kehilangan API key?",
+    "recoverHint": "Kami kirim magic link sekali pakai. Membukanya mencabut key lama dan menerbitkan yang baru.",
+    "recoverSend": "Kirim link pemulihan",
+    "recoverSent": "Jika akun ada untuk email itu, link pemulihan telah dikirim.",
+    "recoverDevLink": "Dev magic link:",
+    "recoverConfirmTitle": "Pulihkan API key",
+    "recoverConfirmSubtitle": "Mengonfirmasi magic link dan menerbitkan key baru.",
+    "recoverConfirming": "Mengonfirmasi pemulihan…",
+    "recoverInvalid": "Link pemulihan tidak valid atau sudah kedaluwarsa.",
+    "recoverRevoked": "Key lama dicabut: {count}. Key baru tersimpan di browser ini.",
+    "recoverBack": "Kembali ke akun",
+    "keyTitle": "API key di browser ini",
+    "keyHint": "Opsional untuk developer. Tool berbayar juga jalan saat Anda masuk. Dikirim sebagai X-Api-Key jika diisi.",
+    "saveKey": "Simpan key",
+    "clearKey": "Hapus key",
+    "keySaved": "API key tersimpan di browser ini.",
+    "keyCleared": "API key dihapus.",
+    "keyOnce": "Salin API key sekarang — hanya ditampilkan sekali.",
+    "statusTitle": "Paket saat ini",
+    "quotaLine": "Pemakaian: {used}/{limit} ({period})",
+    "entitlementFooterOn": "Bebas watermark",
+    "entitlementFooterOff": "Bebas watermark",
+    "entitlementCerts": "Batch sertifikat: maks {max}",
+    "upgradeTitle": "Upgrade",
+    "upgradeHint": "Checkout membuka pembayaran aman Midtrans.",
+    "upgradePro": "Checkout Pro ($9)",
+    "upgradeBusiness": "Checkout Business ($24)",
+    "checkoutSuccess": "Pembayaran diterima — status paket Anda telah diperbarui. Selamat menggunakan Pdfumi Pro!",
+    "checkoutCancel": "Checkout dibatalkan.",
+    "checkoutMissing": "Checkout URL missing."
+  },
+  "toolsMenu": {
+    "label": "Alat",
+    "title": "Semua alat",
+    "subtitle": "Konversi, kompres, atur — pilih alat dan mulai.",
+    "close": "Tutup",
+    "groups": {
+      "compress": "Kompres",
+      "convert": "Konversi",
+      "organize": "Atur PDF",
+      "edit": "Edit PDF",
+      "create": "Buat Dokumen",
+      "office": "Office & PDF",
+      "image": "Alat Gambar",
+      "scan": "Pindai",
+      "imageToPdf": "Gambar ke PDF",
+      "protect": "Keamanan",
+      "fillAndSign": "Tanda Tangan"
+    },
+    "items": {
+      "compressPdf": "Kompres PDF",
+      "pdfConverter": "PDF Converter",
+      "jpgToPdf": "JPG ke PDF",
+      "pdfToJpg": "PDF ke JPG",
+      "pdfToPng": "PDF ke PNG",
+      "mergePdf": "Gabung PDF",
+      "splitPdf": "Pisah PDF",
+      "rotatePdf": "Putar PDF",
+      "deletePages": "Hapus halaman PDF",
+      "extractPages": "Ekstrak halaman PDF",
+      "organizePdf": "Atur PDF",
+      "watermark": "Watermark PDF",
+      "receipt": "Kwitansi",
+      "certificates": "Sertifikat",
+      "pdfToWord": "PDF ke Word",
+      "pdfToExcel": "PDF ke Excel",
+      "pdfToPpt": "PDF ke PPT",
+      "wordToPdf": "Word ke PDF",
+      "excelToPdf": "Excel ke PDF",
+      "pptToPdf": "PPT ke PDF",
+      "protectPdf": "Kunci PDF",
+      "unlockPdf": "Buka kunci PDF",
+      "signPdf": "Tanda tangan PDF",
+      "pageNumbersPdf": "Nomor halaman",
+      "cropPdf": "Potong PDF",
+      "ocrPdf": "OCR PDF",
+      "editPdf": "Edit PDF",
+      "redactPdf": "Sensor PDF (Redact)",
+      "pngToPdf": "PNG ke PDF",
+      "webpToPdf": "WebP ke PDF",
+      "heicToPdf": "HEIC ke PDF",
+      "headerFooterPdf": "Header & Footer",
+      "flattenPdf": "Ratakan PDF (Flatten)",
+      "grayscalePdf": "Hitam Putih (Grayscale)",
+      "removeMetadataPdf": "Hapus Metadata",
+      "resizePdf": "Ubah Ukuran Kertas",
+      "resizeImage": "Ubah Ukuran Foto",
+      "pasFoto": "Pas Foto (2x3, 3x4, 4x6)",
+      "compressImage": "Kompres Gambar",
+      "removeSignatureBg": "Hapus Background TTD",
+      "scanPdf": "Scan Kamera HP",
+      "invoice": "Invoice Tagihan",
+      "suratResmi": "Surat Resmi",
+      "kontrak": "Kontrak & Perjanjian",
+      "compressJpg": "Kompres JPG",
+      "compressPng": "Kompres PNG",
+      "compressWebp": "Kompres WebP",
+      "compressVideo": "Kompres Video",
+      "compressAudio": "Kompres Audio",
+      "fillPdf": "Isi Formulir PDF"
+    }
+  },
+  "jpgToPdf": {
+    "title": "JPG ke PDF online gratis",
+    "description": "Ubah foto dan scan jadi satu PDF. Seret untuk urutkan, lalu unduh. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "JPG ke PDF Online Gratis | Pdfumi",
+      "description": "Konversi JPG, PNG, WebP ke satu PDF. Urutkan thumbnail, unduh instan. Kuota harian gratis.",
+      "faqTitle": "FAQ JPG ke PDF",
+      "faqs": [
+        {
+          "q": "Format gambar apa saja?",
+          "a": "JPG, PNG, WebP, GIF, dan BMP — hingga 20 file, 5MB per file."
+        },
+        {
+          "q": "Bisa ubah urutan halaman?",
+          "a": "Ya. Seret thumbnail sebelum mengunduh."
+        },
+        {
+          "q": "Perlu akun?",
+          "a": "Tidak untuk kuota gratis harian. Masuk untuk paket berbayar."
+        }
+      ]
+    },
+    "chooseFiles": "Pilih gambar",
+    "dropHint": "atau seret gambar ke sini",
+    "uploadHint": "JPG/PNG/WebP · maks 20 file · 5MB per file",
+    "addMore": "Tambah gambar",
+    "reorderHint": "Seret gambar untuk mengubah urutan halaman PDF",
+    "needFiles": "Unggah minimal satu gambar."
+  },
+  "pdfToJpg": {
+    "title": "PDF ke JPG online gratis",
+    "description": "Ekspor setiap halaman PDF jadi JPG. Unduh ZIP semua halaman. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "PDF ke JPG Online Gratis | Pdfumi",
+      "description": "Konversi halaman PDF ke JPG. Unduh ZIP satu gambar per halaman. Kuota harian gratis.",
+      "faqTitle": "FAQ PDF ke JPG",
+      "faqs": [
+        {
+          "q": "Hasilnya apa?",
+          "a": "File ZIP berisi satu JPG per halaman (~150 DPI)."
+        },
+        {
+          "q": "Batas halaman?",
+          "a": "Hingga 50 halaman per konversi."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB · hingga 50 halaman",
+    "needFile": "Pilih file PDF dulu.",
+    "resultHint": "Setiap halaman jadi JPG di dalam ZIP.",
+    "downloadZip": "Unduh ZIP JPG"
+  },
+  "pdfToPng": {
+    "title": "PDF ke PNG online gratis",
+    "description": "Ekspor setiap halaman PDF jadi PNG tajam. Unduh ZIP semua halaman. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "PDF ke PNG Online Gratis | Pdfumi",
+      "description": "Konversi halaman PDF ke PNG. Unduh ZIP satu gambar per halaman. Kuota harian gratis.",
+      "faqTitle": "FAQ PDF ke PNG",
+      "faqs": [
+        {
+          "q": "PNG atau JPG?",
+          "a": "PNG lebih tajam untuk teks; JPG lebih kecil untuk foto."
+        },
+        {
+          "q": "Batas halaman?",
+          "a": "Hingga 50 halaman per konversi."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB · hingga 50 halaman",
+    "needFile": "Pilih file PDF dulu.",
+    "resultHint": "Setiap halaman jadi PNG di dalam ZIP.",
+    "downloadZip": "Unduh ZIP PNG"
+  },
+  "pdfToWord": {
+    "title": "PDF ke Word online gratis",
+    "description": "Ubah PDF jadi .docx yang bisa diedit dengan LibreOffice. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "PDF ke Word Online Gratis | Pdfumi",
+      "description": "Konversi PDF ke Word DOCX online. Unduh bisa diedit. Kuota harian gratis.",
+      "faqTitle": "FAQ PDF ke Word",
+      "faqs": [
+        {
+          "q": "Hasilnya bisa diedit?",
+          "a": "Ya — format .docx. Layout rumit mungkin perlu dirapikan setelah konversi."
+        },
+        {
+          "q": "Engine apa?",
+          "a": "LibreOffice headless di server untuk konversi Office yang andal."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "needFile": "Pilih file PDF dulu.",
+    "resultHint": "Diunduh sebagai .docx yang bisa diedit (LibreOffice).",
+    "downloadResult": "Unduh Word"
+  },
+  "wordToPdf": {
+    "title": "Word ke PDF online gratis",
+    "description": "Ubah .doc atau .docx jadi PDF dengan LibreOffice. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Word ke PDF Online Gratis | Pdfumi",
+      "description": "Konversi Word DOC/DOCX ke PDF online. Unduh instan. Kuota harian gratis.",
+      "faqTitle": "FAQ Word ke PDF",
+      "faqs": [
+        {
+          "q": "Format Word apa saja?",
+          "a": ".doc dan .docx didukung."
+        },
+        {
+          "q": "Font sama?",
+          "a": "Font umum dipertahankan bila memungkinkan; font langka bisa diganti."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "File Word hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file Word",
+    "dropHint": "atau seret file Word ke sini",
+    "uploadHint": ".doc / .docx · maks 5MB",
+    "needFile": "Pilih file Word dulu.",
+    "resultHint": "Diunduh sebagai PDF siap cetak.",
+    "downloadResult": "Unduh PDF"
+  },
+  "pdfConverter": {
+    "title": "PDF Converter gratis",
+    "description": "Ubah PDF ke Word, Excel, atau gambar — dan Word/Excel/gambar ke PDF. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "PDF Converter Online Gratis | Pdfumi",
+      "description": "Konversi PDF ↔ Word/Excel, PDF ke JPG/PNG, dan gambar ke PDF. Gratis, tanpa instal.",
+      "faqTitle": "FAQ PDF Converter",
+      "faqs": [
+        {
+          "q": "Bisa konversi apa?",
+          "a": "PDF → Word / Excel / JPG / PNG; Word atau Excel → PDF; gambar → PDF."
+        },
+        {
+          "q": "Perlu akun?",
+          "a": "Tidak. Kuota harian gratis per tool."
+        },
+        {
+          "q": "PowerPoint?",
+          "a": "PowerPoint segera hadir. Word dan Excel sudah tersedia."
+        }
+      ]
+    },
+    "chooseFiles": "Pilih file",
+    "dropHint": "atau seret PDF, Word, Excel, atau gambar ke sini",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · maks 5MB",
+    "needFile": "Upload file dulu.",
+    "needTarget": "Pilih format keluaran yang valid.",
+    "unsupported": "Tipe file tidak didukung. Gunakan PDF, Word, Excel, atau gambar.",
+    "convertTo": "Konversi ke",
+    "toPdf": "PDF",
+    "toWord": "Word",
+    "toJpg": "JPG",
+    "toPng": "PNG",
+    "convertDownload": "Konversi & unduh",
+    "filesCount": "{count} file",
+    "bulletWord": "PDF ↔ Word / Excel dengan LibreOffice",
+    "bulletImages": "Gambar ke PDF atau PDF ke JPG/PNG",
+    "bulletPdfOut": "Di browser — tanpa instal",
+    "alsoSee": "Tool khusus:",
+    "linkPdfWord": "PDF ke Word",
+    "linkWordPdf": "Word ke PDF",
+    "linkJpgPdf": "JPG ke PDF",
+    "toExcel": "Excel",
+    "linkPdfExcel": "PDF ke Excel"
+  },
+  "compressPdf": {
+    "title": "Kompres PDF online gratis",
+    "description": "Kecilkan ukuran PDF dengan mengompres gambar di dalamnya. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Kompres PDF Online Gratis | Pdfumi",
+      "description": "Perkecil ukuran PDF online. Kompres ulang gambar dan unduh instan. Kuota harian gratis.",
+      "faqTitle": "FAQ kompres PDF",
+      "faqs": [
+        {
+          "q": "Seberapa kecil hasilnya?",
+          "a": "Tergantung PDF. File penuh gambar menyusut paling banyak."
+        },
+        {
+          "q": "Kualitas berubah?",
+          "a": "Gambar dikompres ulang. Teks tetap tajam jika vektor."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "needFile": "Pilih file PDF dulu."
+  },
+  "splitPdf": {
+    "title": "Pisah PDF online gratis",
+    "description": "Simpan halaman yang dibutuhkan, buang sisanya — unduh satu PDF. Klik untuk uncheck halaman yang tidak diinginkan. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Pisah PDF Online Gratis | Pdfumi",
+      "description": "Pilih halaman PDF yang ingin disimpan. Buang sisanya dan unduh satu file PDF. Kuota harian gratis.",
+      "faqTitle": "FAQ pisah PDF",
+      "faqs": [
+        {
+          "q": "Hasilnya ZIP?",
+          "a": "Tidak. Anda mengunduh satu PDF yang berisi halaman yang dipilih saja."
+        },
+        {
+          "q": "Cara buang halaman?",
+          "a": "Klik thumbnail untuk uncheck. Halaman yang tidak dicentang tidak masuk hasil."
+        },
+        {
+          "q": "Batas halaman?",
+          "a": "Hingga 100 halaman."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB · hingga 100 halaman",
+    "needFile": "Pilih file PDF dulu.",
+    "replace": "Ganti",
+    "loadingPages": "Membaca halaman…",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman",
+    "resultHint": "{count, plural, =0 {Belum ada halaman dipilih} one {Hasil: 1 halaman dalam satu PDF} other {Hasil: # halaman dalam satu PDF}}",
+    "needPages": "Pilih minimal satu halaman untuk dipisah.",
+    "selectHint": "Klik untuk simpan/buang · seret untuk ubah urutan di PDF hasil",
+    "selectAll": "Pilih semua",
+    "clearSelection": "Kosongkan"
+  },
+  "rotatePdf": {
+    "title": "Putar PDF online gratis",
+    "description": "Putar halaman kiri/kanan, urutkan atau hapus, lalu unduh. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Putar PDF Online Gratis | Pdfumi",
+      "description": "Putar halaman PDF per halaman online. Pratinjau, urutkan, unduh. Kuota harian gratis.",
+      "faqTitle": "FAQ putar PDF",
+      "faqs": [
+        {
+          "q": "Bisa putar berbeda per halaman?",
+          "a": "Ya. Gunakan putar kiri/kanan di setiap thumbnail."
+        },
+        {
+          "q": "Bisa pratinjau?",
+          "a": "Thumbnail menampilkan rotasi sebelum unduh."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "needFile": "Pilih file PDF dulu.",
+    "replace": "Ganti",
+    "loadingPages": "Membaca halaman…",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman",
+    "reorderHint": "Seret untuk mengurutkan. Putar atau hapus tiap halaman.",
+    "cardHint": "Arahkan ke halaman untuk pratinjau, putar, atau hapus.",
+    "angleOriginal": "Asli"
+  },
+  "deletePages": {
+    "title": "Hapus halaman PDF online gratis",
+    "description": "Hapus halaman lewat ikon sampah, sisanya tetap berurutan. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Hapus Halaman PDF Online Gratis | Pdfumi",
+      "description": "Hapus halaman PDF yang tidak diinginkan. Hapus thumbnail lalu unduh. Kuota harian gratis.",
+      "faqTitle": "FAQ hapus halaman",
+      "faqs": [
+        {
+          "q": "Bisa hapus semua?",
+          "a": "Tidak — minimal satu halaman harus tersisa."
+        },
+        {
+          "q": "Cara menghapus?",
+          "a": "Gunakan ikon sampah di setiap thumbnail, lalu unduh."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "needFile": "Pilih file PDF dulu.",
+    "needPages": "Hapus minimal satu halaman (sisakan minimal satu).",
+    "selectHint": "Gunakan sampah untuk menghapus halaman",
+    "replace": "Ganti",
+    "loadingPages": "Membaca halaman…",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman",
+    "selectAll": "Pilih semua",
+    "clearSelection": "Kosongkan",
+    "reorderHint": "Seret untuk mengurutkan. Sampah menghapus halaman dari PDF.",
+    "cardHint": "Arahkan ke halaman untuk pratinjau, putar, atau hapus."
+  },
+  "extractPages": {
+    "title": "Ekstrak halaman PDF online gratis",
+    "description": "Pilih halaman yang dibutuhkan dan unduh sebagai PDF baru. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Ekstrak Halaman PDF Online Gratis | Pdfumi",
+      "description": "Ambil halaman PDF terpilih jadi file baru. Klik thumbnail untuk memilih. Kuota harian gratis.",
+      "faqTitle": "FAQ ekstrak halaman",
+      "faqs": [
+        {
+          "q": "Urutan halaman?",
+          "a": "Mengikuti urutan tampilan (kiri ke kanan)."
+        },
+        {
+          "q": "Cara memilih?",
+          "a": "Klik thumbnail, lalu unduh."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB",
+    "needFile": "Pilih file PDF dulu.",
+    "needPages": "Pilih minimal satu halaman untuk diekstrak.",
+    "selectHint": "Klik halaman yang disertakan · seret untuk urutan di PDF baru",
+    "replace": "Ganti",
+    "loadingPages": "Membaca halaman…",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman",
+    "selectAll": "Pilih semua",
+    "clearSelection": "Kosongkan"
+  },
+  "organizePdf": {
+    "title": "Atur PDF online gratis",
+    "description": "Urutkan ulang halaman dengan menyeret thumbnail — seperti gabung, untuk satu file. Kuota harian gratis berlaku.",
+    "seo": {
+      "title": "Atur PDF Online Gratis — Urutkan Halaman | Pdfumi",
+      "description": "Urutkan halaman PDF dengan drag-and-drop. Pratinjau urutan lalu unduh. Kuota harian gratis.",
+      "faqTitle": "FAQ atur PDF",
+      "faqs": [
+        {
+          "q": "Cara mengurutkan?",
+          "a": "Seret thumbnail ke urutan yang diinginkan, lalu unduh."
+        },
+        {
+          "q": "Bisa hapus halaman?",
+          "a": "Pakai Hapus halaman PDF; alat ini mengurutkan semua halaman."
+        },
+        {
+          "q": "Ukuran file?",
+          "a": "PDF hingga 5MB di paket gratis."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "Hanya PDF · maks 5MB · hingga 100 halaman",
+    "needFile": "Pilih file PDF dulu.",
+    "reorderHint": "Seret halaman untuk mengatur urutan akhir",
+    "replace": "Ganti",
+    "loadingPages": "Membaca halaman…",
+    "pageOne": "1 halaman",
+    "pageMany": "{count} halaman"
+  },
+  "protectPdf": {
+    "title": "Kunci PDF online gratis",
+    "description": "Tambah password agar PDF terkunci saat dibuka.",
+    "seo": {
+      "title": "Kunci PDF online gratis | Pdfumi",
+      "description": "Tambah password agar PDF terkunci saat dibuka.",
+      "faqTitle": "Protect FAQ",
+      "faqs": [
+        {
+          "q": "Is the PDF encrypted?",
+          "a": "Yes — AES-style password protection via PDFBox."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "passwordLabel": "Password",
+    "needPassword": "Masukkan password."
+  },
+  "unlockPdf": {
+    "title": "Buka kunci PDF online gratis",
+    "description": "Hapus proteksi password jika Anda punya kuncinya.",
+    "seo": {
+      "title": "Buka kunci PDF online gratis | Pdfumi",
+      "description": "Hapus proteksi password jika Anda punya kuncinya.",
+      "faqTitle": "Unlock FAQ",
+      "faqs": [
+        {
+          "q": "Wrong password?",
+          "a": "You will get an error if the password does not match."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "passwordLabel": "Password saat ini",
+    "needPassword": "Masukkan password PDF."
+  },
+  "signPdf": {
+    "title": "Tanda tangan PDF online gratis",
+    "description": "Buat tanda tangan, tempel di mana saja di halaman, lalu unduh.",
+    "seo": {
+      "title": "Tanda tangan PDF online gratis | Pdfumi",
+      "description": "Gambar, ketik, atau upload tanda tangan lalu geser dan ubah ukurannya di PDF.",
+      "faqTitle": "Sign FAQ",
+      "faqs": [
+        {
+          "q": "Bisa digeser setelah ditempel?",
+          "a": "Ya — geser untuk pindah, sudut untuk ubah ukuran, atau hapus lalu tempel ulang."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "signatureLabel": "Gambar tanda tangan",
+    "needSignature": "Buat tanda tangan dulu.",
+    "presetBr": "Kanan bawah",
+    "presetBl": "Kiri bawah",
+    "presetCenter": "Tengah",
+    "methodDraw": "Gambar",
+    "methodUpload": "Upload",
+    "drawHint": "Gambar di sini",
+    "clearDraw": "Hapus",
+    "needDraw": "Gambar tanda tangan dulu.",
+    "uploadHintSig": "Seret atau pilih PNG / JPG tanda tangan",
+    "positionHint": "Posisi di halaman",
+    "createSignature": "Buat tanda tangan",
+    "changeSignature": "Tanda tangan baru",
+    "clearSignature": "Hapus tanda tangan",
+    "modalTitle": "Buat tanda tangan",
+    "methodType": "Ketik",
+    "typePlaceholder": "Nama Anda",
+    "cancel": "Batal",
+    "create": "Buat",
+    "placeBanner": "Klik pada dokumen untuk menempelkan tanda tangan.",
+    "placeHint": "Gerakkan pointer, lalu klik untuk menempel.",
+    "dragHint": "Geser tanda tangan untuk pindah · sudut untuk ubah ukuran",
+    "deleteSig": "Hapus tanda tangan",
+    "needPlace": "Klik di halaman untuk menempelkan tanda tangan dulu.",
+    "downloadSigned": "Unduh PDF tertandatangani"
+  },
+  "pageNumbersPdf": {
+    "title": "Tambah nomor halaman PDF",
+    "description": "Cap nomor halaman di setiap halaman.",
+    "seo": {
+      "title": "Tambah nomor halaman PDF | Pdfumi",
+      "description": "Cap nomor halaman di setiap halaman.",
+      "faqTitle": "Pages FAQ",
+      "faqs": [
+        {
+          "q": "Can I choose position?",
+          "a": "Yes — bottom/top and left/center/right options."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "positionLabel": "Posisi",
+    "formatLabel": "Format",
+    "posBottomCenter": "Bawah tengah",
+    "posBottomLeft": "Bawah kiri",
+    "posBottomRight": "Bawah kanan",
+    "posTopCenter": "Atas tengah",
+    "fmtN": "1, 2, 3…",
+    "fmtNOfTotal": "1 / N"
+  },
+  "cropPdf": {
+    "title": "Potong margin PDF online",
+    "description": "Pangkas margin sama di semua sisi setiap halaman.",
+    "seo": {
+      "title": "Potong margin PDF online | Pdfumi",
+      "description": "Pangkas margin sama di semua sisi setiap halaman.",
+      "faqTitle": "Crop FAQ",
+      "faqs": [
+        {
+          "q": "How much can I crop?",
+          "a": "Up to about 25% per side."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "marginLabel": "Margin"
+  },
+  "ocrPdf": {
+    "title": "OCR PDF online gratis",
+    "description": "Buat PDF scan bisa dicari teksnya (ocrmypdf).",
+    "seo": {
+      "title": "OCR PDF online gratis | Pdfumi",
+      "description": "Buat PDF scan bisa dicari teksnya (ocrmypdf).",
+      "faqTitle": "OCR FAQ",
+      "faqs": [
+        {
+          "q": "What do I need locally?",
+          "a": "Install ocrmypdf + tesseract, or use Docker where they are included."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "languageLabel": "Bahasa OCR",
+    "ocrHint": "Butuh ocrmypdf di host API."
+  },
+  "pdfToExcel": {
+    "title": "PDF ke Excel online gratis",
+    "description": "Ubah PDF jadi .xlsx dengan LibreOffice.",
+    "seo": {
+      "title": "PDF ke Excel online gratis | Pdfumi",
+      "description": "Ubah PDF jadi .xlsx dengan LibreOffice.",
+      "faqTitle": "Excel FAQ",
+      "faqs": [
+        {
+          "q": "Will tables be perfect?",
+          "a": "Simple tables convert best; complex layouts may need cleanup."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 5MB",
+    "needFile": "Pilih PDF dulu.",
+    "resultHint": "Diunduh sebagai .xlsx.",
+    "downloadResult": "Unduh Excel"
+  },
+  "excelToPdf": {
+    "title": "Excel ke PDF online gratis",
+    "description": "Ubah .xls/.xlsx jadi PDF dengan LibreOffice.",
+    "seo": {
+      "title": "Excel ke PDF online gratis | Pdfumi",
+      "description": "Ubah .xls/.xlsx jadi PDF dengan LibreOffice.",
+      "faqTitle": "ExcelPdf FAQ",
+      "faqs": [
+        {
+          "q": "Which formats?",
+          "a": ".xls and .xlsx are supported."
+        }
+      ]
+    },
+    "chooseFile": "Pilih file Excel",
+    "dropHint": "atau seret Excel ke sini",
+    "uploadHint": ".xls / .xlsx · maks 5MB",
+    "needFile": "Pilih Excel dulu.",
+    "resultHint": "Diunduh sebagai PDF.",
+    "downloadResult": "Unduh PDF"
+  },
+  "terms": {
+    "seo": {
+      "title": "Syarat & Ketentuan — Pdfumi",
+      "description": "Syarat dan ketentuan penggunaan layanan Pdfumi yang adil, transparan, dan jelas."
+    },
+    "title": "Syarat & Ketentuan Layanan",
+    "lastUpdated": "Terakhir diperbarui: Oktober 2026",
+    "s1Title": "1. Penerimaan Ketentuan",
+    "s1Body": "Dengan mengakses dan menggunakan Pdfumi, Anda menyetujui seluruh ketentuan ini. Jika tidak setuju, mohon untuk tidak menggunakan layanan kami.",
+    "s2Title": "2. Penggunaan yang Sah & Bertanggung Jawab",
+    "s2Body": "Pdfumi menyediakan utilitas pemrosesan dokumen (pembuatan kwitansi, sertifikat massal, konversi, dan manipulasi PDF). Pengguna bertanggung jawab penuh atas data dan isi dokumen yang dihasilkan. Dilarang keras menggunakan Pdfumi untuk pemalsuan dokumen resmi negara, penipuan, atau perbuatan melanggar hukum lainnya.",
+    "s3Title": "3. Kuota & Batasan Adil",
+    "s3Body": "Pengguna gratis memiliki batas kuota harian. Pengguna berbayar memiliki kuota bulanan bersama. Kuota bersifat hard-cap (jika habis, operasi berhenti sampai siklus berikutnya). Kami tidak pernah mengenakan biaya siluman atau kelebihan tagihan tanpa persetujuan.",
+    "s4Title": "4. Batasan Tanggung Jawab",
+    "s4Body": "Layanan disediakan apa adanya ('as is'). Pdfumi tidak menyimpan dokumen secara permanen dan tidak bertanggung jawab atas kerugian tidak langsung atau kehilangan data.",
+    "s5Title": "5. Hubungi Kami",
+    "s5Body": "Untuk pertanyaan ketentuan hukum atau bisnis, hubungi support@pdfumi.com."
+  },
+  "privacy": {
+    "seo": {
+      "title": "Kebijakan Privasi — Pdfumi",
+      "description": "Bagaimana Pdfumi melindungi data dan dokumen Anda. Jaminan nol penyimpanan file permanen."
+    },
+    "title": "Kebijakan Privasi",
+    "lastUpdated": "Terakhir diperbarui: Oktober 2026",
+    "s1Title": "1. Jaminan Tanpa Penyimpanan Dokumen Permanen",
+    "s1Body": "Privasi Anda adalah prioritas utama. Seluruh dokumen PDF yang Anda unggah atau buat diproses secara in-memory atau di penyimpanan sementara yang otomatis dihapus saat download selesai atau maksimal 24 jam. Kami tidak pernah melihat, menyalin, atau menjual dokumen Anda.",
+    "s2Title": "2. Data yang Dikumpulkan",
+    "s2Body": "Kami hanya mengumpulkan alamat email Anda saat pendaftaran akun atau pembayaran, serta data penggunaan kuota harian/bulanan untuk penegakan batas pemakaian.",
+    "s3Title": "3. Keamanan Pembayaran",
+    "s3Body": "Seluruh pembayaran diproses secara aman oleh payment gateway resmi Midtrans (QRIS, Kartu Kredit/Debit Internasional Visa/Mastercard/JCB, E-Wallet, dan Virtual Account). Kami tidak pernah menyimpan nomor kartu kredit atau PIN Anda.",
+    "s4Title": "4. Cookies & Penyimpanan Lokal",
+    "s4Body": "Kami hanya menggunakan local storage browser untuk menyimpan sesi login dan kunci API di perangkat Anda. Kami tidak menggunakan cookie pelacak pihak ketiga.",
+    "s5Title": "5. Kontak Privasi",
+    "s5Body": "Untuk permintaan penghapusan data atau pertanyaan privasi, kirim email ke privacy@pdfumi.com."
+  },
+  "refund": {
+    "seo": {
+      "title": "Kebijakan Pengembalian Dana — Pdfumi",
+      "description": "Kebijakan refund 7 hari yang adil dan transparan untuk pengguna Pdfumi."
+    },
+    "title": "Kebijakan Pengembalian Dana (Refund)",
+    "lastUpdated": "Terakhir diperbarui: Oktober 2026",
+    "s1Title": "1. Garansi 7 Hari Uang Kembali",
+    "s1Body": "Jika Anda tidak puas dengan paket Pro atau Business, Anda dapat mengajukan refund penuh dalam waktu 7 hari sejak pembelian, asalkan penggunaan kuota belum melebihi 10%.",
+    "s2Title": "2. Perlindungan Hard-Cap",
+    "s2Body": "Paket Pdfumi tidak memiliki biaya tersembunyi. Jika kuota habis, layanan berhenti dan tidak akan pernah mendebit saldo Anda secara sepihak.",
+    "s3Title": "3. Pembatalan Kapan Saja",
+    "s3Body": "Seluruh paket di Pdfumi bersifat prabayar tanpa perpanjangan otomatis diam-diam. Anda memiliki kendali penuh dan tidak akan pernah didebit secara mendadak.",
+    "s4Title": "4. Cara Mengajukan",
+    "s4Body": "Kirim email ke support@pdfumi.com dengan menyertakan email akun dan nomor referensi pesanan Anda."
+  },
+  "editPdf": {
+    "title": "Edit PDF Online",
+    "description": "Tambah teks, sorotan stabilo, bentuk kotak, dan anotasi ke dalam dokumen PDF langsung di browser.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · pemrosesan cepat & privat",
+    "downloadEdited": "Unduh Hasil Edit",
+    "toolText": "Teks",
+    "toolHighlight": "Sorotan",
+    "toolShape": "Bentuk",
+    "seo": {
+      "title": "Edit PDF Online Gratis - Tambah Teks & Anotasi | Pdfumi",
+      "description": "Tambahkan teks, sorot kalimat, dan beri anotasi pada dokumen PDF secara instan tanpa registrasi.",
+      "faqTitle": "Pertanyaan Seputar Edit PDF",
+      "faqs": [
+        {
+          "q": "Apakah dokumen saya aman?",
+          "a": "Ya, proses pengeditan dilakukan langsung di peramban Anda secara privat tanpa diunggah ke server pihak ketiga."
+        }
+      ]
+    }
+  },
+  "redactPdf": {
+    "title": "Sensor PDF (Redact) Permanen",
+    "description": "Hitamkan (blackout) atau tutupi informasi sensitif seperti NIK, nomor rekening, dan data pribadi secara permanen.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · maks 10MB",
+    "needBoxes": "Tentukan setidaknya satu area yang ingin disensor terlebih dahulu.",
+    "downloadRedacted": "Sensor & Unduh Dokumen",
+    "seo": {
+      "title": "Sensor PDF Online - Hapus Informasi Rahasia | Pdfumi",
+      "description": "Hapus dan sensor permanen informasi pribadi, NIK, dan nomor rekening pada dokumen PDF sebelum dibagikan.",
+      "faqTitle": "FAQ Sensor Dokumen PDF",
+      "faqs": [
+        {
+          "q": "Apakah teks di bawah sensor bisa disalin?",
+          "a": "Tidak. Lapisan sensor dibakar secara permanen ke dokumen sehingga informasi di bawahnya tidak dapat dipulihkan."
+        }
+      ]
+    }
+  },
+  "resizeImage": {
+    "title": "Ubah Ukuran Foto (Resize)",
+    "description": "Ubah dimensi lebar dan tinggi foto (JPG, PNG, WebP) dalam piksel atau persentase dengan tetap menjaga ketajaman.",
+    "chooseFile": "Pilih Foto",
+    "dropHint": "atau seret gambar ke sini",
+    "uploadHint": "JPG, PNG, WebP",
+    "seo": {
+      "title": "Ubah Ukuran Foto Online Gratis | Pdfumi",
+      "description": "Ubah ukuran resolusi foto ke dimensi piksel tertentu dengan mudah dan cepat.",
+      "faqTitle": "FAQ Resize Gambar",
+      "faqs": [
+        {
+          "q": "Apakah rasio aspek foto tetap terjaga?",
+          "a": "Ya, Anda dapat mengaktifkan kunci rasio agar bentuk foto tidak gepeng."
+        }
+      ]
+    }
+  },
+  "pasFoto": {
+    "title": "Pembuat Pas Foto Resmi (2x3, 3x4, 4x6, Paspor)",
+    "description": "Ubah foto potret menjadi pas foto formal siap cetak atau daftar CPNS, BUMN, SKCK, dan Visa dengan pilihan latar merah, biru, atau putih.",
+    "chooseFile": "Pilih Foto Potret",
+    "dropHint": "atau seret foto ke sini",
+    "uploadHint": "JPG, PNG · Wajah menghadap depan",
+    "seo": {
+      "title": "Buat Pas Foto Online Gratis - Ganti Background Merah & Biru | Pdfumi",
+      "description": "Buat pas foto ukuran 2x3, 3x4, 4x6, dan paspor dengan latar belakang merah atau biru untuk SSCASN CPNS.",
+      "faqTitle": "FAQ Pas Foto Online",
+      "faqs": [
+        {
+          "q": "Warna latar belakang apa yang dipakai untuk CPNS?",
+          "a": "Umumnya merah untuk tahun kelahiran ganjil dan biru untuk tahun genap, atau sesuai petunjuk instansi."
+        }
+      ]
+    }
+  },
+  "compressImage": {
+    "title": "Kompres Foto ke Target KB Tertentu",
+    "description": "Kecilkan ukuran file foto JPG/PNG menjadi di bawah 100 KB, 200 KB, atau 300 KB sesuai syarat portal pendaftaran online.",
+    "chooseFile": "Pilih Foto",
+    "dropHint": "atau seret foto ke sini",
+    "uploadHint": "JPG, PNG · Otomatis disesuaikan ke target KB",
+    "seo": {
+      "title": "Kompres Foto JPG di Bawah 200 KB Online | Pdfumi",
+      "description": "Kompres foto ke ukuran tepat di bawah 200 KB untuk syarat pendaftaran SSCASN CPNS, BUMN, dan kedinasan.",
+      "faqTitle": "FAQ Kompres Foto",
+      "faqs": [
+        {
+          "q": "Apakah kualitas foto akan buram?",
+          "a": "Sistem mengoptimalkan algoritma kompresi cerdas untuk mempertahankan ketajaman wajah dan tulisan sebaik mungkin."
+        }
+      ]
+    }
+  },
+  "removeSignatureBg": {
+    "title": "Hapus Background Tanda Tangan",
+    "description": "Ubah foto tanda tangan di atas kertas menjadi tanda tangan digital PNG transparan tanpa bayangan dan siap ditempel ke dokumen.",
+    "chooseFile": "Pilih Foto Tanda Tangan",
+    "dropHint": "atau seret foto tanda tangan ke sini",
+    "uploadHint": "Foto kertas putih dengan tanda tangan pulpen",
+    "seo": {
+      "title": "Hapus Background Tanda Tangan Jadi PNG Transparan | Pdfumi",
+      "description": "Ubah foto tanda tangan kertas menjadi PNG transparan dengan tinta hitam atau biru resmi secara instan.",
+      "faqTitle": "FAQ Tanda Tangan Transparan",
+      "faqs": [
+        {
+          "q": "Bagaimana cara menghasilkan tanda tangan terbaik?",
+          "a": "Gunakan pulpen hitam/biru tebal di atas kertas putih polos dengan pencahayaan terang tanpa bayangan tangan."
+        }
+      ]
+    }
+  },
+  "pngToPdf": {
+    "title": "Konversi PNG ke PDF",
+    "description": "Ubah gambar format PNG menjadi dokumen PDF dengan tata letak rapi dan kualitas tinggi.",
+    "chooseFiles": "Pilih File PNG",
+    "dropHint": "atau seret file PNG ke sini",
+    "uploadHint": "PNG · Mendukung banyak file sekaligus",
+    "needFiles": "Silakan pilih setidaknya satu file PNG.",
+    "seo": {
+      "title": "Konversi PNG ke PDF Online Gratis | Pdfumi",
+      "description": "Gabungkan satu atau banyak gambar PNG menjadi file PDF berkualitas tinggi.",
+      "faqTitle": "FAQ PNG ke PDF",
+      "faqs": [
+        {
+          "q": "Bisakah mengatur urutan halaman gambar?",
+          "a": "Ya, Anda bisa menata urutan gambar sebelum dikonversi ke PDF."
+        }
+      ]
+    }
+  },
+  "webpToPdf": {
+    "title": "Konversi WebP ke PDF",
+    "description": "Ubah gambar format WebP menjadi dokumen PDF standar dengan cepat.",
+    "chooseFiles": "Pilih File WebP",
+    "dropHint": "atau seret file WebP ke sini",
+    "uploadHint": "WebP · Mendukung banyak file",
+    "needFiles": "Silakan pilih setidaknya satu file WebP.",
+    "seo": {
+      "title": "Konversi WebP ke PDF Online Gratis | Pdfumi",
+      "description": "Ubah gambar WebP dari peramban menjadi dokumen PDF yang mudah dicetak.",
+      "faqTitle": "FAQ WebP ke PDF",
+      "faqs": [
+        {
+          "q": "Apakah gambar WebP terkompresi dengan baik?",
+          "a": "Ya, konversi mempertahankan detail gambar dengan ukuran file efisien."
+        }
+      ]
+    }
+  },
+  "heicToPdf": {
+    "title": "Konversi HEIC ke PDF",
+    "description": "Ubah foto iPhone / Apple HEIC langsung menjadi dokumen PDF tanpa perlu konversi awal.",
+    "chooseFiles": "Pilih File HEIC / Foto iPhone",
+    "dropHint": "atau seret foto HEIC ke sini",
+    "uploadHint": "HEIC, HEIF, JPG, PNG",
+    "needFiles": "Silakan pilih setidaknya satu file foto.",
+    "seo": {
+      "title": "Konversi HEIC iPhone ke PDF Online | Pdfumi",
+      "description": "Ubah foto format HEIC dari perangkat Apple iPhone / iPad menjadi dokumen PDF kompatibel.",
+      "faqTitle": "FAQ HEIC ke PDF",
+      "faqs": [
+        {
+          "q": "Apakah mendukung foto dari kamera iPhone terbaru?",
+          "a": "Ya, format standar HEIC kamera iOS didukung secara langsung."
+        }
+      ]
+    }
+  },
+  "headerFooterPdf": {
+    "title": "Tambah Header & Footer PDF",
+    "description": "Tambahkan teks judul di bagian atas dan nomor halaman dinamis di bagian bawah setiap halaman dokumen PDF.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Penomoran otomatis",
+    "seo": {
+      "title": "Tambah Header dan Footer PDF Online | Pdfumi",
+      "description": "Beri nomor halaman dan judul dokumen pada bagian atas dan bawah PDF secara praktis.",
+      "faqTitle": "FAQ Header Footer",
+      "faqs": [
+        {
+          "q": "Bisakah menampilkan total halaman?",
+          "a": "Bisa, gunakan token {total} untuk menampilkan jumlah seluruh halaman."
+        }
+      ]
+    }
+  },
+  "flattenPdf": {
+    "title": "Ratakan PDF (Flatten Forms & Layers)",
+    "description": "Kunci semua formulir interaktif, isian teks, dan anotasi menjadi satu lapisan permanen agar tidak bisa diedit lagi.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF interaktif atau bertanda tangan",
+    "seo": {
+      "title": "Ratakan PDF (Flatten) Online Gratis | Pdfumi",
+      "description": "Kunci formulir dan tanda tangan PDF agar tidak dapat diubah oleh pihak ketiga sebelum dikirim.",
+      "faqTitle": "FAQ Flatten PDF",
+      "faqs": [
+        {
+          "q": "Mengapa dokumen PDF perlu diratakan?",
+          "a": "Untuk memastikan tampilan formulir konsisten di semua aplikasi pembuka PDF dan mencegah pengeditan tidak sah."
+        }
+      ]
+    }
+  },
+  "removeMetadataPdf": {
+    "title": "Hapus Metadata PDF",
+    "description": "Bersihkan informasi tersembunyi seperti nama penulis, software pembuat, riwayat revisi, dan timestamp.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Pembersihan privasi",
+    "seo": {
+      "title": "Hapus Metadata PDF Online - Bersihkan Data Pribadi | Pdfumi",
+      "description": "Lindungi privasi Anda dengan menghapus metadata dan riwayat pembuatan dokumen PDF.",
+      "faqTitle": "FAQ Hapus Metadata",
+      "faqs": [
+        {
+          "q": "Metadata apa saja yang dihapus?",
+          "a": "Judul, nama pembuat, software produser, tanggal pembuatan, serta kata kunci tersembunyi."
+        }
+      ]
+    }
+  },
+  "resizePdf": {
+    "title": "Ubah Ukuran Kertas PDF (A4, Letter, Legal)",
+    "description": "Sesuaikan dimensi halaman PDF ke format kertas standar internasional dengan skala proporsional otomatis.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Berbagai ukuran halaman",
+    "seo": {
+      "title": "Ubah Ukuran Kertas PDF ke A4 / Letter Online | Pdfumi",
+      "description": "Ubah ukuran halaman PDF menjadi A4, Letter, Legal, atau A3 dengan mudah tanpa memotong teks.",
+      "faqTitle": "FAQ Resize Halaman PDF",
+      "faqs": [
+        {
+          "q": "Apakah isi halaman akan terpotong?",
+          "a": "Tidak, konten dokumen akan diskalakan secara proporsional di tengah halaman baru."
+        }
+      ]
+    }
+  },
+  "grayscalePdf": {
+    "title": "Ubah PDF ke Hitam Putih (Grayscale)",
+    "description": "Konversi seluruh warna dokumen PDF menjadi gradasi abu-abu dan hitam putih untuk hemat tinta cetak dan ukuran file.",
+    "chooseFile": "Pilih file PDF",
+    "dropHint": "atau seret PDF ke sini",
+    "uploadHint": "PDF · Berwarna",
+    "seo": {
+      "title": "Konversi PDF ke Hitam Putih (Grayscale) Online | Pdfumi",
+      "description": "Ubah dokumen PDF berwarna menjadi monokrom hitam putih untuk efisiensi cetak dan pengiriman.",
+      "faqTitle": "FAQ Grayscale PDF",
+      "faqs": [
+        {
+          "q": "Apakah teks tetap tajam?",
+          "a": "Ya, kontras teks dijaga tetap tajam agar mudah dibaca."
+        }
+      ]
+    }
+  },
+  "scanPdf": {
+    "title": "Scan Dokumen dari Kamera HP ke PDF",
+    "description": "Pindai dokumen fisik, surat, ijazah, atau struk langsung menggunakan kamera ponsel Anda menjadi file PDF bersih.",
+    "seo": {
+      "title": "Scan Dokumen Kamera HP Jadi PDF Online | Pdfumi",
+      "description": "Pindai dokumen langsung lewat peramban ponsel tanpa perlu install aplikasi scanner tambahan.",
+      "faqTitle": "FAQ Scan Dokumen Kamera",
+      "faqs": [
+        {
+          "q": "Apakah bisa scan banyak halaman sekaligus?",
+          "a": "Ya, Anda bisa mengambil beberapa foto berturut-turut lalu menggabungkannya ke dalam satu file PDF."
+        }
+      ]
+    }
+  },
+  "invoice": {
+    "title": "Pembuat Invoice & Tagihan Profesional",
+    "description": "Buat tagihan invoice resmi dengan tabel barang/jasa, pajak, diskon, instruksi rekening, dan tanda tangan digital siap unduh.",
+    "seo": {
+      "title": "Buat Invoice Tagihan Online Gratis PDF | Pdfumi",
+      "description": "Generator invoice profesional untuk bisnis, freelancer, dan perusahaan dengan kalkulasi otomatis.",
+      "faqTitle": "FAQ Invoice PDF",
+      "faqs": [
+        {
+          "q": "Apakah bisa menggunakan mata uang Rupiah dan Dolar?",
+          "a": "Ya, tersedia pilihan mata uang Rupiah (Rp), USD ($), Euro (€), dan lainnya."
+        }
+      ]
+    }
+  },
+  "suratResmi": {
+    "title": "Pembuat Surat Resmi & Dinas",
+    "description": "Susun surat resmi lengkap dengan kop instansi, nomor surat, perihal, isi terstruktur, dan kolom penandatangan.",
+    "seo": {
+      "title": "Format Surat Resmi Online Siap Cetak PDF | Pdfumi",
+      "description": "Buat surat dinas dan surat resmi organisasi dengan tata letak standar administrasi perkantoran.",
+      "faqTitle": "FAQ Surat Resmi",
+      "faqs": [
+        {
+          "q": "Apakah format kop surat sesuai standar Indonesia?",
+          "a": "Ya, dilengkapi garis ganda tebal-tipis khas persuratan instansi di Indonesia."
+        }
+      ]
+    }
+  },
+  "kontrak": {
+    "title": "Pembuat Surat Perjanjian & Kontrak Kerja (SPK)",
+    "description": "Susun dokumen perjanjian kerjasama, kontrak kerja, MoU, atau SPK dengan pasal-pasal dinamis dan kolom tanda tangan dua pihak.",
+    "seo": {
+      "title": "Buat Surat Perjanjian Kerja Sama (SPK) Online PDF | Pdfumi",
+      "description": "Generator kontrak kerja dan perjanjian bisnis resmi dengan pasal-pasal yang dapat disesuaikan.",
+      "faqTitle": "FAQ Kontrak & Perjanjian",
+      "faqs": [
+        {
+          "q": "Bisakah menambah atau mengurangi pasal?",
+          "a": "Bisa, Anda bebas menambah, mengubah, atau menghapus pasal sesuai kebutuhan kesepakatan."
+        }
+      ]
+    }
+  },
+  "compressJpg": {
+    "title": "Kompres Foto JPG ke Ukuran Tertentu",
+    "description": "Kecilkan ukuran file foto JPG/JPEG di bawah 200 KB, 100 KB, atau target KB tertentu dengan menjaga ketajaman gambar.",
+    "chooseFile": "Pilih Foto JPG",
+    "dropHint": "atau seret file JPG ke sini",
+    "uploadHint": "JPG, JPEG · Presisi target KB",
+    "seo": {
+      "title": "Kompres JPG Online Gratis - Di Bawah 200 KB | Pdfumi",
+      "description": "Kompres foto JPG/JPEG ke ukuran tepat di bawah 200 KB untuk SSCASN CPNS, BUMN, dan kedinasan.",
+      "faqTitle": "FAQ Kompres JPG",
+      "faqs": [
+        {
+          "q": "Apakah ukuran JPG bisa tepat di bawah 200 KB?",
+          "a": "Ya, algoritma adaptif kami menyesuaikan kompresi secara bertahap hingga ukuran file sesuai target."
+        }
+      ]
+    }
+  },
+  "compressPng": {
+    "title": "Kompres Gambar PNG Transparan",
+    "description": "Kecilkan ukuran file PNG tanpa merusak transparansi dan ketajaman teks/grafik.",
+    "chooseFile": "Pilih File PNG",
+    "dropHint": "atau seret file PNG ke sini",
+    "uploadHint": "PNG · Mempertahankan transparansi",
+    "seo": {
+      "title": "Kompres PNG Online Gratis - Perkecil Ukuran PNG | Pdfumi",
+      "description": "Kompres gambar PNG transparan secara cepat dan privat langsung di peramban.",
+      "faqTitle": "FAQ Kompres PNG",
+      "faqs": [
+        {
+          "q": "Apakah latar belakang transparan tetap aman?",
+          "a": "Ya, channel alfa transparansi tetap dipertahankan."
+        }
+      ]
+    }
+  },
+  "compressWebp": {
+    "title": "Kompres Gambar WebP",
+    "description": "Optimalkan ukuran file format modern WebP untuk kecepatan loading situs web dan aplikasi.",
+    "chooseFile": "Pilih Gambar WebP",
+    "dropHint": "atau seret file WebP ke sini",
+    "uploadHint": "WebP · Ukuran ultra-ringan",
+    "seo": {
+      "title": "Kompres WebP Online Cepat & Ringan | Pdfumi",
+      "description": "Kecilkan gambar format WebP dengan efisiensi tinggi langsung di browser.",
+      "faqTitle": "FAQ Kompres WebP",
+      "faqs": [
+        {
+          "q": "Mengapa menggunakan format WebP?",
+          "a": "WebP memberikan ukuran file lebih kecil hingga 30% dibanding JPEG dan PNG biasa."
+        }
+      ]
+    }
+  },
+  "compressVideo": {
+    "title": "Kompres Video Online Gratis",
+    "description": "Kecilkan ukuran file video MP4, WebM, dan MOV langsung di browser tanpa upload ke server eksternal.",
+    "chooseFile": "Pilih File Video",
+    "dropHint": "atau seret video ke sini",
+    "uploadHint": "MP4, WebM, MOV, MKV · Kompresi cepat privat di peramban",
+    "seo": {
+      "title": "Kompres Video Online Gratis - Kecilkan Ukuran MP4 & WebM | Pdfumi",
+      "description": "Kecilkan ukuran video untuk WhatsApp, email, dan Discord langsung di browser dengan pratinjau instan.",
+      "faqTitle": "FAQ Kompres Video",
+      "faqs": [
+        {
+          "q": "Apakah video saya diunggah ke server?",
+          "a": "Tidak, seluruh proses kompresi dijalankan langsung di browser Anda sehingga 100% aman dan privat."
+        },
+        {
+          "q": "Format video apa saja yang didukung?",
+          "a": "Mendukung MP4, WebM, MOV, MKV, dan format video browser lainnya."
+        }
+      ]
+    }
+  },
+  "compressAudio": {
+    "title": "Kompres Audio Online Gratis",
+    "description": "Kecilkan ukuran file audio MP3, WAV, M4A, dan AAC dengan opsi bitrate, sample rate, dan mode mono.",
+    "chooseFile": "Pilih File Audio",
+    "dropHint": "atau seret audio ke sini",
+    "uploadHint": "MP3, WAV, M4A, AAC, OGG · Kompres rekaman & musik",
+    "seo": {
+      "title": "Kompres Audio Online Gratis - Kecilkan Ukuran MP3 | Pdfumi",
+      "description": "Kecilkan ukuran file rekaman suara, podcast, dan musik dengan kontrol bitrate fleksibel.",
+      "faqTitle": "FAQ Kompres Audio",
+      "faqs": [
+        {
+          "q": "Apakah mengubah ke mono menghemat ukuran?",
+          "a": "Ya, mengubah stereo menjadi mono memangkas data audio hingga separuhnya, sangat cocok untuk voice note dan podcast."
+        },
+        {
+          "q": "Format audio apa saja yang didukung?",
+          "a": "Mendukung MP3, WAV, M4A, AAC, OGG, dan FLAC."
+        }
+      ]
+    }
+  },
+  "fillPdf": {
+    "title": "Isi formulir PDF online gratis",
+    "description": "Ketik langsung di formulir, centang kotak opsi, bubuhkan tanggal dan tanda tangan, lalu unduh hasilnya.",
+    "seo": {
+      "title": "Isi Formulir PDF Online Gratis | Tanpa Watermark | Pdfumi",
+      "description": "Isi formulir pendaftaran, bank, atau lamaran kerja langsung di peramban. Tambahkan teks, ceklis centang (✓), tanggal hari ini, dan tanda tangan tanpa instal aplikasi.",
+      "faqTitle": "Tanya Jawab Isi Formulir PDF",
+      "faqs": [
+        {
+          "q": "Apakah bisa mengisi formulir PDF biasa yang bukan interaktif (hasil scan)?",
+          "a": "Bisa. Anda cukup klik di area mana saja pada formulir untuk mengetik teks, menaruh centang (✓), atau tanggal."
+        },
+        {
+          "q": "Apakah dokumen dan data pribadi saya aman?",
+          "a": "Sangat aman. Pengisian dokumen diproses 100% secara lokal di peramban (browser) Anda tanpa diunggah ke server eksternal."
+        },
+        {
+          "q": "Apakah hasil formulir yang diunduh memiliki watermark?",
+          "a": "Tidak ada. Semua formulir yang diunduh bersih tanpa watermark di seluruh paket, termasuk paket Free."
+        }
+      ]
+    }
+  }
+}

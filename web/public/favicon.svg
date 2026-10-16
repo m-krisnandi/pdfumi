@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#042f2e"/>
+      <stop offset="50%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="foldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99f6e4"/>
+      <stop offset="100%" stop-color="#5eead4"/>
+    </linearGradient>
+    <linearGradient id="pGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#021c1b" flood-opacity="0.35"/>
+    </filter>
+    <filter id="innerDocShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect width="512" height="512" rx="120" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Rim Glow -->
+  <rect width="510" height="510" x="1" y="1" rx="119" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="2"/>
+
+  <!-- Back Sheet (Floating / Layered Document) -->
+  <rect x="180" y="96" width="200" height="268" rx="28" fill="rgba(255, 255, 255, 0.22)" transform="rotate(7 280 230)"/>
+
+  <!-- Main Front White Document -->
+  <g filter="url(#shadow)">
+    <!-- Document Body with Folded Top Right -->
+    <path d="M 132 120 
+             C 132 100, 148 84, 168 84 
+             L 300 84 
+             L 380 164 
+             L 380 392 
+             C 380 412, 364 428, 344 428 
+             L 168 428 
+             C 148 428, 132 412, 132 392 
+             Z" 
+          fill="#FFFFFF" />
+
+    <!-- Folded Corner Flap -->
+    <path d="M 300 84 
+             L 300 144 
+             C 300 155, 309 164, 320 164 
+             L 380 164 
+             Z" 
+          fill="url(#foldGrad)" />
+
+    <!-- Stylized Modern Bold "P" inside Document -->
+    <path d="M 196 172 
+             L 268 172 
+             C 302 172, 324 192, 324 224 
+             C 324 256, 302 276, 268 276 
+             L 232 276 
+             L 232 344 
+             C 232 350, 226 356, 220 356 
+             L 208 356 
+             C 201 356, 196 350, 196 344 
+             Z 
+             M 232 204 
+             L 232 244 
+             L 266 244 
+             C 284 244, 296 235, 296 224 
+             C 296 213, 284 204, 266 204 
+             Z" 
+          fill="url(#pGrad)" />
+
+    <!-- Accent Dot / Spark for Modern AI Touch -->
+    <circle cx="282" cy="344" r="14" fill="#0d9488"/>
+  </g>
+</svg>
