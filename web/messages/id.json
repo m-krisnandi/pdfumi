@@ -15,7 +15,8 @@
     "terms": "Ketentuan",
     "privacy": "Privasi",
     "refund": "Pengembalian Dana",
-    "contact": "Kontak"
+    "contact": "Kontak",
+    "feedback": "Masukan & Bug"
   },
   "footer": "Pdfumi — dokumen jadi PDF, tanpa ribet.",
   "common": {
@@ -1590,6 +1591,12 @@
           "a": "Tidak ada. Semua formulir yang diunduh bersih tanpa watermark di seluruh paket, termasuk paket Free."
         }
       ]
+    }
+  },
+  "feedback": {
+    "seo": {
+      "title": "Feedback & Laporkan Masalah — Pdfumi",
+      "description": "Kirim masukan, usulan fitur, atau laporkan kendala teknis langsung kepada tim pengembang Pdfumi."
     }
   }
 }

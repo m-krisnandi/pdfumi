@@ -26,6 +26,12 @@ import {
   Infinity as InfinityIcon,
   Trash2,
   AlertTriangle,
+  MessageSquare,
+  Send,
+  CheckCircle2,
+  Bug,
+  Lightbulb,
+  Mail,
 } from "lucide-react";
 
 interface PricingPlan {
@@ -72,6 +78,20 @@ interface UserAccount {
   updatedAt: string;
 }
 
+export interface FeedbackReport {
+  id: string;
+  category: "BUG" | "FEATURE" | "FEEDBACK";
+  subject: string;
+  description: string;
+  email: string | null;
+  accountId: string | null;
+  status: "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED";
+  adminNotes: string | null;
+  replyMessage: string | null;
+  repliedAt: string | null;
+  createdAt: string;
+}
+
 interface PromoCode {
   code: string;
   discountPercent: number;
@@ -100,7 +120,25 @@ interface AdminStats {
 export function AdminPricingBoard() {
   const [adminKey, setAdminKey] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] = useState<"plans" | "orders" | "accounts" | "promos">("plans");
+  const [activeTab, setActiveTab] = useState<"plans" | "orders" | "accounts" | "promos" | "feedback">("plans");
+
+  // Feedback data states
+  const [feedbackReports, setFeedbackReports] = useState<FeedbackReport[]>([]);
+  const [feedbackStatusFilter, setFeedbackStatusFilter] = useState<string>("ALL");
+  const [feedbackCategoryFilter, setFeedbackCategoryFilter] = useState<string>("ALL");
+  const [feedbackSearchQuery, setFeedbackSearchQuery] = useState("");
+  const [selectedReport, setSelectedReport] = useState<FeedbackReport | null>(null);
+  const [replyForm, setReplyForm] = useState<{
+    status: string;
+    adminNotes: string;
+    replyMessage: string;
+    sendEmail: boolean;
+  }>({
+    status: "OPEN",
+    adminNotes: "",
+    replyMessage: "",
+    sendEmail: true,
+  });
 
   // Data states
   const [stats, setStats] = useState<AdminStats | null>(null);
@@ -245,6 +283,19 @@ export function AdminPricingBoard() {
       if (resPromos.ok) {
         const dataPromos: PromoCode[] = await resPromos.json();
         setPromos(dataPromos);
+      }
+
+      // 6. Fetch Feedback & Bug Reports
+      try {
+        const resFeedback = await apiFetch("/api/v1/feedback/admin", {
+          headers: { "X-Admin-Key": keyToUse },
+        });
+        if (resFeedback.ok) {
+          const dataFeedback: FeedbackReport[] = await resFeedback.json();
+          setFeedbackReports(dataFeedback);
+        }
+      } catch {
+        // Silently continue if feedback API is empty
       }
 
       setIsAuthenticated(true);
@@ -565,6 +616,74 @@ export function AdminPricingBoard() {
     });
   }, [promos, promoSearchQuery]);
 
+  const filteredFeedback = useMemo(() => {
+    return feedbackReports.filter((f) => {
+      const matchStatus = feedbackStatusFilter === "ALL" || f.status === feedbackStatusFilter;
+      const matchCat = feedbackCategoryFilter === "ALL" || f.category === feedbackCategoryFilter;
+      const q = feedbackSearchQuery.toLowerCase().trim();
+      const matchQuery =
+        !q ||
+        f.subject.toLowerCase().includes(q) ||
+        f.description.toLowerCase().includes(q) ||
+        (f.email && f.email.toLowerCase().includes(q));
+      return matchStatus && matchCat && matchQuery;
+    });
+  }, [feedbackReports, feedbackStatusFilter, feedbackCategoryFilter, feedbackSearchQuery]);
+
+  function handleOpenFeedbackModal(report: FeedbackReport) {
+    setSelectedReport(report);
+    setReplyForm({
+      status: report.status,
+      adminNotes: report.adminNotes || "",
+      replyMessage: report.replyMessage || "",
+      sendEmail: Boolean(report.email),
+    });
+  }
+
+  async function handleSaveFeedback(e: React.FormEvent) {
+    e.preventDefault();
+    if (!selectedReport) return;
+    setActionLoading(true);
+    setError(null);
+    try {
+      const res = await apiFetch(`/api/v1/feedback/admin/${selectedReport.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Key": adminKey,
+        },
+        body: JSON.stringify(replyForm),
+      });
+      if (!res.ok) throw await toApiError(res);
+      setSuccessNotice(`Laporan "${selectedReport.subject}" berhasil diperbarui.`);
+      setSelectedReport(null);
+      void loadAllData(adminKey);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Gagal menyimpan tanggapan laporan");
+    } finally {
+      setActionLoading(false);
+    }
+  }
+
+  async function handleDeleteFeedback(id: string) {
+    if (!confirm("Apakah Anda yakin ingin menghapus laporan ini secara permanen?")) return;
+    setActionLoading(true);
+    setError(null);
+    try {
+      const res = await apiFetch(`/api/v1/feedback/admin/${id}`, {
+        method: "DELETE",
+        headers: { "X-Admin-Key": adminKey },
+      });
+      if (!res.ok) throw await toApiError(res);
+      setSuccessNotice("Laporan berhasil dihapus.");
+      void loadAllData(adminKey);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Gagal menghapus laporan");
+    } finally {
+      setActionLoading(false);
+    }
+  }
+
   // Login view
   if (!isAuthenticated) {
     return (
@@ -861,6 +980,27 @@ export function AdminPricingBoard() {
             <span className="px-2 py-0.5 text-[10px] rounded-full font-bold bg-zinc-200/70 dark:bg-white/10 text-zinc-700 dark:text-zinc-300">
               {promos.length}
             </span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("feedback")}
+            className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              activeTab === "feedback"
+                ? "bg-white dark:bg-white/15 text-zinc-950 dark:text-white shadow-md border border-black/5 dark:border-white/10"
+                : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
+            }`}
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            Laporan & Masukan
+            {feedbackReports.filter((f) => f.status === "OPEN").length > 0 ? (
+              <span className="px-2 py-0.5 text-[10px] rounded-full font-bold bg-rose-500/20 text-rose-700 dark:text-rose-400">
+                {feedbackReports.filter((f) => f.status === "OPEN").length} Baru
+              </span>
+            ) : (
+              <span className="px-2 py-0.5 text-[10px] rounded-full font-bold bg-zinc-200/70 dark:bg-white/10 text-zinc-700 dark:text-zinc-300">
+                {feedbackReports.length}
+              </span>
+            )}
           </button>
         </div>
       </div>
@@ -1296,6 +1436,225 @@ export function AdminPricingBoard() {
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* ================= TAB 5: LAPORAN & MASUKAN (FEEDBACK) ================= */}
+      {activeTab === "feedback" && (
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1">
+            <div>
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
+                <span>Laporan Masalah & Feedback Pengguna</span>
+                <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-teal-500/15 text-teal-700 dark:text-teal-300">
+                  {feedbackReports.length} Laporan
+                </span>
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Kelola bug report, permintaan fitur, dan saran dari pengunjung atau pelanggan. Anda dapat menanggapi status laporan dan membalas melalui email secara otomatis.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => void loadAllData(adminKey)}
+                disabled={loading}
+                className="glass-pill px-3 py-2 text-xs font-bold rounded-xl text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
+                Segarkan
+              </button>
+            </div>
+          </div>
+
+          {/* Filter & Search Bar */}
+          <div className="glass-panel p-3.5 rounded-2xl flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Status Filter */}
+              <div className="flex items-center gap-1 text-xs">
+                <span className="text-zinc-500 font-semibold mr-1">Status:</span>
+                {["ALL", "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED"].map((st) => (
+                  <button
+                    key={st}
+                    onClick={() => setFeedbackStatusFilter(st)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                      feedbackStatusFilter === st
+                        ? "bg-teal-600 text-white dark:bg-teal-500 dark:text-zinc-950 shadow-xs"
+                        : "glass-pill text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {st === "ALL"
+                      ? "Semua"
+                      : st === "OPEN"
+                      ? "Baru (Open)"
+                      : st === "IN_PROGRESS"
+                      ? "Diproses"
+                      : st === "RESOLVED"
+                      ? "Selesai"
+                      : "Ditutup"}
+                  </button>
+                ))}
+              </div>
+
+              {/* Category Filter */}
+              <div className="flex items-center gap-1 text-xs ml-0 md:ml-2 border-t md:border-t-0 md:border-l border-zinc-200 dark:border-white/10 pt-2 md:pt-0 md:pl-3">
+                <span className="text-zinc-500 font-semibold mr-1">Kategori:</span>
+                {["ALL", "BUG", "FEATURE", "FEEDBACK"].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setFeedbackCategoryFilter(cat)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                      feedbackCategoryFilter === cat
+                        ? "bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 shadow-xs"
+                        : "glass-pill text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {cat === "ALL"
+                      ? "Semua"
+                      : cat === "BUG"
+                      ? "Bug"
+                      : cat === "FEATURE"
+                      ? "Fitur"
+                      : "Saran"}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-64">
+              <Search className="w-4 h-4 absolute left-3 top-2.5 text-zinc-400" />
+              <input
+                type="text"
+                value={feedbackSearchQuery}
+                onChange={(e) => setFeedbackSearchQuery(e.target.value)}
+                placeholder="Cari subjek, pesan, email..."
+                className="glass-input w-full pl-9 pr-3 py-1.5 text-xs rounded-xl"
+              />
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="glass-panel rounded-3xl overflow-hidden shadow-sm">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="border-b border-zinc-200/60 dark:border-white/10 text-zinc-500 dark:text-zinc-400 font-bold uppercase tracking-wider text-[11px] bg-black/[0.02] dark:bg-white/[0.02]">
+                  <th className="py-3 px-4">Kategori & Waktu</th>
+                  <th className="py-3 px-4">Subjek & Masukan</th>
+                  <th className="py-3 px-4">Pelapor</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4">Balasan Admin</th>
+                  <th className="py-3 px-4 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-200/40 dark:divide-white/5 font-medium">
+                {filteredFeedback.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="text-center py-12 text-zinc-500">
+                      Tidak ada laporan atau masukan yang sesuai dengan filter saat ini.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredFeedback.map((item) => (
+                    <tr key={item.id} className="hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors">
+                      <td className="py-3.5 px-4 space-y-1">
+                        <span
+                          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                            item.category === "BUG"
+                              ? "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20"
+                              : item.category === "FEATURE"
+                              ? "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border border-indigo-500/20"
+                              : "bg-teal-500/10 text-teal-700 dark:text-teal-400 border border-teal-500/20"
+                          }`}
+                        >
+                          {item.category === "BUG" && <Bug className="w-3 h-3" />}
+                          {item.category === "FEATURE" && <Lightbulb className="w-3 h-3" />}
+                          {item.category === "FEEDBACK" && <MessageSquare className="w-3 h-3" />}
+                          {item.category}
+                        </span>
+                        <div className="text-[11px] text-zinc-400">
+                          {new Date(item.createdAt).toLocaleDateString("id-ID", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 max-w-xs">
+                        <strong className="block text-zinc-900 dark:text-white text-xs truncate">
+                          {item.subject}
+                        </strong>
+                        <p className="text-[11px] text-zinc-500 dark:text-zinc-400 line-clamp-2 mt-0.5">
+                          {item.description}
+                        </p>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        {item.email ? (
+                          <div className="flex items-center gap-1.5 text-zinc-800 dark:text-zinc-200">
+                            <Mail className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                            <span className="truncate max-w-[140px]">{item.email}</span>
+                          </div>
+                        ) : (
+                          <span className="text-zinc-400 italic">Tamu Anonim</span>
+                        )}
+                        {item.accountId && (
+                          <div className="text-[10px] text-zinc-400 font-mono mt-0.5 truncate max-w-[140px]">
+                            ID: {item.accountId.slice(0, 8)}...
+                          </div>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <span
+                          className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                            item.status === "OPEN"
+                              ? "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20"
+                              : item.status === "IN_PROGRESS"
+                              ? "bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20"
+                              : item.status === "RESOLVED"
+                              ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
+                              : "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border border-zinc-500/20"
+                          }`}
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-4 max-w-[180px]">
+                        {item.replyMessage ? (
+                          <div className="space-y-0.5">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                              <Check className="w-3 h-3" /> Sudah Dibalas
+                            </span>
+                            <p className="text-[10px] text-zinc-500 truncate">{item.replyMessage}</p>
+                          </div>
+                        ) : (
+                          <span className="text-[11px] text-zinc-400 italic">Belum dibalas</span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="inline-flex items-center gap-1.5">
+                          <button
+                            onClick={() => handleOpenFeedbackModal(item)}
+                            className="glass-pill px-3 py-1.5 text-xs font-bold rounded-xl text-teal-700 dark:text-teal-400 hover:scale-105 active:scale-95 transition-all flex items-center gap-1"
+                          >
+                            <Edit3 className="w-3.5 h-3.5" />
+                            Detail / Balas
+                          </button>
+                          <button
+                            onClick={() => void handleDeleteFeedback(item.id)}
+                            className="glass-pill p-1.5 text-xs font-bold rounded-xl text-rose-600 dark:text-rose-400 hover:scale-105 active:scale-95 transition-all"
+                            title="Hapus Laporan"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -1974,6 +2333,168 @@ export function AdminPricingBoard() {
             </form>
               );
             })()}
+          </div>
+        </div>
+      )}
+
+      {/* ================= MODAL DETAIL & BALAS FEEDBACK ================= */}
+      {selectedReport && (
+        <div className="fixed inset-0 z-50 bg-black/40 dark:bg-black/70 backdrop-blur-xl flex items-center justify-center p-4">
+          <div className="glass-panel rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-5 max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-200/60 dark:border-white/10">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                      selectedReport.category === "BUG"
+                        ? "bg-rose-500/10 text-rose-700 dark:text-rose-400"
+                        : selectedReport.category === "FEATURE"
+                        ? "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400"
+                        : "bg-teal-500/10 text-teal-700 dark:text-teal-400"
+                    }`}
+                  >
+                    {selectedReport.category}
+                  </span>
+                  <span className="text-xs text-zinc-400">
+                    {new Date(selectedReport.createdAt).toLocaleString("id-ID")}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-white mt-1">
+                  {selectedReport.subject}
+                </h3>
+              </div>
+              <button
+                onClick={() => setSelectedReport(null)}
+                className="glass-pill p-1.5 rounded-full text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Detail Konten Laporan */}
+            <div className="p-4 rounded-2xl bg-zinc-500/5 dark:bg-white/[0.04] border border-zinc-200/60 dark:border-white/10 space-y-3">
+              <div>
+                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">
+                  Deskripsi Pengguna:
+                </span>
+                <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 whitespace-pre-wrap leading-relaxed mt-1">
+                  {selectedReport.description}
+                </p>
+              </div>
+
+              <div className="pt-2 border-t border-zinc-200/40 dark:border-white/5 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
+                <div>
+                  Pelapor:{" "}
+                  <strong className="text-zinc-800 dark:text-zinc-200">
+                    {selectedReport.email || "Anonim (Tanpa email)"}
+                  </strong>
+                </div>
+                {selectedReport.accountId && (
+                  <div>
+                    ID Akun: <span className="font-mono text-[11px]">{selectedReport.accountId}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveFeedback} className="space-y-4">
+              {/* Update Status */}
+              <div>
+                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
+                  Status Tindak Lanjut
+                </label>
+                <select
+                  value={replyForm.status}
+                  onChange={(e) => setReplyForm({ ...replyForm, status: e.target.value })}
+                  className="glass-input w-full px-3.5 py-2.5 rounded-xl text-sm"
+                >
+                  <option value="OPEN">OPEN (Menunggu Pemeriksaan)</option>
+                  <option value="IN_PROGRESS">IN_PROGRESS (Sedang Dikerjakan / Ditinjau Tim)</option>
+                  <option value="RESOLVED">RESOLVED (Terselesaikan / Bug Diperbaiki)</option>
+                  <option value="CLOSED">CLOSED (Ditutup / Tidak Dapat Direplikasi)</option>
+                </select>
+              </div>
+
+              {/* Admin Notes */}
+              <div>
+                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1">
+                  Catatan Internal Admin (Hanya terlihat oleh tim admin)
+                </label>
+                <textarea
+                  value={replyForm.adminNotes}
+                  onChange={(e) => setReplyForm({ ...replyForm, adminNotes: e.target.value })}
+                  rows={2}
+                  placeholder="Catatan penanganan atau referensi commit/pr..."
+                  className="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"
+                />
+              </div>
+
+              {/* Reply Message */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                    Pesan Tanggapan / Balasan untuk Pelapor
+                  </label>
+                  {selectedReport.repliedAt && (
+                    <span className="text-[10px] text-zinc-400">
+                      Terakhir dibalas: {new Date(selectedReport.repliedAt).toLocaleDateString("id-ID")}
+                    </span>
+                  )}
+                </div>
+                <textarea
+                  value={replyForm.replyMessage}
+                  onChange={(e) => setReplyForm({ ...replyForm, replyMessage: e.target.value })}
+                  rows={4}
+                  placeholder="Tulis pesan penjelasan atau konfirmasi perbaikan masalah kepada pelapor..."
+                  className="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs leading-relaxed"
+                />
+              </div>
+
+              {/* Send Email Checkbox */}
+              {selectedReport.email ? (
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-teal-500/10 border border-teal-500/20">
+                  <input
+                    type="checkbox"
+                    id="sendEmailCheck"
+                    checked={replyForm.sendEmail}
+                    onChange={(e) => setReplyForm({ ...replyForm, sendEmail: e.target.checked })}
+                    className="mt-0.5 rounded text-teal-600 focus:ring-teal-500"
+                  />
+                  <label htmlFor="sendEmailCheck" className="text-xs text-teal-950 dark:text-teal-200 cursor-pointer">
+                    <strong className="block font-semibold">Kirim notifikasi email otomatis</strong>
+                    Pesan balasan di atas akan dikirimkan ke <u>{selectedReport.email}</u> menggunakan template resmi Pdfumi.
+                  </label>
+                </div>
+              ) : (
+                <div className="text-[11px] text-zinc-400 italic">
+                  Pelapor tidak menyertakan alamat email, balasan hanya tersimpan dalam catatan sistem.
+                </div>
+              )}
+
+              <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-zinc-200/60 dark:border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setSelectedReport(null)}
+                  className="glass-pill px-4 py-2.5 text-xs font-bold rounded-xl text-zinc-700 dark:text-zinc-300 hover:scale-105 active:scale-95 transition-all"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  disabled={actionLoading}
+                  className="px-5 py-2.5 text-xs font-bold rounded-xl text-white bg-teal-600 hover:bg-teal-500 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-zinc-950 shadow-md hover:scale-105 active:scale-95 transition-all disabled:opacity-50 flex items-center gap-1.5"
+                >
+                  {actionLoading ? (
+                    "Menyimpan..."
+                  ) : (
+                    <>
+                      <Send className="w-3.5 h-3.5" />
+                      Simpan & Balas
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

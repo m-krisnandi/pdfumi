@@ -15,7 +15,8 @@
     "terms": "စည်းမျဉ်းများ",
     "privacy": "သီးသန့်လုံခြုံရေး",
     "refund": "ငွေပြန်အမ်းမှု မူဝါဒ",
-    "contact": "Hubungi Kami"
+    "contact": "Hubungi Kami",
+    "feedback": "Maklum Balas & Lapor Isu"
   },
   "footer": "Pdfumi — စာရွက်စာတမ်းများကို PDF အဖြစ်၊ အခက်အခဲမရှိ။",
   "common": {
@@ -1562,6 +1563,12 @@
           "a": "Tiada. Semua fail bersih tanpa tera air untuk semua pelan."
         }
       ]
+    }
+  },
+  "feedback": {
+    "seo": {
+      "title": "Maklum Balas & Lapor Isu — Pdfumi",
+      "description": "Hantar maklum balas, cadangan ciri, atau laporkan isu teknikal secara terus kepada pasukan Pdfumi."
     }
   }
 }

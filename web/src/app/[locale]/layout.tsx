@@ -224,6 +224,9 @@ export default async function LocaleLayout({
                     <Link href="/refund" className="hover:text-teal-600 transition">
                       {t("refund")}
                     </Link>
+                    <Link href="/feedback" className="hover:text-teal-600 transition font-medium text-teal-600 dark:text-teal-400">
+                      Feedback & Report Bug
+                    </Link>
                     <a
                       href="mailto:support@pdfumi.com"
                       className="hover:text-teal-600 transition"

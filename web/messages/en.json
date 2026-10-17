@@ -15,7 +15,8 @@
     "terms": "Terms",
     "privacy": "Privacy",
     "refund": "Refund",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback & Report Bug"
   },
   "footer": "Pdfumi — documents to PDF, without the hassle.",
   "common": {
@@ -1574,6 +1575,12 @@
           "a": "No. Your filled PDF is completely watermark-free on all plans, including Free."
         }
       ]
+    }
+  },
+  "feedback": {
+    "seo": {
+      "title": "Feedback & Report Bug — Pdfumi",
+      "description": "Submit feedback, feature requests, or report technical issues directly to the Pdfumi team."
     }
   }
 }
