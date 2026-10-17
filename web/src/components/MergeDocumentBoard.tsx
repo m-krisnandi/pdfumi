@@ -30,7 +30,7 @@ const THUMB = "aspect-[3/4] w-full";
 
 export function MergeDocumentBoard({
   docs,
-  maxFiles = 10,
+  maxFiles = 20,
   onChange,
   labels,
 }: {

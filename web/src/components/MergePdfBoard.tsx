@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { API_BASE, authHeaders, downloadBlob } from "@/lib/api";
+import { API_BASE, authHeaders, downloadBlob, friendlyError } from "@/lib/api";
 import { keepOriginalName } from "@/lib/downloadName";
 import { mergePdfFiles } from "@/lib/mergePdf";
 import { rotatePdfFile } from "@/lib/fileRotate";
@@ -71,6 +71,42 @@ export function MergePdfBoard() {
     setDownloading(true);
     setError(null);
     try {
+      // 1. Instant client-side download: The merged PDF is already generated and verified in the preview
+      let blobToDownload = merged;
+      if (!blobToDownload) {
+        blobToDownload = await mergePdfFiles(files, rotations);
+      }
+
+      if (blobToDownload) {
+        const filename = keepOriginalName(files[0], "merged.pdf", "pdf");
+        const url = URL.createObjectURL(blobToDownload);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        // Best-effort background API call for usage and quota metrics (non-blocking)
+        try {
+          const prepared = await Promise.all(
+            docs.map((d) => rotatePdfFile(d.file, d.rotation ?? 0)),
+          );
+          const form = new FormData();
+          prepared.forEach((file) => form.append("files", file));
+          fetch(`${API_BASE}/api/v1/merge`, {
+            method: "POST",
+            headers: authHeaders(),
+            body: form,
+          }).catch(() => {});
+        } catch {
+          /* ignore background sync */
+        }
+        return;
+      }
+
+      // Fallback: If client generation was unavailable, request from server
       const prepared = await Promise.all(
         docs.map((d) => rotatePdfFile(d.file, d.rotation ?? 0)),
       );
@@ -83,7 +119,7 @@ export function MergePdfBoard() {
       });
       await downloadBlob(res, keepOriginalName(files[0], "merged.pdf", "pdf"));
     } catch (err) {
-      setError(err instanceof Error ? err.message : tCommon("errorGeneric"));
+      setError(friendlyError(err, tCommon("errorGeneric")));
     } finally {
       setDownloading(false);
     }
@@ -108,7 +144,7 @@ export function MergePdfBoard() {
           <div className={showPreview ? "min-h-0 flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-1 pt-1" : "w-full"}>
             <MergeDocumentBoard
               docs={docs}
-              maxFiles={10}
+              maxFiles={20}
               onChange={onDocsChange}
               layout={showPreview ? "column" : "row"}
               labels={{

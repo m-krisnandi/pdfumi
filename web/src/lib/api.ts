@@ -80,6 +80,15 @@ export function friendlyError(err: unknown, fallback: string, locale?: string): 
       return `Maksimal ${num} halaman`;
     }
 
+    const maxFilesMatch = msg.match(/maksimal\s*(\d+)\s*file/i);
+    if (maxFilesMatch) {
+      const num = maxFilesMatch[1];
+      if (curLocale === "en") return `Maximum ${num} files allowed`;
+      if (curLocale === "ja") return `最大 ${num} ファイルまでです`;
+      if (curLocale === "my") return `ဖိုင် ${num} ခု အများဆုံးသာ ခွင့်ပြုပါသည်`;
+      return `Maksimal ${num} file`;
+    }
+
     if (/pilih minimal 1 halaman/i.test(msg)) {
       if (curLocale === "en") return "Please select at least 1 page";
       if (curLocale === "ja") return "少なくとも1ページ選択してください";

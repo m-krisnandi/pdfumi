@@ -119,7 +119,7 @@
   },
   "merge": {
     "title": "Gabung PDF online gratis",
-    "description": "Gabungkan 2–10 PDF jadi satu file. Atur urutan, pratinjau langsung, lalu unduh. Kuota harian gratis berlaku.",
+    "description": "Gabungkan 2–20 PDF jadi satu file. Atur urutan, pratinjau langsung, lalu unduh. Kuota harian gratis berlaku.",
     "seo": {
       "title": "Gabung PDF Online Gratis — Satukan Banyak File PDF | Pdfumi",
       "description": "Satukan beberapa berkas PDF menjadi satu dokumen secara urut, cepat, dan rapi. 100% aman, tanpa watermark, gratis di browser.",
@@ -131,7 +131,7 @@
         },
         {
           "q": "Berapa banyak file PDF yang bisa disatukan sekaligus?",
-          "a": "Paket gratis mendukung penggabungan hingga 10 file sekaligus dengan batas ukuran 20MB per file."
+          "a": "Paket gratis mendukung penggabungan hingga 20 file sekaligus dengan batas ukuran 20MB per file."
         },
         {
           "q": "Apakah ada watermark atau batas masa berlaku file hasil gabungan?",
@@ -145,7 +145,7 @@
     },
     "chooseFiles": "Pilih file PDF",
     "dropHint": "atau seret & lepas PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 10 file · 20MB per file",
+    "uploadHint": "Hanya PDF · maks 20 file · 20MB per file",
     "addMore": "Tambah PDF",
     "reorderHint": "Seret dokumen untuk ubah urutan gabungan",
     "pageOne": "1 halaman",

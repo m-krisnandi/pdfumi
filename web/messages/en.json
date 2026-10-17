@@ -115,7 +115,7 @@
   },
   "merge": {
     "title": "Merge PDF online free",
-    "description": "Combine 2–10 PDFs into one file. Reorder pages, preview live, then download. Free daily quota applies.",
+    "description": "Combine 2–20 PDFs into one file. Reorder pages, preview live, then download. Free daily quota applies.",
     "seo": {
       "title": "Merge PDF Online for Free — Combine PDF Files | Pdfumi",
       "description": "Combine multiple PDF files into a single organized document online. Drag to reorder, clean download with zero watermarks.",
@@ -127,7 +127,7 @@
         },
         {
           "q": "How many PDF files can I combine at once?",
-          "a": "The free plan supports combining up to 10 files simultaneously with up to 20MB per document."
+          "a": "The free plan supports combining up to 20 files simultaneously with up to 20MB per document."
         },
         {
           "q": "Does Pdfumi add any watermarks to the merged PDF?",
@@ -137,7 +137,7 @@
     },
     "chooseFiles": "Choose PDF files",
     "dropHint": "or drag and drop PDFs here",
-    "uploadHint": "PDF only · up to 10 files · max 20MB each",
+    "uploadHint": "PDF only · up to 20 files · max 20MB each",
     "addMore": "Add PDF",
     "reorderHint": "Drag a document to change merge order",
     "pageOne": "1 page",

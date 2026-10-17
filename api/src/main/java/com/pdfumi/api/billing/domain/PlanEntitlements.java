@@ -25,6 +25,6 @@ public record PlanEntitlements(
 	}
 
 	public int maxBatchFiles() {
-		return plan == Plan.FREE ? 5 : 50;
+		return plan == Plan.FREE ? 20 : 100;
 	}
 }
