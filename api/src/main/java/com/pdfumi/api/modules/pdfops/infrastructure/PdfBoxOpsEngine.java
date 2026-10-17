@@ -34,7 +34,7 @@ import java.util.zip.ZipOutputStream;
 @Component
 public class PdfBoxOpsEngine implements PdfOpsEngine {
 
-	private static final int MAX_PAGES = 100;
+	private static final int MAX_PAGES = 500;
 
 	@Override
 	public byte[] compress(MultipartFile file) {
@@ -136,7 +136,9 @@ public class PdfBoxOpsEngine implements PdfOpsEngine {
 		try (PDDocument source = Loader.loadPDF(file.getBytes());
 			 PDDocument out = new PDDocument()) {
 			guardPageCount(source);
-			List<Integer> pages = orderedUnique(pageNumbers1Based);
+			List<Integer> pages = (pageNumbers1Based == null || pageNumbers1Based.isEmpty())
+					? allPageNumbers(source)
+					: orderedUnique(pageNumbers1Based);
 			if (pages.isEmpty()) {
 				throw new BadRequestException("Pilih minimal 1 halaman");
 			}

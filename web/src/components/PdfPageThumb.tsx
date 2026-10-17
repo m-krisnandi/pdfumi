@@ -2,17 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
 
-async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
-  return pdfjs;
-}
-
-// Shared document cache to avoid re-opening and parsing large PDFs (e.g. 100 pages) dozens of times
+// Shared document cache to avoid re-opening and parsing large PDFs (e.g. 500 pages) dozens of times
 type DocCacheEntry = {
   key: string;
   promise: Promise<PDFDocumentProxy>;
@@ -27,12 +19,8 @@ function getCachedDoc(file: File): Promise<PDFDocumentProxy> {
     const promise = (async () => {
       const pdfjs = await loadPdfJs();
       const raw = await file.arrayBuffer();
-      const data = new Uint8Array(raw);
-      return pdfjs.getDocument({
-        data,
-        disableAutoFetch: true,
-        disableStream: true,
-      }).promise;
+      const params = getPdfDocumentParams(raw);
+      return pdfjs.getDocument(params).promise;
     })();
     entry = { key, promise, refCount: 0 };
     docCache.set(key, entry);
@@ -88,7 +76,7 @@ export function PdfPageThumb({
           observer.disconnect();
         }
       },
-      { rootMargin: "250px" }
+      { rootMargin: "350px" }
     );
 
     observer.observe(el);
@@ -113,7 +101,9 @@ export function PdfPageThumb({
         if (cancelled) return;
 
         const base = page.getViewport({ scale: 1 });
-        const scale = 140 / base.width;
+        const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
+        const targetCssWidth = 160;
+        const scale = (targetCssWidth / base.width) * dpr;
         const viewport = page.getViewport({ scale });
         const canvas = canvasRef.current;
         if (!canvas || cancelled) return;
@@ -122,6 +112,9 @@ export function PdfPageThumb({
 
         canvas.width = Math.ceil(viewport.width);
         canvas.height = Math.ceil(viewport.height);
+        canvas.style.width = `${Math.ceil(viewport.width / dpr)}px`;
+        canvas.style.height = `${Math.ceil(viewport.height / dpr)}px`;
+
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 

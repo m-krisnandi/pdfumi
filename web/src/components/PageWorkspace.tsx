@@ -16,15 +16,13 @@ export type PageItem = {
   rotation?: number;
 };
 
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
+
 async function countPdfPages(file: File): Promise<number> {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
+  const pdfjs = await loadPdfJs();
   const raw = await file.arrayBuffer();
-  const data = new Uint8Array(raw.slice(0));
-  const pdf = await pdfjs.getDocument({ data, disableAutoFetch: true, disableStream: true }).promise;
+  const params = getPdfDocumentParams(raw);
+  const pdf = await pdfjs.getDocument(params).promise;
   const n = pdf.numPages;
   await pdf.cleanup();
   return n;
@@ -45,7 +43,7 @@ export function PageWorkspace({
   mode,
   allowReorder = false,
   rotationPreview = 0,
-  maxPages = 100,
+  maxPages = 500,
   defaultSelectAll = false,
   labels,
 }: {

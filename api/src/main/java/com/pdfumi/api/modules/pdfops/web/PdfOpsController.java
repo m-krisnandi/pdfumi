@@ -39,16 +39,14 @@ public class PdfOpsController {
 		return DownloadFilenames.pdfAttachment(pdf, DownloadFilenames.fromUpload(file, "document-compressed.pdf", "pdf"));
 	}
 
-	@PostMapping(path = "/split", produces = "application/zip")
+	@PostMapping(path = "/split", produces = MediaType.APPLICATION_PDF_VALUE)
 	public ResponseEntity<byte[]> split(
 			@RequestParam("file") MultipartFile file,
 			@RequestParam(required = false) List<Integer> pages,
 			HttpServletRequest request
 	) {
-		byte[] zip = pdfOpsService.splitPages(accountService.resolve(request), file, pages);
-		return ResponseEntity.ok()
-				.header("Content-Disposition", "attachment; filename=\"pages.zip\"")
-				.body(zip);
+		byte[] pdf = pdfOpsService.extractPages(accountService.resolve(request), file, pages);
+		return DownloadFilenames.pdfAttachment(pdf, DownloadFilenames.fromUpload(file, "document-split.pdf", "pdf"));
 	}
 
 	@PostMapping(path = "/rotate", produces = MediaType.APPLICATION_PDF_VALUE)

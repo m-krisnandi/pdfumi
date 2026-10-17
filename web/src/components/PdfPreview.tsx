@@ -3,14 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
 
-async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
-  return pdfjs;
-}
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
 
 /**
  * Renders all PDF pages as stacked canvases in a scrollable preview pane.
@@ -57,11 +50,7 @@ export function PdfPreview({
         const pdfjs = await loadPdfJs();
         const raw = await file.arrayBuffer();
         const data = new Uint8Array(raw.slice(0));
-        const pdf = await pdfjs.getDocument({
-          data,
-          disableAutoFetch: true,
-          disableStream: true,
-        }).promise;
+        const pdf = await pdfjs.getDocument(getPdfDocumentParams(data)).promise;
         pdfDoc = pdf;
         if (cancelled) {
           await pdf.cleanup();

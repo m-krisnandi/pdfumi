@@ -127,7 +127,7 @@
         },
         {
           "q": "How many PDF files can I combine at once?",
-          "a": "The free plan supports combining up to 10 files simultaneously with up to 5MB per document."
+          "a": "The free plan supports combining up to 10 files simultaneously with up to 20MB per document."
         },
         {
           "q": "Does Pdfumi add any watermarks to the merged PDF?",
@@ -137,7 +137,7 @@
     },
     "chooseFiles": "Choose PDF files",
     "dropHint": "or drag and drop PDFs here",
-    "uploadHint": "PDF only · up to 10 files · max 5MB each",
+    "uploadHint": "PDF only · up to 10 files · max 20MB each",
     "addMore": "Add PDF",
     "reorderHint": "Drag a document to change merge order",
     "pageOne": "1 page",
@@ -165,14 +165,14 @@
         },
         {
           "q": "What file size is supported?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "textLabel": "Watermark text",
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "selected": "Selected file",
     "livePreview": "Live preview",
     "liveHint": "Drag the watermark to place it. Use presets to flip sides.",
@@ -501,7 +501,7 @@
       "faqs": [
         {
           "q": "Which image formats are supported?",
-          "a": "JPG, PNG, WebP, GIF, and BMP — up to 20 images, 5MB each."
+          "a": "JPG, PNG, WebP, GIF, and BMP — up to 20 images, 20MB each."
         },
         {
           "q": "Can I change the page order?",
@@ -515,7 +515,7 @@
     },
     "chooseFiles": "Choose images",
     "dropHint": "or drag and drop images here",
-    "uploadHint": "JPG/PNG/WebP · up to 20 files · max 5MB each",
+    "uploadHint": "JPG/PNG/WebP · up to 20 files · max 20MB each",
     "addMore": "Add image",
     "reorderHint": "Drag an image to change PDF page order",
     "needFiles": "Please upload at least one image."
@@ -538,13 +538,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB · up to 50 pages",
+    "uploadHint": "PDF only · max 20MB · up to 50 pages",
     "needFile": "Please choose a PDF file first.",
     "resultHint": "Each page becomes a JPG inside a ZIP download.",
     "downloadZip": "Download JPG ZIP"
@@ -567,13 +567,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB · up to 50 pages",
+    "uploadHint": "PDF only · max 20MB · up to 50 pages",
     "needFile": "Please choose a PDF file first.",
     "resultHint": "Each page becomes a PNG inside a ZIP download.",
     "downloadZip": "Download PNG ZIP"
@@ -602,7 +602,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first.",
     "resultHint": "Downloads as an editable .docx (LibreOffice conversion).",
     "downloadResult": "Download Word"
@@ -625,13 +625,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "Word file up to 5MB on the free tier."
+          "a": "Word file up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose Word file",
     "dropHint": "or drag and drop a Word file here",
-    "uploadHint": ".doc / .docx · max 5MB",
+    "uploadHint": ".doc / .docx · max 20MB",
     "needFile": "Please choose a Word file first.",
     "resultHint": "Downloads as a print-ready PDF.",
     "downloadResult": "Download PDF"
@@ -660,7 +660,7 @@
     },
     "chooseFiles": "Choose files",
     "dropHint": "or drop PDF, Word, Excel, or images here",
-    "uploadHint": "PDF · Word · Excel · JPG/PNG · max 5MB each",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · max 20MB each",
     "needFile": "Please upload a file first.",
     "needTarget": "Choose a valid output format for this file.",
     "unsupported": "Unsupported file type. Use PDF, Word, Excel, or images.",
@@ -703,13 +703,13 @@
         },
         {
           "q": "What is the maximum file size on the free plan?",
-          "a": "Free users can upload files up to 5MB with daily quotas. For higher capacity and unlimited usage, flexible plans are available on the Pricing page."
+          "a": "Free users can upload files up to 20MB with daily quotas. For higher capacity and unlimited usage, flexible plans are available on the Pricing page."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first."
   },
   "splitPdf": {
@@ -730,13 +730,13 @@
         },
         {
           "q": "Page limit?",
-          "a": "Up to 100 pages."
+          "a": "Up to 500 pages."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB · up to 100 pages",
+    "uploadHint": "PDF only · max 20MB · up to 500 pages",
     "needFile": "Please choose a PDF file first.",
     "replace": "Replace",
     "loadingPages": "Reading pages…",
@@ -766,13 +766,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first.",
     "replace": "Replace",
     "loadingPages": "Reading pages…",
@@ -800,13 +800,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first.",
     "needPages": "Delete at least one page (keep at least one).",
     "selectHint": "Use trash on a page to remove it",
@@ -837,13 +837,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB",
+    "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first.",
     "needPages": "Select at least one page to extract.",
     "selectHint": "Click pages to include · drag to set their order in the new PDF",
@@ -872,13 +872,13 @@
         },
         {
           "q": "Max file size?",
-          "a": "PDF up to 5MB on the free tier."
+          "a": "PDF up to 20MB on the free tier."
         }
       ]
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF only · max 5MB · up to 100 pages",
+    "uploadHint": "PDF only · max 20MB · up to 500 pages",
     "needFile": "Please choose a PDF file first.",
     "reorderHint": "Drag pages to set the final order",
     "replace": "Replace",
@@ -902,7 +902,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "passwordLabel": "Password",
     "needPassword": "Enter a password."
@@ -923,7 +923,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "passwordLabel": "Current password",
     "needPassword": "Enter the PDF password."
@@ -944,7 +944,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "signatureLabel": "Signature image",
     "needSignature": "Create a signature first.",
@@ -989,7 +989,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "positionLabel": "Position",
     "formatLabel": "Format",
@@ -1016,7 +1016,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "marginLabel": "Margin"
   },
@@ -1036,7 +1036,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "languageLabel": "OCR language",
     "ocrHint": "Requires ocrmypdf on the API host."
@@ -1057,7 +1057,7 @@
     },
     "chooseFile": "Choose PDF file",
     "dropHint": "or drag and drop a PDF here",
-    "uploadHint": "PDF · max 5MB",
+    "uploadHint": "PDF · max 20MB",
     "needFile": "Please choose a PDF first.",
     "resultHint": "Downloads as .xlsx.",
     "downloadResult": "Download Excel"
@@ -1078,7 +1078,7 @@
     },
     "chooseFile": "Choose Excel file",
     "dropHint": "or drop an Excel file here",
-    "uploadHint": ".xls / .xlsx · max 5MB",
+    "uploadHint": ".xls / .xlsx · max 20MB",
     "needFile": "Please choose an Excel file first.",
     "resultHint": "Downloads as PDF.",
     "downloadResult": "Download PDF"

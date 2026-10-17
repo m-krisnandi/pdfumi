@@ -118,7 +118,7 @@
     "description": "2〜10個のPDFを1つに結合。並べ替え・ライブプレビュー・ダウンロード。無料の日次枠が適用されます。",
     "chooseFiles": "PDFファイルを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大10件 · 各5MBまで",
+    "uploadHint": "PDFのみ · 最大10件 · 各20MBまで",
     "addMore": "PDFを追加",
     "reorderHint": "書類をドラッグして結合順を変更",
     "pageOne": "1ページ",
@@ -138,7 +138,7 @@
         },
         {
           "q": "一度に何個のPDFを結合できますか？",
-          "a": "無料プランでは1回につき最大10ファイル（各5MBまで）を同時に結合できます。"
+          "a": "無料プランでは1回につき最大10ファイル（各20MBまで）を同時に結合できます。"
         },
         {
           "q": "結合後のPDFに透かし（ウォーターマーク）は付きますか？",
@@ -157,7 +157,7 @@
     "textLabel": "透かしテキスト",
     "chooseFile": "PDFファイルを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "selected": "選択中のファイル",
     "livePreview": "ライブプレビュー",
     "liveHint": "透かしをドラッグして配置。プリセットで左右上下に切り替え。",
@@ -186,7 +186,7 @@
         },
         {
           "q": "対応ファイルサイズは？",
-          "a": "無料枠ではPDF最大5MBです。"
+          "a": "無料枠ではPDF最大20MBです。"
         }
       ]
     }
@@ -515,7 +515,7 @@
     },
     "chooseFiles": "画像を選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "JPG/PNG/WebP · 最大20 · 各5MB",
+    "uploadHint": "JPG/PNG/WebP · 最大20 · 各20MB",
     "addMore": "画像を追加",
     "reorderHint": "ドラッグしてPDFのページ順を変更",
     "needFiles": "画像を1枚以上アップロードしてください。"
@@ -538,13 +538,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB · 最大50ページ",
+    "uploadHint": "PDFのみ · 最大20MB · 最大50ページ",
     "needFile": "先にPDFを選んでください。",
     "resultHint": "各ページがJPGとしてZIPに入ります。",
     "downloadZip": "JPG ZIPをダウンロード"
@@ -567,13 +567,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB · 最大50ページ",
+    "uploadHint": "PDFのみ · 最大20MB · 最大50ページ",
     "needFile": "先にPDFを選んでください。",
     "resultHint": "各ページがPNGとしてZIPに入ります。",
     "downloadZip": "PNG ZIPをダウンロード"
@@ -602,7 +602,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "resultHint": "編集可能な.docxとしてダウンロード（LibreOffice）。",
     "downloadResult": "Wordをダウンロード"
@@ -625,13 +625,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はWord最大5MB。"
+          "a": "無料枠はWord最大20MB。"
         }
       ]
     },
     "chooseFile": "Wordファイルを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": ".doc / .docx · 最大5MB",
+    "uploadHint": ".doc / .docx · 最大20MB",
     "needFile": "先にWordファイルを選んでください。",
     "resultHint": "印刷用PDFとしてダウンロード。",
     "downloadResult": "PDFをダウンロード"
@@ -660,7 +660,7 @@
     },
     "chooseFiles": "ファイルを選択",
     "dropHint": "またはPDF・Word・Excel・画像をドロップ",
-    "uploadHint": "PDF · Word · Excel · JPG/PNG · 最大5MB",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · 最大20MB",
     "needFile": "先にファイルをアップロードしてください。",
     "needTarget": "このファイルに合う出力形式を選んでください。",
     "unsupported": "未対応の形式です。PDF、Word、Excel、または画像を使ってください。",
@@ -707,13 +707,13 @@
         },
         {
           "q": "無料プランのファイルサイズ制限はどのくらいですか？",
-          "a": "無料枠では1ファイルあたり最大5MBまでアップロード可能です。より大きな容量や無制限の利用が必要な場合は、料金ページからプランをご確認いただけます。"
+          "a": "無料枠では1ファイルあたり最大20MBまでアップロード可能です。より大きな容量や無制限の利用が必要な場合は、料金ページからプランをご確認いただけます。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。"
   },
   "splitPdf": {
@@ -740,7 +740,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB · 最大100ページ",
+    "uploadHint": "PDFのみ · 最大20MB · 最大100ページ",
     "needFile": "先にPDFを選んでください。",
     "replace": "差し替え",
     "loadingPages": "ページを読み込み中…",
@@ -770,13 +770,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "replace": "差し替え",
     "loadingPages": "ページを読み込み中…",
@@ -804,13 +804,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "needPages": "少なくとも1ページを削除してください（1ページは残す）。",
     "selectHint": "ゴミ箱でページを削除",
@@ -841,13 +841,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB",
+    "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "needPages": "抽出するページを1つ以上選んでください。",
     "selectHint": "クリックで含める · ドラッグで新PDFの順序を設定",
@@ -876,13 +876,13 @@
         },
         {
           "q": "ファイルサイズは？",
-          "a": "無料枠はPDF最大5MB。"
+          "a": "無料枠はPDF最大20MB。"
         }
       ]
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDFのみ · 最大5MB · 最大100ページ",
+    "uploadHint": "PDFのみ · 最大20MB · 最大100ページ",
     "needFile": "先にPDFを選んでください。",
     "reorderHint": "ドラッグして最終のページ順を設定",
     "replace": "差し替え",
@@ -906,7 +906,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "passwordLabel": "パスワード",
     "needPassword": "パスワードを入力してください。"
@@ -927,7 +927,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "passwordLabel": "現在のパスワード",
     "needPassword": "PDFのパスワードを入力してください。"
@@ -948,7 +948,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "signatureLabel": "署名画像",
     "needSignature": "先に署名を作成してください。",
@@ -993,7 +993,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "positionLabel": "位置",
     "formatLabel": "形式",
@@ -1020,7 +1020,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "marginLabel": "余白"
   },
@@ -1040,7 +1040,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "languageLabel": "OCR言語",
     "ocrHint": "APIホストにocrmypdfが必要です。"
@@ -1061,7 +1061,7 @@
     },
     "chooseFile": "PDFを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": "PDF · 最大5MB",
+    "uploadHint": "PDF · 最大20MB",
     "needFile": "先にPDFを選んでください。",
     "resultHint": ".xlsxとしてダウンロード。",
     "downloadResult": "Excelをダウンロード"
@@ -1082,7 +1082,7 @@
     },
     "chooseFile": "Excelを選択",
     "dropHint": "またはここにドラッグ＆ドロップ",
-    "uploadHint": ".xls / .xlsx · 最大5MB",
+    "uploadHint": ".xls / .xlsx · 最大20MB",
     "needFile": "先にExcelを選んでください。",
     "resultHint": "PDFとしてダウンロード。",
     "downloadResult": "PDFをダウンロード"

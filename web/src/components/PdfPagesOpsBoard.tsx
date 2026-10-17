@@ -166,7 +166,7 @@ export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
         headers: authHeaders(),
         body: form,
       });
-      const defaultExt = mode === "split" ? "zip" : "pdf";
+      const defaultExt = "pdf";
       await downloadBlob(res, keepOriginalName(file, `document.${defaultExt}`, defaultExt));
     } catch (err) {
       setError(friendlyError(err, tCommon("errorGeneric")));
@@ -179,6 +179,7 @@ export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
     <ToolShell title={t("title")} description={t("description")} wide>
       <PageWorkspace
         file={file}
+        maxPages={500}
         onFile={(f) => {
           setFile(f);
           setSourcePageCount(0);

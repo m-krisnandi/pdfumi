@@ -131,7 +131,7 @@
         },
         {
           "q": "Berapa banyak file PDF yang bisa disatukan sekaligus?",
-          "a": "Paket gratis mendukung penggabungan hingga 10 file sekaligus dengan batas ukuran 5MB per file."
+          "a": "Paket gratis mendukung penggabungan hingga 10 file sekaligus dengan batas ukuran 20MB per file."
         },
         {
           "q": "Apakah ada watermark atau batas masa berlaku file hasil gabungan?",
@@ -145,7 +145,7 @@
     },
     "chooseFiles": "Pilih file PDF",
     "dropHint": "atau seret & lepas PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 10 file · 5MB per file",
+    "uploadHint": "Hanya PDF · maks 10 file · 20MB per file",
     "addMore": "Tambah PDF",
     "reorderHint": "Seret dokumen untuk ubah urutan gabungan",
     "pageOne": "1 halaman",
@@ -173,14 +173,14 @@
         },
         {
           "q": "Ukuran file yang didukung?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "textLabel": "Teks watermark",
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret & lepas PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "selected": "File terpilih",
     "livePreview": "Pratinjau langsung",
     "liveHint": "Seret watermark untuk menempatkannya. Pakai preset untuk pindah sisi.",
@@ -509,7 +509,7 @@
       "faqs": [
         {
           "q": "Format gambar apa saja?",
-          "a": "JPG, PNG, WebP, GIF, dan BMP — hingga 20 file, 5MB per file."
+          "a": "JPG, PNG, WebP, GIF, dan BMP — hingga 20 file, 20MB per file."
         },
         {
           "q": "Bisa ubah urutan halaman?",
@@ -523,7 +523,7 @@
     },
     "chooseFiles": "Pilih gambar",
     "dropHint": "atau seret gambar ke sini",
-    "uploadHint": "JPG/PNG/WebP · maks 20 file · 5MB per file",
+    "uploadHint": "JPG/PNG/WebP · maks 20 file · 20MB per file",
     "addMore": "Tambah gambar",
     "reorderHint": "Seret gambar untuk mengubah urutan halaman PDF",
     "needFiles": "Unggah minimal satu gambar."
@@ -546,13 +546,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB · hingga 50 halaman",
+    "uploadHint": "Hanya PDF · maks 20MB · hingga 50 halaman",
     "needFile": "Pilih file PDF dulu.",
     "resultHint": "Setiap halaman jadi JPG di dalam ZIP.",
     "downloadZip": "Unduh ZIP JPG"
@@ -575,13 +575,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB · hingga 50 halaman",
+    "uploadHint": "Hanya PDF · maks 20MB · hingga 50 halaman",
     "needFile": "Pilih file PDF dulu.",
     "resultHint": "Setiap halaman jadi PNG di dalam ZIP.",
     "downloadZip": "Unduh ZIP PNG"
@@ -614,7 +614,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu.",
     "resultHint": "Diunduh sebagai .docx yang bisa diedit (LibreOffice).",
     "downloadResult": "Unduh Word"
@@ -637,13 +637,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "File Word hingga 5MB di paket gratis."
+          "a": "File Word hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file Word",
     "dropHint": "atau seret file Word ke sini",
-    "uploadHint": ".doc / .docx · maks 5MB",
+    "uploadHint": ".doc / .docx · maks 20MB",
     "needFile": "Pilih file Word dulu.",
     "resultHint": "Diunduh sebagai PDF siap cetak.",
     "downloadResult": "Unduh PDF"
@@ -672,7 +672,7 @@
     },
     "chooseFiles": "Pilih file",
     "dropHint": "atau seret PDF, Word, Excel, atau gambar ke sini",
-    "uploadHint": "PDF · Word · Excel · JPG/PNG · maks 5MB",
+    "uploadHint": "PDF · Word · Excel · JPG/PNG · maks 20MB",
     "needFile": "Upload file dulu.",
     "needTarget": "Pilih format keluaran yang valid.",
     "unsupported": "Tipe file tidak didukung. Gunakan PDF, Word, Excel, atau gambar.",
@@ -719,13 +719,13 @@
         },
         {
           "q": "Berapa batas ukuran file di paket gratis?",
-          "a": "Pengguna gratis dapat mengunggah file hingga 5MB per dokumen dengan kuota harian. Jika membutuhkan kapasitas file lebih besar tanpa batas, Anda dapat memilih paket berlangganan hemat di menu Harga."
+          "a": "Pengguna gratis dapat mengunggah file hingga 20MB per dokumen dengan kuota harian. Jika membutuhkan kapasitas file lebih besar tanpa batas, Anda dapat memilih paket berlangganan hemat di menu Harga."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu."
   },
   "splitPdf": {
@@ -746,13 +746,13 @@
         },
         {
           "q": "Batas halaman?",
-          "a": "Hingga 100 halaman."
+          "a": "Hingga 500 halaman."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB · hingga 100 halaman",
+    "uploadHint": "Hanya PDF · maks 20MB · hingga 500 halaman",
     "needFile": "Pilih file PDF dulu.",
     "replace": "Ganti",
     "loadingPages": "Membaca halaman…",
@@ -782,13 +782,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu.",
     "replace": "Ganti",
     "loadingPages": "Membaca halaman…",
@@ -816,13 +816,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu.",
     "needPages": "Hapus minimal satu halaman (sisakan minimal satu).",
     "selectHint": "Gunakan sampah untuk menghapus halaman",
@@ -853,13 +853,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB",
+    "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu.",
     "needPages": "Pilih minimal satu halaman untuk diekstrak.",
     "selectHint": "Klik halaman yang disertakan · seret untuk urutan di PDF baru",
@@ -888,13 +888,13 @@
         },
         {
           "q": "Ukuran file?",
-          "a": "PDF hingga 5MB di paket gratis."
+          "a": "PDF hingga 20MB di paket gratis."
         }
       ]
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "Hanya PDF · maks 5MB · hingga 100 halaman",
+    "uploadHint": "Hanya PDF · maks 20MB · hingga 500 halaman",
     "needFile": "Pilih file PDF dulu.",
     "reorderHint": "Seret halaman untuk mengatur urutan akhir",
     "replace": "Ganti",
@@ -918,7 +918,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "passwordLabel": "Password",
     "needPassword": "Masukkan password."
@@ -939,7 +939,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "passwordLabel": "Password saat ini",
     "needPassword": "Masukkan password PDF."
@@ -960,7 +960,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "signatureLabel": "Gambar tanda tangan",
     "needSignature": "Buat tanda tangan dulu.",
@@ -1005,7 +1005,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "positionLabel": "Posisi",
     "formatLabel": "Format",
@@ -1032,7 +1032,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "marginLabel": "Margin"
   },
@@ -1052,7 +1052,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "languageLabel": "Bahasa OCR",
     "ocrHint": "Butuh ocrmypdf di host API."
@@ -1073,7 +1073,7 @@
     },
     "chooseFile": "Pilih file PDF",
     "dropHint": "atau seret PDF ke sini",
-    "uploadHint": "PDF · maks 5MB",
+    "uploadHint": "PDF · maks 20MB",
     "needFile": "Pilih PDF dulu.",
     "resultHint": "Diunduh sebagai .xlsx.",
     "downloadResult": "Unduh Excel"
@@ -1094,7 +1094,7 @@
     },
     "chooseFile": "Pilih file Excel",
     "dropHint": "atau seret Excel ke sini",
-    "uploadHint": ".xls / .xlsx · maks 5MB",
+    "uploadHint": ".xls / .xlsx · maks 20MB",
     "needFile": "Pilih Excel dulu.",
     "resultHint": "Diunduh sebagai PDF.",
     "downloadResult": "Unduh PDF"
