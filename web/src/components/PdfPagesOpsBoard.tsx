@@ -166,7 +166,8 @@ export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
         headers: authHeaders(),
         body: form,
       });
-      await downloadBlob(res, keepOriginalName(file, "document.pdf", "pdf"));
+      const defaultExt = mode === "split" ? "zip" : "pdf";
+      await downloadBlob(res, keepOriginalName(file, `document.${defaultExt}`, defaultExt));
     } catch (err) {
       setError(friendlyError(err, tCommon("errorGeneric")));
     } finally {

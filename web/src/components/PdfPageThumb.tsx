@@ -12,7 +12,48 @@ async function loadPdfJs() {
   return pdfjs;
 }
 
-/** Renders a single page thumbnail from a PDF File (1-based page index). */
+// Shared document cache to avoid re-opening and parsing large PDFs (e.g. 100 pages) dozens of times
+type DocCacheEntry = {
+  key: string;
+  promise: Promise<PDFDocumentProxy>;
+  refCount: number;
+};
+const docCache = new Map<string, DocCacheEntry>();
+
+function getCachedDoc(file: File): Promise<PDFDocumentProxy> {
+  const key = `${file.name}-${file.size}-${file.lastModified}`;
+  let entry = docCache.get(key);
+  if (!entry) {
+    const promise = (async () => {
+      const pdfjs = await loadPdfJs();
+      const raw = await file.arrayBuffer();
+      const data = new Uint8Array(raw);
+      return pdfjs.getDocument({
+        data,
+        disableAutoFetch: true,
+        disableStream: true,
+      }).promise;
+    })();
+    entry = { key, promise, refCount: 0 };
+    docCache.set(key, entry);
+  }
+  entry.refCount++;
+  return entry.promise;
+}
+
+function releaseCachedDoc(file: File) {
+  const key = `${file.name}-${file.size}-${file.lastModified}`;
+  const entry = docCache.get(key);
+  if (entry) {
+    entry.refCount--;
+    if (entry.refCount <= 0) {
+      entry.promise.then((doc) => doc.cleanup()).catch(() => {});
+      docCache.delete(key);
+    }
+  }
+}
+
+/** Renders a single page thumbnail from a PDF File (1-based page index) using IntersectionObserver. */
 export function PdfPageThumb({
   file,
   pageNumber,
@@ -25,10 +66,38 @@ export function PdfPageThumb({
   /** Extra CSS rotate for live preview of rotate tool. */
   rotation?: number;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading");
 
+  // Lazy render using IntersectionObserver
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     let cancelled = false;
     let renderTask: RenderTask | null = null;
     let pdfDoc: PDFDocumentProxy | null = null;
@@ -37,23 +106,14 @@ export function PdfPageThumb({
 
     (async () => {
       try {
-        const pdfjs = await loadPdfJs();
-        const raw = await file.arrayBuffer();
-        const data = new Uint8Array(raw.slice(0));
-        const pdf = await pdfjs.getDocument({
-          data,
-          disableAutoFetch: true,
-          disableStream: true,
-        }).promise;
-        pdfDoc = pdf;
-        if (cancelled) {
-          await pdf.cleanup();
-          return;
-        }
+        pdfDoc = await getCachedDoc(file);
+        if (cancelled) return;
 
-        const page = await pdf.getPage(pageNumber);
+        const page = await pdfDoc.getPage(pageNumber);
+        if (cancelled) return;
+
         const base = page.getViewport({ scale: 1 });
-        const scale = 128 / base.width;
+        const scale = 140 / base.width;
         const viewport = page.getViewport({ scale });
         const canvas = canvasRef.current;
         if (!canvas || cancelled) return;
@@ -84,27 +144,30 @@ export function PdfPageThumb({
       } catch {
         /* ignore */
       }
-      void pdfDoc?.cleanup();
+      releaseCachedDoc(file);
     };
-  }, [file, pageNumber]);
+  }, [file, pageNumber, isVisible]);
 
   return (
     <div
+      ref={containerRef}
       className={`relative flex items-center justify-center overflow-hidden bg-zinc-100/80 dark:bg-zinc-900/80 ${className}`}
       style={rotation ? { transform: `rotate(${rotation}deg)` } : undefined}
     >
       {status === "failed" ? (
-        <div className="flex h-full items-center justify-center text-xs text-[color:var(--ink)]/50">
+        <div className="flex h-full items-center justify-center text-xs text-zinc-400 dark:text-zinc-500 font-semibold">
           p{pageNumber}
         </div>
       ) : (
         <>
           {status === "loading" ? (
-            <div className="absolute inset-0 animate-pulse bg-[color:var(--accent-soft)]/60" />
+            <div className="absolute inset-0 animate-pulse bg-zinc-200/50 dark:bg-zinc-800/50 flex items-center justify-center text-[10px] text-zinc-400">
+              p{pageNumber}
+            </div>
           ) : null}
           <canvas
             ref={canvasRef}
-            className={`mx-auto block max-h-full max-w-full object-contain ${status === "ready" ? "opacity-100" : "opacity-0"}`}
+            className={`mx-auto block max-h-full max-w-full object-contain transition-opacity duration-200 ${status === "ready" ? "opacity-100" : "opacity-0"}`}
           />
         </>
       )}

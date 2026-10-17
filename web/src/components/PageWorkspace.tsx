@@ -83,7 +83,47 @@ export function PageWorkspace({
   const [dragId, setDragId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
   const [previewPage, setPreviewPage] = useState<PageItem | null>(null);
+  const [rangeInput, setRangeInput] = useState<string>("");
   const skipClickRef = useRef(false);
+
+  function applyRange(input: string) {
+    if (!onSelectedChange || pages.length === 0) return;
+    const trimmed = input.trim();
+    if (!trimmed) return;
+
+    const pageMap = new Map<number, string>();
+    pages.forEach((p) => pageMap.set(p.pageNumber, p.id));
+
+    const selectedIds = new Set<string>();
+    const parts = trimmed.split(/[,;\s]+/);
+
+    for (const part of parts) {
+      if (!part) continue;
+      if (part.includes("-")) {
+        const [startStr, endStr] = part.split("-").map((s) => s.trim());
+        const start = parseInt(startStr, 10);
+        const end = parseInt(endStr, 10);
+        if (!isNaN(start) && !isNaN(end)) {
+          const from = Math.max(1, Math.min(start, end));
+          const to = Math.min(pages.length, Math.max(start, end));
+          for (let i = from; i <= to; i++) {
+            const id = pageMap.get(i);
+            if (id) selectedIds.add(id);
+          }
+        }
+      } else {
+        const pageNo = parseInt(part, 10);
+        if (!isNaN(pageNo)) {
+          const id = pageMap.get(pageNo);
+          if (id) selectedIds.add(id);
+        }
+      }
+    }
+
+    if (selectedIds.size > 0) {
+      onSelectedChange(selectedIds);
+    }
+  }
 
   useEffect(() => {
     if (!file) {
@@ -209,33 +249,101 @@ export function PageWorkspace({
       {mode === "reorder" && labels.reorderHint ? (
         <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">{labels.reorderHint}</p>
       ) : null}
-      {mode === "select" && labels.selectHint ? (
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">{labels.selectHint}</p>
-          {onSelectedChange && pages.length > 0 ? (
-            <div className="flex gap-2">
-              {labels.selectAll ? (
-                <button
-                  type="button"
-                  onClick={() => onSelectedChange(new Set(pages.map((p) => p.id)))}
-                  className="text-xs font-bold text-teal-600 dark:text-teal-400 hover:underline cursor-pointer"
-                >
-                  {labels.selectAll}
-                </button>
-              ) : null}
-              {labels.clearSelection ? (
-                <button
-                  type="button"
-                  onClick={() => onSelectedChange(new Set())}
-                  className="text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:underline cursor-pointer"
-                >
-                  {labels.clearSelection}
-                </button>
-              ) : null}
+      {mode === "select" && (
+        <div className="space-y-3 p-4 rounded-2xl glass-card border border-zinc-200/80 dark:border-white/10 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <p className="text-xs sm:text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                {labels.selectHint || "Pilih halaman yang ingin disimpan atau dipisah"}
+              </p>
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                Terpilih: <strong className="text-teal-600 dark:text-teal-400">{selected?.size ?? 0}</strong> dari {pages.length} halaman
+              </p>
             </div>
-          ) : null}
+            {onSelectedChange && pages.length > 0 ? (
+              <div className="flex items-center gap-2">
+                {labels.selectAll ? (
+                  <button
+                    type="button"
+                    onClick={() => onSelectedChange(new Set(pages.map((p) => p.id)))}
+                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-teal-700 dark:text-teal-300 glass-pill hover:scale-105 active:scale-95 transition cursor-pointer"
+                  >
+                    {labels.selectAll}
+                  </button>
+                ) : null}
+                {labels.clearSelection ? (
+                  <button
+                    type="button"
+                    onClick={() => onSelectedChange(new Set())}
+                    className="px-3 py-1.5 rounded-xl text-xs font-medium text-zinc-500 dark:text-zinc-400 glass-pill hover:text-zinc-800 dark:hover:text-zinc-200 transition cursor-pointer"
+                  >
+                    {labels.clearSelection}
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+
+          {pages.length > 1 && onSelectedChange && (
+            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-200/60 dark:border-white/5 text-xs">
+              <span className="font-semibold text-zinc-700 dark:text-zinc-300 text-xs">Pilih Rentang Halaman:</span>
+              <div className="flex items-center gap-2 flex-1 sm:flex-initial min-w-[220px]">
+                <input
+                  type="text"
+                  placeholder="Contoh: 1-80 atau 1-10, 15, 20-30"
+                  value={rangeInput}
+                  onChange={(e) => setRangeInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      applyRange(rangeInput);
+                    }
+                  }}
+                  className="glass-input px-3.5 py-1.5 rounded-xl text-xs w-full sm:w-64 font-mono font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => applyRange(rangeInput)}
+                  className="px-3.5 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs shadow-xs hover:scale-105 active:scale-95 transition shrink-0 cursor-pointer"
+                >
+                  Terapkan
+                </button>
+              </div>
+              <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+                <span>Shortcut:</span>
+                {pages.length >= 10 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const half = Math.ceil(pages.length / 2);
+                      setRangeInput(`1-${half}`);
+                      applyRange(`1-${half}`);
+                    }}
+                    className="underline hover:text-teal-600 dark:hover:text-teal-400 cursor-pointer font-medium"
+                  >
+                    Hal 1-{Math.ceil(pages.length / 2)}
+                  </button>
+                )}
+                {pages.length >= 80 && (
+                  <>
+                    <span>•</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setRangeInput("1-80");
+                        applyRange("1-80");
+                      }}
+                      className="underline hover:text-teal-600 dark:hover:text-teal-400 cursor-pointer font-bold text-teal-600 dark:text-teal-400"
+                    >
+                      Hal 1-80
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      ) : null}
+      )}
 
       {loading ? (
         <p className="text-sm text-zinc-500 dark:text-zinc-400">{labels.loadingPages}</p>
