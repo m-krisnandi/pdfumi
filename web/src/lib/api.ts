@@ -57,11 +57,65 @@ export async function toApiError(res: Response): Promise<ApiError> {
   }
 }
 
-/** Map low-level fetch failures to a clearer message for the UI. */
-export function friendlyError(err: unknown, fallback: string): string {
+/** Map low-level fetch failures or backend validation messages to localized UI messages. */
+export function friendlyError(err: unknown, fallback: string, locale?: string): string {
   if (err instanceof TypeError && /fetch|network|failed/i.test(err.message)) {
-    return "Cannot reach the API (is the Pdfumi server running on :8088?).";
+    if (locale === "id") return "Tidak dapat terhubung ke server Pdfumi. Silakan periksa koneksi internet Anda.";
+    if (locale === "ja") return "サーバーに接続できません。インターネット接続をご確認ください。";
+    if (locale === "my") return "ဆာဗာသို့ ချိတ်ဆက်၍မရပါ။ အင်တာနက်လိုင်းကို စစ်ဆေးပါ။";
+    return "Cannot reach the API server. Please check your network connection.";
   }
-  if (err instanceof Error && err.message) return err.message;
+  if (err instanceof Error && err.message) {
+    const msg = err.message;
+
+    // Detect browser locale fallback if not passed explicitly
+    const curLocale = locale || (typeof document !== "undefined" ? document.documentElement.lang : "en");
+
+    const maxPageMatch = msg.match(/maksimal\s*(\d+)\s*halaman/i);
+    if (maxPageMatch) {
+      const num = maxPageMatch[1];
+      if (curLocale === "en") return `Maximum ${num} pages allowed`;
+      if (curLocale === "ja") return `最大 ${num} ページまでです`;
+      if (curLocale === "my") return `စာမျက်နှာ ${num} အများဆုံးသာ ခွင့်ပြုပါသည်`;
+      return `Maksimal ${num} halaman`;
+    }
+
+    if (/pilih minimal 1 halaman/i.test(msg)) {
+      if (curLocale === "en") return "Please select at least 1 page";
+      if (curLocale === "ja") return "少なくとも1ページ選択してください";
+      if (curLocale === "my") return "အနည်းဆုံး စာမျက်နှာ ၁ မျက်နှာ ရွေးချယ်ပါ";
+      return "Pilih minimal 1 halaman";
+    }
+
+    if (/pdf kosong/i.test(msg)) {
+      if (curLocale === "en") return "The uploaded PDF is empty";
+      if (curLocale === "ja") return "PDFが空です";
+      if (curLocale === "my") return "PDF ဖိုင် ဗလာဖြစ်နေပါသည်";
+      return "PDF kosong";
+    }
+
+    if (/ukuran file|maksimal.*mb/i.test(msg)) {
+      if (curLocale === "en") return "File size exceeds the limit";
+      if (curLocale === "ja") return "ファイルサイズが上限を超えています";
+      if (curLocale === "my") return "ဖိုင်အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေပါသည်";
+      return "Ukuran file melebihi batas";
+    }
+
+    if (/judul.*wajib diisi|subjek.*wajib diisi/i.test(msg)) {
+      if (curLocale === "en") return "Subject / title is required";
+      if (curLocale === "ja") return "件名は必須です";
+      if (curLocale === "my") return "ခေါင်းစဉ် ထည့်သွင်းရန် လိုအပ်ပါသည်";
+      return "Judul / subjek laporan wajib diisi";
+    }
+
+    if (/deskripsi.*wajib diisi/i.test(msg)) {
+      if (curLocale === "en") return "Description is required";
+      if (curLocale === "ja") return "詳細な説明は必須です";
+      if (curLocale === "my") return "ဖော်ပြချက် ထည့်သွင်းရန် လိုအပ်ပါသည်";
+      return "Deskripsi laporan wajib diisi";
+    }
+
+    return msg;
+  }
   return fallback;
 }

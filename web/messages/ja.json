@@ -1577,6 +1577,35 @@
     "seo": {
       "title": "フィードバック・不具合報告 — Pdfumi",
       "description": "Pdfumi開発チームへのフィードバック、機能要望、不具合の報告を送信できます。"
-    }
+    },
+    "badge": "コミュニティ窓口・フィードバック",
+    "title": "フィードバック・不具合の報告",
+    "description": "技術的な問題を発見した場合や新しい機能のご要望がございましたら、Pdfumi開発チームまで直接お寄せください。すべての報告を確認し、順次対応いたします。",
+    "categoryLabel": "報告カテゴリー",
+    "catBug": "不具合を報告",
+    "catFeature": "機能要望",
+    "catFeedback": "一般的なご意見",
+    "subjectLabel": "件名 / 概要",
+    "placeholderBugSubject": "例：80ページ以上のPDF分割処理に失敗する",
+    "placeholderFeatureSubject": "例：領収書データをExcel形式で出力したい",
+    "placeholderFeedbackSubject": "例：スマートフォン表示時にボタンが重なって見える",
+    "descriptionLabel": "詳細な説明",
+    "placeholderBugDesc": "発生手順、表示されたエラーメッセージ、試されたファイル形式などを詳しくご記入ください...",
+    "placeholderGeneralDesc": "機能のご要望や改善提案の内容を具体的にご記入ください...",
+    "emailLabel": "メールアドレス（任意・返信用）",
+    "emailHint": "返信を受け取るため",
+    "emailPrivacy": "ご入力いただいたメールアドレスは、本報告への返信・状況通知にのみ利用され、外部共有されることはありません。",
+    "screenshotsLabel": "スクリーンショット添付（任意）",
+    "screenshotsHint": "状況がわかる画像（PNG, JPG, WebP）を最大5枚まで添付できます",
+    "addScreenshots": "画像を追加",
+    "submitBtn": "フィードバックを送信",
+    "submittingBtn": "送信中...",
+    "valRequired": "件名と詳細な説明を入力してください。",
+    "valMaxScreenshots": "添付できるスクリーンショットは最大5枚です。",
+    "valImageSize": "画像ファイルは1枚あたり5MB以下にしてください。",
+    "valGenericError": "送信に失敗しました。時間をおいて再度お試しください。",
+    "successTitle": "報告を送信しました",
+    "successDesc": "Pdfumiの改善にご協力いただき誠にありがとうございます。開発チームにて内容を確認し、メールアドレスをご記入いただいた場合は追ってご返信差し上げます。",
+    "submitAnother": "別の報告を送信する"
   }
 }

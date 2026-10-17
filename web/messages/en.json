@@ -1581,6 +1581,35 @@
     "seo": {
       "title": "Feedback & Report Bug — Pdfumi",
       "description": "Submit feedback, feature requests, or report technical issues directly to the Pdfumi team."
-    }
+    },
+    "badge": "Community Feedback & Support",
+    "title": "Feedback & Report an Issue",
+    "description": "Found a technical bug or have an idea for a new feature? Share it directly with the Pdfumi development team. Every submission is reviewed and acted upon.",
+    "categoryLabel": "Report Category",
+    "catBug": "Report Bug",
+    "catFeature": "Feature Request",
+    "catFeedback": "General Feedback",
+    "subjectLabel": "Subject / Brief Topic",
+    "placeholderBugSubject": "e.g., Failed to split PDF with more than 80 pages",
+    "placeholderFeatureSubject": "e.g., Support exporting receipts to Excel",
+    "placeholderFeedbackSubject": "e.g., Interface feels cramped on mobile devices",
+    "descriptionLabel": "Detailed Description",
+    "placeholderBugDesc": "Describe the steps taken, error messages shown, or file types tested...",
+    "placeholderGeneralDesc": "Describe your requirements or feedback in detail so we can consider implementation...",
+    "emailLabel": "Your Email (Optional but recommended)",
+    "emailHint": "To receive replies",
+    "emailPrivacy": "Your email is only used for status updates regarding this report and will never be shared.",
+    "screenshotsLabel": "Attach Screenshots (Optional)",
+    "screenshotsHint": "Upload up to 5 images (PNG, JPG, WebP) to help explain the issue",
+    "addScreenshots": "Add Screenshot",
+    "submitBtn": "Submit Feedback",
+    "submittingBtn": "Submitting report...",
+    "valRequired": "Please enter a subject and detailed description.",
+    "valMaxScreenshots": "Maximum 5 screenshot images allowed.",
+    "valImageSize": "Each screenshot image must be under 5MB.",
+    "valGenericError": "Failed to submit report. Please try again.",
+    "successTitle": "Report Submitted Successfully",
+    "successDesc": "Thank you for helping us improve Pdfumi! Our team will review your report and send a reply to your email if provided.",
+    "submitAnother": "Submit Another Report"
   }
 }

@@ -1597,6 +1597,35 @@
     "seo": {
       "title": "Feedback & Laporkan Masalah — Pdfumi",
       "description": "Kirim masukan, usulan fitur, atau laporkan kendala teknis langsung kepada tim pengembang Pdfumi."
-    }
+    },
+    "badge": "Pusat Masukan & Bantuan Komunitas",
+    "title": "Feedback & Laporkan Masalah",
+    "description": "Menemukan kendala teknis atau memiliki ide fitur baru? Sampaikan langsung kepada tim pengembang Pdfumi. Setiap laporan akan ditinjau dan ditindaklanjuti.",
+    "categoryLabel": "Kategori Laporan",
+    "catBug": "Laporkan Bug",
+    "catFeature": "Usulan Fitur",
+    "catFeedback": "Saran Umum",
+    "subjectLabel": "Judul / Topik Singkat",
+    "placeholderBugSubject": "Contoh: Gagal split file PDF lebih dari 80 halaman",
+    "placeholderFeatureSubject": "Contoh: Dukungan ekspor laporan kwitansi ke Excel",
+    "placeholderFeedbackSubject": "Contoh: Tampilan antarmuka di layar ponsel terasa terlalu padat",
+    "descriptionLabel": "Deskripsi Lengkap",
+    "placeholderBugDesc": "Jelaskan langkah-langkah kejadian, pesan error yang muncul, atau format file yang dicoba...",
+    "placeholderGeneralDesc": "Jelaskan kebutuhan atau saran Anda secara rinci agar dapat kami pelajari...",
+    "emailLabel": "Email Anda (Opsional namun disarankan)",
+    "emailHint": "Untuk menerima balasan",
+    "emailPrivacy": "Email Anda hanya digunakan untuk pemberitahuan status tindak lanjut laporan ini dan tidak akan disebarluaskan.",
+    "screenshotsLabel": "Lampirkan Screenshot (Opsional)",
+    "screenshotsHint": "Unggah hingga 5 gambar (PNG, JPG, WebP) untuk memperjelas kendala",
+    "addScreenshots": "Tambah Screenshot",
+    "submitBtn": "Kirimkan Masukan",
+    "submittingBtn": "Mengirimkan laporan...",
+    "valRequired": "Silakan isi judul dan deskripsi laporan Anda.",
+    "valMaxScreenshots": "Maksimal 5 berkas screenshot yang dapat dilampirkan.",
+    "valImageSize": "Ukuran tiap gambar screenshot maksimal 5MB.",
+    "valGenericError": "Gagal mengirimkan laporan. Silakan coba kembali.",
+    "successTitle": "Laporan Berhasil Terkirim",
+    "successDesc": "Terima kasih atas kontribusi Anda dalam meningkatkan kualitas Pdfumi. Tim kami akan segera meninjau dan mengirimkan konfirmasi/balasan ke email Anda apabila disertakan.",
+    "submitAnother": "Kirim Laporan Lainnya"
   }
 }

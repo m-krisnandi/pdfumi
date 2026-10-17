@@ -39,6 +39,9 @@ public class FeedbackReportEntity {
 	@Column(name = "reply_message", columnDefinition = "TEXT")
 	private String replyMessage;
 
+	@Column(name = "screenshots", columnDefinition = "TEXT")
+	private String screenshots;
+
 	@Column(name = "replied_at")
 	private Instant repliedAt;
 
@@ -134,6 +137,14 @@ public class FeedbackReportEntity {
 
 	public void setReplyMessage(String replyMessage) {
 		this.replyMessage = replyMessage;
+	}
+
+	public String getScreenshots() {
+		return screenshots;
+	}
+
+	public void setScreenshots(String screenshots) {
+		this.screenshots = screenshots;
 	}
 
 	public Instant getRepliedAt() {

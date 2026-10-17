@@ -32,6 +32,7 @@ import {
   Bug,
   Lightbulb,
   Mail,
+  Camera,
 } from "lucide-react";
 
 interface PricingPlan {
@@ -88,6 +89,7 @@ export interface FeedbackReport {
   status: "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED";
   adminNotes: string | null;
   replyMessage: string | null;
+  screenshots?: string[];
   repliedAt: string | null;
   createdAt: string;
 }
@@ -1589,9 +1591,17 @@ export function AdminPricingBoard() {
                         </div>
                       </td>
                       <td className="py-3.5 px-4 max-w-xs">
-                        <strong className="block text-zinc-900 dark:text-white text-xs truncate">
-                          {item.subject}
-                        </strong>
+                        <div className="flex items-center gap-1.5">
+                          <strong className="block text-zinc-900 dark:text-white text-xs truncate">
+                            {item.subject}
+                          </strong>
+                          {item.screenshots && item.screenshots.length > 0 && (
+                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20 shrink-0">
+                              <Camera className="w-2.5 h-2.5" />
+                              {item.screenshots.length}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-[11px] text-zinc-500 dark:text-zinc-400 line-clamp-2 mt-0.5">
                           {item.description}
                         </p>
@@ -2395,6 +2405,37 @@ export function AdminPricingBoard() {
                   </div>
                 )}
               </div>
+
+              {/* Screenshots Gallery */}
+              {selectedReport.screenshots && selectedReport.screenshots.length > 0 && (
+                <div className="pt-3 border-t border-zinc-200/40 dark:border-white/5 space-y-2">
+                  <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">
+                    Tangkapan Layar / Bukti Lampiran ({selectedReport.screenshots.length} gambar):
+                  </span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {selectedReport.screenshots.map((imgSrc, sIdx) => (
+                      <a
+                        key={sIdx}
+                        href={imgSrc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative group w-20 h-20 rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-white/10 hover:border-teal-500 shadow-sm block bg-black/5"
+                        title="Klik untuk melihat ukuran penuh"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={imgSrc}
+                          alt={`Screenshot ${sIdx + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-black/70 text-white">
+                          #{sIdx + 1}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <form onSubmit={handleSaveFeedback} className="space-y-4">

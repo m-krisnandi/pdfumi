@@ -1,5 +1,7 @@
 package com.pdfumi.api.feedback.application;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdfumi.api.billing.application.AccountService;
 import com.pdfumi.api.billing.application.PricingPlanService;
 import com.pdfumi.api.billing.application.ClientContext;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,7 @@ public class FeedbackReportService {
 	private final PricingPlanService pricingPlanService;
 	private final AccountService accountService;
 	private final TransactionalMailer mailer;
+	private final ObjectMapper objectMapper;
 
 	public FeedbackReportService(
 			FeedbackReportRepository repository,
@@ -36,6 +40,7 @@ public class FeedbackReportService {
 		this.pricingPlanService = pricingPlanService;
 		this.accountService = accountService;
 		this.mailer = mailer;
+		this.objectMapper = new ObjectMapper();
 	}
 
 	@Transactional
@@ -82,6 +87,13 @@ public class FeedbackReportService {
 				"OPEN",
 				Instant.now()
 		);
+
+		if (req.screenshots() != null && !req.screenshots().isEmpty()) {
+			try {
+				entity.setScreenshots(objectMapper.writeValueAsString(req.screenshots()));
+			} catch (Exception ignored) {
+			}
+		}
 
 		FeedbackReportEntity saved = repository.save(entity);
 
@@ -166,6 +178,16 @@ public class FeedbackReportService {
 		map.put("replyMessage", e.getReplyMessage());
 		map.put("repliedAt", e.getRepliedAt());
 		map.put("createdAt", e.getCreatedAt());
+
+		List<String> screenshotsList = new ArrayList<>();
+		if (e.getScreenshots() != null && !e.getScreenshots().isBlank()) {
+			try {
+				screenshotsList = objectMapper.readValue(e.getScreenshots(), new TypeReference<List<String>>() {});
+			} catch (Exception ignored) {
+			}
+		}
+		map.put("screenshots", screenshotsList);
+
 		return map;
 	}
 
@@ -173,7 +195,8 @@ public class FeedbackReportService {
 			String category,
 			String subject,
 			String description,
-			String email
+			String email,
+			List<String> screenshots
 	) {}
 
 	public record UpdateReportRequest(
