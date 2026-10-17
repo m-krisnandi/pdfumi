@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { API_BASE, authHeaders, downloadBlob, friendlyError } from "@/lib/api";
 import { keepOriginalName } from "@/lib/downloadName";
 import { buildPdfFromPages } from "@/lib/fileRotate";
@@ -35,6 +35,7 @@ function hasAnyRotation(items: PageItem[]) {
 export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
   const t = useTranslations(NS[mode]);
   const tCommon = useTranslations("common");
+  const locale = useLocale();
   const [file, setFile] = useState<File | null>(null);
   const [pages, setPages] = useState<PageItem[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -95,81 +96,70 @@ export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
     setError(null);
 
     try {
-      const form = new FormData();
+      let bakedFile: File | null = null;
+      let defaultName = "document.pdf";
 
       if (mode === "rotate") {
-        const baked = await buildPdfFromPages(
+        bakedFile = await buildPdfFromPages(
           file,
           pages.map((p) => p.pageNumber),
           pages.map((p) => p.rotation ?? 0),
         );
-        form.append("file", baked);
-        form.append("degrees", "0");
+        defaultName = "rotated.pdf";
       } else if (mode === "organize") {
-        if (hasAnyRotation(pages)) {
-          const baked = await buildPdfFromPages(
-            file,
-            pages.map((p) => p.pageNumber),
-            pages.map((p) => p.rotation ?? 0),
-          );
-          form.append("file", baked);
-          form.append("pages", pages.map((_, i) => i + 1).join(","));
-        } else {
-          form.append("file", file);
-          form.append("pages", pages.map((p) => p.pageNumber).join(","));
-        }
+        bakedFile = await buildPdfFromPages(
+          file,
+          pages.map((p) => p.pageNumber),
+          pages.map((p) => p.rotation ?? 0),
+        );
+        defaultName = "organized.pdf";
       } else if (mode === "delete") {
-        if (hasAnyRotation(pages)) {
-          // Bake remaining pages (with rotation) then pass through organize.
-          const baked = await buildPdfFromPages(
-            file,
-            pages.map((p) => p.pageNumber),
-            pages.map((p) => p.rotation ?? 0),
-          );
-          const res = await fetch(`${API_BASE}${ENDPOINT.organize}`, {
-            method: "POST",
-            headers: authHeaders(),
-            body: (() => {
-              const f = new FormData();
-              f.append("file", baked);
-              f.append("pages", pages.map((_, i) => i + 1).join(","));
-              return f;
-            })(),
-          });
-          await downloadBlob(res, keepOriginalName(file, "document.pdf", "pdf"));
-          return;
-        }
-        const kept = new Set(pages.map((p) => p.pageNumber));
-        const toDelete: number[] = [];
-        for (let i = 1; i <= sourcePageCount; i++) {
-          if (!kept.has(i)) toDelete.push(i);
-        }
-        form.append("file", file);
-        form.append("pages", toDelete.join(","));
+        bakedFile = await buildPdfFromPages(
+          file,
+          pages.map((p) => p.pageNumber),
+          pages.map((p) => p.rotation ?? 0),
+        );
+        defaultName = "document.pdf";
       } else if (mode === "split" || mode === "extract") {
-        if (hasAnyRotation(picked)) {
-          const baked = await buildPdfFromPages(
-            file,
-            picked.map((p) => p.pageNumber),
-            picked.map((p) => p.rotation ?? 0),
-          );
-          form.append("file", baked);
-          form.append("pages", picked.map((_, i) => i + 1).join(","));
-        } else {
-          form.append("file", file);
-          form.append("pages", picked.map((p) => p.pageNumber).join(","));
-        }
+        bakedFile = await buildPdfFromPages(
+          file,
+          picked.map((p) => p.pageNumber),
+          picked.map((p) => p.rotation ?? 0),
+        );
+        defaultName = mode === "split" ? "split.pdf" : "extracted.pdf";
       }
 
-      const res = await fetch(`${API_BASE}${ENDPOINT[mode]}`, {
-        method: "POST",
-        headers: authHeaders(),
-        body: form,
-      });
-      const defaultExt = "pdf";
-      await downloadBlob(res, keepOriginalName(file, `document.${defaultExt}`, defaultExt));
+      if (bakedFile) {
+        const url = URL.createObjectURL(bakedFile);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = keepOriginalName(file, defaultName, "pdf");
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        try {
+          const form = new FormData();
+          form.append("file", bakedFile);
+          form.append(
+            "pages",
+            (mode === "split" || mode === "extract" ? picked : pages)
+              .map((_, i) => i + 1)
+              .join(","),
+          );
+          fetch(`${API_BASE}${ENDPOINT[mode]}`, {
+            method: "POST",
+            headers: authHeaders(),
+            body: form,
+          }).catch(() => {});
+        } catch {
+          /* ignore */
+        }
+        return;
+      }
     } catch (err) {
-      setError(friendlyError(err, tCommon("errorGeneric")));
+      setError(friendlyError(err, tCommon("errorGeneric"), locale));
     } finally {
       setDownloading(false);
     }

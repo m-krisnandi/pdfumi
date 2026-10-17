@@ -89,6 +89,13 @@ export function friendlyError(err: unknown, fallback: string, locale?: string): 
       return `Maksimal ${num} file`;
     }
 
+    if (/endpoint tidak ditemukan|not found|404/i.test(msg)) {
+      if (curLocale === "en") return "Service is currently being updated. Please try again shortly.";
+      if (curLocale === "ja") return "サービスは現在更新中です。しばらくしてからもう一度お試しください。";
+      if (curLocale === "my") return "ဝန်ဆောင်မှုကို မွမ်းမံနေပါသည်။ ခေတ္တစောင့်ပြီး ထပ်မံကြိုးစားပါ။";
+      return "Layanan sedang dalam proses pembaruan. Silakan coba beberapa saat lagi.";
+    }
+
     if (/pilih minimal 1 halaman/i.test(msg)) {
       if (curLocale === "en") return "Please select at least 1 page";
       if (curLocale === "ja") return "少なくとも1ページ選択してください";
