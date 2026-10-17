@@ -1,3 +1,4 @@
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
 import { PDFDocument, PDFName, PDFStream, PDFDict, StandardFonts, rgb, degrees } from "pdf-lib";
 
 /** Standard paper sizes in points (72 points per inch) */
@@ -183,14 +184,9 @@ export async function convertPdfToGrayscale(
   file: File,
   quality: number = 0.85
 ): Promise<Blob> {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url
-  ).toString();
-
+  const pdfjs = await loadPdfJs();
   const fileBytes = await file.arrayBuffer();
-  const loadingTask = pdfjs.getDocument({ data: fileBytes });
+  const loadingTask = pdfjs.getDocument(getPdfDocumentParams(fileBytes));
   const pdf = await loadingTask.promise;
   const numPages = pdf.numPages;
 

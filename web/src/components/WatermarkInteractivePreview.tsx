@@ -3,14 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 
-async function loadPdfJs() {
-  const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
-  return pdfjs;
-}
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
 
 export type WatermarkPose = {
   /** 0–1 from left */
@@ -51,8 +44,7 @@ export function WatermarkInteractivePreview({
       try {
         const pdfjs = await loadPdfJs();
         const raw = await file.arrayBuffer();
-        const data = new Uint8Array(raw.slice(0));
-        const pdf = await pdfjs.getDocument({ data, disableAutoFetch: true, disableStream: true }).promise;
+        const pdf = await pdfjs.getDocument(getPdfDocumentParams(raw)).promise;
         pdfDoc = pdf;
         if (cancelled) {
           await pdf.cleanup();

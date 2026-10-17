@@ -13,6 +13,7 @@ export function getPdfDocumentParams(data: Uint8Array | ArrayBuffer) {
     cMapUrl: "/cmaps/",
     cMapPacked: true,
     standardFontDataUrl: "/standard_fonts/",
+    wasmUrl: "/wasm/",
     disableAutoFetch: true,
     disableStream: true,
   };

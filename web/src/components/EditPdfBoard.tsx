@@ -1,5 +1,7 @@
 "use client";
 
+import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
+
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ToolShell } from "@/components/ToolShell";
@@ -75,14 +77,9 @@ export function EditPdfBoard() {
 
     async function renderPage() {
       try {
-        const pdfjs = await import("pdfjs-dist");
-        pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-          "pdfjs-dist/build/pdf.worker.min.mjs",
-          import.meta.url
-        ).toString();
-
+        const pdfjs = await loadPdfJs();
         const bytes = await file!.arrayBuffer();
-        const loadingTask = pdfjs.getDocument({ data: bytes });
+        const loadingTask = pdfjs.getDocument(getPdfDocumentParams(bytes));
         const pdf = await loadingTask.promise;
         if (cancelled) return;
 
