@@ -6,7 +6,7 @@ import { ToolShell } from "@/components/ToolShell";
 import { ErrorBanner } from "@/components/ErrorBanner";
 import { Button } from "@/components/ui/Button";
 import { generateInvoicePdf, type InvoiceItem } from "@/lib/documentGenerators";
-import { Plus, Trash2, Download, Receipt } from "lucide-react";
+import { Plus, Trash2, Download, Receipt, Eye, Sparkles } from "lucide-react";
 
 export function InvoiceBoard() {
   const t = useTranslations("invoice");
@@ -45,6 +45,7 @@ export function InvoiceBoard() {
   const [notes, setNotes] = useState("Terima kasih atas kerjasamanya. Pembayaran jatuh tempo dalam 14 hari kerja.");
 
   const [processing, setProcessing] = useState(false);
+  const [showLivePreview, setShowLivePreview] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   function addItem() {
@@ -106,7 +107,25 @@ export function InvoiceBoard() {
 
   return (
     <ToolShell title={t("title")} description={t("description")} wide>
-      <div className="space-y-6">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300">
+            Professional PDF Invoice
+          </span>
+          <span className="text-xs text-zinc-500">Live Real-time Calculation</span>
+        </div>
+        <button
+          type="button"
+          onClick={() => setShowLivePreview(!showLivePreview)}
+          className="hidden lg:flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-zinc-200 dark:border-white/10 hover:border-teal-500 text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
+        >
+          <Eye className="w-3.5 h-3.5 text-teal-600" />
+          <span>{showLivePreview ? "Sembunyikan Pratinjau" : "Tampilkan Pratinjau"}</span>
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className={showLivePreview ? "space-y-6 lg:col-span-7" : "space-y-6 lg:col-span-12"}>
         {/* Top Info Bar */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-white/10">
           <div>
@@ -143,13 +162,13 @@ export function InvoiceBoard() {
               onChange={(e) => setCurrency(e.target.value)}
               className="mt-1 w-full rounded-xl border border-zinc-300 dark:border-white/20 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs font-bold"
             >
-              <option value="$">USD ($)</option>
-              <option value="Rp">IDR (Rp)</option>
-              <option value="€">EUR (€)</option>
-              <option value="£">GBP (£)</option>
-              <option value="S$">SGD (S$)</option>
-              <option value="RM">MYR / Malaysia (RM)</option>
-              <option value="¥">JPY / Japan (¥)</option>
+              <option value="$">USD - United States ($)</option>
+              <option value="Rp">IDR - Indonesia (Rp)</option>
+              <option value="RM">MYR - Malaysia (RM)</option>
+              <option value="¥">JPY - Japan (¥)</option>
+              <option value="€">EUR - Europe (€)</option>
+              <option value="£">GBP - United Kingdom (£)</option>
+              <option value="S$">SGD - Singapore (S$)</option>
             </select>
           </div>
         </div>
@@ -349,16 +368,127 @@ export function InvoiceBoard() {
 
         <ErrorBanner message={error} />
 
-        <Button
-          type="button"
-          loading={processing}
-          onClick={handleDownload}
-          className="flex items-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          <span>Buat & Unduh Invoice PDF</span>
-        </Button>
+        <div className="flex justify-end pt-4 border-t border-zinc-200/60 dark:border-white/10">
+          <Button
+            type="button"
+            loading={processing}
+            onClick={handleDownload}
+            className="flex items-center gap-2 px-8 py-3.5 text-sm"
+          >
+            <Download className="w-4 h-4" />
+            <span>{processing ? "Membuat PDF..." : "Unduh PDF Invoice Resmi"}</span>
+          </Button>
+        </div>
       </div>
-    </ToolShell>
-  );
+
+      {/* Live A4 Sheet Preview (Right Column) */}
+      {showLivePreview && (
+        <div className="hidden lg:block lg:col-span-5 sticky top-24">
+          <div className="rounded-3xl border border-zinc-200/90 dark:border-white/15 bg-white dark:bg-zinc-900 shadow-2xl p-6 text-zinc-900 dark:text-zinc-100 text-xs space-y-5 transition-all">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-white/10 pb-4">
+              <div>
+                <h3 className="font-extrabold text-base tracking-tight text-teal-600 dark:text-teal-400">INVOICE</h3>
+                <p className="font-mono text-[11px] text-zinc-500 mt-0.5">#{invoiceNumber || "INV-001"}</p>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-widest block font-bold">Total Due</span>
+                <span className="font-extrabold text-lg text-zinc-900 dark:text-white">
+                  {currency} {grandTotal.toLocaleString()}
+                </span>
+              </div>
+            </div>
+
+            {/* Dates */}
+            <div className="grid grid-cols-2 gap-3 text-[11px] bg-zinc-50 dark:bg-zinc-800/60 p-3 rounded-xl border border-zinc-100 dark:border-white/5">
+              <div>
+                <span className="text-zinc-400 block text-[10px]">Issued Date:</span>
+                <span className="font-semibold">{date || "-"}</span>
+              </div>
+              <div>
+                <span className="text-zinc-400 block text-[10px]">Due Date:</span>
+                <span className="font-semibold text-rose-600 dark:text-rose-400">{dueDate || "-"}</span>
+              </div>
+            </div>
+
+            {/* Sender & Recipient */}
+            <div className="grid grid-cols-2 gap-4 text-[11px]">
+              <div className="space-y-0.5">
+                <span className="text-[10px] uppercase font-bold text-teal-600 dark:text-teal-400">From</span>
+                <p className="font-bold">{sellerName || "Your Company"}</p>
+                <p className="text-zinc-500 text-[10px] leading-relaxed">{sellerAddress}</p>
+                <p className="text-zinc-400 text-[10px]">{sellerEmail}</p>
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-[10px] uppercase font-bold text-zinc-400">Billed To</span>
+                <p className="font-bold">{clientName || "Client Name"}</p>
+                {clientCompany && <p className="text-zinc-600 dark:text-zinc-300 text-[10px]">{clientCompany}</p>}
+                <p className="text-zinc-500 text-[10px] leading-relaxed">{clientAddress}</p>
+              </div>
+            </div>
+
+            {/* Mini Items Table */}
+            <div className="space-y-1.5 border-t border-zinc-200 dark:border-white/10 pt-3">
+              <span className="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Items Breakdown</span>
+              <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1 divide-y divide-zinc-100 dark:divide-white/5">
+                {items.map((it, idx) => (
+                  <div key={idx} className="flex justify-between items-center pt-1.5 text-[11px]">
+                    <div className="truncate pr-2">
+                      <span className="font-medium text-zinc-800 dark:text-zinc-200">{it.description || "Item description"}</span>
+                      <span className="text-zinc-400 text-[10px] block">Qty: {it.quantity} × {currency} {it.unitPrice.toLocaleString()}</span>
+                    </div>
+                    <span className="font-semibold font-mono shrink-0">
+                      {currency} {((it.quantity || 1) * (it.unitPrice || 0)).toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Total Calculation */}
+            <div className="border-t border-zinc-200 dark:border-white/10 pt-3 space-y-1 text-[11px]">
+              <div className="flex justify-between text-zinc-500">
+                <span>Subtotal:</span>
+                <span>{currency} {subtotal.toLocaleString()}</span>
+              </div>
+              {taxRatePercent > 0 && (
+                <div className="flex justify-between text-zinc-500">
+                  <span>Tax ({taxRatePercent}%):</span>
+                  <span>{currency} {taxAmount.toLocaleString()}</span>
+                </div>
+              )}
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-emerald-600">
+                  <span>Discount:</span>
+                  <span>-{currency} {discountAmount.toLocaleString()}</span>
+                </div>
+              )}
+              <div className="flex justify-between text-sm font-extrabold border-t border-zinc-200 dark:border-white/10 pt-2 text-teal-600 dark:text-teal-400">
+                <span>Total Amount:</span>
+                <span>{currency} {grandTotal.toLocaleString()}</span>
+              </div>
+            </div>
+
+            {/* Payment Details */}
+            {bankDetails && (
+              <div className="p-3 bg-zinc-50 dark:bg-zinc-800/60 rounded-xl text-[10px] border border-zinc-100 dark:border-white/5">
+                <span className="font-bold text-zinc-700 dark:text-zinc-300 block">Bank / Payment Instructions:</span>
+                <p className="text-zinc-500 mt-0.5">{bankDetails}</p>
+              </div>
+            )}
+
+            <Button
+              type="button"
+              loading={processing}
+              onClick={handleDownload}
+              className="w-full flex items-center justify-center gap-2 py-3 mt-2 shadow-lg"
+            >
+              <Download className="w-4 h-4" />
+              <span>{processing ? "Membuat PDF..." : "Unduh PDF Invoice Sekarang"}</span>
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  </ToolShell>
+);
 }

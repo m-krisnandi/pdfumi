@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { ToolShell } from "@/components/ToolShell";
 import { PdfDropzone } from "@/components/PdfDropzone";
 import { ErrorBanner } from "@/components/ErrorBanner";
@@ -14,7 +16,9 @@ export function RemoveSignatureBgBoard() {
 
   const [file, setFile] = useState<File | null>(null);
   const [threshold, setThreshold] = useState(200); // 0-255 threshold
-  const [inkColor, setInkColor] = useState<"keep" | "black" | "blue">("black");
+  const [inkColor, setInkColor] = useState<"keep" | "black" | "blue" | "red">("black");
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
   const [contrast, setContrast] = useState(1.3);
 
   const [copied, setCopied] = useState(false);
@@ -70,6 +74,10 @@ export function RemoveSignatureBgBoard() {
             d[i] = 26;
             d[i + 1] = 68;
             d[i + 2] = 168;
+          } else if (inkColor === "red") {
+            d[i] = 220;
+            d[i + 1] = 38;
+            d[i + 2] = 38;
           }
           // if inkColor === "keep", leave r,g,b untouched
         }
@@ -186,6 +194,19 @@ export function RemoveSignatureBgBoard() {
 
                 <button
                   type="button"
+                  onClick={() => setInkColor("red")}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition cursor-pointer ${
+                    inkColor === "red"
+                      ? "border-teal-500 bg-teal-50 dark:bg-teal-950/40 text-teal-900 dark:text-teal-200"
+                      : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
+                  }`}
+                >
+                  <span className="w-3.5 h-3.5 rounded-full bg-red-600 inline-block" />
+                  <span>Merah Segel (Hankō)</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={() => setInkColor("keep")}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition cursor-pointer ${
                     inkColor === "keep"
@@ -233,7 +254,7 @@ export function RemoveSignatureBgBoard() {
 
           <ErrorBanner message={error} />
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Button
               type="button"
               onClick={handleDownload}
@@ -251,6 +272,14 @@ export function RemoveSignatureBgBoard() {
               {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? "Tersalin ke Clipboard!" : "Salin Gambar"}</span>
             </button>
+
+            <Link
+              href={`/${locale}/tools/sign-pdf`}
+              className="flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-50/70 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 px-5 py-3 text-sm font-semibold hover:bg-teal-100 transition"
+            >
+              <Sparkles className="w-4 h-4 text-teal-600" />
+              <span>Tempel ke Dokumen PDF</span>
+            </Link>
           </div>
         </div>
       )}
