@@ -1150,13 +1150,17 @@
     "toolHighlight": "Highlight",
     "toolShape": "Shape",
     "seo": {
-      "title": "Free Online PDF Editor - Add Text & Annotations | Pdfumi",
-      "description": "Easily edit PDFs, highlight sentences, and add annotations online without registration.",
-      "faqTitle": "PDF Editor FAQ",
+      "title": "PDF 編集 オンライン 無料 — テキスト追加・注釈・ハイライト | Pdfumi",
+      "description": "登録不要の無料オンラインPDFエディター。PDFにテキスト入力、マーカー・ハイライト、図形や注釈の追加がブラウザ完結で簡単に行えます。",
+      "faqTitle": "PDFオンライン編集に関するよくある質問",
       "faqs": [
         {
-          "q": "Is my document secure?",
-          "a": "Yes, all edits are processed privately in your browser without uploading to third-party storage."
+          "q": "PDFの編集は本当に無料ですか？",
+          "a": "はい、テキストの追加、マーカー、注釈付けなどの基本機能は登録不要で完全無料でお使いいただけます。"
+        },
+        {
+          "q": "アップロードしたドキュメントのセキュリティは安全ですか？",
+          "a": "すべてのPDF編集処理はお客様のブラウザ内で直接処理され、無関係な外部ストレージに保存されることはありません。"
         }
       ]
     }
@@ -1242,13 +1246,17 @@
     "dropHint": "or drop signature photo here",
     "uploadHint": "Photo of handwritten signature on paper",
     "seo": {
-      "title": "Make Signature Transparent PNG Online | Pdfumi",
-      "description": "Extract signature ink from paper photos with transparent background.",
-      "faqTitle": "Transparent Signature FAQ",
+      "title": "手書き署名 背景透過 PNG 作成 無料 | Pdfumi",
+      "description": "紙に書いた手書きサインや印鑑の写真をアップロードするだけで、背景をきれいに除去して透過PNGに瞬時に変換。PDFや電子契約書の署名に最適。",
+      "faqTitle": "手書き署名の背景透過に関するよくある質問",
       "faqs": [
         {
-          "q": "Can I copy directly to clipboard?",
-          "a": "Yes, click Copy Image to paste directly into your document editor."
+          "q": "作成した透過署名はクリップボードに直接コピーできますか？",
+          "a": "はい。「画像をコピー」をクリックすれば、WordやGoogleドキュメント、メールなどに直接貼り付け可能です。"
+        },
+        {
+          "q": "電子サインの品質を落とさずに透過できますか？",
+          "a": "インクの輪郭をスマートに検出し、ギザギザのない滑らかで鮮明な透過PNGを出力します。"
         }
       ]
     }
@@ -1419,13 +1427,17 @@
     "title": "Professional Invoice Generator",
     "description": "Create official invoices with itemized tables, taxes, discounts, payment info, and signatures ready for download.",
     "seo": {
-      "title": "Free Invoice Generator PDF Online | Pdfumi",
-      "description": "Create sleek business invoices with automatic calculations and instant PDF export.",
-      "faqTitle": "Invoice Generator FAQ",
+      "title": "請求書 作成 無料 オンライン PDF 発行 | Pdfumi",
+      "description": "ブラウザ上で簡単にプロフェッショナルな請求書を作成。小計・消費税・割引の自動計算に対応し、ワンクリックで綺麗なPDFとしてダウンロードできます。",
+      "faqTitle": "無料請求書作成に関するよくある質問",
       "faqs": [
         {
-          "q": "Can I choose my currency?",
-          "a": "Yes, select from USD, IDR, EUR, GBP, SGD, and more."
+          "q": "通貨や税率は自由に設定できますか？",
+          "a": "はい、日本円（¥）、米ドル（$）、ユーロ（€）、マレーシアリンギット（RM）など主要通貨に対応し、消費税率も自由にカスタマイズ可能です。"
+        },
+        {
+          "q": "作成した請求書データはサーバーに保存されますか？",
+          "a": "いいえ、すべてのデータはお客様の端末ブラウザ内でのみ処理されるため、機密情報が外部に漏れる心配はありません。"
         }
       ]
     }

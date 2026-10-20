@@ -1146,13 +1146,17 @@
     "toolHighlight": "Highlight",
     "toolShape": "Shape",
     "seo": {
-      "title": "Free Online PDF Editor - Add Text & Annotations | Pdfumi",
-      "description": "Easily edit PDFs, highlight sentences, and add annotations online without registration.",
-      "faqTitle": "PDF Editor FAQ",
+      "title": "Free Online PDF Editor — Edit Text, Annotate & Fill PDF | Pdfumi",
+      "description": "Free online PDF editor with no registration. Add text, highlights, shapes, and comments directly in your browser. Fast, private, and watermark-free.",
+      "faqTitle": "Free PDF Editor FAQ",
       "faqs": [
         {
-          "q": "Is my document secure?",
-          "a": "Yes, all edits are processed privately in your browser without uploading to third-party storage."
+          "q": "Is this online PDF editor really free to use?",
+          "a": "Yes, you can edit text, highlight sentences, add annotations and sign PDFs 100% free with no account needed."
+        },
+        {
+          "q": "Are my uploaded PDF documents secure?",
+          "a": "Yes, edits are processed privately in your browser with strict 256-bit SSL encryption, ensuring your documents remain confidential."
         }
       ]
     }
@@ -1238,13 +1242,17 @@
     "dropHint": "or drop signature photo here",
     "uploadHint": "Photo of handwritten signature on paper",
     "seo": {
-      "title": "Make Signature Transparent PNG Online | Pdfumi",
-      "description": "Extract signature ink from paper photos with transparent background.",
-      "faqTitle": "Transparent Signature FAQ",
+      "title": "Transparent Signature Maker Online Free — Make Signature PNG | Pdfumi",
+      "description": "Create a transparent signature online for free. Upload a photo of your handwritten signature on paper, automatically remove the white background, and download a clean transparent PNG for PDFs and contracts.",
+      "faqTitle": "Transparent Signature Online FAQ",
       "faqs": [
         {
-          "q": "Can I copy directly to clipboard?",
-          "a": "Yes, click Copy Image to paste directly into your document editor."
+          "q": "How do I make my handwritten signature transparent?",
+          "a": "Take a photo of your signature on white paper, upload it to Pdfumi, and our tool automatically isolates the ink and removes the paper background."
+        },
+        {
+          "q": "Can I use the transparent signature on digital PDF documents?",
+          "a": "Yes! You can download it as a transparent PNG or copy it directly to your clipboard to paste into contracts, Word files, or our PDF signer tool."
         }
       ]
     }
@@ -1415,13 +1423,17 @@
     "title": "Professional Invoice Generator",
     "description": "Create official invoices with itemized tables, taxes, discounts, payment info, and signatures ready for download.",
     "seo": {
-      "title": "Free Invoice Generator PDF Online | Pdfumi",
-      "description": "Create sleek business invoices with automatic calculations and instant PDF export.",
-      "faqTitle": "Invoice Generator FAQ",
+      "title": "Free Invoice Generator PDF Online (Malaysia & Global) | Pdfumi",
+      "description": "Free online invoice generator for freelancers and businesses in Malaysia, Indonesia, and worldwide. Supports MYR (RM), USD, EUR, IDR, and automatic tax calculations.",
+      "faqTitle": "Free Invoice Generator FAQ",
       "faqs": [
         {
-          "q": "Can I choose my currency?",
-          "a": "Yes, select from USD, IDR, EUR, GBP, SGD, and more."
+          "q": "Can I generate invoices for Malaysia (MYR / RM)?",
+          "a": "Yes, Pdfumi fully supports Malaysian Ringgit (RM / MYR), SST/tax rates, and international currencies like USD, EUR, and SGD."
+        },
+        {
+          "q": "Is there any watermark or subscription required?",
+          "a": "No watermark and no sign-up required. Customize your items, calculate totals automatically, and export clean PDF invoices instantly."
         }
       ]
     }

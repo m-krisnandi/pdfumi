@@ -148,6 +148,8 @@ export function InvoiceBoard() {
               <option value="€">EUR (€)</option>
               <option value="£">GBP (£)</option>
               <option value="S$">SGD (S$)</option>
+              <option value="RM">MYR / Malaysia (RM)</option>
+              <option value="¥">JPY / Japan (¥)</option>
             </select>
           </div>
         </div>
