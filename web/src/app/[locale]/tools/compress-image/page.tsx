@@ -29,7 +29,7 @@ export default async function CompressImagePage({
   setRequestLocale(locale);
   return (
     <>
-      <CompressImageBoard />
+      <CompressImageBoard accept="image/jpeg,image/png,image/webp,.webp,.png,.jpg,.jpeg" />
       <ToolLandingSeo locale={locale} namespace="compressImage" />
     </>
   );

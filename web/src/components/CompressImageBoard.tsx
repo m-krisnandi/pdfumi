@@ -10,7 +10,7 @@ import { Sparkles, Download, CheckCircle2, ShieldCheck, ImageIcon } from "lucide
 
 export function CompressImageBoard({
   namespace = "compressImage",  forcedFormat,
-  accept = "image/*,.heic,.heif,.webp,.png,.jpg,.jpeg,.gif",
+  accept = "image/jpeg,image/png,image/webp,.webp,.png,.jpg,.jpeg",
 }: {  namespace?: string;  forcedFormat?: "jpeg" | "png" | "webp";
   accept?: string;}) {
   const t = useTranslations(namespace);
@@ -159,7 +159,7 @@ export function CompressImageBoard({
           }}
           onFiles={(list) => {
             const f = list?.[0];
-            if (f && (f.type.startsWith("image/") || /\.(heic|heif|webp|png|jpg|jpeg|gif)$/i.test(f.name))) {
+            if (f && (f.type === "image/jpeg" || f.type === "image/png" || f.type === "image/webp" || /\.(webp|png|jpg|jpeg)$/i.test(f.name))) {
               setFile(f);
               setCompressedBlob(null);
               setError(null);

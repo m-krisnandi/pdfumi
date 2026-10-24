@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { API_BASE, authHeaders, friendlyError, responseToBlob } from "@/lib/api";
+import { keepOriginalName } from "@/lib/downloadName";
 import { ToolShell } from "@/components/ToolShell";
 import { PdfDropzone } from "@/components/PdfDropzone";
 import { ErrorBanner } from "@/components/ErrorBanner";
@@ -19,9 +21,11 @@ type ImageEntry = {
 export function ImagesToPdfBoard({
   acceptedType = "image/*",
   titleKey = "jpgToPdf",
+  serverBacked = false,
 }: {
   acceptedType?: string;
   titleKey?: string;
+  serverBacked?: boolean;
 }) {
   const t = useTranslations(titleKey);
   const tCommon = useTranslations("common");
@@ -74,18 +78,32 @@ export function ImagesToPdfBoard({
     setError(null);
 
     try {
-      const blob = await imagesToPdfClient(
-        images.map((img) => ({ file: img.file, orientation })),
-        margin
-      );
+      let blob: Blob;
+      if (serverBacked) {
+        const form = new FormData();
+        images.forEach((img) => form.append("files", img.file));
+        const res = await fetch(`${API_BASE}/api/v1/convert/images-to-pdf`, {
+          method: "POST",
+          headers: authHeaders(),
+          body: form,
+        });
+        blob = await responseToBlob(res);
+      } else {
+        blob = await imagesToPdfClient(
+          images.map((img) => ({ file: img.file, orientation })),
+          margin,
+        );
+      }
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "dokumen-gambar.pdf";
+      a.download = keepOriginalName(images[0].file, "dokumen-gambar.pdf", "pdf");
+      document.body.appendChild(a);
       a.click();
+      a.remove();
       URL.revokeObjectURL(url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal mengonversi gambar ke PDF");
+      setError(friendlyError(err, "Gagal mengonversi gambar ke PDF"));
     } finally {
       setProcessing(false);
     }

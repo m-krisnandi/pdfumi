@@ -29,7 +29,11 @@ export default async function HeicToPdfPage({
   setRequestLocale(locale);
   return (
     <>
-      <ImagesToPdfBoard acceptedType="image/*,.heic,.heif" titleKey="heicToPdf" />
+      <ImagesToPdfBoard
+        acceptedType="image/*,.heic,.heif"
+        titleKey="heicToPdf"
+        serverBacked
+      />
       <ToolLandingSeo locale={locale} namespace="heicToPdf" />
     </>
   );

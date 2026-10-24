@@ -9,6 +9,7 @@ import com.pdfumi.api.shared.metrics.PdfumiMetrics;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -182,6 +183,19 @@ public class ConvertService {
 		String type = file.getContentType() == null ? "" : file.getContentType().toLowerCase(Locale.ROOT);
 		if (!type.contains("pdf") && !name.endsWith(".pdf")) {
 			throw new BadRequestException("File harus PDF");
+		}
+		try {
+			byte[] signature = file.getInputStream().readNBytes(5);
+			if (signature.length != 5
+					|| signature[0] != '%'
+					|| signature[1] != 'P'
+					|| signature[2] != 'D'
+					|| signature[3] != 'F'
+					|| signature[4] != '-') {
+				throw new BadRequestException("File bukan PDF yang valid");
+			}
+		} catch (IOException ex) {
+			throw new BadRequestException("PDF tidak dapat dibaca");
 		}
 	}
 

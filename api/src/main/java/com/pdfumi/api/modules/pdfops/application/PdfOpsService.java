@@ -66,8 +66,20 @@ public class PdfOpsService {
 	}
 
 	public byte[] deletePages(ClientContext client, MultipartFile file, List<Integer> pageNumbers1Based) {
+		return deletePages(client, file, pageNumbers1Based, false);
+	}
+
+	public byte[] deletePages(
+			ClientContext client,
+			MultipartFile file,
+			List<Integer> pageNumbers1Based,
+			boolean commitOnly
+	) {
 		return run(TOOL_DELETE_PAGES, () -> {
 			validatePdf(client, file);
+			if (!commitOnly && (pageNumbers1Based == null || pageNumbers1Based.isEmpty())) {
+				throw new BadRequestException("Pilih minimal 1 halaman untuk dihapus");
+			}
 			byte[] res = engine.deletePages(file, pageNumbers1Based == null ? List.of() : pageNumbers1Based);
 			quotaService.consume(client, TOOL_DELETE_PAGES);
 			return res;

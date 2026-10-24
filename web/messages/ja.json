@@ -490,8 +490,6 @@
       "compressJpg": "Compress JPG",
       "compressPng": "Compress PNG",
       "compressWebp": "Compress WebP",
-      "compressVideo": "動画圧縮",
-      "compressAudio": "音声圧縮",
       "fillPdf": "PDFフォーム入力"
     }
   },
@@ -1149,6 +1147,28 @@
     "toolText": "Text",
     "toolHighlight": "Highlight",
     "toolShape": "Shape",
+    "toolSelect": "選択",
+    "toolRectangle": "長方形",
+    "toolEllipse": "楕円",
+    "toolLine": "線",
+    "toolCallout": "吹き出し",
+    "selectHint": "注釈を選択、移動、サイズ変更、削除できます",
+    "textHint": "ページをクリックしてテキストを追加し、ドラッグして移動します",
+    "drawHint": "ページ上をドラッグして図形を描画します",
+    "textSettings": "テキスト設定",
+    "shapeSettings": "図形設定",
+    "newShapeSettings": "新しい図形の設定",
+    "textLabel": "テキスト",
+    "fontSize": "文字サイズ",
+    "textColor": "文字色",
+    "fillColor": "塗りつぶし色",
+    "borderColor": "枠線の色",
+    "opacity": "不透明度",
+    "borderWidth": "枠線の太さ",
+    "calloutText": "吹き出しテキスト",
+    "deleteAnnotation": "注釈を削除",
+    "resizeAnnotation": "注釈のサイズ変更",
+    "selectToEdit": "ページ上の注釈を選択して設定を編集します。",
     "seo": {
       "title": "PDF 編集 オンライン 無料 — テキスト追加・注釈・ハイライト | Pdfumi",
       "description": "登録不要の無料オンラインPDFエディター。PDFにテキスト入力、マーカー・ハイライト、図形や注釈の追加がブラウザ完結で簡単に行えます。",
@@ -1522,42 +1542,6 @@
         {
           "q": "Why use WebP format?",
           "a": "WebP achieves up to 30% smaller sizes compared to traditional JPG and PNG files."
-        }
-      ]
-    }
-  },
-  "compressVideo": {
-    "title": "無料オンライン動画圧縮",
-    "description": "MP4、WebM、MOV動画のファイルサイズをブラウザ内で安全に縮小します。",
-    "chooseFile": "動画ファイルを選択",
-    "dropHint": "または動画をここにドロップ",
-    "uploadHint": "MP4, WebM, MOV · ブラウザ内高速処理",
-    "seo": {
-      "title": "無料オンライン動画圧縮 - MP4 & WebMサイズ縮小 | Pdfumi",
-      "description": "ブラウザ内で動画ファイルを簡単に圧縮。解像度やビットレートを自由に選択できます。",
-      "faqTitle": "動画圧縮 よくある質問",
-      "faqs": [
-        {
-          "q": "動画は外部サーバーに送信されますか？",
-          "a": "いいえ、処理はお使いのブラウザ内で完結するため、プライバシーは完全に保護されます。"
-        }
-      ]
-    }
-  },
-  "compressAudio": {
-    "title": "無料オンライン音声圧縮",
-    "description": "MP3、WAV、M4A、AAC音声のビットレートとサンプリング周波数を調整してサイズを縮小します。",
-    "chooseFile": "音声ファイルを選択",
-    "dropHint": "または音声をここにドロップ",
-    "uploadHint": "MP3, WAV, M4A, AAC · 高音質圧縮",
-    "seo": {
-      "title": "無料オンライン音声圧縮 - MP3サイズ縮小 | Pdfumi",
-      "description": "録音データやポッドキャスト、音楽ファイルのサイズを手軽に縮小できます。",
-      "faqTitle": "音声圧縮 よくある質問",
-      "faqs": [
-        {
-          "q": "モノラルに変換すると容量は軽くなりますか？",
-          "a": "はい、ステレオからモノラルに変換することで音声データ量を約半分に削減できます。"
         }
       ]
     }

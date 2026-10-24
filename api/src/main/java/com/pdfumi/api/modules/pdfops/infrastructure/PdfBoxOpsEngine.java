@@ -114,6 +114,9 @@ public class PdfBoxOpsEngine implements PdfOpsEngine {
 	public byte[] deletePages(MultipartFile file, List<Integer> pageNumbers1Based) {
 		try (PDDocument document = Loader.loadPDF(file.getBytes())) {
 			guardPageCount(document);
+			if (pageNumbers1Based == null || pageNumbers1Based.isEmpty()) {
+				return save(document);
+			}
 			Set<Integer> toDelete = resolvePages(document, pageNumbers1Based, false);
 			if (toDelete.size() >= document.getNumberOfPages()) {
 				throw new BadRequestException("Tidak bisa menghapus semua halaman");

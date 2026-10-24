@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { API_BASE, authHeaders, downloadBlob } from "@/lib/api";
+import { API_BASE, authHeaders, downloadBlob, friendlyError } from "@/lib/api";
 import { keepOriginalName } from "@/lib/downloadName";
 import { Button } from "@/components/ui/Button";
 import { ToolShell } from "@/components/ToolShell";
@@ -44,7 +44,7 @@ export function PdfToImageBoard({ format }: { format: "jpg" | "png" }) {
       });
       await downloadBlob(res, keepOriginalName(file, "pages.zip", "zip"));
     } catch (err) {
-      setError(err instanceof Error ? err.message : tCommon("errorGeneric"));
+      setError(friendlyError(err, tCommon("errorGeneric")));
     } finally {
       setDownloading(false);
     }

@@ -35,7 +35,9 @@ export async function downloadBlob(res: Response, fallbackName: string) {
   const a = document.createElement("a");
   a.href = url;
   a.download = fromHeader || fallbackName;
+  document.body.appendChild(a);
   a.click();
+  a.remove();
   URL.revokeObjectURL(url);
 }
 

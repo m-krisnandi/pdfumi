@@ -486,8 +486,6 @@
       "compressJpg": "Compress JPG",
       "compressPng": "Compress PNG",
       "compressWebp": "Compress WebP",
-      "compressVideo": "Compress Video",
-      "compressAudio": "Compress Audio",
       "fillPdf": "Fill PDF Form"
     }
   },
@@ -1145,6 +1143,28 @@
     "toolText": "Text",
     "toolHighlight": "Highlight",
     "toolShape": "Shape",
+    "toolSelect": "Select",
+    "toolRectangle": "Rectangle",
+    "toolEllipse": "Ellipse",
+    "toolLine": "Line",
+    "toolCallout": "Callout",
+    "selectHint": "Select, move, resize, or delete an annotation",
+    "textHint": "Click the page to add text, then drag it to position it",
+    "drawHint": "Drag on the page to draw the selected shape",
+    "textSettings": "Text settings",
+    "shapeSettings": "Shape settings",
+    "newShapeSettings": "New shape settings",
+    "textLabel": "Text",
+    "fontSize": "Font size",
+    "textColor": "Text color",
+    "fillColor": "Fill color",
+    "borderColor": "Border color",
+    "opacity": "Opacity",
+    "borderWidth": "Border width",
+    "calloutText": "Callout text",
+    "deleteAnnotation": "Delete annotation",
+    "resizeAnnotation": "Resize annotation",
+    "selectToEdit": "Select an annotation on the page to edit its settings.",
     "seo": {
       "title": "Free Online PDF Editor — Edit Text, Annotate & Fill PDF | Pdfumi",
       "description": "Free online PDF editor with no registration. Add text, highlights, shapes, and comments directly in your browser. Fast, private, and watermark-free.",
@@ -1222,7 +1242,7 @@
     "description": "Reduce image file sizes with optimal quality-first compression. Crisp details preserved.",
     "chooseFile": "Choose Image",
     "dropHint": "or drop image here",
-    "uploadHint": "JPG, PNG, WebP, GIF, HEIC · Optimal quality compression",
+    "uploadHint": "JPG, PNG, WebP · Optimal quality compression",
     "seo": {
       "title": "Compress Image Online Free — Optimal Quality | Pdfumi",
       "description": "Compress images online for free. Reduce JPG, PNG, WebP file sizes while keeping crisp visual clarity.",
@@ -1518,50 +1538,6 @@
         {
           "q": "Why use WebP format?",
           "a": "WebP achieves up to 30% smaller sizes compared to traditional JPG and PNG files."
-        }
-      ]
-    }
-  },
-  "compressVideo": {
-    "title": "Compress Video Online Free",
-    "description": "Reduce MP4, WebM, and MOV video file sizes right in your browser without uploading to external servers.",
-    "chooseFile": "Select Video File",
-    "dropHint": "or drop video here",
-    "uploadHint": "MP4, WebM, MOV, MKV · Client-side fast compression",
-    "seo": {
-      "title": "Compress Video Online Free - Reduce MP4 & WebM Size | Pdfumi",
-      "description": "Compress video files in your browser. Choose target resolutions and bitrates with instant previews.",
-      "faqTitle": "Video Compression FAQ",
-      "faqs": [
-        {
-          "q": "Are my videos uploaded to a cloud server?",
-          "a": "No, compression runs completely client-side in your web browser for 100% data privacy."
-        },
-        {
-          "q": "What video formats can I compress?",
-          "a": "You can compress MP4, WebM, MOV, MKV, and other browser-supported video formats."
-        }
-      ]
-    }
-  },
-  "compressAudio": {
-    "title": "Compress Audio Online Free",
-    "description": "Shrink MP3, WAV, M4A, and AAC audio file sizes with customizable bitrates, sample rates, and mono conversion.",
-    "chooseFile": "Select Audio File",
-    "dropHint": "or drop audio here",
-    "uploadHint": "MP3, WAV, M4A, AAC, OGG · Audio reduction in seconds",
-    "seo": {
-      "title": "Compress Audio Online Free - Reduce MP3 & Audio Size | Pdfumi",
-      "description": "Compress audio recordings, podcasts, and music files with custom bitrates and instant playback preview.",
-      "faqTitle": "Audio Compression FAQ",
-      "faqs": [
-        {
-          "q": "Does converting to mono reduce size?",
-          "a": "Yes, converting a two-channel stereo file to mono cuts raw audio data in half, ideal for speech and voice notes."
-        },
-        {
-          "q": "Which formats are supported?",
-          "a": "MP3, WAV, M4A, AAC, OGG, and FLAC audio files."
         }
       ]
     }

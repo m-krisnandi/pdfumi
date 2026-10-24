@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { API_BASE, authHeaders, downloadBlob, friendlyError, responseToBlob } from "@/lib/api";
+import { keepOriginalName } from "@/lib/downloadName";
 import { Button } from "@/components/ui/Button";
 import { ToolShell } from "@/components/ToolShell";
 import { ErrorBanner } from "@/components/ErrorBanner";
 import { PdfDropzone } from "@/components/PdfDropzone";
 import { PdfDocumentThumb } from "@/components/PdfDocumentThumb";
 import { formatFileSize } from "@/components/PdfPreview";
-import { compressPdfQualityFirst } from "@/lib/pdfLibUtils";
 import { CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
 
 export function CompressPdfBoard() {
@@ -39,19 +40,19 @@ export function CompressPdfBoard() {
     setError(null);
 
     try {
-      const compressedBlob = await compressPdfQualityFirst(file, (msg) => {
-        setProgressStatus(msg);
+      setProgressStatus("Mengirim dokumen ke mesin kompresi aman...");
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch(`${API_BASE}/api/v1/pdf/compress`, {
+        method: "POST",
+        headers: authHeaders(),
+        body: form,
       });
-      setResultSize(compressedBlob.size);
-
-      const url = URL.createObjectURL(compressedBlob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = file.name.replace(/\.pdf$/i, "-compressed.pdf");
-      a.click();
-      URL.revokeObjectURL(url);
+      const blob = await responseToBlob(res);
+      setResultSize(blob.size);
+      await downloadBlob(new Response(blob, { status: 200, headers: res.headers }), keepOriginalName(file, "document-compressed.pdf", "pdf"));
     } catch (err) {
-      setError(err instanceof Error ? err.message : tCommon("errorGeneric"));
+      setError(friendlyError(err, tCommon("errorGeneric")));
     } finally {
       setProgressStatus(null);
       setDownloading(false);

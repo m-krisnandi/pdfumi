@@ -20,7 +20,6 @@ import {
   Award,
   FileText,
   FileSpreadsheet,
-  Presentation,
   PenLine,
   EyeOff,
   Scaling,
@@ -99,8 +98,7 @@ export const MEGA_MENU_COLUMNS: MegaMenuColumn[] = [
           { id: "wordToPdf", href: "/tools/word-to-pdf", status: "live", tone: "blue", icon: FileText },
           { id: "pdfToExcel", href: "/tools/pdf-to-excel", status: "live", tone: "green", icon: FileSpreadsheet },
           { id: "excelToPdf", href: "/tools/excel-to-pdf", status: "live", tone: "green", icon: FileSpreadsheet },
-          { id: "pdfToPpt", href: "/tools/pdf-converter", status: "live", tone: "orange", icon: Presentation },
-          { id: "pptToPdf", href: "/tools/pdf-converter", status: "live", tone: "orange", icon: Presentation },
+          // PPT conversion is not implemented by the current API.
         ],
       },
       {

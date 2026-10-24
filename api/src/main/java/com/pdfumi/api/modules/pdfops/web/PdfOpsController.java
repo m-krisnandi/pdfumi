@@ -63,23 +63,25 @@ public class PdfOpsController {
 	@PostMapping(path = "/delete-pages", produces = MediaType.APPLICATION_PDF_VALUE)
 	public ResponseEntity<byte[]> deletePages(
 			@RequestParam("file") MultipartFile file,
-			@RequestParam List<Integer> pages,
+			@RequestParam(required = false) List<Integer> pages,
+			@RequestParam(defaultValue = "false") boolean commit,
 			HttpServletRequest request
 	) {
-		byte[] pdf = pdfOpsService.deletePages(accountService.resolve(request), file, pages);
+		byte[] pdf = pdfOpsService.deletePages(accountService.resolve(request), file, pages, commit);
 		return DownloadFilenames.pdfAttachment(pdf, DownloadFilenames.fromUpload(file, "document.pdf", "pdf"));
 	}
 
-	@PostMapping(path = "/extract-pages", produces = "application/zip")
+	@PostMapping(path = "/extract-pages", produces = MediaType.APPLICATION_PDF_VALUE)
 	public ResponseEntity<byte[]> extractPages(
 			@RequestParam("file") MultipartFile file,
 			@RequestParam List<Integer> pages,
 			HttpServletRequest request
 	) {
-		byte[] zip = pdfOpsService.extractPages(accountService.resolve(request), file, pages);
-		return ResponseEntity.ok()
-				.header("Content-Disposition", "attachment; filename=\"extracted-pages.zip\"")
-				.body(zip);
+		byte[] pdf = pdfOpsService.extractPages(accountService.resolve(request), file, pages);
+		return DownloadFilenames.pdfAttachment(
+				pdf,
+				DownloadFilenames.fromUpload(file, "extracted-pages.pdf", "pdf")
+		);
 	}
 
 	@PostMapping(path = "/organize", produces = MediaType.APPLICATION_PDF_VALUE)

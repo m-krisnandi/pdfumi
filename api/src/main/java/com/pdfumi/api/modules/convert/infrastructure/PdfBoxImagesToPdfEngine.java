@@ -16,14 +16,18 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class PdfBoxImagesToPdfEngine implements ImagesToPdfEngine {
 
-	private static final Set<String> IMAGE_EXT = Set.of("jpg", "jpeg", "png", "webp", "gif", "bmp");
+	private static final Set<String> IMAGE_EXT = Set.of("jpg", "jpeg", "png", "webp", "gif", "bmp", "heic", "heif");
 
 	@Override
 	public byte[] convert(List<MultipartFile> images) {
@@ -56,6 +60,9 @@ public class PdfBoxImagesToPdfEngine implements ImagesToPdfEngine {
 	private static BufferedImage readImage(MultipartFile file) throws Exception {
 		byte[] bytes = file.getBytes();
 		BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
+		if (image == null && isHeic(file)) {
+			image = decodeHeicWithImageMagick(bytes, safeName(file));
+		}
 		if (image == null) {
 			throw new BadRequestException("File bukan gambar yang didukung: " + safeName(file));
 		}
@@ -88,5 +95,60 @@ public class PdfBoxImagesToPdfEngine implements ImagesToPdfEngine {
 	private static String safeName(MultipartFile file) {
 		String name = file.getOriginalFilename();
 		return name == null || name.isBlank() ? "image" : name;
+	}
+
+	private static boolean isHeic(MultipartFile file) {
+		String name = safeName(file).toLowerCase(Locale.ROOT);
+		return name.endsWith(".heic") || name.endsWith(".heif");
+	}
+
+	private static BufferedImage decodeHeicWithImageMagick(byte[] bytes, String originalName) throws Exception {
+		Path input = Files.createTempFile("pdfumi-heic-", extensionOf(originalName));
+		Path errorLog = Files.createTempFile("pdfumi-heic-", ".log");
+		try {
+			Files.write(input, bytes);
+			ProcessBuilder builder = new ProcessBuilder(
+					resolveImageMagick(),
+					input.toAbsolutePath().toString(),
+					"-auto-orient",
+					"png:-"
+			);
+			builder.redirectError(errorLog.toFile());
+			Process process = builder.start();
+			byte[] png = process.getInputStream().readAllBytes();
+			if (!process.waitFor(30, TimeUnit.SECONDS)) {
+				process.destroyForcibly();
+				throw new IllegalStateException("Konversi HEIC melebihi batas waktu");
+			}
+			if (process.exitValue() != 0) {
+				throw new IllegalStateException("ImageMagick gagal membaca HEIC: " + trimLog(Files.readAllBytes(errorLog)));
+			}
+			BufferedImage image = ImageIO.read(new ByteArrayInputStream(png));
+			if (image == null) {
+				throw new BadRequestException("HEIC tidak dapat dibaca di server");
+			}
+			return image;
+		} catch (IOException ex) {
+			throw new IllegalStateException("Dukungan HEIC belum tersedia di server", ex);
+		} finally {
+			Files.deleteIfExists(input);
+			Files.deleteIfExists(errorLog);
+		}
+	}
+
+	private static String resolveImageMagick() {
+		if (Files.isExecutable(Path.of("/usr/bin/magick"))) return "/usr/bin/magick";
+		if (Files.isExecutable(Path.of("/usr/bin/convert"))) return "/usr/bin/convert";
+		return "convert";
+	}
+
+	private static String extensionOf(String name) {
+		String lower = name.toLowerCase(Locale.ROOT);
+		return lower.endsWith(".heif") ? ".heif" : ".heic";
+	}
+
+	private static String trimLog(byte[] bytes) {
+		String log = new String(bytes).trim();
+		return log.length() > 400 ? log.substring(0, 400) + "…" : log;
 	}
 }

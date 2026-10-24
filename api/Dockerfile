@@ -17,7 +17,10 @@ RUN apt-get update \
 		curl \
 		libreoffice-writer \
 		libreoffice-calc \
+		libreoffice-draw \
 		libreoffice-java-common \
+		imagemagick \
+		libheif1 \
 		ocrmypdf \
 		tesseract-ocr \
 		tesseract-ocr-eng \

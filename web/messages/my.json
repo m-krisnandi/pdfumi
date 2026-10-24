@@ -486,8 +486,6 @@
       "compressJpg": "Kompres JPG",
       "compressPng": "Kompres PNG",
       "compressWebp": "Kompres WebP",
-      "compressVideo": "ဗီဒီယို ဖိုင်အရွယ်အစားလျှော့ချခြင်း",
-      "compressAudio": "အသံဖိုင် အရွယ်အစားလျှော့ချခြင်း",
       "fillPdf": "Isi Borang PDF"
     }
   },
@@ -1141,6 +1139,28 @@
     "toolText": "Teks",
     "toolHighlight": "Sorotan",
     "toolShape": "Bentuk",
+    "toolSelect": "ရွေးချယ်ရန်",
+    "toolRectangle": "စတုဂံ",
+    "toolEllipse": "ဘဲဥပုံ",
+    "toolLine": "မျဉ်း",
+    "toolCallout": "မှတ်ချက်ဘောက်စ်",
+    "selectHint": "မှတ်ချက်ကို ရွေးချယ်၊ ရွှေ့၊ အရွယ်ပြောင်း သို့မဟုတ် ဖျက်ပါ",
+    "textHint": "စာသားထည့်ရန် စာမျက်နှာကို နှိပ်ပြီး နေရာပြောင်းရန် ဆွဲပါ",
+    "drawHint": "ရွေးထားသော ပုံသဏ္ဍာန်ကို ဆွဲပါ",
+    "textSettings": "စာသားဆက်တင်များ",
+    "shapeSettings": "ပုံသဏ္ဍာန်ဆက်တင်များ",
+    "newShapeSettings": "ပုံသဏ္ဍာန်အသစ် ဆက်တင်များ",
+    "textLabel": "စာသား",
+    "fontSize": "စာလုံးအရွယ်",
+    "textColor": "စာသားအရောင်",
+    "fillColor": "ဖြည့်အရောင်",
+    "borderColor": "ဘောင်အရောင်",
+    "opacity": "ဖောက်ထွင်းမှု",
+    "borderWidth": "ဘောင်အထူ",
+    "calloutText": "မှတ်ချက်စာသား",
+    "deleteAnnotation": "မှတ်ချက်ဖျက်ရန်",
+    "resizeAnnotation": "မှတ်ချက်အရွယ်ပြောင်းရန်",
+    "selectToEdit": "စာမျက်နှာပေါ်ရှိ မှတ်ချက်ကို ရွေးပြီး ဆက်တင်ပြင်ပါ။",
     "seo": {
       "title": "PDF တည်းဖြတ်ခြင်း အွန်လိုင်း အခမဲ့ | Pdfumi",
       "description": "မှတ်ပုံတင်ရန်မလိုဘဲ အွန်လိုင်းတွင် PDF ဖိုင်များကို လွယ်ကူစွာ တည်းဖြတ်နိုင်ပြီး စာသားနှင့် မှတ်စုများ ထည့်သွင်းနိုင်သည်။",
@@ -1502,42 +1522,6 @@
         {
           "q": "Mengapa menggunakan format WebP?",
           "a": "WebP memberikan ukuran file lebih kecil hingga 30% dibanding JPEG dan PNG biasa."
-        }
-      ]
-    }
-  },
-  "compressVideo": {
-    "title": "ဗီဒီယို ဖိုင်အရွယ်အစား အခမဲ့လျှော့ချခြင်း",
-    "description": "MP4, WebM နှင့် MOV ဗီဒီယိုဖိုင်များကို browser ပေါ်တွင် တိုက်ရိုက် လျှော့ချပါ။",
-    "chooseFile": "ဗီဒီယိုဖိုင် ရွေးချယ်ပါ",
-    "dropHint": "သို့မဟုတ် ဗီဒီယိုကို ဤနေရာသို့ ဆွဲထည့်ပါ",
-    "uploadHint": "MP4, WebM, MOV · လျင်မြန်စွာ လျှော့ချခြင်း",
-    "seo": {
-      "title": "ဗီဒီယို ဖိုင်အရွယ်အစား အခမဲ့လျှော့ချခြင်း | Pdfumi",
-      "description": "သင့်ဗီဒီယိုဖိုင်များကို စက္ကန့်ပိုင်းအတွင်း လျှော့ချပါ။",
-      "faqTitle": "ဗီဒီယို အမေးအဖြေများ",
-      "faqs": [
-        {
-          "q": "ဗီဒီယိုများသည် လုံခြုံမှုရှိပါသလား။",
-          "a": "ဟုတ်ကဲ့၊ browser ထဲတွင်သာ လုပ်ဆောင်သောကြောင့် လုံခြုံစိတ်ချရပါသည်။"
-        }
-      ]
-    }
-  },
-  "compressAudio": {
-    "title": "အသံဖိုင် အရွယ်အစား အခမဲ့လျှော့ချခြင်း",
-    "description": "MP3, WAV, M4A, AAC အသံဖိုင်များ၏ အရွယ်အစားကို လျှော့ချပါ။",
-    "chooseFile": "အသံဖိုင် ရွေးချယ်ပါ",
-    "dropHint": "သို့မဟုတ် အသံဖိုင်ကို ဤနေရာသို့ ဆွဲထည့်ပါ",
-    "uploadHint": "MP3, WAV, M4A, AAC",
-    "seo": {
-      "title": "အသံဖိုင် အရွယ်အစား အခမဲ့လျှော့ချခြင်း | Pdfumi",
-      "description": "အသံဖိုင်အရွယ်အစားကို လွယ်ကူစွာ လျှော့ချပါ။",
-      "faqTitle": "အသံဖိုင် အမေးအဖြေများ",
-      "faqs": [
-        {
-          "q": "ဖိုင်အရွယ်အစား လျော့နည်းသွားပါသလား။",
-          "a": "ဟုတ်ကဲ့၊ လျော့နည်းသွားပါသည်။"
         }
       ]
     }

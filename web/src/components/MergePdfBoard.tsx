@@ -71,42 +71,8 @@ export function MergePdfBoard() {
     setDownloading(true);
     setError(null);
     try {
-      // 1. Instant client-side download: The merged PDF is already generated and verified in the preview
-      let blobToDownload = merged;
-      if (!blobToDownload) {
-        blobToDownload = await mergePdfFiles(files, rotations);
-      }
-
-      if (blobToDownload) {
-        const filename = keepOriginalName(files[0], "merged.pdf", "pdf");
-        const url = URL.createObjectURL(blobToDownload);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        // Best-effort background API call for usage and quota metrics (non-blocking)
-        try {
-          const prepared = await Promise.all(
-            docs.map((d) => rotatePdfFile(d.file, d.rotation ?? 0)),
-          );
-          const form = new FormData();
-          prepared.forEach((file) => form.append("files", file));
-          fetch(`${API_BASE}/api/v1/merge`, {
-            method: "POST",
-            headers: authHeaders(),
-            body: form,
-          }).catch(() => {});
-        } catch {
-          /* ignore background sync */
-        }
-        return;
-      }
-
-      // Fallback: If client generation was unavailable, request from server
+      // Preview is generated locally for responsiveness, but the final download
+      // must come from the API so quotas, validation, and billing are authoritative.
       const prepared = await Promise.all(
         docs.map((d) => rotatePdfFile(d.file, d.rotation ?? 0)),
       );

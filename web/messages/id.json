@@ -494,8 +494,6 @@
       "compressJpg": "Kompres JPG",
       "compressPng": "Kompres PNG",
       "compressWebp": "Kompres WebP",
-      "compressVideo": "Kompres Video",
-      "compressAudio": "Kompres Audio",
       "fillPdf": "Isi Formulir PDF"
     }
   },
@@ -1161,6 +1159,28 @@
     "toolText": "Teks",
     "toolHighlight": "Sorotan",
     "toolShape": "Bentuk",
+    "toolSelect": "Pilih",
+    "toolRectangle": "Kotak",
+    "toolEllipse": "Oval",
+    "toolLine": "Garis",
+    "toolCallout": "Callout",
+    "selectHint": "Pilih, pindahkan, ubah ukuran, atau hapus anotasi",
+    "textHint": "Klik dokumen untuk menambah teks, lalu seret untuk memindahkannya",
+    "drawHint": "Seret pada dokumen untuk menggambar bentuk yang dipilih",
+    "textSettings": "Pengaturan teks",
+    "shapeSettings": "Pengaturan bentuk",
+    "newShapeSettings": "Pengaturan bentuk baru",
+    "textLabel": "Teks",
+    "fontSize": "Ukuran teks",
+    "textColor": "Warna teks",
+    "fillColor": "Warna isi",
+    "borderColor": "Warna garis",
+    "opacity": "Transparansi",
+    "borderWidth": "Ketebalan garis",
+    "calloutText": "Teks callout",
+    "deleteAnnotation": "Hapus anotasi",
+    "resizeAnnotation": "Ubah ukuran anotasi",
+    "selectToEdit": "Pilih anotasi pada dokumen untuk mengubah pengaturannya.",
     "seo": {
       "title": "Edit PDF Online Gratis - Tambah Teks & Anotasi | Pdfumi",
       "description": "Tambahkan teks, sorot kalimat, dan beri anotasi pada dokumen PDF secara instan tanpa registrasi.",
@@ -1234,7 +1254,7 @@
     "description": "Kecilkan ukuran file foto & gambar JPG, PNG, atau WebP dengan kualitas tetap jernih dan tajam.",
     "chooseFile": "Pilih Foto",
     "dropHint": "atau seret foto ke sini",
-    "uploadHint": "JPG, PNG, WebP, GIF, HEIC · Kualitas visual terbaik",
+    "uploadHint": "JPG, PNG, WebP · Kualitas visual terbaik",
     "seo": {
       "title": "Kompres Gambar Online Gratis — Kualitas Terbaik | Pdfumi",
       "description": "Kompres foto dan gambar JPG, PNG, WebP online gratis tanpa watermark dengan kualitas tetap tajam.",
@@ -1522,50 +1542,6 @@
         {
           "q": "Mengapa menggunakan format WebP?",
           "a": "WebP memberikan ukuran file lebih kecil hingga 30% dibanding JPEG dan PNG biasa."
-        }
-      ]
-    }
-  },
-  "compressVideo": {
-    "title": "Kompres Video Online Gratis",
-    "description": "Kecilkan ukuran file video MP4, WebM, dan MOV langsung di browser tanpa upload ke server eksternal.",
-    "chooseFile": "Pilih File Video",
-    "dropHint": "atau seret video ke sini",
-    "uploadHint": "MP4, WebM, MOV, MKV · Kompresi cepat privat di peramban",
-    "seo": {
-      "title": "Kompres Video Online Gratis - Kecilkan Ukuran MP4 & WebM | Pdfumi",
-      "description": "Kecilkan ukuran video untuk WhatsApp, email, dan Discord langsung di browser dengan pratinjau instan.",
-      "faqTitle": "FAQ Kompres Video",
-      "faqs": [
-        {
-          "q": "Apakah video saya diunggah ke server?",
-          "a": "Tidak, seluruh proses kompresi dijalankan langsung di browser Anda sehingga 100% aman dan privat."
-        },
-        {
-          "q": "Format video apa saja yang didukung?",
-          "a": "Mendukung MP4, WebM, MOV, MKV, dan format video browser lainnya."
-        }
-      ]
-    }
-  },
-  "compressAudio": {
-    "title": "Kompres Audio Online Gratis",
-    "description": "Kecilkan ukuran file audio MP3, WAV, M4A, dan AAC dengan opsi bitrate, sample rate, dan mode mono.",
-    "chooseFile": "Pilih File Audio",
-    "dropHint": "atau seret audio ke sini",
-    "uploadHint": "MP3, WAV, M4A, AAC, OGG · Kompres rekaman & musik",
-    "seo": {
-      "title": "Kompres Audio Online Gratis - Kecilkan Ukuran MP3 | Pdfumi",
-      "description": "Kecilkan ukuran file rekaman suara, podcast, dan musik dengan kontrol bitrate fleksibel.",
-      "faqTitle": "FAQ Kompres Audio",
-      "faqs": [
-        {
-          "q": "Apakah mengubah ke mono menghemat ukuran?",
-          "a": "Ya, mengubah stereo menjadi mono memangkas data audio hingga separuhnya, sangat cocok untuk voice note dan podcast."
-        },
-        {
-          "q": "Format audio apa saja yang didukung?",
-          "a": "Mendukung MP3, WAV, M4A, AAC, OGG, dan FLAC."
         }
       ]
     }

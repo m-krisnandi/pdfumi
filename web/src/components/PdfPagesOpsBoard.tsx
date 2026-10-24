@@ -130,32 +130,26 @@ export function PdfPagesOpsBoard({ mode }: { mode: OpsMode }) {
       }
 
       if (bakedFile) {
-        const url = URL.createObjectURL(bakedFile);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = keepOriginalName(file, defaultName, "pdf");
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        try {
-          const form = new FormData();
-          form.append("file", bakedFile);
-          form.append(
-            "pages",
-            (mode === "split" || mode === "extract" ? picked : pages)
-              .map((_, i) => i + 1)
-              .join(","),
-          );
-          fetch(`${API_BASE}${ENDPOINT[mode]}`, {
-            method: "POST",
-            headers: authHeaders(),
-            body: form,
-          }).catch(() => {});
-        } catch {
-          /* ignore */
+        const form = new FormData();
+        form.append("file", bakedFile);
+        if (mode === "split" || mode === "extract") {
+          form.append("pages", picked.map((_, i) => i + 1).join(","));
+        } else if (mode === "organize") {
+          form.append("pageOrder", pages.map((_, i) => i + 1).join(","));
+        } else if (mode === "rotate") {
+          // Per-page rotations were already baked into the client PDF. Run a
+          // zero-degree server pass to make the final download authoritative
+          // and ensure quota accounting cannot be bypassed.
+          form.append("degrees", "0");
+        } else if (mode === "delete") {
+          form.append("commit", "true");
         }
+        const res = await fetch(`${API_BASE}${ENDPOINT[mode]}`, {
+          method: "POST",
+          headers: authHeaders(),
+          body: form,
+        });
+        await downloadBlob(res, keepOriginalName(file, defaultName, "pdf"));
         return;
       }
     } catch (err) {

@@ -1,7 +1,6 @@
 "use client";
 
 import { loadPdfJs, getPdfDocumentParams } from "@/lib/pdfjsLoader";
-
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ToolShell } from "@/components/ToolShell";
@@ -10,23 +9,31 @@ import { ErrorBanner } from "@/components/ErrorBanner";
 import { Button } from "@/components/ui/Button";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import {
-  Type,
-  Square,
-  Highlighter,
-  PenTool,
-  Trash2,
+  Circle,
   ChevronLeft,
   ChevronRight,
   Download,
+  Highlighter,
+  Minus,
+  MessageSquare,
+  MousePointer2,
+  Square,
+  Trash2,
+  Type,
 } from "lucide-react";
+
+type Tool = "select" | "text" | "highlight" | "rect" | "ellipse" | "line" | "callout";
+type ShapeType = Exclude<Tool, "select" | "text">;
 
 type TextAnnotation = {
   id: string;
   page: number;
   type: "text";
   text: string;
-  x: number; // 0-1
-  y: number; // 0-1 from top
+  x: number;
+  y: number;
+  width: number;
+  height: number;
   size: number;
   color: string;
 };
@@ -34,16 +41,54 @@ type TextAnnotation = {
 type ShapeAnnotation = {
   id: string;
   page: number;
-  type: "rect" | "highlight";
+  type: ShapeType;
   x: number;
   y: number;
   width: number;
   height: number;
-  color: string;
+  fillColor: string;
+  borderColor: string;
   opacity: number;
+  borderWidth: number;
+  label?: string;
+  labelColor?: string;
+  labelSize?: number;
 };
 
 type Annotation = TextAnnotation | ShapeAnnotation;
+
+type Interaction =
+  | { kind: "move"; id: string; offsetX: number; offsetY: number }
+  | { kind: "resize"; id: string; startX: number; startY: number; width: number; height: number }
+  | null;
+
+const MIN_SIZE = 0.015;
+
+function makeId() {
+  return crypto.randomUUID?.() ?? Math.random().toString(36).slice(2);
+}
+
+function clamp(value: number, min = 0, max = 1) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function colorToRgb(hex: string) {
+  const value = hex.replace("#", "");
+  const safe = value.length === 3 ? value.split("").map((c) => c + c).join("") : value;
+  return rgb(
+    parseInt(safe.slice(0, 2), 16) / 255,
+    parseInt(safe.slice(2, 4), 16) / 255,
+    parseInt(safe.slice(4, 6), 16) / 255,
+  );
+}
+
+function normalizedPoint(event: React.PointerEvent, element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+  return {
+    x: clamp((event.clientX - rect.left) / rect.width),
+    y: clamp((event.clientY - rect.top) / rect.height),
+  };
+}
 
 export function EditPdfBoard() {
   const t = useTranslations("editPdf");
@@ -54,35 +99,37 @@ export function EditPdfBoard() {
   const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
+  const [activeTool, setActiveTool] = useState<Tool>("select");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [interaction, setInteraction] = useState<Interaction>(null);
 
-  // Tools: select | text | highlight | rect
-  const [activeTool, setActiveTool] = useState<"select" | "text" | "highlight" | "rect">("text");
   const [textColor, setTextColor] = useState("#000000");
   const [textSize, setTextSize] = useState(16);
   const [inputText, setInputText] = useState("Ketik teks di sini");
+  const [shapeFill, setShapeFill] = useState("#bfdbfe");
+  const [shapeBorder, setShapeBorder] = useState("#111827");
+  const [shapeOpacity, setShapeOpacity] = useState(0.82);
+  const [shapeBorderWidth, setShapeBorderWidth] = useState(2);
+  const [calloutText, setCalloutText] = useState("Komentar");
 
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [drawStart, setDrawStart] = useState<{ x: number; y: number } | null>(null);
-  const [dragCurrent, setDragCurrent] = useState<{ x: number; y: number } | null>(null);
+  const [drawCurrent, setDrawCurrent] = useState<{ x: number; y: number } | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Render current page via pdfjs
   useEffect(() => {
     if (!file) return;
-
     let cancelled = false;
 
     async function renderPage() {
       try {
         const pdfjs = await loadPdfJs();
         const bytes = await file!.arrayBuffer();
-        const loadingTask = pdfjs.getDocument(getPdfDocumentParams(bytes));
-        const pdf = await loadingTask.promise;
+        const pdf = await pdfjs.getDocument(getPdfDocumentParams(bytes)).promise;
         if (cancelled) return;
-
         setTotalPages(pdf.numPages);
         const page = await pdf.getPage(currentPage);
         if (cancelled) return;
@@ -90,155 +137,290 @@ export function EditPdfBoard() {
         const viewport = page.getViewport({ scale: 1.5 });
         const canvas = canvasRef.current;
         if (!canvas) return;
-
         canvas.width = viewport.width;
         canvas.height = viewport.height;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-
         // @ts-expect-error pdfjs typing
         await page.render({ canvasContext: ctx, viewport }).promise;
       } catch (err) {
-        if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Gagal memuat dokumen PDF");
-        }
+        if (!cancelled) setError(err instanceof Error ? err.message : "Gagal memuat dokumen PDF");
       }
     }
 
-    renderPage();
-
+    void renderPage();
     return () => {
       cancelled = true;
     };
   }, [file, currentPage]);
 
-  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null;
+      const editing = target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.tagName === "SELECT";
+      if ((event.key === "Delete" || event.key === "Backspace") && selectedId && !editing) {
+        event.preventDefault();
+        setAnnotations((prev) => prev.filter((annotation) => annotation.id !== selectedId));
+        setSelectedId(null);
+      } else if (event.key === "Escape") {
+        setSelectedId(null);
+        setInteraction(null);
+        setIsDrawing(false);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedId]);
+
+  function setPage(page: number) {
+    setCurrentPage(page);
+    setSelectedId(null);
+    setInteraction(null);
+  }
+
+  function removeAnnotation(id: string) {
+    setAnnotations((prev) => prev.filter((annotation) => annotation.id !== id));
+    setSelectedId((current) => (current === id ? null : current));
+  }
+
+  function updateAnnotation(id: string, patch: Partial<Annotation>) {
+    setAnnotations((prev) => prev.map((annotation) => (annotation.id === id ? { ...annotation, ...patch } as Annotation : annotation)));
+  }
+
+  function handleCanvasPointerDown(event: React.PointerEvent<HTMLDivElement>) {
+    const container = containerRef.current;
+    if (!container || (event.target as HTMLElement).closest("[data-annotation-id]")) return;
+    const point = normalizedPoint(event, container);
 
     if (activeTool === "text") {
-      const newAnno: TextAnnotation = {
-        id: Math.random().toString(36).slice(2),
+      const annotation: TextAnnotation = {
+        id: makeId(),
         page: currentPage,
         type: "text",
-        text: inputText || "Teks baru",
-        x,
-        y,
+        text: inputText.trim() || "Teks baru",
+        x: point.x,
+        y: point.y,
+        width: 0.32,
+        height: 0.06,
         size: textSize,
         color: textColor,
       };
-      setAnnotations((prev) => [...prev, newAnno]);
-    } else if (activeTool === "rect" || activeTool === "highlight") {
-      setIsDrawing(true);
-      setDrawStart({ x, y });
-      setDragCurrent({ x, y });
-    }
-  }
-
-  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
-    if (!isDrawing || !containerRef.current || !drawStart) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
-    setDragCurrent({ x, y });
-  }
-
-  function handlePointerUp() {
-    if (!isDrawing || !drawStart || !dragCurrent) {
-      setIsDrawing(false);
+      setAnnotations((prev) => [...prev, annotation]);
+      setSelectedId(annotation.id);
+      setActiveTool("select");
       return;
     }
 
-    const minX = Math.min(drawStart.x, dragCurrent.x);
-    const minY = Math.min(drawStart.y, dragCurrent.y);
-    const width = Math.abs(dragCurrent.x - drawStart.x);
-    const height = Math.abs(dragCurrent.y - drawStart.y);
+    if (activeTool === "select") {
+      setSelectedId(null);
+      return;
+    }
 
-    if (width > 0.01 && height > 0.01) {
-      const newShape: ShapeAnnotation = {
-        id: Math.random().toString(36).slice(2),
-        page: currentPage,
-        type: activeTool === "highlight" ? "highlight" : "rect",
-        x: minX,
-        y: minY,
-        width,
-        height,
-        color: activeTool === "highlight" ? "#fef08a" : textColor,
-        opacity: activeTool === "highlight" ? 0.45 : 1.0,
-      };
-      setAnnotations((prev) => [...prev, newShape]);
+    setIsDrawing(true);
+    setDrawStart(point);
+    setDrawCurrent(point);
+    container.setPointerCapture?.(event.pointerId);
+  }
+
+  function handleAnnotationPointerDown(event: React.PointerEvent<HTMLDivElement>, id: string) {
+    event.stopPropagation();
+    const container = containerRef.current;
+    if (!container) return;
+    const annotation = annotations.find((item) => item.id === id);
+    if (!annotation) return;
+    const point = normalizedPoint(event, container);
+    setSelectedId(id);
+    setActiveTool("select");
+    setInteraction({ kind: "move", id, offsetX: point.x - annotation.x, offsetY: point.y - annotation.y });
+    container.setPointerCapture?.(event.pointerId);
+  }
+
+  function handleResizePointerDown(event: React.PointerEvent<HTMLButtonElement>, annotation: Annotation) {
+    event.stopPropagation();
+    const container = containerRef.current;
+    if (!container) return;
+    const point = normalizedPoint(event, container);
+    setSelectedId(annotation.id);
+    setInteraction({
+      kind: "resize",
+      id: annotation.id,
+      startX: point.x,
+      startY: point.y,
+      width: annotation.width,
+      height: annotation.height,
+    });
+    container.setPointerCapture?.(event.pointerId);
+  }
+
+  function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
+    const container = containerRef.current;
+    if (!container) return;
+    const point = normalizedPoint(event, container);
+
+    if (isDrawing && drawStart) {
+      setDrawCurrent(point);
+      return;
+    }
+
+    if (!interaction) return;
+    if (interaction.kind === "move") {
+      const annotation = annotations.find((item) => item.id === interaction.id);
+      if (!annotation) return;
+      const x = clamp(point.x - interaction.offsetX, 0, 1 - annotation.width);
+      const y = clamp(point.y - interaction.offsetY, 0, 1 - annotation.height);
+      updateAnnotation(annotation.id, { x, y });
+    } else {
+      const dx = point.x - interaction.startX;
+      const dy = point.y - interaction.startY;
+      updateAnnotation(interaction.id, {
+        width: clamp(Math.max(MIN_SIZE, interaction.width + dx), MIN_SIZE, 1),
+        height: clamp(Math.max(MIN_SIZE, interaction.height + dy), MIN_SIZE, 1),
+      });
+    }
+  }
+
+  function handlePointerUp(event: React.PointerEvent<HTMLDivElement>) {
+    const container = containerRef.current;
+    if (container?.hasPointerCapture?.(event.pointerId)) container.releasePointerCapture(event.pointerId);
+
+    if (isDrawing && drawStart && drawCurrent) {
+      const x = Math.min(drawStart.x, drawCurrent.x);
+      const y = Math.min(drawStart.y, drawCurrent.y);
+      const width = Math.max(MIN_SIZE, Math.abs(drawCurrent.x - drawStart.x));
+      const height = Math.max(MIN_SIZE, Math.abs(drawCurrent.y - drawStart.y));
+      if (width >= MIN_SIZE && height >= MIN_SIZE) {
+        const type = activeTool as ShapeType;
+        const annotation: ShapeAnnotation = {
+          id: makeId(),
+          page: currentPage,
+          type,
+          x: clamp(x, 0, 1 - width),
+          y: clamp(y, 0, 1 - height),
+          width: clamp(width, MIN_SIZE, 1),
+          height: clamp(height, MIN_SIZE, 1),
+          fillColor: type === "highlight" ? "#fef08a" : shapeFill,
+          borderColor: type === "highlight" ? "#facc15" : shapeBorder,
+          opacity: type === "highlight" ? 0.45 : shapeOpacity,
+          borderWidth: type === "highlight" ? 1 : shapeBorderWidth,
+          label: type === "callout" ? calloutText.trim() || "Komentar" : undefined,
+          labelColor: textColor,
+          labelSize: textSize,
+        };
+        setAnnotations((prev) => [...prev, annotation]);
+        setSelectedId(annotation.id);
+        setActiveTool("select");
+      }
     }
 
     setIsDrawing(false);
     setDrawStart(null);
-    setDragCurrent(null);
+    setDrawCurrent(null);
+    setInteraction(null);
   }
 
-  function removeAnnotation(id: string) {
-    setAnnotations((prev) => prev.filter((a) => a.id !== id));
+  function handlePointerCancel(event: React.PointerEvent<HTMLDivElement>) {
+    const container = containerRef.current;
+    if (container?.hasPointerCapture?.(event.pointerId)) container.releasePointerCapture(event.pointerId);
+    setIsDrawing(false);
+    setDrawStart(null);
+    setDrawCurrent(null);
+    setInteraction(null);
   }
 
   async function handleExport() {
     if (!file) return;
     setProcessing(true);
     setError(null);
-
     try {
-      const bytes = await file.arrayBuffer();
-      const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+      const doc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
       const font = await doc.embedFont(StandardFonts.Helvetica);
 
-      for (const anno of annotations) {
-        if (anno.page < 1 || anno.page > doc.getPageCount()) continue;
-        const page = doc.getPage(anno.page - 1);
-        const { width: pW, height: pH } = page.getSize();
+      for (const annotation of annotations) {
+        if (annotation.page < 1 || annotation.page > doc.getPageCount()) continue;
+        const page = doc.getPage(annotation.page - 1);
+        const { width: pageWidth, height: pageHeight } = page.getSize();
 
-        if (anno.type === "text") {
-          const drawX = anno.x * pW;
-          const drawY = pH - (anno.y * pH) - anno.size;
-
-          const r = parseInt(anno.color.slice(1, 3), 16) / 255;
-          const g = parseInt(anno.color.slice(3, 5), 16) / 255;
-          const b = parseInt(anno.color.slice(5, 7), 16) / 255;
-
-          page.drawText(anno.text, {
-            x: drawX,
-            y: drawY,
-            size: anno.size,
+        if (annotation.type === "text") {
+          page.drawText(annotation.text, {
+            x: annotation.x * pageWidth,
+            y: pageHeight - annotation.y * pageHeight - annotation.size,
+            size: annotation.size,
             font,
-            color: rgb(r, g, b),
+            color: colorToRgb(annotation.color),
+            maxWidth: annotation.width * pageWidth,
           });
-        } else if (anno.type === "rect" || anno.type === "highlight") {
-          const drawX = anno.x * pW;
-          const drawW = anno.width * pW;
-          const drawH = anno.height * pH;
-          const drawY = pH - (anno.y * pH) - drawH;
+          continue;
+        }
 
-          const hex = anno.color.startsWith("#") ? anno.color : "#fef08a";
-          const r = parseInt(hex.slice(1, 3), 16) / 255;
-          const g = parseInt(hex.slice(3, 5), 16) / 255;
-          const b = parseInt(hex.slice(5, 7), 16) / 255;
+        const drawX = annotation.x * pageWidth;
+        const drawW = annotation.width * pageWidth;
+        const drawH = annotation.height * pageHeight;
+        const drawY = pageHeight - annotation.y * pageHeight - drawH;
+        const fill = colorToRgb(annotation.fillColor);
+        const border = colorToRgb(annotation.borderColor);
 
+        if (annotation.type === "line") {
+          page.drawLine({
+            start: { x: drawX, y: drawY + drawH },
+            end: { x: drawX + drawW, y: drawY },
+            color: border,
+            thickness: annotation.borderWidth,
+            opacity: annotation.opacity,
+          });
+        } else if (annotation.type === "ellipse") {
+          page.drawEllipse({
+            x: drawX + drawW / 2,
+            y: drawY + drawH / 2,
+            xScale: drawW / 2,
+            yScale: drawH / 2,
+            color: fill,
+            borderColor: border,
+            borderWidth: annotation.borderWidth,
+            opacity: annotation.opacity,
+            borderOpacity: Math.min(1, annotation.opacity + 0.18),
+          });
+        } else {
           page.drawRectangle({
             x: drawX,
             y: drawY,
             width: drawW,
             height: drawH,
-            color: rgb(r, g, b),
-            opacity: anno.opacity,
+            color: fill,
+            borderColor: border,
+            borderWidth: annotation.borderWidth,
+            opacity: annotation.opacity,
+            borderOpacity: Math.min(1, annotation.opacity + 0.18),
           });
+          if (annotation.type === "callout") {
+            page.drawLine({
+              start: { x: drawX, y: drawY },
+              end: { x: Math.max(0, drawX - pageWidth * 0.08), y: Math.max(0, drawY - pageHeight * 0.06) },
+              color: border,
+              thickness: annotation.borderWidth,
+              opacity: annotation.opacity,
+            });
+            page.drawText(annotation.label || "Komentar", {
+              x: drawX + pageWidth * 0.012,
+              y: drawY + drawH / 2 - (annotation.labelSize || 12) / 2,
+              size: annotation.labelSize || 12,
+              font,
+              color: colorToRgb(annotation.labelColor || "#111827"),
+              maxWidth: Math.max(20, drawW - pageWidth * 0.024),
+            });
+          }
         }
       }
 
-      const outBytes = await doc.save();
-      const blob = new Blob([outBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+      const output = await doc.save();
+      const blob = new Blob([output.buffer as ArrayBuffer], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = file.name.replace(/\.pdf$/i, "-edited.pdf");
-      a.click();
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = file.name.replace(/\.pdf$/i, "-edited.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
       URL.revokeObjectURL(url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Gagal menyimpan PDF hasil edit");
@@ -247,257 +429,176 @@ export function EditPdfBoard() {
     }
   }
 
-  const currentAnnotations = annotations.filter((a) => a.page === currentPage);
+  const currentAnnotations = annotations.filter((annotation) => annotation.page === currentPage);
+  const selectedAnnotation = annotations.find((annotation) => annotation.id === selectedId);
+  const toolButton = (tool: Tool, label: string, icon: React.ReactNode) => (
+    <button
+      type="button"
+      onClick={() => setActiveTool(tool)}
+      className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+        activeTool === tool
+          ? "bg-teal-600 text-white shadow-sm"
+          : "text-zinc-700 hover:bg-zinc-200 dark:text-zinc-300 dark:hover:bg-white/10"
+      }`}
+    >
+      {icon}
+      <span>{label}</span>
+    </button>
+  );
 
   return (
-    <ToolShell
-      title={t("title")}
-      description={t("description")}
-      wide
-    >
+    <ToolShell title={t("title")} description={t("description")} wide>
       {!file ? (
         <PdfDropzone
-          labels={{
-            choose: t("chooseFile"),
-            drop: t("dropHint"),
-            hint: t("uploadHint"),
-          }}
+          labels={{ choose: t("chooseFile"), drop: t("dropHint"), hint: t("uploadHint") }}
           onFiles={(list) => {
-            const f = list?.[0];
-            if (f) {
-              setFile(f);
-              setCurrentPage(1);
-              setAnnotations([]);
-              setError(null);
-            }
+            const selected = list?.[0];
+            if (!selected) return;
+            setFile(selected);
+            setCurrentPage(1);
+            setTotalPages(1);
+            setAnnotations([]);
+            setSelectedId(null);
+            setError(null);
           }}
         />
       ) : (
-        <div className="space-y-6">
-          {/* Header Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200/60 dark:border-white/10 pb-4">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-zinc-900 dark:text-white truncate max-w-xs">
-                {file.name}
-              </span>
-              <button
-                type="button"
-                onClick={() => setFile(null)}
-                className="text-xs text-red-500 hover:underline"
-              >
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200/60 pb-4 dark:border-white/10">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="truncate text-sm font-semibold text-zinc-900 dark:text-white">{file.name}</span>
+              <button type="button" onClick={() => setFile(null)} className="text-xs text-red-500 underline">
                 {tCommon("remove")}
               </button>
             </div>
-
-            {/* Page Navigation */}
-            <div className="flex items-center gap-2 bg-zinc-100 dark:bg-white/10 rounded-full px-3 py-1">
-              <button
-                type="button"
-                disabled={currentPage <= 1}
-                onClick={() => setCurrentPage((p) => p - 1)}
-                className="p-1 disabled:opacity-30 hover:text-teal-600 transition"
-              >
-                <ChevronLeft className="w-4 h-4" />
+            <div className="flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1 dark:bg-white/10">
+              <button type="button" disabled={currentPage <= 1} onClick={() => setPage(currentPage - 1)} className="p-1 disabled:opacity-30">
+                <ChevronLeft className="h-4 w-4" />
               </button>
-              <span className="text-xs font-semibold">
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                type="button"
-                disabled={currentPage >= totalPages}
-                onClick={() => setCurrentPage((p) => p + 1)}
-                className="p-1 disabled:opacity-30 hover:text-teal-600 transition"
-              >
-                <ChevronRight className="w-4 h-4" />
+              <span className="text-xs font-semibold">{currentPage} / {totalPages}</span>
+              <button type="button" disabled={currentPage >= totalPages} onClick={() => setPage(currentPage + 1)} className="p-1 disabled:opacity-30">
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
-
-            {/* Export Button */}
-            <Button
-              type="button"
-              onClick={handleExport}
-              loading={processing}
-              className="flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
+            <Button type="button" onClick={handleExport} loading={processing} className="flex items-center gap-2">
+              <Download className="h-4 w-4" />
               <span>{t("downloadEdited")}</span>
             </Button>
           </div>
 
-          {/* Tools Palette */}
-          <div className="flex flex-wrap items-center gap-3 bg-zinc-50 dark:bg-zinc-900/50 p-3 rounded-2xl border border-zinc-200 dark:border-white/10">
-            <div className="flex items-center gap-1.5 border-r border-zinc-200 dark:border-white/10 pr-3">
-              <button
-                type="button"
-                onClick={() => setActiveTool("text")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                  activeTool === "text"
-                    ? "bg-teal-600 text-white shadow-sm"
-                    : "hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <Type className="w-4 h-4" />
-                <span>{t("toolText")}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTool("highlight")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                  activeTool === "highlight"
-                    ? "bg-teal-600 text-white shadow-sm"
-                    : "hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <Highlighter className="w-4 h-4" />
-                <span>{t("toolHighlight")}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTool("rect")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                  activeTool === "rect"
-                    ? "bg-teal-600 text-white shadow-sm"
-                    : "hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300"
-                }`}
-              >
-                <Square className="w-4 h-4" />
-                <span>{t("toolShape")}</span>
-              </button>
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-white/10 dark:bg-zinc-900/50">
+            {toolButton("select", t("toolSelect"), <MousePointer2 className="h-4 w-4" />)}
+            {toolButton("text", t("toolText"), <Type className="h-4 w-4" />)}
+            {toolButton("highlight", t("toolHighlight"), <Highlighter className="h-4 w-4" />)}
+            {toolButton("rect", t("toolRectangle"), <Square className="h-4 w-4" />)}
+            {toolButton("ellipse", t("toolEllipse"), <Circle className="h-4 w-4" />)}
+            {toolButton("line", t("toolLine"), <Minus className="h-4 w-4" />)}
+            {toolButton("callout", t("toolCallout"), <MessageSquare className="h-4 w-4" />)}
+            <div className="ml-auto text-[11px] text-zinc-500">
+              {activeTool === "select" ? t("selectHint") : activeTool === "text" ? t("textHint") : t("drawHint")}
             </div>
+          </div>
 
-            {/* Context Tool Controls */}
-            {activeTool === "text" && (
-              <div className="flex flex-wrap items-center gap-3">
-                <input
-                  type="text"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  placeholder="Ketik teks yang ingin ditempel..."
-                  className="rounded-xl border border-zinc-300 dark:border-white/20 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs text-zinc-900 dark:text-white outline-none w-56"
-                />
-                <div className="flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400">
-                  <span>Ukuran:</span>
-                  <input
-                    type="number"
-                    min={8}
-                    max={72}
-                    value={textSize}
-                    onChange={(e) => setTextSize(Number(e.target.value))}
-                    className="w-14 rounded-lg border border-zinc-300 dark:border-white/20 bg-white dark:bg-zinc-800 px-2 py-1 text-xs"
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_16rem]">
+            <div className="min-w-0 overflow-auto rounded-2xl bg-zinc-200/60 p-4 dark:bg-zinc-950/60">
+              <div
+                ref={containerRef}
+                onPointerDown={handleCanvasPointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerCancel}
+                className={`relative mx-auto inline-block touch-none select-none overflow-hidden rounded-lg bg-white shadow-2xl ${activeTool === "select" ? "cursor-default" : "cursor-crosshair"}`}
+              >
+                <canvas ref={canvasRef} className="pointer-events-none block max-w-full" />
+                {currentAnnotations.map((annotation) => {
+                  const selected = annotation.id === selectedId;
+                  const isLine = annotation.type === "line";
+                  const style: React.CSSProperties = {
+                    left: `${annotation.x * 100}%`,
+                    top: `${annotation.y * 100}%`,
+                    width: isLine ? `${Math.max(2, Math.hypot(annotation.width, annotation.height) * 100)}%` : `${annotation.width * 100}%`,
+                    height: isLine ? "0px" : `${annotation.height * 100}%`,
+                  };
+
+                  return (
+                    <div
+                      key={annotation.id}
+                      data-annotation-id={annotation.id}
+                      onPointerDown={(event) => handleAnnotationPointerDown(event, annotation.id)}
+                      style={
+                        annotation.type === "text"
+                          ? { ...style, color: annotation.color, fontSize: `${annotation.size * 1.5}px` }
+                          : isLine
+                            ? { ...style, borderTop: `${annotation.borderWidth}px solid ${annotation.borderColor}`, transform: `rotate(${Math.atan2(annotation.height, annotation.width)}rad)`, transformOrigin: "left center", opacity: annotation.opacity }
+                            : { ...style, backgroundColor: annotation.fillColor, border: `${annotation.borderWidth}px solid ${annotation.borderColor}`, opacity: annotation.opacity, borderRadius: annotation.type === "ellipse" ? "9999px" : "0.25rem" }
+                      }
+                      className={`group absolute z-10 ${selected ? "ring-2 ring-teal-500 ring-offset-1" : "hover:ring-1 hover:ring-teal-400"} ${annotation.type === "text" ? "whitespace-pre-wrap p-1 font-medium leading-tight" : ""}`}
+                    >
+                      {annotation.type === "text" ? annotation.text : annotation.type === "callout" ? <span className="block px-2 py-1 text-xs font-semibold" style={{ color: annotation.labelColor, fontSize: `${(annotation.labelSize || 12) * 1.5}px` }}>{annotation.label}</span> : null}
+                      {selected ? (
+                        <>
+                          <button type="button" onPointerDown={(event) => event.stopPropagation()} onClick={() => removeAnnotation(annotation.id)} className="absolute -right-3 -top-3 z-30 rounded-full bg-red-600 p-1 text-white shadow hover:bg-red-700" title={t("deleteAnnotation")}>
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                          <button type="button" onPointerDown={(event) => handleResizePointerDown(event, annotation)} className="absolute -bottom-2 -right-2 z-30 h-4 w-4 cursor-se-resize rounded-sm border-2 border-white bg-teal-600 shadow" aria-label={t("resizeAnnotation")} />
+                        </>
+                      ) : null}
+                    </div>
+                  );
+                })}
+                {isDrawing && drawStart && drawCurrent ? (
+                  <div
+                    className="pointer-events-none absolute z-20 border-2 border-dashed border-teal-500"
+                    style={{
+                      left: `${Math.min(drawStart.x, drawCurrent.x) * 100}%`,
+                      top: `${Math.min(drawStart.y, drawCurrent.y) * 100}%`,
+                      width: `${Math.abs(drawCurrent.x - drawStart.x) * 100}%`,
+                      height: `${Math.abs(drawCurrent.y - drawStart.y) * 100}%`,
+                      backgroundColor: activeTool === "highlight" ? "#fef08a" : shapeFill,
+                      opacity: activeTool === "highlight" ? 0.45 : shapeOpacity,
+                    }}
                   />
-                </div>
-                <div className="flex items-center gap-1">
-                  <span>Warna:</span>
-                  <input
-                    type="color"
-                    value={textColor}
-                    onChange={(e) => setTextColor(e.target.value)}
-                    className="w-7 h-7 rounded-lg cursor-pointer border-none bg-transparent"
-                  />
-                </div>
+                ) : null}
               </div>
-            )}
-
-            <div className="text-[11px] text-zinc-500 ml-auto">
-              {activeTool === "text"
-                ? "Klik pada dokumen untuk menempel teks"
-                : "Tarik kursor (drag) untuk membuat kotak / sorotan"}
             </div>
-          </div>
 
-          <ErrorBanner message={error} />
-
-          {/* Canvas & Overlay Workspace */}
-          <div className="flex justify-center overflow-auto p-4 bg-zinc-200/60 dark:bg-zinc-950/60 rounded-2xl">
-            <div
-              ref={containerRef}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              className="relative inline-block shadow-2xl rounded-lg overflow-hidden cursor-crosshair select-none bg-white"
-            >
-              <canvas ref={canvasRef} className="block max-w-full h-auto" />
-
-              {/* Render Existing Annotations for this page */}
-              {currentAnnotations.map((anno) => {
-                if (anno.type === "text") {
-                  return (
-                    <div
-                      key={anno.id}
-                      style={{
-                        position: "absolute",
-                        left: `${anno.x * 100}%`,
-                        top: `${anno.y * 100}%`,
-                        color: anno.color,
-                        fontSize: `${anno.size * 1.5}px`, // scale factor with canvas
-                        transform: "translate(0, 0)",
-                      }}
-                      className="group flex items-center gap-1 leading-none font-sans font-medium px-1 rounded hover:ring-1 hover:ring-teal-500 bg-white/10"
-                    >
-                      <span>{anno.text}</span>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          removeAnnotation(anno.id);
-                        }}
-                        className="opacity-0 group-hover:opacity-100 p-0.5 rounded bg-red-600 text-white text-[10px] ml-1 shadow cursor-pointer"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  );
-                }
-
-                if (anno.type === "rect" || anno.type === "highlight") {
-                  return (
-                    <div
-                      key={anno.id}
-                      style={{
-                        position: "absolute",
-                        left: `${anno.x * 100}%`,
-                        top: `${anno.y * 100}%`,
-                        width: `${anno.width * 100}%`,
-                        height: `${anno.height * 100}%`,
-                        backgroundColor: anno.color,
-                        opacity: anno.opacity,
-                      }}
-                      className="group border border-transparent hover:border-teal-500 pointer-events-auto"
-                    >
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          removeAnnotation(anno.id);
-                        }}
-                        className="opacity-0 group-hover:opacity-100 absolute top-1 right-1 p-0.5 rounded bg-red-600 text-white shadow cursor-pointer"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  );
-                }
-
-                return null;
-              })}
-
-              {/* Live Drawing Preview */}
-              {isDrawing && drawStart && dragCurrent && (
-                <div
-                  style={{
-                    position: "absolute",
-                    left: `${Math.min(drawStart.x, dragCurrent.x) * 100}%`,
-                    top: `${Math.min(drawStart.y, dragCurrent.y) * 100}%`,
-                    width: `${Math.abs(dragCurrent.x - drawStart.x) * 100}%`,
-                    height: `${Math.abs(dragCurrent.y - drawStart.y) * 100}%`,
-                    backgroundColor: activeTool === "highlight" ? "#fef08a" : textColor,
-                    opacity: activeTool === "highlight" ? 0.45 : 0.8,
-                  }}
-                  className="pointer-events-none border border-teal-500 border-dashed"
-                />
+            <aside className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-4 dark:border-white/10 dark:bg-zinc-900/60">
+              {activeTool === "text" || selectedAnnotation?.type === "text" ? (
+                <div className="space-y-3">
+                  <h3 className="text-sm font-bold">{t("textSettings")}</h3>
+                  <label className="block text-xs font-medium">{t("textLabel")}
+                    <textarea value={selectedAnnotation?.type === "text" ? selectedAnnotation.text : inputText} onChange={(event) => selectedAnnotation?.type === "text" ? updateAnnotation(selectedAnnotation.id, { text: event.target.value }) : setInputText(event.target.value)} className="mt-1 min-h-20 w-full rounded-xl border border-zinc-300 bg-white p-2 text-sm dark:border-white/20 dark:bg-zinc-800" />
+                  </label>
+                  <label className="block text-xs font-medium">{t("fontSize")}
+                    <input type="number" min={8} max={96} value={selectedAnnotation?.type === "text" ? selectedAnnotation.size : textSize} onChange={(event) => { const value = Number(event.target.value); selectedAnnotation?.type === "text" ? updateAnnotation(selectedAnnotation.id, { size: value }) : setTextSize(value); }} className="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-2 py-1.5 text-sm dark:border-white/20 dark:bg-zinc-800" />
+                  </label>
+                  <label className="flex items-center justify-between text-xs font-medium">{t("textColor")}<input type="color" value={selectedAnnotation?.type === "text" ? selectedAnnotation.color : textColor} onChange={(event) => selectedAnnotation?.type === "text" ? updateAnnotation(selectedAnnotation.id, { color: event.target.value }) : setTextColor(event.target.value)} className="h-8 w-10 cursor-pointer rounded" /></label>
+                  {selectedAnnotation?.type === "text" ? <button type="button" onClick={() => removeAnnotation(selectedAnnotation.id)} className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-3 py-2 text-xs font-semibold text-white"><Trash2 className="h-4 w-4" />{t("deleteAnnotation")}</button> : null}
+                </div>
+              ) : selectedAnnotation ? (
+                <div className="space-y-3">
+                  <h3 className="text-sm font-bold">{t("shapeSettings")}</h3>
+                  <label className="flex items-center justify-between text-xs font-medium">{t("fillColor")}<input type="color" value={selectedAnnotation.fillColor} onChange={(event) => updateAnnotation(selectedAnnotation.id, { fillColor: event.target.value })} className="h-8 w-10 cursor-pointer rounded" /></label>
+                  <label className="flex items-center justify-between text-xs font-medium">{t("borderColor")}<input type="color" value={selectedAnnotation.borderColor} onChange={(event) => updateAnnotation(selectedAnnotation.id, { borderColor: event.target.value })} className="h-8 w-10 cursor-pointer rounded" /></label>
+                  <label className="block text-xs font-medium">{t("opacity")} <input type="range" min={0.1} max={1} step={0.05} value={selectedAnnotation.opacity} onChange={(event) => updateAnnotation(selectedAnnotation.id, { opacity: Number(event.target.value) })} className="mt-2 w-full" /></label>
+                  <label className="block text-xs font-medium">{t("borderWidth")} <input type="number" min={1} max={12} value={selectedAnnotation.borderWidth} onChange={(event) => updateAnnotation(selectedAnnotation.id, { borderWidth: Number(event.target.value) })} className="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-2 py-1.5 text-sm dark:border-white/20 dark:bg-zinc-800" /></label>
+                  {selectedAnnotation.type === "callout" ? <label className="block text-xs font-medium">{t("calloutText")}<textarea value={selectedAnnotation.label || ""} onChange={(event) => updateAnnotation(selectedAnnotation.id, { label: event.target.value })} className="mt-1 min-h-16 w-full rounded-xl border border-zinc-300 bg-white p-2 text-sm dark:border-white/20 dark:bg-zinc-800" /></label> : null}
+                  <button type="button" onClick={() => removeAnnotation(selectedAnnotation.id)} className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-3 py-2 text-xs font-semibold text-white"><Trash2 className="h-4 w-4" />{t("deleteAnnotation")}</button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <h3 className="text-sm font-bold">{t("newShapeSettings")}</h3>
+                  <label className="flex items-center justify-between text-xs font-medium">{t("fillColor")}<input type="color" value={shapeFill} onChange={(event) => setShapeFill(event.target.value)} className="h-8 w-10 cursor-pointer rounded" /></label>
+                  <label className="flex items-center justify-between text-xs font-medium">{t("borderColor")}<input type="color" value={shapeBorder} onChange={(event) => setShapeBorder(event.target.value)} className="h-8 w-10 cursor-pointer rounded" /></label>
+                  <label className="block text-xs font-medium">{t("opacity")}<input type="range" min={0.1} max={1} step={0.05} value={shapeOpacity} onChange={(event) => setShapeOpacity(Number(event.target.value))} className="mt-2 w-full" /></label>
+                  <label className="block text-xs font-medium">{t("borderWidth")}<input type="number" min={1} max={12} value={shapeBorderWidth} onChange={(event) => setShapeBorderWidth(Number(event.target.value))} className="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-2 py-1.5 text-sm dark:border-white/20 dark:bg-zinc-800" /></label>
+                  {activeTool === "callout" ? <label className="block text-xs font-medium">{t("calloutText")}<textarea value={calloutText} onChange={(event) => setCalloutText(event.target.value)} className="mt-1 min-h-16 w-full rounded-xl border border-zinc-300 bg-white p-2 text-sm dark:border-white/20 dark:bg-zinc-800" /></label> : null}
+                  <p className="text-[11px] text-zinc-500">{t("selectToEdit")}</p>
+                </div>
               )}
-            </div>
+            </aside>
           </div>
+          <ErrorBanner message={error} />
         </div>
       )}
     </ToolShell>
