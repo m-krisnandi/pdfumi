@@ -586,19 +586,19 @@
   },
   "pdfToWord": {
     "title": "PDF ke Word online gratis",
-    "description": "Ubah PDF jadi .docx yang bisa diedit dengan LibreOffice. Kuota harian gratis berlaku.",
+    "description": "Ubah setiap halaman PDF menjadi Word .docx dengan tata letak yang sangat presisi. Teks, tabel, shape, gambar, dan tipografi tetap sama secara visual.",
     "seo": {
-      "title": "Konversi PDF ke Word Online Gratis (Bisa Diedit) | Pdfumi",
-      "description": "Ubah file PDF menjadi Word DOCX online gratis yang dapat diedit langsung. Format, tabel, dan paragraf tetap rapi tanpa watermark.",
+      "title": "Konversi PDF ke Word Online dengan Layout Presisi | Pdfumi",
+      "description": "Ubah halaman PDF menjadi Word DOCX dengan fidelity tinggi. Tabel, shape, gambar, teks, dan tipografi tetap sama secara visual tanpa watermark.",
       "faqTitle": "Pertanyaan Seputar Konversi PDF ke Word",
       "faqs": [
         {
-          "q": "Apakah format susunan dan tabel PDF akan tetap rapi saat diubah ke Word?",
-          "a": "Ya. Konverter Pdfumi mempertahankan struktur paragraf, tata letak, dan tabel dokumen asli sehingga langsung siap diedit di Microsoft Word (.docx)."
+          "q": "Apakah layout, tabel, dan shape PDF akan tetap sama persis setelah menjadi Word?",
+          "a": "Ya. Setiap halaman PDF dimasukkan ke DOCX sebagai gambar beresolusi tinggi, sehingga tampilan teks, tabel, shape, gambar, dan jaraknya tetap sama."
         },
         {
-          "q": "Apakah hasil konversi Word bisa langsung diedit?",
-          "a": "Tentu. Dokumen yang diunduh berformat .docx standar yang dapat dibuka dan diedit menggunakan Microsoft Word, Google Docs, maupun WPS Office."
+          "q": "Apakah elemen teks dan tabel dapat diedit satu per satu di Word?",
+          "a": "File DOCX tetap kompatibel dengan Microsoft Word, Google Docs, dan LibreOffice, tetapi mode fidelity-first menyimpan setiap halaman sebagai satu gambar agar layout tidak berubah."
         },
         {
           "q": "Apakah teks dari dokumen hasil scan bisa diubah menjadi Word?",
@@ -614,7 +614,7 @@
     "dropHint": "atau seret PDF ke sini",
     "uploadHint": "Hanya PDF · maks 20MB",
     "needFile": "Pilih file PDF dulu.",
-    "resultHint": "Diunduh sebagai .docx yang bisa diedit (LibreOffice).",
+    "resultHint": "Diunduh sebagai .docx dengan layout presisi; setiap halaman PDF dipertahankan sebagai gambar beresolusi tinggi.",
     "downloadResult": "Unduh Word"
   },
   "wordToPdf": {
@@ -972,6 +972,7 @@
     "needDraw": "Gambar tanda tangan dulu.",
     "uploadHintSig": "Seret atau pilih PNG / JPG tanda tangan",
     "positionHint": "Posisi di halaman",
+    "pageLabel": "Nomor halaman",
     "createSignature": "Buat tanda tangan",
     "changeSignature": "Tanda tangan baru",
     "clearSignature": "Hapus tanda tangan",

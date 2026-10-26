@@ -38,16 +38,16 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
     ],
     trustBadges: [
       {
-        title: "256ビット暗号化セキュリティ",
-        desc: "SSL/HTTPSによる完全暗号化通信。ファイルは処理後1時間で自動削除されます。",
+        title: "安全なファイル処理",
+        desc: "ブラウザ内で完結するツール、または暗号化通信で処理するサーバーツールを提供しています。",
       },
       {
-        title: "透かしなし 100%保証",
-        desc: "完成ファイルに余計なロゴやウォーターマークは一切付与されません。",
+        title: "透かしなし",
+        desc: "完成ファイルにPdfumiのロゴや余計なウォーターマークを追加しません。",
       },
       {
-        title: "ブラウザ完結・全端末対応",
-        desc: "Mac、Windows、iPhone、Androidのブラウザでアプリ不要でそのまま使えます。",
+        title: "主要デバイス対応",
+        desc: "Mac、Windows、iPhone、Androidの主要ブラウザから利用できます。",
       },
     ],
     faqTitleFallback: "よくある質問",
@@ -71,16 +71,16 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
     ],
     trustBadges: [
       {
-        title: "၂၅၆-ဘစ် လုံခြုံရေး အကာအကွယ်",
-        desc: "SSL/HTTPS ဖြင့် ကာကွယ်ထားပြီး ဖိုင်များကို ၁ နာရီအတွင်း အပြီးအပိုင် ဖျက်ပစ်ပါသည်။",
+        title: "လုံခြုံသော ဖိုင်လုပ်ဆောင်မှု",
+        desc: "ဘရောက်ဇာအတွင်း တိုက်ရိုက်လုပ်ဆောင်သော tool များ သို့မဟုတ် encryption ဖြင့် server ပေါ်တွင် လုပ်ဆောင်သော tool များကို ပေးထားပါသည်။",
       },
       {
-        title: "ဝါတာမတ် လုံးဝမပါပါ",
-        desc: "ဒေါင်းလုဒ်လုပ်သော ဖိုင်များတွင် ဝါတာမတ် သို့မဟုတ် လိုဂို မပါဝင်ပါ။",
+        title: "ဝါတာမတ် မပါပါ",
+        desc: "ပြီးဆုံးသောဖိုင်တွင် Pdfumi logo သို့မဟုတ် မလိုအပ်သော ဝါတာမတ် ထည့်မပေးပါ။",
       },
       {
-        title: "မည်သည့်စက်ပစ္စည်းမဆို သုံးနိုင်သည်",
-        desc: "ဆော့ဖ်ဝဲလ် ထည့်သွင်းရန်မလိုဘဲ ဖုန်းနှင့် ကွန်ပျူတာ ဘရောက်ဇာတွင် တိုက်ရိုက် သုံးနိုင်ပါသည်။",
+        title: "အဓိကစက်များကို ပံ့ပိုးသည်",
+        desc: "Mac၊ Windows၊ iPhone နှင့် Android ရှိ အဓိကဘရောက်ဇာများမှ အသုံးပြုနိုင်ပါသည်။",
       },
     ],
     faqTitleFallback: "မကြာခဏ မေးလေ့ရှိသော မေးခွန်းများ",
@@ -104,16 +104,16 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
     ],
     trustBadges: [
       {
-        title: "Enkripsi Aman 256-bit",
-        desc: "Proses transfer file dilindungi protokol SSL/HTTPS terenkripsi. Berkas dihapus otomatis dalam 1 jam.",
+        title: "Pemrosesan File yang Aman",
+        desc: "Tool yang tersedia diproses langsung di browser atau melalui koneksi terenkripsi pada tool yang menggunakan server.",
       },
       {
-        title: "100% Tanpa Watermark",
-        desc: "Hasil unduhan tidak disisipi watermark atau logo tambahan. Format dan ketajaman teks tetap terjaga.",
+        title: "Tanpa Watermark",
+        desc: "File hasil tidak diberi logo Pdfumi atau watermark tambahan yang tidak diperlukan.",
       },
       {
-        title: "Akses Lintas Perangkat",
-        desc: "Bekerja langsung di browser Windows, macOS, Android, dan iPhone tanpa perlu menginstal aplikasi.",
+        title: "Mendukung Perangkat Utama",
+        desc: "Gunakan dari browser utama di Windows, macOS, Android, dan iPhone.",
       },
     ],
     faqTitleFallback: "Pertanyaan yang Sering Diajukan",
@@ -137,16 +137,16 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
     ],
     trustBadges: [
       {
-        title: "256-bit SSL Security",
-        desc: "End-to-end SSL/HTTPS encrypted processing. Your files are automatically deleted within 1 hour.",
+        title: "Secure File Processing",
+        desc: "Tools process files in the browser where possible, or use encrypted connections when server processing is required.",
       },
       {
-        title: "Zero Watermarks",
-        desc: "Clean documents with no added watermarks. Preserves sharp typography and original layout.",
+        title: "No Watermarks",
+        desc: "Output files do not include a Pdfumi logo or unnecessary added watermark.",
       },
       {
-        title: "Cross-Platform Access",
-        desc: "Works smoothly on macOS, Windows, iOS, and Android without downloading any third-party app.",
+        title: "Works on Major Devices",
+        desc: "Use Pdfumi from modern browsers on macOS, Windows, iOS, and Android.",
       },
     ],
     faqTitleFallback: "Frequently Asked Questions",

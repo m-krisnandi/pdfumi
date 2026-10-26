@@ -1,4 +1,4 @@
-import { locales, type Locale } from "./config";
+import { indexableLocales, locales, type Locale } from "./config";
 import type { Metadata } from "next";
 
 /** Public site origin for canonical + hreflang (SEO). */
@@ -21,12 +21,9 @@ export function languageAlternates(path = ""): Record<string, string> {
   const languages: Record<string, string> = {
     "x-default": absoluteUrl("en", normalized),
   };
-  for (const locale of locales) {
+  for (const locale of indexableLocales) {
     languages[locale] = absoluteUrl(locale, normalized);
   }
-  languages["id-ID"] = absoluteUrl("id", normalized);
-  languages["ja-JP"] = absoluteUrl("ja", normalized);
-  languages["my-MM"] = absoluteUrl("my", normalized);
   return languages;
 }
 
@@ -61,6 +58,10 @@ export function buildPageMetadata(opts: {
   return {
     title,
     description,
+    robots: {
+      index: (indexableLocales as readonly string[]).includes(locale),
+      follow: true,
+    },
     alternates: {
       canonical: url,
       languages: languageAlternates(path),

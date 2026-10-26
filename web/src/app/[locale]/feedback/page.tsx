@@ -21,12 +21,18 @@ export async function generateMetadata({
     // fallback if translation namespace not loaded
   }
 
-  return buildPageMetadata({
-    locale,
-    path: PATH,
-    title,
-    description,
-  });
+  return {
+    ...buildPageMetadata({
+      locale,
+      path: PATH,
+      title,
+      description,
+    }),
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 }
 
 export default async function FeedbackPage({

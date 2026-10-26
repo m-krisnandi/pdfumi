@@ -5,14 +5,21 @@ import com.pdfumi.api.modules.convert.application.OfficeConvertEngine;
 import com.pdfumi.api.shared.exception.BadRequestException;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.util.Units;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPageMar;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPageSz;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STSectionMark;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,9 +28,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -31,7 +40,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
 
 /**
- * Converts Office documents with LibreOffice and extracts PDF text with PDFBox/Apache POI.
+ * Converts Office documents with LibreOffice and converts PDF pages to visually faithful Word pages.
  * Serializes LibreOffice conversions (profile locks) and uses a per-job UserInstallation.
  */
 @Component
@@ -40,6 +49,7 @@ public class LibreOfficeOfficeConvertEngine implements OfficeConvertEngine {
 	private static final String DOCX = "docx";
 	private static final String XLSX = "xlsx";
 	private static final String PDF = "pdf";
+	private static final float PDF_TO_WORD_DPI = 200f;
 
 	private final PdfumiProperties properties;
 	private final ReentrantLock lock = new ReentrantLock();
@@ -147,22 +157,23 @@ public class LibreOfficeOfficeConvertEngine implements OfficeConvertEngine {
 				throw new BadRequestException("PDF kosong");
 			}
 
-			PDFTextStripper stripper = new PDFTextStripper();
 			PDFRenderer renderer = new PDFRenderer(source);
+			List<PageSize> pageSizes = new ArrayList<>();
+			for (PDPage sourcePage : source.getPages()) {
+				pageSizes.add(pageSize(sourcePage));
+			}
+			CTSectPr bodySection = ensureBodySectionProperties(output);
+			setPageSize(bodySection, pageSizes.get(0));
+
 			for (int page = 1; page <= source.getNumberOfPages(); page++) {
-				stripper.setStartPage(page);
-				stripper.setEndPage(page);
-				String text = stripper.getText(source).trim();
-				if (!text.isBlank()) {
-					appendTextPage(output, text);
-				} else {
-					appendImagePage(output, renderer.renderImageWithDPI(page - 1, 150));
-				}
+				PageSize size = pageSizes.get(page - 1);
+				BufferedImage rendered = renderer.renderImageWithDPI(page - 1, PDF_TO_WORD_DPI);
+				appendRenderedPage(output, rendered, size);
 				if (page < source.getNumberOfPages()) {
-					XWPFParagraph pageBreak = output.createParagraph();
-					pageBreak.createRun().addBreak(org.apache.poi.xwpf.usermodel.BreakType.PAGE);
+					addSectionBreak(output, size);
 				}
 			}
+			setPageSize(bodySection, pageSizes.get(pageSizes.size() - 1));
 
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			output.write(out);
@@ -216,27 +227,69 @@ public class LibreOfficeOfficeConvertEngine implements OfficeConvertEngine {
 		}
 	}
 
-	private static void appendTextPage(XWPFDocument output, String text) {
-		String[] lines = text.split("\\R", -1);
-		for (String line : lines) {
-			XWPFParagraph paragraph = output.createParagraph();
-			XWPFRun run = paragraph.createRun();
-			run.setText(line.isEmpty() ? " " : line);
-		}
-	}
-
-	private static void appendImagePage(XWPFDocument output, BufferedImage image) throws Exception {
+	private static void appendRenderedPage(XWPFDocument output, BufferedImage image, PageSize size) throws Exception {
 		ByteArrayOutputStream imageOut = new ByteArrayOutputStream();
 		ImageIO.write(image, "png", imageOut);
 		XWPFParagraph paragraph = output.createParagraph();
+		paragraph.setAlignment(ParagraphAlignment.CENTER);
+		paragraph.setSpacingBefore(0);
+		paragraph.setSpacingAfter(0);
+		paragraph.setIndentationLeft(0);
+		paragraph.setIndentationRight(0);
 		XWPFRun run = paragraph.createRun();
 		run.addPicture(
 				new java.io.ByteArrayInputStream(imageOut.toByteArray()),
 				XWPFDocument.PICTURE_TYPE_PNG,
 				"page.png",
-				Units.toEMU(6.5 * 72),
-				Units.toEMU(9.0 * 72)
+				Units.toEMU(size.widthPoints()),
+				Units.toEMU(size.heightPoints())
 		);
+	}
+
+	private static void addSectionBreak(XWPFDocument output, PageSize nextPageSize) {
+		XWPFParagraph breakParagraph = output.createParagraph();
+		breakParagraph.setSpacingBefore(0);
+		breakParagraph.setSpacingAfter(0);
+		CTPPr pPr = breakParagraph.getCTP().isSetPPr()
+				? breakParagraph.getCTP().getPPr()
+				: breakParagraph.getCTP().addNewPPr();
+		CTSectPr section = pPr.addNewSectPr();
+		section.addNewType().setVal(STSectionMark.NEXT_PAGE);
+		setPageSize(section, nextPageSize);
+	}
+
+	private static PageSize pageSize(PDPage page) {
+		var crop = page.getCropBox();
+		float width = crop.getWidth();
+		float height = crop.getHeight();
+		int rotation = ((page.getRotation() % 360) + 360) % 360;
+		if (rotation == 90 || rotation == 270) {
+			return new PageSize(height, width);
+		}
+		return new PageSize(width, height);
+	}
+
+	private static void setPageSize(CTSectPr section, PageSize size) {
+		CTPageSz pageSize = section.isSetPgSz() ? section.getPgSz() : section.addNewPgSz();
+		pageSize.setW(BigInteger.valueOf(Math.round(size.widthPoints() * 20)));
+		pageSize.setH(BigInteger.valueOf(Math.round(size.heightPoints() * 20)));
+
+		CTPageMar margins = section.isSetPgMar() ? section.getPgMar() : section.addNewPgMar();
+		margins.setTop(BigInteger.ZERO);
+		margins.setRight(BigInteger.ZERO);
+		margins.setBottom(BigInteger.ZERO);
+		margins.setLeft(BigInteger.ZERO);
+		margins.setHeader(BigInteger.ZERO);
+		margins.setFooter(BigInteger.ZERO);
+		margins.setGutter(BigInteger.ZERO);
+	}
+
+	private static CTSectPr ensureBodySectionProperties(XWPFDocument document) {
+		var body = document.getDocument().getBody();
+		return body.isSetSectPr() ? body.getSectPr() : body.addNewSectPr();
+	}
+
+	private record PageSize(float widthPoints, float heightPoints) {
 	}
 
 	private static String truncateCell(String value) {

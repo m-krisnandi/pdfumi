@@ -53,16 +53,13 @@ export async function readPdfMetadata(file: File): Promise<PdfMetadataInfo> {
 /** Remove all identifying metadata from a PDF */
 export async function removeMetadataPdf(file: File): Promise<Blob> {
   const bytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+  const pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true, updateMetadata: false });
 
-  pdfDoc.setTitle("");
-  pdfDoc.setAuthor("");
-  pdfDoc.setSubject("");
-  pdfDoc.setKeywords([]);
-  pdfDoc.setProducer("");
-  pdfDoc.setCreator("");
-  pdfDoc.setCreationDate(new Date(0));
-  pdfDoc.setModificationDate(new Date(0));
+  // Remove the document-info dictionary instead of replacing values with
+  // empty strings or an epoch date, which still leaves identifiable metadata
+  // in the output. Also remove the catalog XMP metadata stream when present.
+  pdfDoc.context.trailerInfo.Info = undefined;
+  pdfDoc.catalog.delete(PDFName.of("Metadata"));
 
   const outputBytes = await pdfDoc.save({ useObjectStreams: false });
   return new Blob([outputBytes.buffer as ArrayBuffer], { type: "application/pdf" });

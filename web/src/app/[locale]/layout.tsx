@@ -4,7 +4,6 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import { locales } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import { Fraunces, Manrope } from "next/font/google";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -13,20 +12,6 @@ import { ToolsMegaMenu } from "@/components/ToolsMegaMenu";
 import { CreateDropdown } from "@/components/CreateDropdown";
 import { AccountNav } from "@/components/AccountNav";
 import "@/app/globals.css";
-
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -61,7 +46,7 @@ export default async function LocaleLayout({
         <ThemeScript />
       </head>
       <body
-        className={`${display.variable} ${body.variable} antialiased`}
+        className="antialiased"
       >
         <NextIntlClientProvider messages={messages}>
           <div className={`min-h-screen ${bodyFontClass(locale)} flex flex-col justify-between`}>

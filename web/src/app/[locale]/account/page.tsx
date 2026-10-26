@@ -12,12 +12,18 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "account" });
-  return buildPageMetadata({
-    locale,
-    path: PATH,
-    title: t("seo.title"),
-    description: t("seo.description"),
-  });
+  return {
+    ...buildPageMetadata({
+      locale,
+      path: PATH,
+      title: t("seo.title"),
+      description: t("seo.description"),
+    }),
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 }
 
 export default async function AccountPage({

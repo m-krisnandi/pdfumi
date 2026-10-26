@@ -123,14 +123,8 @@ export function CompressImageBoard({
 
       setCompressedBlob(bestBlob);
 
-      // Trigger automatic download
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(bestBlob);
-      let ext = "jpg";
-      if (forcedFormat === "png" || bestBlob.type === "image/png") ext = "png";      else if (forcedFormat === "webp" || bestBlob.type === "image/webp") ext = "webp";
-      a.download = file.name.replace(/\.[^/.]+$/, "") + `-compressed.${ext}`;
-      a.click();
-    } catch (err) {      setError(err instanceof Error ? err.message : "Terjadi kesalahan saat memproses gambar");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Terjadi kesalahan saat memproses gambar");
     } finally {
       setProcessing(false);
     }
@@ -138,13 +132,17 @@ export function CompressImageBoard({
 
   function downloadResult() {
     if (!compressedBlob || !file) return;
+    const url = URL.createObjectURL(compressedBlob);
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(compressedBlob);
+    a.href = url;
     let ext = "jpg";
     if (forcedFormat === "png" || compressedBlob.type === "image/png") ext = "png";
     else if (forcedFormat === "webp" || compressedBlob.type === "image/webp") ext = "webp";
     a.download = file.name.replace(/\.[^/.]+$/, "") + `-compressed.${ext}`;
+    document.body.appendChild(a);
     a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
 
   return (

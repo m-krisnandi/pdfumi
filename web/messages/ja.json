@@ -578,19 +578,19 @@
   },
   "pdfToWord": {
     "title": "PDFをWordに（無料）",
-    "description": "LibreOfficeでPDFを編集可能な.docxに変換。無料枠あり。",
+    "description": "PDFの各ページを見た目を保ったWord .docxに変換。テキスト、表、図形、画像、文字間隔を忠実に保持します。",
     "seo": {
-      "title": "PDF Word 変換 無料オンライン — 編集可能なWord(DOCX)に変換 | Pdfumi",
-      "description": "PDFファイルを編集可能なWord（DOCX）形式に無料変換。フォント、レイアウト、表の書式を崩さずに綺麗に出力。透かしなし、インストール不要。",
+      "title": "PDFをWordに変換 — レイアウトを忠実に保持 | Pdfumi",
+      "description": "PDFを高精度なWord DOCXに変換。表、図形、画像、テキスト、文字配置を見た目そのまま保持し、透かしなしで出力します。",
       "faqTitle": "PDFからWordへの変換に関するよくある質問",
       "faqs": [
         {
-          "q": "変換後のWordファイルはレイアウトや表が崩れませんか？",
-          "a": "はい。元の段落配置、フォントスタイル、表の書式を可能な限り忠実に維持してWord（DOCX）へ変換します。"
+          "q": "変換後もレイアウト、表、図形は完全に同じですか？",
+          "a": "はい。各PDFページを高解像度のページ画像としてDOCXに配置するため、テキスト、表、図形、画像、余白の見た目を保持します。"
         },
         {
-          "q": "変換されたファイルはMicrosoft Wordで直接編集できますか？",
-          "a": "はい。標準的な.docxファイルとして出力されるため、Microsoft Word、Googleドキュメント、WPS Officeなどでそのまま自由に編集可能です。"
+          "q": "Word上でテキストや表を個別に編集できますか？",
+          "a": "DOCXはWord、Googleドキュメント、LibreOfficeで開けますが、見た目を完全に保つため、各PDFページは1枚の画像として扱われます。"
         },
         {
           "q": "変換処理中のファイルの安全性はどうなっていますか？",
@@ -602,7 +602,7 @@
     "dropHint": "またはここにドラッグ＆ドロップ",
     "uploadHint": "PDFのみ · 最大20MB",
     "needFile": "先にPDFを選んでください。",
-    "resultHint": "編集可能な.docxとしてダウンロード（LibreOffice）。",
+    "resultHint": "レイアウトを忠実に保持した.docxとしてダウンロード（各PDFページを高解像度画像で保存）。",
     "downloadResult": "Wordをダウンロード"
   },
   "wordToPdf": {
@@ -960,6 +960,7 @@
     "needDraw": "先に署名を描いてください。",
     "uploadHintSig": "PNG / JPGの署名を選択",
     "positionHint": "ページ上の位置",
+    "pageLabel": "ページ番号",
     "createSignature": "署名を作成",
     "changeSignature": "新しい署名",
     "clearSignature": "署名を削除",

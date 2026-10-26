@@ -578,19 +578,19 @@
   },
   "pdfToWord": {
     "title": "PDF to Word online free",
-    "description": "Convert a PDF to an editable .docx with LibreOffice. Free daily quota applies.",
+    "description": "Convert each PDF page into a layout-faithful Word .docx. Text, tables, shapes, images, and typography stay visually identical.",
     "seo": {
-      "title": "Convert PDF to Word Online for Free (Editable DOCX) | Pdfumi",
-      "description": "Convert PDF to editable Word DOCX documents online for free. Accurate formatting, tables, and typography with no watermarks.",
+      "title": "Convert PDF to Word Online with Exact Layout | Pdfumi",
+      "description": "Convert PDF pages to a high-fidelity Word DOCX. Tables, shapes, images, text, and typography stay visually identical with no watermark.",
       "faqTitle": "Frequently Asked Questions about PDF to Word",
       "faqs": [
         {
-          "q": "Will document layout and tables remain intact after conversion?",
-          "a": "Yes. Our conversion engine preserves paragraph alignment, font styling, tables, and images so you can edit the DOCX file immediately."
+          "q": "Will the PDF layout, tables, and shapes remain exactly the same?",
+          "a": "Yes. Each PDF page is placed into the DOCX as a high-resolution page image, preserving the visual appearance of text, tables, shapes, images, and spacing."
         },
         {
-          "q": "Can I edit the downloaded Word document in Microsoft Word or Google Docs?",
-          "a": "Absolutely. The output is a standard Microsoft Word .docx file fully compatible with Word, Google Docs, and LibreOffice."
+          "q": "Can I edit individual text and table elements in the downloaded Word document?",
+          "a": "The DOCX is compatible with Microsoft Word, Google Docs, and LibreOffice, but the fidelity-first output treats each PDF page as one image so its appearance does not shift."
         },
         {
           "q": "Are my converted documents kept secure and private?",
@@ -602,7 +602,7 @@
     "dropHint": "or drag and drop a PDF here",
     "uploadHint": "PDF only · max 20MB",
     "needFile": "Please choose a PDF file first.",
-    "resultHint": "Downloads as an editable .docx (LibreOffice conversion).",
+    "resultHint": "Downloads as a layout-faithful .docx with each PDF page preserved as a high-resolution image.",
     "downloadResult": "Download Word"
   },
   "wordToPdf": {
@@ -956,6 +956,7 @@
     "needDraw": "Please draw your signature first.",
     "uploadHintSig": "Drop or choose a PNG / JPG signature",
     "positionHint": "Placement on page",
+    "pageLabel": "Page number",
     "createSignature": "Create signature",
     "changeSignature": "New signature",
     "clearSignature": "Remove signature",

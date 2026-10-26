@@ -49,6 +49,7 @@ export function ExtraPdfOpsBoard({ mode }: { mode: Mode }) {
   const [language, setLanguage] = useState("eng");
   const [sigX, setSigX] = useState(0.72);
   const [sigY, setSigY] = useState(0.82);
+  const [signPage, setSignPage] = useState(1);
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -115,7 +116,7 @@ export function ExtraPdfOpsBoard({ mode }: { mode: Mode }) {
       form.append("x", String(sigX));
       form.append("y", String(sigY));
       form.append("width", "0.22");
-      form.append("page", "0");
+      form.append("page", String(signPage));
     }
     try {
       const res = await fetch(`${API_BASE}${ENDPOINT[mode]}`, {
@@ -294,6 +295,17 @@ export function ExtraPdfOpsBoard({ mode }: { mode: Mode }) {
                       })}
                     </div>
                   </div>
+
+                  <label className="block max-w-xs space-y-1 text-sm">
+                    <span className="text-[color:var(--ink)]/70">{t("pageLabel")}</span>
+                    <input
+                      type="number"
+                      min={1}
+                      value={signPage}
+                      onChange={(event) => setSignPage(Math.max(1, Number(event.target.value) || 1))}
+                      className="glass-input w-full rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm"
+                    />
+                  </label>
                 </div>
               )}
 
@@ -303,9 +315,10 @@ export function ExtraPdfOpsBoard({ mode }: { mode: Mode }) {
                   setFile(null);
                   setSignature(null);
                   setDrawnSignature(undefined);
-                  setSignMethod("draw");
-                  setPassword("");
-                }}
+                   setSignMethod("draw");
+                   setPassword("");
+                   setSignPage(1);
+                 }}
                 className="text-xs text-[color:var(--ink)]/50 underline hover:text-red-700"
               >
                 {tCommon("remove")}

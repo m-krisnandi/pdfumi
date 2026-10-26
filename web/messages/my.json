@@ -578,19 +578,19 @@
   },
   "pdfToWord": {
     "title": "PDF မှ Word အခမဲ့",
-    "description": "LibreOffice ဖြင့် PDF ကို တည်းဖြတ်နိုင်သော .docx သို့ ပြောင်း။ နေ့စဉ်အခမဲ့ခွင့်ရှိ။",
+    "description": "PDF စာမျက်နှာတိုင်းကို layout မပြောင်းဘဲ Word .docx သို့ ပြောင်းပါ။ စာသား၊ table၊ shape နှင့် ပုံများ၏ မြင်ကွင်းကို ထိန်းသိမ်းပါသည်။",
     "seo": {
-      "title": "PDF မှ Word အွန်လိုင်း အခမဲ့ | Pdfumi",
-      "description": "PDF ကို Word DOCX သို့ အွန်လိုင်းပြောင်း။ တည်းဖြတ်နိုင်သောဖိုင် ဒေါင်းလုဒ်။",
+      "title": "PDF မှ Word — Layout တိကျစွာ ထိန်းသိမ်းခြင်း | Pdfumi",
+      "description": "PDF ကို fidelity မြင့် Word DOCX သို့ ပြောင်းပါ။ Table၊ shape၊ ပုံနှင့် စာသားမြင်ကွင်းကို မပြောင်းဘဲ ထိန်းသိမ်းပါသည်။",
       "faqTitle": "PDF→Word မေးခွန်း",
       "faqs": [
         {
-          "q": "တည်းဖြတ်နိုင်သလား?",
-          "a": "ဟုတ် —.docx။ ရှုပ်ထွေးသော layout ကို ပြောင်းပြီးနောက် ပြင်ရနိုင်သည်။"
+          "q": "ပြောင်းပြီးနောက် layout၊ table နှင့် shape များ တူညီနေမလား?",
+          "a": "ဟုတ်ပါသည်။ PDF စာမျက်နှာတိုင်းကို resolution မြင့် image အဖြစ် DOCX ထဲထည့်သောကြောင့် စာသား၊ table၊ shape နှင့် ပုံများ၏ မြင်ကွင်းကို ထိန်းသိမ်းပါသည်။"
         },
         {
-          "q": "ဘယ် engine?",
-          "a": "Server ပေါ်ရှိ LibreOffice headless။"
+          "q": "Word ထဲမှာ စာသားနဲ့ table ကို တစ်ခုချင်း ပြင်နိုင်မလား?",
+          "a": "DOCX ကို Word၊ Google Docs နှင့် LibreOffice တွင် ဖွင့်နိုင်သော်လည်း layout မပြောင်းစေရန် PDF စာမျက်နှာတစ်ခုကို image တစ်ခုအဖြစ် သိမ်းထားပါသည်။"
         },
         {
           "q": "ဖိုင်အရွယ်?",
@@ -602,7 +602,7 @@
     "dropHint": "သို့မဟုတ် ဤနေရာသို့ ဆွဲချပါ",
     "uploadHint": "PDF သာ · ၅MB",
     "needFile": "အရင် PDF ရွေးပါ။",
-    "resultHint": "တည်းဖြတ်နိုင်သော .docx အဖြစ် ဒေါင်းလုဒ် (LibreOffice)။",
+    "resultHint": "Layout မပြောင်းသော .docx အဖြစ် ဒေါင်းလုဒ် (PDF စာမျက်နှာတိုင်းကို resolution မြင့် image အဖြစ် ထိန်းသိမ်းထားသည်)။",
     "downloadResult": "Word ဒေါင်းလုဒ်"
   },
   "wordToPdf": {
@@ -952,6 +952,7 @@
     "needDraw": "အရင် လက်မှတ်ရေးပါ။",
     "uploadHintSig": "PNG / JPG လက်မှတ် ရွေးပါ",
     "positionHint": "စာမျက်နှာပေါ် တည်နေရာ",
+    "pageLabel": "စာမျက်နှာနံပါတ်",
     "createSignature": "လက်မှတ် ဖန်တီး",
     "changeSignature": "လက်မှတ် အသစ်",
     "clearSignature": "လက်မှတ် ဖျက်",

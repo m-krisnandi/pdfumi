@@ -34,6 +34,16 @@ export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
 
+  // These products were intentionally removed. Return 410 instead of
+  // redirecting to an unrelated image compressor, so crawlers drop stale URLs
+  // and users are not sent to a misleading replacement.
+  if (/^\/(?:en|ja|id|my)\/tools\/compress-(?:audio|video)$/.test(pathname) || /^\/tools\/compress-(?:audio|video)$/.test(pathname)) {
+    return new NextResponse("Gone", {
+      status: 410,
+      headers: { "Cache-Control": "public, max-age=86400" },
+    });
+  }
+
   // Bare `/` without a saved preference: pick locale before next-intl defaults to English-only.
   if (pathname === "/" && !isAppLocale(cookieLocale)) {
     const preferred = detectPreferredLocale({

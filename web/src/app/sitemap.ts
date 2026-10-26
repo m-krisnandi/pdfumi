@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/i18n/config";
-import { absoluteUrl, siteOrigin } from "@/i18n/seo";
+import { indexableLocales } from "@/i18n/config";
+import { absoluteUrl } from "@/i18n/seo";
 
 const paths = [
   "",
   "/pricing",
-  "/account",
   "/terms",
   "/privacy",
   "/refund",
@@ -58,29 +57,21 @@ const paths = [
 
 /** Multilingual sitemap so Google can discover EN / JA / ID / MY URLs. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of paths) {
-    for (const locale of locales) {
+    for (const locale of indexableLocales) {
       entries.push({
         url: absoluteUrl(locale, path),
-        lastModified,
         alternates: {
           languages: Object.fromEntries([
-            ...locales.map((l) => [l, absoluteUrl(l, path)]),
+            ...indexableLocales.map((l) => [l, absoluteUrl(l, path)]),
             ["x-default", absoluteUrl("en", path)],
           ]),
         },
       });
     }
   }
-
-  // Also list origin for crawlers that hit the apex
-  entries.push({
-    url: siteOrigin(),
-    lastModified,
-  });
 
   return entries;
 }
