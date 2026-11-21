@@ -16,7 +16,10 @@
     "privacy": "သီးသန့်လုံခြုံရေး",
     "refund": "ငွေပြန်အမ်းမှု မူဝါဒ",
     "contact": "Hubungi Kami",
-    "feedback": "Maklum Balas & Lapor Isu"
+    "feedback": "Maklum Balas & Lapor Isu",
+    "about": "About Us",
+    "editorial": "Editorial Guidelines",
+    "news": "News & Insights"
   },
   "footer": "Pdfumi — စာရွက်စာတမ်းများကို PDF အဖြစ်၊ အခက်အခဲမရှိ။",
   "common": {
@@ -1112,7 +1115,9 @@
     "s4Title": "၄။ ကွတ်ကီးများ",
     "s4Body": "ခြေရာခံ ကွတ်ကီးများကို အသုံးမပြုပါ။",
     "s5Title": "၅။ ဆက်သွယ်ရန်",
-    "s5Body": "privacy@pdfumi.com သို့ ဆက်သွယ်ပါ။"
+    "s5Body": "privacy@pdfumi.com သို့ ဆက်သွယ်ပါ။",
+    "s6Title": "6. Advertising & Third-Party Cookies (Google AdSense)",
+    "s6Body": "Third-party vendors, including Google, use cookies to serve ads based on prior visits. Users may opt out at https://adssettings.google.com."
   },
   "refund": {
     "seo": {
@@ -1584,5 +1589,55 @@
     "successTitle": "အောင်မြင်စွာ ပေးပို့ပြီးပါပြီ",
     "successDesc": "Pdfumi ကို ကောင်းမွန်စေရန် ကူညီပေးသည့်အတွက် ကျေးဇူးတင်ပါသည်။ ကျွန်ုပ်တို့အဖွဲ့မှ စစ်ဆေးပြီး သင်၏အီးမေးလ်သို့ ပြန်လည်အကြောင်းကြားပေးပါမည်။",
     "submitAnother": "အခြားအစီရင်ခံစာ ပေးပို့ရန်"
+  },
+  "about": {
+    "seo": {
+      "title": "About Us — Pdfumi",
+      "description": "Learn about Pdfumi, our mission to simplify document workflows."
+    },
+    "title": "About Pdfumi",
+    "subtitle": "Simplifying modern document workflows with speed, privacy, and precision.",
+    "s1Title": "1. Our Mission",
+    "s1Body": "Pdfumi provides fast, private, and accessible document tools directly in your browser.",
+    "s2Title": "2. Privacy & Security",
+    "s2Body": "Zero-retention architecture ensures your documents are purged automatically.",
+    "s3Title": "3. What We Offer",
+    "s3Body": "Merge, compress, convert, and sign PDF documents easily.",
+    "s4Title": "4. Global Coverage",
+    "s4Body": "Serving global users with reliable tools and news insights on news.pdfumi.com.",
+    "s5Title": "5. Contact",
+    "s5Body": "Contact our team at support@pdfumi.com."
+  },
+  "contact": {
+    "seo": {
+      "title": "Contact Us — Pdfumi",
+      "description": "Get in touch with the Pdfumi team."
+    },
+    "title": "Contact Us",
+    "subtitle": "We are here to help.",
+    "s1Title": "1. Customer Support",
+    "s1Body": "Email us at support@pdfumi.com for any inquiries.",
+    "s2Title": "2. Privacy",
+    "s2Body": "Contact privacy@pdfumi.com for data privacy questions.",
+    "s3Title": "3. Partnerships",
+    "s3Body": "Contact admin@pdfumi.com for partnerships.",
+    "s4Title": "4. Feedback",
+    "s4Body": "Submit bug reports via our Feedback page."
+  },
+  "editorial": {
+    "seo": {
+      "title": "Editorial Guidelines & Disclaimer — Pdfumi",
+      "description": "Our standards for accuracy and transparency."
+    },
+    "title": "Editorial Guidelines & Disclaimer",
+    "lastUpdated": "Last updated: November 2026",
+    "s1Title": "1. Accuracy & Verification",
+    "s1Body": "We verify information across multiple primary sources before publishing.",
+    "s2Title": "2. Disclaimer",
+    "s2Body": "Templates are provided for administrative convenience and do not constitute legal advice.",
+    "s3Title": "3. Source Attribution",
+    "s3Body": "We clearly attribute sources and studies.",
+    "s4Title": "4. Corrections",
+    "s4Body": "Corrections can be requested at editorial@pdfumi.com."
   }
 }

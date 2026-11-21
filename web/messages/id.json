@@ -16,7 +16,10 @@
     "privacy": "Privasi",
     "refund": "Pengembalian Dana",
     "contact": "Kontak",
-    "feedback": "Masukan & Bug"
+    "feedback": "Masukan & Bug",
+    "about": "Tentang Kami",
+    "editorial": "Pedoman Editorial",
+    "news": "Berita & Wawasan"
   },
   "footer": "Pdfumi — dokumen jadi PDF, tanpa ribet.",
   "common": {
@@ -1132,7 +1135,9 @@
     "s4Title": "4. Cookies & Penyimpanan Lokal",
     "s4Body": "Kami hanya menggunakan local storage browser untuk menyimpan sesi login dan kunci API di perangkat Anda. Kami tidak menggunakan cookie pelacak pihak ketiga.",
     "s5Title": "5. Kontak Privasi",
-    "s5Body": "Untuk permintaan penghapusan data atau pertanyaan privasi, kirim email ke privacy@pdfumi.com."
+    "s5Body": "Untuk permintaan penghapusan data atau pertanyaan privasi, kirim email ke privacy@pdfumi.com.",
+    "s6Title": "6. Iklan Pihak Ketiga & Cookie (Google AdSense)",
+    "s6Body": "Kami dapat bermitra dengan vendor periklanan pihak ketiga, termasuk Google, untuk menayangkan iklan yang relevan. Google menggunakan cookie (seperti cookie DoubleClick) untuk menayangkan iklan berdasarkan kunjungan pengguna ke situs kami atau situs lain di internet. Pengguna dapat memilih untuk menonaktifkan iklan hasil personalisasi melalui Setelan Iklan Google (https://adssettings.google.com) atau www.aboutads.info."
   },
   "refund": {
     "seo": {
@@ -1604,5 +1609,55 @@
     "successTitle": "Laporan Berhasil Terkirim",
     "successDesc": "Terima kasih atas kontribusi Anda dalam meningkatkan kualitas Pdfumi. Tim kami akan segera meninjau dan mengirimkan konfirmasi/balasan ke email Anda apabila disertakan.",
     "submitAnother": "Kirim Laporan Lainnya"
+  },
+  "about": {
+    "seo": {
+      "title": "Tentang Kami — Pdfumi",
+      "description": "Pelajari lebih lanjut tentang Pdfumi, misi kami mempermudah pengelolaan dokumen, serta komitmen privasi dan keamanan berkas Anda."
+    },
+    "title": "Tentang Pdfumi",
+    "subtitle": "Mempermudah pengelolaan dokumen modern dengan kecepatan, privasi, dan ketepatan tinggi.",
+    "s1Title": "1. Misi Kami",
+    "s1Body": "Pdfumi lahir dengan satu tujuan utama: menyediakan alat bantu dokumen berkinerja tinggi, aman, dan mudah diakses oleh pelajar, pelaku bisnis, UMKM, dan profesional di seluruh dunia tanpa perlu instalasi aplikasi rumit.",
+    "s2Title": "2. Keamanan & Privasi Dokumen",
+    "s2Body": "Berbeda dengan konverter online lawas yang menyimpan berkas Anda tanpa batas waktu, Pdfumi dibangun dengan prinsip Zero-Retention. Berkas Anda diproses secara terisolasi dan langsung dihapus otomatis dari server demi menjaga kerahasiaan data.",
+    "s3Title": "3. Layanan Unggulan",
+    "s3Body": "Mulai dari penggabungan PDF, kompresi berkas, tanda tangan digital, hingga pembuatan kwitansi otomatis, faktur, sertifikat, dan konversi format dokumen secara instan.",
+    "s4Title": "4. Edukasi & Portal Berita Global",
+    "s4Body": "Selain perkakas dokumen, kami juga menghadirkan wawasan industri, riset teknologi, dan ringkasan berita global terverifikasi melalui news.pdfumi.com guna memperkaya wawasan digital masyarakat.",
+    "s5Title": "5. Hubungi Tim Pengembang",
+    "s5Body": "Pdfumi terus dikembangkan secara konsisten. Untuk kemitraan bisnis atau pertanyaan teknis, silakan hubungi tim kami di support@pdfumi.com."
+  },
+  "contact": {
+    "seo": {
+      "title": "Hubungi Kami — Bantuan & Dukungan — Pdfumi",
+      "description": "Hubungi tim Pdfumi untuk bantuan teknis, saran fitur, atau kemitraan bisnis."
+    },
+    "title": "Hubungi Kami",
+    "subtitle": "Kami siap membantu Anda. Hubungi tim dukungan dan layanan pelanggan kami.",
+    "s1Title": "1. Layanan Dukungan Pelanggan",
+    "s1Body": "Mengalami kendala saat menggunakan alat atau pembayaran? Tim bantuan kami merespons dalam 1x24 jam (Senin - Sabtu, 08:00 - 20:00 WIB). Kirim email ke support@pdfumi.com.",
+    "s2Title": "2. Perlindungan Data & Privasi",
+    "s2Body": "Untuk permintaan penghapusan data atau klarifikasi kebijakan privasi, hubungi privacy@pdfumi.com.",
+    "s3Title": "3. Kerjasama & Media",
+    "s3Body": "Untuk integrasi API bisnis, liputan media, atau kemitraan komersial, hubungi admin@pdfumi.com.",
+    "s4Title": "4. Laporan Bug & Masukan",
+    "s4Body": "Kami sangat menghargai masukan Anda. Silakan sampaikan saran atau kendala teknis melalui halaman Feedback kami."
+  },
+  "editorial": {
+    "seo": {
+      "title": "Pedoman Editorial & Penafian — Pdfumi",
+      "description": "Standar akurasi, riset independen, penafian hukum, dan transparansi di Pdfumi serta news.pdfumi.com."
+    },
+    "title": "Pedoman Editorial & Penafian Hukum",
+    "lastUpdated": "Terakhir diperbarui: November 2026",
+    "s1Title": "1. Independensi & Verifikasi Fakta",
+    "s1Body": "Seluruh panduan, artikel, dan kurasi berita di Pdfumi dan subdomain (termasuk news.pdfumi.com) mengacu pada standar verifikasi ketat dengan membandingkan minimal 2-3 sumber resmi dan jurnal kredibel.",
+    "s2Title": "2. Penafian Hukum & Keuangan (Disclaimer)",
+    "s2Body": "Format dokumen yang dihasilkan (seperti kwitansi, invoice, dan draf surat) dirancang untuk mempermudah administrasi mandiri, namun tidak menggantikan nasihat hukum formal dari praktisi hukum bersertifikat.",
+    "s3Title": "3. Transparansi Sumber & Sitasi",
+    "s3Body": "Kami selalu mencantumkan sumber rujukan asli dari riset dan data yang disajikan, serta menghindari judul umpan klik (clickbait) atau informasi yang belum terbukti kebenarannya.",
+    "s4Title": "4. Kebijakan Koreksi",
+    "s4Body": "Jika terdapat kekeliruan data atau fakta, kami akan segera memperbarui konten dengan catatan revisi yang transparan. Hubungi editorial@pdfumi.com untuk permintaan koreksi."
   }
 }

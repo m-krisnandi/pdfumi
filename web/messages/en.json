@@ -16,7 +16,10 @@
     "privacy": "Privacy",
     "refund": "Refund",
     "contact": "Contact",
-    "feedback": "Feedback & Report Bug"
+    "feedback": "Feedback & Report Bug",
+    "about": "About Us",
+    "editorial": "Editorial Guidelines",
+    "news": "News & Insights"
   },
   "footer": "Pdfumi — documents to PDF, without the hassle.",
   "common": {
@@ -1116,7 +1119,9 @@
     "s4Title": "4. Cookies & Local Storage",
     "s4Body": "We use browser local storage solely to keep your authentication session and API key on your device. We do not use third-party tracking cookies.",
     "s5Title": "5. Contact",
-    "s5Body": "For privacy requests or data deletion, contact privacy@pdfumi.com."
+    "s5Body": "For privacy requests or data deletion, contact privacy@pdfumi.com.",
+    "s6Title": "6. Advertising & Third-Party Cookies (Google AdSense)",
+    "s6Body": "We may partner with third-party advertising vendors, including Google, to serve relevant advertisements. Google uses cookies (including the DoubleClick cookie) to serve ads based on your prior visits to our website or other sites on the internet. You may opt out of personalized advertising by visiting Google Ads Settings (https://adssettings.google.com) or www.aboutads.info."
   },
   "refund": {
     "seo": {
@@ -1600,5 +1605,55 @@
     "successTitle": "Report Submitted Successfully",
     "successDesc": "Thank you for helping us improve Pdfumi! Our team will review your report and send a reply to your email if provided.",
     "submitAnother": "Submit Another Report"
+  },
+  "about": {
+    "seo": {
+      "title": "About Us — Pdfumi",
+      "description": "Learn about Pdfumi, our mission to simplify document workflows, and our commitment to user security and privacy."
+    },
+    "title": "About Pdfumi",
+    "subtitle": "Simplifying modern document workflows with speed, privacy, and precision.",
+    "s1Title": "1. Our Mission",
+    "s1Body": "Pdfumi was built with a single goal: to provide high-performance, private, and accessible document tools for individuals, businesses, educators, and creators worldwide. We eliminate tedious software installs, bloatware, and complicated subscriptions by offering essential document operations directly in your browser.",
+    "s2Title": "2. Privacy & Security by Architecture",
+    "s2Body": "Unlike traditional online converters that store your sensitive files indefinitely, Pdfumi is engineered with a zero-retention architecture. Your documents are processed in isolated, ephemeral environments and wiped immediately upon completion. We believe privacy is a fundamental right, not an optional premium feature.",
+    "s3Title": "3. What We Offer",
+    "s3Body": "From client-side PDF merging, compression, and electronic signatures to automated receipt generation, OCR, and document conversions, Pdfumi delivers enterprise-grade utility with an intuitive, minimalist user interface.",
+    "s4Title": "4. Global Coverage & Education",
+    "s4Body": "We serve a diverse international audience across Indonesia, Japan, Southeast Asia, and globally. Alongside our core utilities, our platform curates authoritative educational guides, industry insights, and technology news via news.pdfumi.com to empower users with modern digital skills.",
+    "s5Title": "5. Contact & Company",
+    "s5Body": "Pdfumi is continuously developed and maintained with love by our dedicated engineering team. For partnerships, press, or enterprise inquiries, please reach out to us at support@pdfumi.com."
+  },
+  "contact": {
+    "seo": {
+      "title": "Contact Us — Support & Inquiries — Pdfumi",
+      "description": "Get in touch with the Pdfumi team for support, feature suggestions, or business inquiries."
+    },
+    "title": "Contact Us",
+    "subtitle": "We are here to help. Reach out to our dedicated support and engineering team.",
+    "s1Title": "1. Customer Support & Technical Help",
+    "s1Body": "Encountering an issue with a document tool or payment? Our support desk responds to all inquiries within 24 hours (Monday through Saturday, 08:00 - 20:00 UTC+7). Email us directly at support@pdfumi.com.",
+    "s2Title": "2. Privacy & Data Officer",
+    "s2Body": "For data deletion requests, GDPR/CCPA questions, or privacy disclosures, please contact our data team at privacy@pdfumi.com.",
+    "s3Title": "3. Partnerships & Media Inquiries",
+    "s3Body": "Interested in integrating our PDF APIs or featuring Pdfumi in publications? Contact our business team at admin@pdfumi.com.",
+    "s4Title": "4. Feedback & Bug Reports",
+    "s4Body": "We constantly improve our tools based on user feedback. You can submit real-time bug reports or feature requests via our dedicated Feedback page."
+  },
+  "editorial": {
+    "seo": {
+      "title": "Editorial Guidelines & Disclaimer — Pdfumi",
+      "description": "Our standards for accuracy, independent research, legal disclaimers, and transparency across Pdfumi and news.pdfumi.com."
+    },
+    "title": "Editorial Guidelines & Disclaimer",
+    "lastUpdated": "Last updated: November 2026",
+    "s1Title": "1. Editorial Independence & Fact-Checking",
+    "s1Body": "All articles, guides, tutorials, and news published across Pdfumi and its subdomains (including news.pdfumi.com) adhere to strict journalistic standards. We verify information across multiple primary sources (news agencies, scientific journals, academic databases, and verified press releases) before publication.",
+    "s2Title": "2. Legal & Financial Disclaimer",
+    "s2Body": "Templates provided on Pdfumi (including receipts, invoices, contracts, and certificates) are provided for organizational and self-service purposes. While crafted to adhere to standard conventions, they do not constitute formal legal or financial advice. Users should consult qualified legal counsel for binding corporate contracts.",
+    "s3Title": "3. Transparency & Source Attribution",
+    "s3Body": "We believe in complete transparency. Every analytical article or news report includes clear attribution to primary sources, research papers, and studies. We do not engage in clickbait or unsubstantiated speculation.",
+    "s4Title": "4. Corrections & Updates",
+    "s4Body": "If an error of fact is identified in any of our guides or news stories, we issue a clear correction note stating what was changed and when. Readers can request factual reviews by emailing editorial@pdfumi.com."
   }
 }

@@ -56,6 +56,10 @@ export default async function PrivacyPage({
           <h2 className="text-xl font-semibold text-[color:var(--ink)]">{t("s5Title")}</h2>
           <p className="mt-2 leading-relaxed">{t("s5Body")}</p>
         </section>
+        <section>
+          <h2 className="text-xl font-semibold text-[color:var(--ink)]">{t("s6Title")}</h2>
+          <p className="mt-2 leading-relaxed">{t("s6Body")}</p>
+        </section>
       </div>
     </article>
   );

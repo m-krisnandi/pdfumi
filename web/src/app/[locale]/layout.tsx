@@ -11,6 +11,7 @@ import { ThemeScript } from "@/components/ThemeScript";
 import { ToolsMegaMenu } from "@/components/ToolsMegaMenu";
 import { CreateDropdown } from "@/components/CreateDropdown";
 import { AccountNav } from "@/components/AccountNav";
+import { Newspaper } from "lucide-react";
 import "@/app/globals.css";
 
 export function generateStaticParams() {
@@ -90,6 +91,20 @@ export default async function LocaleLayout({
 
                     {/* Create ▾ Dropdown */}
                     <CreateDropdown />
+
+                    {/* Global News & Research Portal */}
+                    <a
+                      href="https://news.pdfumi.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-teal-600 dark:text-teal-400 font-semibold hover:bg-teal-500/10 transition"
+                    >
+                      <Newspaper className="h-3.5 w-3.5" />
+                      <span>{t("news")}</span>
+                      <span className="rounded-md bg-teal-500/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+                        Global
+                      </span>
+                    </a>
                   </nav>
                 </div>
 
@@ -183,22 +198,37 @@ export default async function LocaleLayout({
 
                   <div className="space-y-2">
                     <p className="font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 text-[11px]">
-                      Image & Scanner
+                      Company & Insights
                     </p>
                     <ul className="space-y-1.5">
-                      <li><Link href="/tools/pas-foto" className="hover:text-teal-600 transition">Passport / Pas Foto</Link></li>
-                      <li><Link href="/tools/resize-image" className="hover:text-teal-600 transition">Resize Image</Link></li>
-                      <li><Link href="/tools/remove-signature-bg" className="hover:text-teal-600 transition">Remove Signature BG</Link></li>
-                      <li><Link href="/tools/scan-pdf" className="hover:text-teal-600 transition">Mobile Camera Scan</Link></li>
+                      <li><Link href="/about" className="hover:text-teal-600 transition font-medium">{t("about")}</Link></li>
+                      <li><Link href="/contact" className="hover:text-teal-600 transition font-medium">{t("contact")}</Link></li>
+                      <li><Link href="/editorial-guidelines" className="hover:text-teal-600 transition">{t("editorial")}</Link></li>
+                      <li>
+                        <a href="https://news.pdfumi.com" target="_blank" rel="noopener noreferrer" className="hover:text-teal-600 transition flex items-center gap-1 font-medium text-teal-600 dark:text-teal-400">
+                          <span>{t("news")}</span>
+                          <span className="text-[10px]">↗</span>
+                        </a>
+                      </li>
+                      <li><Link href="/feedback" className="hover:text-teal-600 transition font-medium text-teal-600 dark:text-teal-400">{t("feedback")}</Link></li>
                     </ul>
                   </div>
                 </div>
 
                 <div className="border-t border-zinc-200/80 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
                   <p>© {new Date().getFullYear()} {tFooter("footer")}. All rights reserved.</p>
-                  <div className="flex flex-wrap items-center gap-5">
+                  <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+                    <Link href="/about" className="hover:text-teal-600 transition">
+                      {t("about")}
+                    </Link>
+                    <Link href="/contact" className="hover:text-teal-600 transition">
+                      {t("contact")}
+                    </Link>
                     <Link href="/pricing" className="hover:text-teal-600 transition">
                       {t("pricing")}
+                    </Link>
+                    <Link href="/editorial-guidelines" className="hover:text-teal-600 transition">
+                      {t("editorial")}
                     </Link>
                     <Link href="/terms" className="hover:text-teal-600 transition">
                       {t("terms")}
@@ -209,14 +239,13 @@ export default async function LocaleLayout({
                     <Link href="/refund" className="hover:text-teal-600 transition">
                       {t("refund")}
                     </Link>
-                    <Link href="/feedback" className="hover:text-teal-600 transition font-medium text-teal-600 dark:text-teal-400">
-                      Feedback & Report Bug
-                    </Link>
                     <a
-                      href="mailto:support@pdfumi.com"
-                      className="hover:text-teal-600 transition"
+                      href="https://news.pdfumi.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-teal-600 transition text-teal-600 dark:text-teal-400 font-semibold"
                     >
-                      {t("contact")}: support@pdfumi.com
+                      {t("news")} ↗
                     </a>
                   </div>
                 </div>
