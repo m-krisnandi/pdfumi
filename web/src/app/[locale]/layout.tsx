@@ -45,6 +45,11 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <ThemeScript />
+              <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5857207894827625"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className="antialiased"
