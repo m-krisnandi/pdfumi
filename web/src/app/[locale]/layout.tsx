@@ -44,6 +44,16 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-5857207894827625" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-W2HP5QJH"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6ZYHEMLKFS');`,
+          }}
+        />
         <ThemeScript />
               <script
           async
@@ -146,6 +156,7 @@ export default async function LocaleLayout({
                     <ul className="space-y-1.5">
                       <li><Link href="/tools/compress-pdf" className="hover:text-teal-600 transition">Compress PDF</Link></li>
                       <li><Link href="/tools/compress-image" className="hover:text-teal-600 transition">Compress Image</Link></li>
+                      <li><Link href="/presets" className="hover:text-teal-600 transition font-medium text-teal-600 dark:text-teal-400">Size Presets &amp; Guides</Link></li>
                     </ul>
                   </div>
 

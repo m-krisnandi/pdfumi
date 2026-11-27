@@ -1,4 +1,6 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { SEO_PRESETS, resolvePresetLocale } from "@/lib/seo-presets";
 import {
   UploadCloud,
   SlidersHorizontal,
@@ -6,9 +8,25 @@ import {
   ShieldCheck,
   CheckCircle2,
   Globe,
+  ArrowRight,
 } from "lucide-react";
 
 type FaqItem = { q: string; a: string };
+
+const PRESETS_BY_NAMESPACE: Record<string, string[]> = {
+  compressPdf: [
+    "compress-pdf-100kb",
+    "compress-pdf-200kb",
+    "compress-pdf-500kb",
+    "compress-pdf-1mb",
+  ],
+  compressImage: ["compress-jpg-200kb", "compress-jpg-100kb"],
+  compressJpg: ["compress-jpg-200kb", "compress-jpg-100kb"],
+  pasFoto: ["pas-foto-3x4-merah", "pas-foto-4x6-skck", "pas-foto-visa-jepang-2x2"],
+  resizeImage: ["resize-foto-youtube-ig", "compress-jpg-200kb"],
+  merge: ["gabung-pdf-lamaran-kerja", "compress-pdf-500kb"],
+  removeSignatureBg: ["hapus-background-tanda-tangan-word-pdf"],
+};
 
 type LocaleContent = {
   quickGuide: string;
@@ -16,6 +34,8 @@ type LocaleContent = {
   steps: { title: string; desc: string }[];
   trustBadges: { title: string; desc: string }[];
   faqTitleFallback: string;
+  presetsTitle: string;
+  allPresetsLabel: string;
 };
 
 const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
@@ -51,6 +71,8 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
       },
     ],
     faqTitleFallback: "よくある質問",
+    presetsTitle: "人気の用途別プリセット・容量指定",
+    allPresetsLabel: "すべてのプリセットを見る",
   },
   my: {
     quickGuide: "အသုံးပြုနည်း လမ်းညွှန်",
@@ -84,6 +106,8 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
       },
     ],
     faqTitleFallback: "မကြာခဏ မေးလေ့ရှိသော မေးခွန်းများ",
+    presetsTitle: "Popular Size Presets & Guides",
+    allPresetsLabel: "View all presets",
   },
   id: {
     quickGuide: "Panduan Praktis",
@@ -117,6 +141,8 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
       },
     ],
     faqTitleFallback: "Pertanyaan yang Sering Diajukan",
+    presetsTitle: "Preset Ukuran & Kebutuhan Populer",
+    allPresetsLabel: "Lihat semua preset & panduan",
   },
   en: {
     quickGuide: "Quick Guide",
@@ -150,6 +176,8 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
       },
     ],
     faqTitleFallback: "Frequently Asked Questions",
+    presetsTitle: "Popular Target Size Presets & Guides",
+    allPresetsLabel: "View all presets",
   },
 };
 
@@ -158,6 +186,7 @@ const CONTENT_BY_LOCALE: Record<string, LocaleContent> = {
  * 1. Step-by-Step How-To guide + Schema.org HowTo
  * 2. Trust, Privacy & Guarantee badges
  * 3. FAQ section + Schema.org FAQPage
+ * 4. Contextual preset internal links
  */
 export async function ToolLandingSeo({
   locale,
@@ -168,6 +197,9 @@ export async function ToolLandingSeo({
 }) {
   const t = await getTranslations({ locale, namespace });
   const content = CONTENT_BY_LOCALE[locale] ?? CONTENT_BY_LOCALE.en;
+  const presetLoc = resolvePresetLocale(locale);
+  const matchingSlugs = PRESETS_BY_NAMESPACE[namespace] ?? [];
+  const relatedPresets = SEO_PRESETS.filter((p) => matchingSlugs.includes(p.slug));
 
   let toolTitle = "";
   try {
@@ -336,6 +368,44 @@ export async function ToolLandingSeo({
               </div>
             ))}
           </dl>
+        </div>
+      )}
+
+      {/* 4. Contextual Presets Strip */}
+      {relatedPresets.length > 0 && (
+        <div className="rounded-2xl border border-[color:var(--ink)]/10 bg-[color:var(--paper)] p-6 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-sm font-bold text-[color:var(--ink)]">{content.presetsTitle}</h2>
+            <Link
+              href="/presets"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-teal-600 dark:text-teal-400 hover:underline"
+            >
+              <span>{content.allPresetsLabel}</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {relatedPresets.map((preset) => {
+              const pCopy = preset.copy[presetLoc];
+              return (
+                <Link
+                  key={preset.slug}
+                  href={`/presets/${preset.slug}`}
+                  className="rounded-xl border border-[color:var(--ink)]/10 p-3.5 hover:border-teal-500/50 transition flex items-center justify-between gap-3"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold text-teal-600 dark:text-teal-400">
+                      {pCopy.badge}
+                    </p>
+                    <p className="text-xs font-semibold text-[color:var(--ink)] truncate">
+                      {pCopy.h1}
+                    </p>
+                  </div>
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[color:var(--ink)]/50" />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       )}
 

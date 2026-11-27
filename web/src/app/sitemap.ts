@@ -1,10 +1,13 @@
 import type { MetadataRoute } from "next";
 import { indexableLocales } from "@/i18n/config";
 import { absoluteUrl } from "@/i18n/seo";
+import { SEO_PRESETS } from "@/lib/seo-presets";
 
 const paths = [
   "",
   "/pricing",
+  "/presets",
+  ...SEO_PRESETS.map((p) => `/presets/${p.slug}`),
   "/terms",
   "/privacy",
   "/refund",
